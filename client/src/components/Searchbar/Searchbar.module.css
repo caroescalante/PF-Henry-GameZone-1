@@ -1,0 +1,25 @@
+.input {     
+    border: none;      
+    height: 60%; 
+    margin-top: 6px;
+    border-bottom-left-radius: 10px;    
+    padding: 7px 30px; 
+    background-color: darkslategray;   
+}
+
+::placeholder {
+    color: white;        
+}
+
+.button {
+    background: aqua;
+    color: black;
+    border: none;
+    padding: 7px 30px;
+    border-top-right-radius: 10px;    
+}
+
+.button:hover{
+    background:rgb(71, 66, 66);
+    color: aqua;    
+}

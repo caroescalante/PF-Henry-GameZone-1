@@ -1,0 +1,120 @@
+.card{
+    text-decoration:none;
+    display:inline-flex;
+    flex-direction: column;
+    height: 280px;
+    width: 13.5%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 100px;
+    margin-right: 100px;
+    align-content: space-evenly;
+    border-style:hidden;
+    border-color: black;
+    border-radius: 10px;
+    padding-block: 130px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    color: rgba(199, 197, 197, 0.959);
+    font-family:'Trebuchet MS', sans-serif;
+    line-height: 1.4;
+    font-size: 12px;
+    background: linear-gradient(#181717ee,#454643e7,#333333);
+    border: solid 2px;  
+    overflow: hidden;
+    box-shadow: 0px 1px 10px rgba(0,0,0,0.2);
+    cursor: default;
+    transition: all 400ms ease;
+    font-style: oblique;
+}
+.more::before{
+    content:"";
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index:-1;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg,white,aqua,deeppink,aqua,white,aqua,deeppink,aqua);
+    background-size: 800%;
+    border-radius: 10px;
+    filter: blur(8px);
+    animation: glowing 20s linear infinite;
+
+}
+@keyframes glowing{
+    0%{
+        background-position: 0 0;
+    }
+    50%{
+        background-position: 400% 0;
+    }
+    100%{
+        background-position: 0 0;
+    }
+}
+
+.card:hover{
+    box-shadow:  5px 5px 20px rgba(0,0,0,0.7);
+    transform: translateY(-3%);
+}
+.card .contenido{
+    padding: 0px;
+    text-align: center;
+    line-height: 3;
+}
+.card .contenido a{
+    background-color: rgb(219, 221, 221);
+    width: 30%;
+    height: 12%;
+    text-decoration: none;
+    display: inline-block;
+    color: #000000;
+    border: 1px solid #ffffff;
+    border-radius: 10px;
+    transition: all 400ms ease;
+    font-size: 15px;
+    text-align: center;
+    padding-bottom: 10%;
+    padding-top: 0px;
+}
+.card .contenido a:hover{
+    background: #454643e7;
+    color: #f8f8f8;
+}
+.card .contenido h4{
+    color: rgba(201, 144, 116, 0.856);
+}
+.image {
+    width: 100%;
+    height: 45%;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+.name{
+    color:#fdfdfdd7;
+}
+.more{
+    background-color: #444444;
+    cursor:pointer;
+    border: none;
+    padding: 5px 10px 7px;
+    color:#ffffff;
+    font-size: 15px;
+    font-weight: bold;
+    position: relative;
+    border-radius: 12px;
+    text-decoration: none;
+    text-align: center;
+    padding-bottom: 0px;
+    padding-top: 0px;
+}
+.textbutton{
+    margin-top: 0px;
+    padding-top: 0px;
+    
+}
+
+
+
+
