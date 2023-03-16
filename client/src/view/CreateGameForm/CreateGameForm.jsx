@@ -3,7 +3,6 @@ import style from "./CreateGameForm.module.css";
 
 const validate = () => {
   let errors = {};
-
 };
 
 function CreateGameForm() {
