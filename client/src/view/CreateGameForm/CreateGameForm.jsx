@@ -4,6 +4,8 @@ import style from "./CreateGameForm.module.css";
 const validate = () => {
   let errors = {};
 
+  const hola = "";
+
 };
 
 function CreateGameForm() {
