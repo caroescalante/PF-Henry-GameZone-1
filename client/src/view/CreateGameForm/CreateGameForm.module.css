@@ -1,27 +1,7 @@
-.init{
-    background-image: url("../../Image/create2.jpg");
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    width: 100%;
-    background-position: center;
-    background-size: cover;
-}
-
-.form {
-    position: relative;
-    width: 400px;
-    height: 450px;
-    background: transparent;
-    border-radius: 20px;
-    border: 2px solid rgb(72, 134, 134);
-    backdrop-filter: blur(10px);    
-    justify-content: center;
-    align-items: center;
-}
-
-
-input::placeholder {
+.inputForm::placeholder {
     color: grey;
+}
+
+.errorText {
+    color: red;
 }
