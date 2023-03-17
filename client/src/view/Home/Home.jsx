@@ -58,16 +58,16 @@ const Home = () => {
              paginado={paginado}
             />
         </div>
-
-            <select onChange={(e) => handleGenreFilter(e)}>
+      
+            <select onChange={(e) => handleGenreFilter(e)} className={styles.filter}>
                      <option>All</option>
                     {genres.map((gen) => {
-                        return <option key={gen.id} value={gen.name}>{gen.name}</option>;
+                        return <option key={gen} value={gen}>{gen}</option>;
                      })}
             </select> 
 
             
-            <select onChange={(e) => handlePlatformFilter(e)}>
+            <select onChange={(e) => handlePlatformFilter(e)} className={styles.filter}>
                      <option>All</option>
                     {platforms.map((plat) => {
                         return <option key={plat.id} value={plat.name}>{plat.name}</option>;
@@ -81,8 +81,8 @@ const Home = () => {
                         <CardsContainer name={el.name} image={el.image} id={el.id} rating={el.rating} key={el.id} />
                     )}) : 
                     <div>
-                        <p className={styles.img} >Loadding</p>
                         <span className={styles.loader}></span>
+                        <p className={styles.img} >Loading</p>
                     </div>
             }
             </div>

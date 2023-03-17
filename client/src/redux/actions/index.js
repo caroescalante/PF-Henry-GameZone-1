@@ -31,7 +31,7 @@ export function searchByName(name) {
       payload: json.data,
     });
   } catch (error) {
-    return error;
+    alert('The wanted videogame does not exist')
   }
    
   };
