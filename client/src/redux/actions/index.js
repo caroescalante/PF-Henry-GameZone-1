@@ -4,6 +4,7 @@ import {
   FILTER_BY_GENRE,
   ORDER_BY_NAME,
   ORDER_BY_RATING,
+  GET_DETAIL,
 } from "./types";
 
 import axios from 'axios';
@@ -53,5 +54,19 @@ export function orderByRating(value) {
   return {
     type: ORDER_BY_RATING,
     payload: value,
+  }
+}
+
+export function getDetail(id){
+  return async function(dispatch){
+      try {
+          var json = await axios.get("http://localhost:3001/videogames/"+ id);
+          return dispatch({
+              type: GET_DETAIL,
+              payload:json.data
+          })
+      } catch(error) {
+          alert('The wanted videogame does not exist')
+      }
   }
 }
