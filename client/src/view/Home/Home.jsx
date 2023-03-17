@@ -4,7 +4,7 @@ import Navbar from '../../components/Navbar/Navbar';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from "react";
-import { getGames } from "../../redux/actions";
+import { getGames, getGenres, filterByGenres, getPlatforms, filterByPlatforms } from "../../redux/actions";
 import styles from './Home.module.css';
 import Paginated from "../../components/Paginated/Paginated";
 
@@ -13,10 +13,20 @@ const Home = () => {
     const allGames = useSelector(state => state.allGames);
     // const [orden, setOrden] = useState('')
     const [currentPage, setCurrentPage] = useState(1)
-    const [gamesPerPage, setGamesPerPage] = useState(9)
+    const [gamesPerPage, setGamesPerPage] = useState(8)
     const indexOfLastGame = currentPage * gamesPerPage // 10
     const indexOfFirstGame = indexOfLastGame - gamesPerPage // 0
     const currentGames = allGames.slice(indexOfFirstGame,indexOfLastGame)
+
+    const genres = useSelector((state) => state.genres);
+    useEffect(() => {
+      dispatch(getGenres());
+    },[] );
+
+    const platforms = useSelector((state) => state.platforms);
+    useEffect(() => {
+      dispatch(getPlatforms());
+    },[] );
 
      const paginado = (pageNumber) =>{
          setCurrentPage(pageNumber)
@@ -26,9 +36,21 @@ const Home = () => {
            dispatch(getGames());
       }, [])
 
+      
+    function handleGenreFilter(e) {
+        dispatch(filterByGenres(e.target.value));
+      }
+
+      
+    function handlePlatformFilter(e) {
+        dispatch(filterByPlatforms(e.target.value));
+      }
+
+
     return (
         <div className={styles.home}>
-            
+
+           
           <div>
             <Paginated
              gamesPerPage={gamesPerPage}
@@ -36,15 +58,32 @@ const Home = () => {
              paginado={paginado}
             />
         </div>
+      
+            <select onChange={(e) => handleGenreFilter(e)} className={styles.filter}>
+                     <option>All</option>
+                    {genres.map((gen) => {
+                        return <option key={gen} value={gen}>{gen}</option>;
+                     })}
+            </select> 
+
+            
+            <select onChange={(e) => handlePlatformFilter(e)} className={styles.filter}>
+                     <option>All</option>
+                    {platforms.map((plat) => {
+                        return <option key={plat.id} value={plat.name}>{plat.name}</option>;
+                     })}
+            </select>
+
              <div>
             {currentGames.length > 0 ?
                 currentGames?.map ((el) =>{
                     return(
                         <CardsContainer name={el.name} image={el.image} id={el.id} rating={el.rating} key={el.id} />
-                    )}) : <div>
-                        <p>Search Game</p>
+                    )}) : 
+                    <div>
                         <span className={styles.loader}></span>
-                      </div>
+                        <p className={styles.img} >Loading</p>
+                    </div>
             }
             </div>
             <Paginated
@@ -56,3 +95,4 @@ const Home = () => {
     );
 };
 export default Home;
+

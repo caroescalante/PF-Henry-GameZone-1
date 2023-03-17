@@ -11,15 +11,10 @@ body {
 }
 .footer {
   width: 100%;
-  background-color: rgb(220, 228, 225);
+  background-color: black;
   padding-top: 10px;
 }
-.logo a {
-  font-size: 25px;
-  color: rgb(52, 228, 29);
-  font-weight: bold;
-  padding-right: 40px;
-}
+
 .footer a {
   text-decoration: none;
 }
@@ -31,7 +26,8 @@ body {
 }
 .linkFooter a {
   padding-right: 80px;
-  color: rgb(72, 77, 72);
+  color: aqua;
+  font-size: 20px ;
 }
 .networks {
   display: flex;
@@ -41,7 +37,7 @@ body {
 }
 .networks a {
   font-size: 30px;
-  color: rgb(65, 58, 58);
+  color: aqua;
   padding-right: 60px;
   margin: 15px 0px 15px 0px;
 }
@@ -51,6 +47,6 @@ body {
   justify-content: center;
   align-items: center;
   padding-left: 15px;
-  color: rgba(133, 125, 125, 0.884);
+  color: aqua;
   font-size: 13px;
 }
