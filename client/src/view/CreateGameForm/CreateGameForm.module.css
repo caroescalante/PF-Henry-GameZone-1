@@ -1,3 +1,7 @@
-input::placeholder {
+.inputForm::placeholder {
     color: grey;
+}
+
+.errorText {
+    color: red;
 }
