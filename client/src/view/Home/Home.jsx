@@ -79,10 +79,11 @@ const Home = () => {
                 currentGames?.map ((el) =>{
                     return(
                         <CardsContainer name={el.name} image={el.image} id={el.id} rating={el.rating} key={el.id} />
-                    )}) : <div>
-                        <p>Search Game</p>
+                    )}) : 
+                    <div>
+                        <p className={styles.img} >Loadding</p>
                         <span className={styles.loader}></span>
-                      </div>
+                    </div>
             }
             </div>
             <Paginated

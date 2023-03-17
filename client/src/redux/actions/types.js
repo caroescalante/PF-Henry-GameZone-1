@@ -6,4 +6,5 @@ export const GET_GENRES = "GET_GENRES"
 export const GET_PLATFORMS = "GET_PLATFORMS"
 export const FILTER_BY_PLATFORMS = "FILTER_BY_GENRES"
 export const FILTER_BY_GENRES = "FILTER_BY_GENRES"
+export const GET_DETAIL = "GET_DETAIL"
 

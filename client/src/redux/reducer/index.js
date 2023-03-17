@@ -3,10 +3,13 @@ import {
   SEARCH_BY_NAME,
   ORDER_BY_NAME,
   ORDER_BY_RATING,
+
   GET_GENRES,
   FILTER_BY_GENRES,
   GET_PLATFORMS,
   FILTER_BY_PLATFORMS,
+  GET_DETAIL
+
 } from "../actions/types";
 
 const initialState = {
@@ -14,6 +17,7 @@ const initialState = {
   allGamesFilter: [],
   genres: [],
   platforms: []
+  detail : [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -86,6 +90,7 @@ function rootReducer(state = initialState, action) {
         allGames: action.payload === "All" ? allGames3 : orderGamesRating,
       };
 
+
       case GET_GENRES:
         return{
             ...state,
@@ -116,6 +121,14 @@ function rootReducer(state = initialState, action) {
           allGames: filteredPlat
         };
 
+
+      case GET_DETAIL:
+        case "GET_DETAIL":
+            return{
+                ...state,
+                detail: action.payload
+            };
+           
       default: return { ...state }
   }
 }
