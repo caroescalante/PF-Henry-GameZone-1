@@ -1,5 +1,5 @@
 .home{
-    background-color: rgb(20, 20, 20);
+    background-image: url("../../Image/home.jpg");
 }
 .loader {
     position: relative;
@@ -33,4 +33,16 @@
     50% { transform: translateX(15px) scale(1, 1.2) }
     75% { transform: scale(1.2, 1) }
     100% { transform: translateX(-20px) }
+  }
+
+  .img {
+    background-image: url("../../Image/home.jpg");       
+    width: 100vw;
+    height: 100vh;
+    background-attachment:fixed;   
+    background-size: 100%;
+    display: grid;
+    place-items: center;
+    color:aqua;
+    font-size:150px;
   }

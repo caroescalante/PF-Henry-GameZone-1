@@ -1,5 +1,12 @@
 .Background{
-    background: rgba(158, 248, 248, 0.603);
+    background-image: url("../../Image/create.jpg");
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    background-position: center;
+    background-size: cover;
 }
 .videogame {
     display:flex;
@@ -11,21 +18,18 @@
 }
 .boxjuego{
     display:inline;
-    align-content: center;
-    background-color: rgb(231, 228, 223);
+    background-color: transparent;
+    backdrop-filter: blur(15px);
     height: 715px;
     width: 1050px;
-    margin: 5px;
-    padding: 1px;
-    border:3px solid #454643e7;
-    border-radius: 10px;
-    color:black;
-    font-family: "Montserrat";
-    
+    margin: 15px;
+    padding: 1px;    
+    border-radius: 10px; 
 }
 .description{
     font-size: 15px;
-    color: black;
+    font-family: 'poppins',sans-serif;
+    color: aqua;
     position: relative;
     left: 7px;
     bottom: 335px;
@@ -33,26 +37,33 @@
     /* border: solid 2px yellow; */
 }
 .descriptiontitle{
-    font-size: 30px;
-    color: black;
+    font-size: 20px;
+    font-family: 'poppins',sans-serif;
+    color: aqua;
     position: relative;
-    border:3px solid #454643e7;  
-    border-radius: 10px;
     margin: 0;
-    padding: 0;
+    padding: 5px 50px;
     bottom: 340px;
     text-align: center;
+    background-color: rgba(0,0,0,.6);
+    border-radius: 5px;
+    justify-content: center;
+    
     /* border: solid 2px yellow; */
 }
 .genres{
     margin: 2px;
-    padding: 1px;
+    padding: 15px 0;
     font-size: 16px;
-    color: black;
+    font-family: 'poppins',sans-serif;
+    color: aqua;
     /* border: solid 2px yellow; */
     display: inline-block;
     position: relative;
     bottom: 340px;
+    justify-content: center;
+    display: flex;
+    
 
 }
 .namegame{
@@ -66,8 +77,9 @@
     /* border: solid 2px yellow; */
     height: 70px;
     width: 500px;
-    color: black;
-    font-size: 35px;
+    color: aqua;
+    font-size: 50px;
+    font-family: 'poppins',sans-serif;
     position: relative;
     top:15px;
     left: 500px;
@@ -100,6 +112,7 @@
     bottom: 125px;
     right: 14px;
     
+    
  }
 .rating{
     display: inline;
@@ -107,12 +120,12 @@
     align-items: left;
     margin: 5px;
     font-size: 18px;
-    color: black;
+    font-family: 'poppins',sans-serif;
+    color: aqua;
     padding: 1px;
     height: 40px;
     width: 60px;
-    border:3px solid #454643e7;  
-    border-radius: 10px;
+    
     /* border: solid 2px yellow; */
 }
 
@@ -123,20 +136,22 @@
     align-items: left;
     margin: 15px;
     font-size: 18px;
-    color: black;
+    font-family: 'poppins',sans-serif;
+    color: aqua;
     padding: 1px;
     height: 40px;
     width: 120px;
-    border:3px solid #454643e7;  
-    border-radius: 10px;
+    
      
 }
 .containeRatRel{
     /* border: solid 2px black; */
     margin-top: 15px;
     position: relative;
-    left: 600px;
+    left: 550px;
     top: 42px;
+    justify-content: center;
+    
 }
 
 .containGenPlat{
