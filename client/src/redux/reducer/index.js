@@ -4,11 +4,13 @@ import {
   FILTER_BY_GENRE,
   ORDER_BY_NAME,
   ORDER_BY_RATING,
+  GET_DETAIL
 } from "../actions/types";
 
 const initialState = {
   allGames: [],
   allGamesFilter: [],
+  detail : [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -80,6 +82,13 @@ function rootReducer(state = initialState, action) {
         ...state,
         allGames: action.payload === "All" ? allGames3 : orderGamesRating,
       };
+      case GET_DETAIL:
+        case "GET_DETAIL":
+            return{
+                ...state,
+                detail: action.payload
+            };
+            
       default: return { ...state }
   }
 }

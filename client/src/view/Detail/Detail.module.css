@@ -1,0 +1,183 @@
+.Background{
+    background: rgba(158, 248, 248, 0.603);
+}
+.videogame {
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content:space-around;
+    padding: 10px;
+    margin: 0;
+}
+.boxjuego{
+    display:inline;
+    align-content: center;
+    background-color: rgb(231, 228, 223);
+    height: 715px;
+    width: 1050px;
+    margin: 5px;
+    padding: 1px;
+    border:3px solid #454643e7;
+    border-radius: 10px;
+    color:black;
+    font-family: "Montserrat";
+    
+}
+.description{
+    font-size: 15px;
+    color: black;
+    position: relative;
+    left: 7px;
+    bottom: 335px;
+    
+    /* border: solid 2px yellow; */
+}
+.descriptiontitle{
+    font-size: 30px;
+    color: black;
+    position: relative;
+    border:3px solid #454643e7;  
+    border-radius: 10px;
+    margin: 0;
+    padding: 0;
+    bottom: 340px;
+    text-align: center;
+    /* border: solid 2px yellow; */
+}
+.genres{
+    margin: 2px;
+    padding: 1px;
+    font-size: 16px;
+    color: black;
+    /* border: solid 2px yellow; */
+    display: inline-block;
+    position: relative;
+    bottom: 340px;
+
+}
+.namegame{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
+    padding: 1px;
+    text-align: center;
+    /* border: solid 2px yellow; */
+    height: 70px;
+    width: 500px;
+    color: black;
+    font-size: 35px;
+    position: relative;
+    top:15px;
+    left: 500px;
+    border:0px solid #454643e7;  
+    border-radius: 10px;
+   
+} 
+
+
+.containergenresandplatforms{
+    display: inline-block;
+    flex-direction: row;
+    height: 215px;
+    width: 200px;
+    /* border: solid 2px red; */
+    padding: 5px;
+    position: relative;
+    bottom: 30px;
+    left: 30px;
+}
+.imag {
+    display: inline;
+    flex-direction: row;
+    height: 450px;
+    width: 450px; 
+    margin: 10px;
+    padding: 3px;
+    border-radius: 10px 0px 0px 0px;
+    position: relative;
+    bottom: 125px;
+    right: 14px;
+    
+ }
+.rating{
+    display: inline;
+    flex-direction: row;
+    align-items: left;
+    margin: 5px;
+    font-size: 18px;
+    color: black;
+    padding: 1px;
+    height: 40px;
+    width: 60px;
+    border:3px solid #454643e7;  
+    border-radius: 10px;
+    /* border: solid 2px yellow; */
+}
+
+.released {
+    /* border: solid 2px green; */
+    display: inline;
+    flex-direction: row;
+    align-items: left;
+    margin: 15px;
+    font-size: 18px;
+    color: black;
+    padding: 1px;
+    height: 40px;
+    width: 120px;
+    border:3px solid #454643e7;  
+    border-radius: 10px;
+     
+}
+.containeRatRel{
+    /* border: solid 2px black; */
+    margin-top: 15px;
+    position: relative;
+    left: 600px;
+    top: 42px;
+}
+
+.containGenPlat{
+    height: 200px;
+    width: 540px;
+    align-items: center;
+    position: relative;
+    left: 600px;
+    bottom: 10px;
+}
+.loader {
+    position: relative;
+    height: 40px;
+    width: 6px;
+    color: #FFF;
+    animation: paddles 0.75s ease-out infinite;
+  }
+  .loader:before {
+    content: "";
+    position: absolute;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 15px;
+    width: 12px;
+    height: 12px;
+    background-color: #de3500;
+    border-radius: 50%;
+    animation: ballbounce 0.6s ease-out infinite;
+  }
+  
+  @keyframes paddles {
+    0% { box-shadow: -25px -10px, 25px 10px}
+    50% { box-shadow: -25px 8px, 25px -10px }
+    100% { box-shadow: -25px -10px, 25px 10px}
+  }
+  @keyframes ballbounce {
+    0% { transform: translateX(-20px) scale(1, 1.2) }
+    25% { transform: scale(1.2, 1) }
+    50% { transform: translateX(15px) scale(1, 1.2) }
+    75% { transform: scale(1.2, 1) }
+    100% { transform: translateX(-20px) }
+  }
+        
