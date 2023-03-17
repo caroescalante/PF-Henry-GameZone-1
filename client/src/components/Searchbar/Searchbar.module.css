@@ -21,5 +21,6 @@
 
 .button:hover{
     background:rgb(71, 66, 66);
-    color: aqua;    
+    color: aqua;
+    box-shadow: 1px 1px 20px 8px aqua;    
 }
