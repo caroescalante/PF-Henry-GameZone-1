@@ -17,41 +17,47 @@ export default function Detail(props){
     return (
         <div className={styles.Background}>
             <div className={styles.videogame}>
-             <div className={styles.boxjuego}> 
-            {myGame ?<>
-             <h1 className={styles.namegame}> {myGame.name} </h1>
-             <div className={styles.containeRatRel}>
-               <h2 className={styles.rating}> Rating:{myGame.rating}</h2>
-               <h3 className={styles.released}> Released:{myGame.released}</h3>
-               </div>
-             <img className={styles.imag} src={myGame.image} alt="imagen" />  
-            <div className={styles.containGenPlat}>
+                <div className={styles.boxjuego}> 
+
+                    {myGame ?<>
+                    <h1 className={styles.namegame}> {myGame.name} </h1>
+
+                    <div className={styles.containeRatRel}>
+                        <h2 className={styles.rating}> Rating:{myGame.rating}</h2>
+                        <h3 className={styles.released}> Launch:{myGame.released}</h3>
+                    </div>
+
+                    <img className={styles.imag} src={myGame.image} alt="imagen" />  
+
+                    <div className={styles.containGenPlat}>
             
-             <div className={styles.containergenresandplatforms} >
-             <h3 className={styles.descriptiontitle}>Genres</h3>
-              <h3 className={styles.genres}>{myGame.genres}</h3>
-              <br></br>
-              <h3 className={styles.descriptiontitle}>Platforms</h3>
-              
-               <h3 className={styles.genres}>{myGame.platforms}</h3>
-              
-             </div>
-             </div>
-             <div>
-             <h3 className={styles.descriptiontitle}>Description</h3>
-             <h1 className={styles.description}> {myGame.description}</h1>
-             </div>
-             </> : 
-             <span className={styles.loader}></span>
-            }
-          </div>
-         </div>
-        <Link to= '/'   style={{ textDecoration: 'none' }}>
+                        <div className={styles.containergenresandplatforms} >
+                            <h3 className={styles.descriptiontitle}>GENRES:</h3>
+                            <h3 className={styles.genres}>{myGame.genres}</h3>
+                            <br></br>
+                            <h3 className={styles.descriptiontitle}>PlATFORMS:</h3>              
+                            <h3 className={styles.genres}>{myGame.platforms}</h3>              
+                        </div>
+
+                    </div>
+
+                    <div>
+                        <h3 className={styles.descriptiontitle}>Description</h3>
+                        <h1 className={styles.description}> {myGame.description}</h1>
+                    </div>
+
+                    </> : 
+
+                    <span className={styles.loader}></span>
+                    }
+                </div>
+            </div>
+        {/* <Link to= '/'   style={{ textDecoration: 'none' }}>
             <button className='buttonpage10'>Return</button>
-        </Link>
+        </Link> */}
         </div>
     )
-}
+};
 // import React from 'react';
 // import {useState, useEffect} from "react"
 // import axios from "axios"

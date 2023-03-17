@@ -19,7 +19,8 @@
     font-family:'Trebuchet MS', sans-serif;
     line-height: 1.4;
     font-size: 12px;
-    background: linear-gradient(#181717ee,#454643e7,#333333);
+    background: transparent;
+    backdrop-filter: blur(15px);
     border: solid 2px;  
     overflow: hidden;
     box-shadow: 0px 1px 10px rgba(0,0,0,0.2);

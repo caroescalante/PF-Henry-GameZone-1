@@ -16,10 +16,21 @@ const Navbar = () => {
             </a>
 
             <SearchBar />
+
+            <Link className={style.links} to="/create">
+                <ion-icon size="large" name="game-controller-outline"></ion-icon>            
+            </Link>
+
+            <Link className={style.links} to="/">
+                <ion-icon size="large" name="cart-outline"></ion-icon>
+            </Link>
            
             <Link className={style.links} to="/login">
                 <ion-icon size="large" name="person-outline" ></ion-icon>
             </Link>
+
+            
+            
 
             
             

@@ -37,8 +37,8 @@ function CreateGameForm() {
   };
 
   return (
-    <div>
-      <form onSubmit={submitHandler}>
+    <div className={style.init}>
+      <form className={style.form} onSubmit={submitHandler}>
         <div>
           <label htmlFor="name">Name</label>
           <input type="text" name="name" placeholder="Name..." value={form.name} onChange={inputChangeHandler} className={style.inputName} />
