@@ -1,14 +1,19 @@
 import {
   GET_GAMES,
   SEARCH_BY_NAME,
-  FILTER_BY_GENRE,
   ORDER_BY_NAME,
   ORDER_BY_RATING,
+  GET_GENRES,
+  FILTER_BY_GENRES,
+  GET_PLATFORMS,
+  FILTER_BY_PLATFORMS,
 } from "../actions/types";
 
 const initialState = {
   allGames: [],
   allGamesFilter: [],
+  genres: [],
+  platforms: []
 };
 
 function rootReducer(state = initialState, action) {
@@ -28,20 +33,20 @@ function rootReducer(state = initialState, action) {
 
 
 
-    case FILTER_BY_GENRE:
-      const allGames1 = state.allGamesFilter;
-      const gamesFiltered =
-        action.payload === "All"
-          ? allGames1
-          : allGames1.filter((game) => {
-              return game.genres.find((gen) => {
-                return gen === action.payload;
-              });
-            });
-      return {
-        ...state,
-        allGames: gamesFiltered,
-      };
+    // case FILTER_BY_GENRE:
+    //   const allGames1 = state.allGamesFilter;
+    //   const gamesFiltered =
+    //     action.payload === "All"
+    //       ? allGames1
+    //       : allGames1.filter((game) => {
+    //           return game.genres.find((gen) => {
+    //             return gen === action.payload;
+    //           });
+    //         });
+    //   return {
+    //     ...state,
+    //     allGames: gamesFiltered,
+    //   };
 
     case ORDER_BY_NAME:
       const allGames2 = state.allGamesFilter;
@@ -80,6 +85,37 @@ function rootReducer(state = initialState, action) {
         ...state,
         allGames: action.payload === "All" ? allGames3 : orderGamesRating,
       };
+
+      case GET_GENRES:
+        return{
+            ...state,
+            genres: action.payload
+        }
+
+        
+       case GET_PLATFORMS:
+        return{
+            ...state,
+           platforms: action.payload
+        }
+
+
+      case FILTER_BY_GENRES:
+      const allGenres = state.allGamesFilter;
+      const filteredGen = action.payload === 'All' ? allGenres : allGenres.filter(e => e.genres.length > 0 && e.genres.includes(action.payload));
+       return {
+        ...state,
+        allGames: filteredGen
+      };
+
+      case FILTER_BY_PLATFORMS:
+        const allPlatforms = state.allGamesFilter;
+        const filteredPlat = action.payload === "All" ? allPlatforms : allPlatforms.filter(e => e.platforms.length > 0 && e.platforms.includes(action.payload));
+        return {
+          ...state,
+          allGames: filteredPlat
+        };
+
       default: return { ...state }
   }
 }
