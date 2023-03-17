@@ -16,7 +16,7 @@ const initialState = {
   allGames: [],
   allGamesFilter: [],
   genres: [],
-  platforms: []
+  platforms: [],
   detail : [],
 };
 
@@ -95,14 +95,14 @@ function rootReducer(state = initialState, action) {
         return{
             ...state,
             genres: action.payload
-        }
+        };
 
         
        case GET_PLATFORMS:
         return{
             ...state,
            platforms: action.payload
-        }
+        };
 
 
       case FILTER_BY_GENRES:

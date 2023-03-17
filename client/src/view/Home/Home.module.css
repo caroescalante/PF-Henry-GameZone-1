@@ -3,8 +3,10 @@
 }
 .loader {
     position: relative;
-    height: 40px;
-    width: 6px;
+    top: 300px;
+    left: 950px;
+    height: 400px;
+    width: 220px;
     color: #FFF;
     animation: paddles 0.75s ease-out infinite;
   }
@@ -17,7 +19,7 @@
     top: 15px;
     width: 12px;
     height: 12px;
-    background-color: #de3500;
+    background-color: aqua;
     border-radius: 50%;
     animation: ballbounce 0.6s ease-out infinite;
   }
@@ -36,7 +38,7 @@
   }
 
   .img {
-    background-image: url("../../Image/home.jpg");       
+    background-image: url("../../Image/home.jpg");
     width: 100vw;
     height: 100vh;
     background-attachment:fixed;   
@@ -44,5 +46,29 @@
     display: grid;
     place-items: center;
     color:aqua;
-    font-size:150px;
+    font-size:140px;
   }
+  .filter {
+    position: relative;
+    left: 748px;
+    top: 5px;
+    margin-left: 8px ;
+    margin-right: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 10%;
+    height: 100%;
+    text-align: center;
+    font-size: 100%;
+    color: rgb(0, 0, 0);
+    background: aqua;
+    border-radius: 4px;
+    border: 2px solid #050141;
+    cursor: pointer;
+    font-family:'Trebuchet MS', sans-serif;
+}
+.filter:hover{
+  border-color: aliceblue;
+  background-color: rgba(0, 0, 0, 0.63);
+  color :aqua;
+}
