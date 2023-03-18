@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { getUsers } from '../../redux/actions';
@@ -26,14 +26,25 @@ const Login = () => {
 
   const checkUser = useCallback(() => {
     dispatch(getUsers());
-    return users.some(user => user.email === data.email);
+    return users.some(user => user.email === data.email );
   }, [dispatch, getUsers, users, data.email]);
+
+  const checkPassword = useCallback(() => {
+    dispatch(getUsers());
+    return users.some(user => user.email === data.email && user.password !== data.password);
+  }, [dispatch, getUsers, users, data.email, data.password])
 
   const submitHandler = async (event) => {
     event.preventDefault();
     const userExists = checkUser();
+    const correctKey = checkPassword();
     if (userExists) {
-      history.push("/");
+      if(correctKey) {
+        alert ("Incorrect password !")
+        history.push("/login")
+      } else {
+        history.push("/");
+      }        
     } else {
       await axios.post('http://localhost:3001/user', data)
       setData({
@@ -93,7 +104,7 @@ const Login = () => {
 
             </div>
 
-            {users.email && (
+            
             <div className={style.forget}>
 
               <label for="remenber">
@@ -110,7 +121,7 @@ const Login = () => {
               </label>
 
             </div>
-            )}
+            
 
             <button 
             className={style.button} 
