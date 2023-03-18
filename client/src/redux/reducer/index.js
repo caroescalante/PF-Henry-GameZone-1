@@ -9,7 +9,9 @@ import {
   GET_PLATFORMS,
   FILTER_BY_PLATFORMS,
   GET_DETAIL,
-  CLEAR_DETAIL
+  CLEAR_DETAIL,
+
+  GET_USERS
 
 } from "../actions/types";
 
@@ -19,6 +21,8 @@ const initialState = {
   genres: [],
   platforms: [],
   detail : [],
+  users: [],
+  allUsers: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -132,7 +136,14 @@ function rootReducer(state = initialState, action) {
           return{
               ...state,
               detail:[]
-          };        
+          }; 
+          
+      case GET_USERS:
+          return {
+              ...state,
+              users: action.payload,
+              allUsers: action.payload,
+          };
            
       default: return { ...state }
   }
