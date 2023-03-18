@@ -32,14 +32,20 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
 
-    admin: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false,
+    rol: {
+      type: DataTypes.ENUM('admin', 'client'),
+      defaultValue: 'client',
     },
 
     email: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
+    },
+
+    active: {
+      type:DataTypes.BOOLEAN,
+      defaultValue: true,
     }
   },
   { timestamps: false }
