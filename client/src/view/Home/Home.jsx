@@ -11,7 +11,7 @@ import Paginated from "../../components/Paginated/Paginated";
 const Home = () => {
     const dispatch = useDispatch();
     const allGames = useSelector(state => state.allGames);
-    // const [orden, setOrden] = useState('')
+    const [orden, setOrden] = useState('')
     const [currentPage, setCurrentPage] = useState(1)
     const [gamesPerPage, setGamesPerPage] = useState(8)
     const indexOfLastGame = currentPage * gamesPerPage // 10
@@ -39,11 +39,15 @@ const Home = () => {
       
     function handleGenreFilter(e) {
         dispatch(filterByGenres(e.target.value));
+        setCurrentPage(1);
+        setOrden(`Ordenado ${e.target.value}`);
       }
 
       
     function handlePlatformFilter(e) {
         dispatch(filterByPlatforms(e.target.value));
+        setCurrentPage(1);
+        setOrden(`Ordenado ${e.target.value}`);
       }
 
 
