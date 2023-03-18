@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import style from "./CreateGameForm.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { getGenres, getPlatforms } from "../../redux/actions/index";
+import axios from 'axios';
 
 const validate = (form) => {
   let errors = {};
@@ -44,10 +47,24 @@ const validate = (form) => {
     errors.description = "the description is required";
   };
 
+  if (form.genres.length === 0) {
+    errors.genres = "must have at least one gender";
+  };
+
+  if (!form.platforms.length) {
+    errors.platforms = "must have at least one platform";
+  };
+
   return errors;
 };
 
 function CreateGameForm() {
+  const dispatch = useDispatch();
+  const platformsRaw = useSelector(state => state.platforms);
+
+  const genres = useSelector(state => state.genres);
+  const platforms = platformsRaw.map(platform => platform.name);
+
   const [form, setForm] = useState({
     name: "",
     image: "",
@@ -56,6 +73,8 @@ function CreateGameForm() {
     website: "",
     released: "",
     description: "",
+    genres: [],
+    platforms: [],
   });
 
   const [errors, setErrors] = useState({
@@ -66,6 +85,8 @@ function CreateGameForm() {
     website: "",
     released: "",
     description: "",
+    genres: "",
+    platforms: "",
   });
 
   const [focus, setFocus] = useState({
@@ -81,9 +102,31 @@ function CreateGameForm() {
   const inputChangeHandler = (event) => {
     const property = event.target.name;
     const value = event.target.value;
+    const typeInput = event.target.type;
+    const idInput = event.target.id;
 
-    setForm({ ...form, [property]: value });
-    setErrors(validate({ ...form, [property]: value }));
+    if (typeInput === "checkbox") {
+      if (property === "genre") {
+        if (event.target.checked === true) {
+          setForm({...form, genres: [...form.genres, idInput]});
+          setErrors(validate({...form, genres: [...form.genres, idInput]}));
+        } else {
+          setForm({...form, genres: form.genres.filter(elem => elem !== idInput)});
+          setErrors(validate({...form, genres: form.genres.filter(elem => elem !== idInput)}));
+        };
+      } else {
+        if (event.target.checked === true) {
+          setForm({...form, platforms: [...form.platforms, idInput]});
+          setErrors(validate({...form, platform: [...form.platforms, idInput]}));
+        } else {
+          setForm({...form, platforms: form.platforms.filter(elem => elem !== idInput)});
+          setErrors(validate({...form, platforms: form.platforms.filter(elem => elem !== idInput)}));
+        };
+      };
+    } else {
+      setForm({ ...form, [property]: value });
+      setErrors(validate({ ...form, [property]: value }));
+    };
   };
 
   const focusHandler = (event) => {
@@ -93,13 +136,19 @@ function CreateGameForm() {
   };
 
   const submitHandler = (event) => {
+    let finalForm = { ...form };
+    if (finalForm.website === "") finalForm = { ...finalForm, website: null };
+    if (finalForm.released === "") finalForm = { ...finalForm, released: null };
     event.preventDefault();
+    axios.post("http://localhost:3001/videogames", finalForm).then(alert("Videogame created successfully"));
     location.reload();
   };
 
   useEffect(() => {
     setErrors(validate(form));
-  }, []);
+    dispatch(getGenres());
+    dispatch(getPlatforms());
+  }, [setErrors, validate, form]);
 
   return (
     <div>
@@ -147,8 +196,34 @@ function CreateGameForm() {
         </div>
         {errors.description && focus.description && <p className={style.errorText}>{errors.description}</p>}
 
+        <h3>Select one or more genres</h3>
+
+        <div className={style.genresContainer}>
+          {genres.map((genre, index) => {
+            return (
+              <div key={index}>
+                <label htmlFor={genre}>{genre}</label>
+                <input type="checkbox" name="genre" id={genre} onChange={inputChangeHandler} />
+              </div>
+            );
+          })}
+        </div>
+
+        <h3>Select one or more platforms</h3>
+
+        <div className={style.platformsContainer}>
+          {platforms.map((platform, index) => {
+            return (
+              <div key={index}>
+                <label htmlFor={platform}>{platform}</label>
+                <input type="checkbox" name="platform" id={platform} onChange={inputChangeHandler} />
+              </div>
+            );
+          })}
+        </div>
+
         <button type="submit" className={style.buttonForm} disabled={
-          (errors.name || errors.image || errors.price || errors.rating || errors.description) ? true : false
+          (errors.name || errors.image || errors.price || errors.rating || errors.description || errors.genres || errors.platforms) ? true : false
         }>Submit</button>
 
       </form>
