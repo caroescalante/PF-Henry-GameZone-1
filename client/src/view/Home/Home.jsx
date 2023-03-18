@@ -34,8 +34,8 @@ const Home = () => {
 
       useEffect(()=>{
            dispatch(getGames());
-      }, [])
-
+      },[])
+      
       
     function handleGenreFilter(e) {
         dispatch(filterByGenres(e.target.value));
@@ -77,7 +77,7 @@ const Home = () => {
                         return <option key={index} value={plat.name}>{plat.name}</option>;
                      })}
             </select>
-
+                     
              <div>
             {currentGames.length > 0 ?
                 currentGames?.map ((el) =>{

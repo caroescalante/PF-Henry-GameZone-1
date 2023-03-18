@@ -7,8 +7,8 @@ import { clearDetail } from "../../redux/actions";
 
 const Navbar = () => {
     return (
-        <div className={style.navbarContainer} onClick={clearDetail()}>
-            <a href="/" className={style.image}>
+        <div className={style.navbarContainer} >
+            <a href="/" className={style.image} onClick={clearDetail()}>
                 <img
                 src={logo}
                 alt="init"
