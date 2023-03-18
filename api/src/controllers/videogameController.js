@@ -133,7 +133,7 @@ const postGame = async(gamePost) => {
     if (!description) throw new Error('The description field is required');
     if (!platforms) throw new Error('The platforms field is required');
     if (!genres) throw new Error('The genres field is required');
-    if (typeof rating !== 'number' || rating < 0 || rating > 5) {
+    if (rating < 0 || rating > 5) {
     throw new Error('The rating field must be a number between 0 and 5 (e.g. 4.5)');
     }
 
