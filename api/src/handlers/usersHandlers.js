@@ -31,9 +31,7 @@ const getUserHandler = async (req, res) => {
 };
 
 const createUserHandler = async (req,res) => {
-    const {name, surname, image, phone, password, email } = req.body;
-
-   
+    const {name, surname, image, phone, password, email } = req.body; 
 
     try {
         if(!email || !password) throw Error("This information is required");       
