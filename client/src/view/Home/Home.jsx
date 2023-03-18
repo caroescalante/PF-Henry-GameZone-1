@@ -61,16 +61,16 @@ const Home = () => {
       
             <select onChange={(e) => handleGenreFilter(e)} className={styles.filter}>
                      <option>All</option>
-                    {genres.map((gen) => {
-                        return <option key={gen} value={gen}>{gen}</option>;
+                    {genres.map((gen, index) => {
+                        return <option key={index} value={gen.name}>{gen.name}</option>;
                      })}
             </select> 
 
             
             <select onChange={(e) => handlePlatformFilter(e)} className={styles.filter}>
                      <option>All</option>
-                    {platforms.map((plat) => {
-                        return <option key={plat.id} value={plat.name}>{plat.name}</option>;
+                    {platforms.map((plat, index) => {
+                        return <option key={index} value={plat.name}>{plat.name}</option>;
                      })}
             </select>
 

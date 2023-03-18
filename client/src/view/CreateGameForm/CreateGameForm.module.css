@@ -5,3 +5,15 @@
 .errorText {
     color: red;
 }
+
+.genresContainer {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 30px;
+}
+
+.platformsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 30px;
+}
