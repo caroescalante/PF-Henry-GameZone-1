@@ -85,8 +85,8 @@ const Home = () => {
                         <CardsContainer name={el.name} image={el.image} id={el.id} rating={el.rating} key={el.id} />
                     )}) : 
                     <div>
-                        <span className={styles.loader}></span>
-                        <p className={styles.img} >Loading</p>
+                        
+                        <p className={styles.img} ><span className={styles.loader}></span></p>
                     </div>
             }
             </div>
