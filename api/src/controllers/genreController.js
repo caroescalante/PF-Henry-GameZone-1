@@ -8,7 +8,11 @@ const getGenres = async() => {
         attributes: ['name'],
     })
     try {
-        let dbClear = dbLog.map((el) =>  el.name)
+        let dbClear = dbLog.map(el => {
+                return{
+                    name: el.name
+                }
+            })
         if (dbClear.length) return dbClear
 
         const response = await axios.get(`https://api.rawg.io/api/genres?key=${API_KEY}`)
