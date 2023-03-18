@@ -8,7 +8,8 @@ import {
   FILTER_BY_GENRES,
   GET_PLATFORMS,
   FILTER_BY_PLATFORMS,
-  GET_DETAIL
+  GET_DETAIL,
+  CLEAR_DETAIL
 
 } from "../actions/types";
 
@@ -123,11 +124,15 @@ function rootReducer(state = initialState, action) {
 
 
       case GET_DETAIL:
-        case "GET_DETAIL":
-            return{
-                ...state,
-                detail: action.payload
-            };
+          return{
+              ...state,
+              detail: action.payload
+          };
+      case CLEAR_DETAIL:
+          return{
+              ...state,
+              detail:[]
+          };        
            
       default: return { ...state }
   }
