@@ -8,6 +8,7 @@ import {
   FILTER_BY_GENRES,
   FILTER_BY_PLATFORMS,
   GET_DETAIL,
+  CLEAR_DETAIL
 } from "./types";
 
 import axios from 'axios';
@@ -94,5 +95,10 @@ export function getDetail(id){
       } catch(error) {
           alert('The wanted videogame does not exist')
       }
+  }
+}
+export function clearDetail(){
+  return {
+    type: CLEAR_DETAIL,
   }
 }
