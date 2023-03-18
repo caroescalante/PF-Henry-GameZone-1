@@ -8,7 +8,8 @@ import {
   FILTER_BY_GENRES,
   FILTER_BY_PLATFORMS,
   GET_DETAIL,
-  CLEAR_DETAIL
+  CLEAR_DETAIL,
+  GET_USERS,
 } from "./types";
 
 import axios from 'axios';
@@ -102,3 +103,15 @@ export function clearDetail(){
     type: CLEAR_DETAIL,
   }
 }
+
+export function getUsers(){
+  return async function (dispatch) {
+    try {
+      const users = await axios.get('http://localhost:3001/user');
+      return dispatch({ type: GET_USERS, payload: users.data})
+
+    } catch ( error ) {
+      return console.log("Something went wrong. Please try again.", error.message)
+    }
+  }
+};
