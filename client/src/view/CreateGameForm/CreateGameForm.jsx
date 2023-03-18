@@ -202,8 +202,8 @@ function CreateGameForm() {
           {genres.map((genre, index) => {
             return (
               <div key={index}>
-                <label htmlFor={genre}>{genre}</label>
-                <input type="checkbox" name="genre" id={genre} onChange={inputChangeHandler} />
+                <label htmlFor={genre.name}>{genre.name}</label>
+                <input type="checkbox" name="genre" id={genre.name} onChange={inputChangeHandler} />
               </div>
             );
           })}
