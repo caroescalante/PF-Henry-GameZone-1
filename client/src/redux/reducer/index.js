@@ -16,7 +16,7 @@ const initialState = {
   allGames: [],
   allGamesFilter: [],
   genres: [],
-  platforms: []
+  platforms: [],
   detail : [],
 };
 
