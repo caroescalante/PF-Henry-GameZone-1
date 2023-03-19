@@ -234,7 +234,7 @@ const getById = async(id) =>{
           id: gameData.id,
           name: gameData.name,
           image: gameData.background_image,
-          description: gameData.description_raw,
+          description: gameData.description_raw ,
           released: gameData.released,
           rating: gameData.rating,
           website: gameData.website,
