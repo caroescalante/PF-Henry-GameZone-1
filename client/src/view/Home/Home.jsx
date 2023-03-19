@@ -12,7 +12,7 @@ import Footer from "../../components/Footer/Footer";
 const Home = () => {
     const dispatch = useDispatch();
     const allGames = useSelector(state => state.allGames);
-    // const [orden, setOrden] = useState('')
+    const [orden, setOrden] = useState('')
     const [currentPage, setCurrentPage] = useState(1)
     const [gamesPerPage, setGamesPerPage] = useState(8)
     const indexOfLastGame = currentPage * gamesPerPage // 10
@@ -35,16 +35,20 @@ const Home = () => {
 
       useEffect(()=>{
            dispatch(getGames());
-      }, [])
-
+      },[])
+      
       
     function handleGenreFilter(e) {
         dispatch(filterByGenres(e.target.value));
+        setCurrentPage(1);
+        setOrden(`Ordenado ${e.target.value}`);
       }
 
       
     function handlePlatformFilter(e) {
         dispatch(filterByPlatforms(e.target.value));
+        setCurrentPage(1);
+        setOrden(`Ordenado ${e.target.value}`);
       }
 
 
@@ -74,7 +78,7 @@ const Home = () => {
                         return <option key={index} value={plat.name}>{plat.name}</option>;
                      })}
             </select>
-
+                     
              <div>
             {currentGames.length > 0 ?
                 currentGames?.map ((el) =>{
@@ -82,8 +86,8 @@ const Home = () => {
                         <CardsContainer name={el.name} image={el.image} id={el.id} rating={el.rating} key={el.id} />
                     )}) : 
                     <div>
-                        <span className={styles.loader}></span>
-                        <p className={styles.img} >Loading</p>
+                        
+                        <p className={styles.img} ><span className={styles.loader}></span></p>
                     </div>
             }
             </div>

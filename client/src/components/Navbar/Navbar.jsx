@@ -3,11 +3,12 @@ import style from "./Navbar.module.css";
 import { Link } from "react-router-dom";
 import logo from "../../Image/logo.png";
 import SearchBar from '../../components/Searchbar/Searchbar';
+import { clearDetail } from "../../redux/actions";
 
 const Navbar = () => {
     return (
-        <div className={style.navbarContainer}>
-            <a href="/" className={style.image}>
+        <div className={style.navbarContainer} >
+            <a href="/" className={style.image} onClick={clearDetail()}>
                 <img
                 src={logo}
                 alt="init"

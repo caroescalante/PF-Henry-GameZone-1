@@ -35,7 +35,7 @@ export default function Detail(props){
                             <h3 className={styles.descriptiontitle}>GENRES:</h3>
                             <h3 className={styles.genres}>{myGame.genres}</h3>
                             <br></br>
-                            <h3 className={styles.descriptiontitle}>PlATFORMS:</h3>              
+                            <h3 className={styles.descriptiontitle}>PLATFORMS:</h3>              
                             <h3 className={styles.genres}>{myGame.platforms}</h3>              
                         </div>
 
