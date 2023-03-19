@@ -18,6 +18,8 @@ const Home = () => {
     const indexOfFirstGame = indexOfLastGame - gamesPerPage // 0
     const currentGames = allGames.slice(indexOfFirstGame,indexOfLastGame)
 
+    const currentPageColor =  currentPage
+
     const genres = useSelector((state) => state.genres);
     useEffect(() => {
       dispatch(getGenres());
@@ -79,6 +81,7 @@ const Home = () => {
              gamesPerPage={gamesPerPage}
              allGames={allGames.length}
              paginado={paginado}
+             currentPageColor={currentPageColor}
             />
         </div>
       
