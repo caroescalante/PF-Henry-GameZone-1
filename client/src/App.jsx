@@ -7,6 +7,7 @@ import CreateGameForm from "./view/CreateGameForm/CreateGameForm";
 import Contact from "./view/Contact/Contact";
 import RegistrationForm from "./view/RegistrationForm/RegistrationForm";
 import Navbar from '../src/components/Navbar/Navbar';
+import Footer from "./components/Footer/Footer";
 
 
 function App() {
@@ -20,7 +21,8 @@ function App() {
         <Route path="/create" component={CreateGameForm} />
         <Route path="/contact" component={Contact} />
         <Route path="/registration" component={RegistrationForm} />
-      
+        <Footer />
+
     </div>
   );
 }

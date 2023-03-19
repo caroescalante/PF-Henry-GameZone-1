@@ -1,41 +1,34 @@
 import React from "react";
 import style from "./Footer.module.css";
+import { Link } from "react-router-dom"
 
 const Footer = () => {
     return(
         <div>
-
-            <script src="https://kit.fontawesome.com/bd2e6ad733.js" crossorigin="anonymous"></script>
-
-            <footer class="footer">
+            <footer className={style.footer}>
             
-            <div class="divFirst">
+            <div className={style.divFirst}>
     
-                <a href="/">
-                <img src="src/image/logo.png" alt="init" width="300px"/>
-                </a> 
+                <Link to="/"><img src="src/image/logo.png" alt="init" width="300px"/></Link>
 
-                <div class="linkFooter">
-                    <a href="/"> Home </a>
-                    <a href="/about"> About </a>
-                    <a href="/news"> News </a>
-                    <a href="/contact"> Contact us </a>
-                </div>
+            <div className={style.linkFooter}>
+                <Link to="/">Home</Link>
+                <Link to="/about">About</Link>
+                <Link to="/news">News</Link>
+                <Link to="/contact">Contact us</Link>
+            </div>
+
+            <div className={style.networks}>
+                <Link to="/" className="fa fa-github"></Link>
+            </div>
                 
             </div>
 
-            <div class="networks">
-                <a href="#" class="fa fa-github"></a>
-            </div>
-
-            <div class="copy">
+            <div className={style.copy}>
                 <p>© 2023 Copyright: Henry-GameZone - All rights reserved.</p>
             </div>
 
             </footer>
-
-            <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-            <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
         </div>
     );
 };
