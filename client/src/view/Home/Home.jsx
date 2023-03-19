@@ -4,7 +4,7 @@ import Navbar from '../../components/Navbar/Navbar';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from "react";
-import { getGames, getGenres, filterByGenres, getPlatforms, filterByPlatforms,orderByName,orderByRating,orderByPrice } from "../../redux/actions";
+import { getGames, getGenres, filterByGenres, getPlatforms, filterByPlatforms,orderByName,orderByRating,orderByPrice,clearDetail} from "../../redux/actions";
 import styles from './Home.module.css';
 import Paginated from "../../components/Paginated/Paginated";
 
@@ -34,6 +34,7 @@ const Home = () => {
 
       useEffect(()=>{
            dispatch(getGames());
+           dispatch(clearDetail())
       },[])
       
       
