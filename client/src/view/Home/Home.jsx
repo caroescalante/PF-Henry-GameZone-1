@@ -4,7 +4,7 @@ import Navbar from '../../components/Navbar/Navbar';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from "react";
-import { getGames, getGenres, filterByGenres, getPlatforms, filterByPlatforms } from "../../redux/actions";
+import { getGames, getGenres, filterByGenres, getPlatforms, filterByPlatforms,orderByName,orderByRating } from "../../redux/actions";
 import styles from './Home.module.css';
 import Paginated from "../../components/Paginated/Paginated";
 
@@ -49,6 +49,18 @@ const Home = () => {
         setCurrentPage(1);
         setOrden(`Ordenado ${e.target.value}`);
       }
+      function handleOrderName(e){
+        e.preventDefault();
+        dispatch(orderByName(e.target.value));
+        setCurrentPage(1);
+        setOrden(`Ordenado ${e.target.value}`);
+    }
+    function handleOrderRating(e){
+      e.preventDefault();
+      dispatch(orderByRating(e.target.value));
+      setCurrentPage(1);
+      setOrden(`Ordenado ${e.target.value}`);
+    }
 
 
     return (
@@ -64,7 +76,7 @@ const Home = () => {
         </div>
       
             <select onChange={(e) => handleGenreFilter(e)} className={styles.filter}>
-                     <option>All</option>
+                     <option value='All'>All</option>
                     {genres.map((gen, index) => {
                         return <option key={index} value={gen.name}>{gen.name}</option>;
                      })}
@@ -72,10 +84,20 @@ const Home = () => {
 
             
             <select onChange={(e) => handlePlatformFilter(e)} className={styles.filter}>
-                     <option>All</option>
+                     <option value='All'>All</option>
                     {platforms.map((plat, index) => {
                         return <option key={index} value={plat.name}>{plat.name}</option>;
                      })}
+            </select>
+            <select onChange={(e) => handleOrderName(e)} className={styles.filter}>
+                     <option value='All'>Alphabetical Order</option>
+                     <option value= 'Asc' >Ascending Alphabetical Order</option>
+                    <option value= 'Desc'>Descending Alphabetical Order</option>
+            </select>
+             <select onChange={(e) => handleOrderRating(e)} className={styles.filter}>
+                     <option value='All'>Rating Order</option>
+                     <option value= 'Asc' >Ascending Rating Order</option>
+                    <option value= 'Desc'>Descending Rating Order</option>
             </select>
                      
              <div>
