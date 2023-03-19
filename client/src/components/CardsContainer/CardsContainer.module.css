@@ -1,121 +1,283 @@
-.card{
-    text-decoration:none;
-    display:inline-flex;
+
+:root {
+    --color1: rgb(0, 231, 255);
+    --color2: rgb(255, 0, 231);
+    --back: 
+    }
+    .card{
+    width: 300px;
+    height: 300px;
+    display:inline-block;
     flex-direction: column;
-    height: 280px;
-    width: 13.5%;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    margin-left: 100px;
-    margin-right: 100px;
-    align-content: space-evenly;
-    border-style:hidden;
-    border-color: black;
-    border-radius: 10px;
-    padding-block: 130px;
-    padding-bottom: 0px;
-    padding-top: 0px;
-    color: rgba(199, 197, 197, 0.959);
-    font-family:'Trebuchet MS', sans-serif;
-    line-height: 1.4;
-    font-size: 12px;
-    background: transparent;
-    backdrop-filter: blur(15px);
-    border: solid 2px;  
+    position: relative;
+    margin: 10px;
     overflow: hidden;
-    box-shadow: 0px 1px 10px rgba(0,0,0,0.2);
-    cursor: default;
-    transition: all 400ms ease;
-    font-style: oblique;
-}
-.more::before{
-    content:"";
+    z-index: 1;
+    touch-action: none;
+    border-radius: 10px;
+    box-shadow: -5px -5px 5px -5px var(--color1), 5px 5px 5px -5px var(--color2), -7px -7px 10px -5px transparent, 7px 7px 10px -5px transparent, 0 0 5px 0px rgba(255, 255, 255, 0), 0 55px 35px -20px rgba(0, 0, 0, 0.5);
+    transition: transform 0.5s ease, box-shadow 0.2s ease;
+    will-change: transform, filter;
+    background-color: #040712;
+    background-image: var(--front);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    transform-origin: center;
+    }
+    .card:hover {
+    box-shadow: -20px -20px 30px -25px var(--color1), 20px 20px 30px -25px var(--color2), -7px -7px 10px -5px var(--color1), 7px 7px 10px -5px var(--color2), 0 0 13px 4px rgba(255, 255, 255, 0.3), 0 55px 35px -20px rgba(0, 0, 0, 0.5);
+    }
+    
+    .card:before, .card:after {
+    content: "";
     position: absolute;
-    top: 0;
     left: 0;
-    z-index:-1;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(45deg,white,aqua,deeppink,aqua,white,aqua,deeppink,aqua);
-    background-size: 800%;
-    border-radius: 10px;
-    filter: blur(8px);
-    animation: glowing 20s linear infinite;
-
-}
-@keyframes glowing{
-    0%{
-        background-position: 0 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background-repeat: no-repeat;
+    opacity: .5;
+    mix-blend-mode: color-dodge;
+    transition: all .33s ease;
     }
-    50%{
-        background-position: 400% 0;
+    .card:before {
+    background-position: 50% 50%;
+    background-size: 300% 300%;
+    background-image: linear-gradient(115deg, transparent 0%, var(--color1) 25%, transparent 47%, transparent 53%, var(--color2) 75%, transparent 100%);
+    opacity: .5;
+    filter: brightness(.5) contrast(1);
+    z-index: 1;
     }
-    100%{
-        background-position: 0 0;
+    
+    .card:before {
+    background-position: 50% 50%;
+    background-size: 300% 300%;
+    background-image: linear-gradient(115deg, transparent 0%, var(--color1) 25%, transparent 47%, transparent 53%, var(--color2) 75%, transparent 100%);
+    opacity: 0.5;
+    filter: brightness(0.5) contrast(1);
+    z-index: 1;
     }
-}
-
-.card:hover{
-    box-shadow:  5px 5px 20px rgba(0,0,0,0.7);
-    transform: translateY(-3%);
-}
-.card .contenido{
-    padding: 0px;
+    .card:after {
+    opacity: 1;
+    background-image: url("https://assets.codepen.io/13471/sparkles.gif"), url(https://assets.codepen.io/13471/holo.png), linear-gradient(125deg, #ff008450 15%, #fca40040 30%, #ffff0030 40%, #00ff8a20 60%, #00cfff40 70%, #cc4cfa50 85%);
+    background-position: 50% 50%;
+    background-size: 160%;
+    background-blend-mode: overlay;
+    z-index: 2;
+    filter: brightness(1) contrast(1);
+    transition: all 0.33s ease;
+    mix-blend-mode: color-dodge;
+    opacity: 0.75;
+    }
+    .card.active:after,
+    .card:hover:after {
+    filter: brightness(1) contrast(1);
+    opacity: 1;
+    }
+    .card.active,
+    .card:hover {
+    animation: none;
+    transition: box-shadow 0.1s ease-out;
+    }
+    .card.active:before,
+    .card:hover:before {
+    animation: none;
+    background-image: linear-gradient(110deg, transparent 25%, var(--color1) 48%, var(--color2) 52%, transparent 75%);
+    background-position: 50% 50%;
+    background-size: 250% 250%;
+    opacity: 0.88;
+    filter: brightness(0.66) contrast(1.33);
+    transition: none;
+    }
+    .card.active:before,
+    .card:hover:before,
+    .card.active:after,
+    .card:hover:after {
+    animation: none;
+    transition: none;
+    }
+    .card.animated {
+    transition: none;
+    animation: holoCard 12s ease 0s 1;
+    }
+    .card.animated:before {
+    transition: none;
+    animation: holoGradient 12s ease 0s 1;
+    }
+    .card.animated:after {
+    transition: none;
+    animation: holoSparkle 12s ease 0s 1;
+    }
+    @keyframes holoSparkle {
+    0%, 100% {
+    opacity: 0.75;
+    background-position: 50% 50%;
+    filter: brightness(1.2) contrast(1.25);
+    }
+    5%, 8% {
+    opacity: 1;
+    background-position: 40% 40%;
+    filter: brightness(0.8) contrast(1.2);
+    }
+    13%, 16% {
+    opacity: 0.5;
+    background-position: 50% 50%;
+    filter: brightness(1.2) contrast(0.8);
+    }
+    35%, 38% {
+    opacity: 1;
+    background-position: 60% 60%;
+    filter: brightness(1) contrast(1);
+    }
+    55% {
+    opacity: 0.33;
+    background-position: 45% 45%;
+    filter: brightness(1.2) contrast(1.25);
+    }
+    }
+    @keyframes holoSparkle {
+    0%, 100% {
+    opacity: .75;
+    background-position: 50% 50%;
+    filter: brightness(1.2) contrast(1.25);
+    }
+    5%, 8% {
+    opacity: 1;
+    background-position: 40% 40%;
+    filter: brightness(.8) contrast(1.2);
+    }
+    13%, 16% {
+    opacity: .5;
+    background-position: 50% 50%;
+    filter: brightness(1.2) contrast(.8);
+    }
+    35%, 38% {
+    opacity: 1;
+    background-position: 60% 60%;
+    filter: brightness(1) contrast(1);
+    }
+    55% {
+    opacity: .33;
+    background-position: 45% 45%;
+    filter: brightness(1.2) contrast(1.25);
+    }
+    }
+    @keyframes holoGradient {
+    0%, 100% {
+    opacity: 0.5;
+    background-position: 50% 50%;
+    filter: brightness(.5) contrast(1);
+    }
+    5%, 9% {
+    background-position: 100% 100%;
+    opacity: 1;
+    filter: brightness(.75) contrast(1.25);
+    }
+    13%, 17% {
+    background-position: 0% 0%;
+    opacity: .88;
+    }
+    35%, 39% {
+    background-position: 100% 100%;
+    opacity: 1;
+    filter: brightness(.5) contrast(1);
+    }
+    55% {
+    background-position: 0% 0%;
+    opacity: 1;
+    filter: brightness(.75) contrast(1.25);
+    }
+    }
+    @keyframes holoCard {
+    0%, 100% {
+    transform: rotateZ(0deg) rotateX(0deg) rotateY(0deg);
+    }
+    5%, 8% {
+    transform: rotateZ(0deg) rotateX(6deg) rotateY(-20deg);
+    }
+    13%, 16% {
+    transform: rotateZ(0deg) rotateX(-9deg) rotateY(32deg);
+    }
+    35%, 38% {
+    transform: rotateZ(3deg) rotateX(12deg) rotateY(20deg);
+    }
+    55% {
+    transform: rotateZ(-3deg) rotateX(-12deg) rotateY(-27deg);
+    }
+    } 
+    
+    .image {
+    width: 300px;
+    height: 300px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    position: relative;
+    bottom: 1px;
+    z-index: -1;
+    }
+    
+    .containerData{background: linear-gradient(to right, rgba(0, 255, 255, 2.0), rgba(0, 196, 196, 0.5)), rgba(0, 0, 255, 1.2);
+    
+    }
+    .name{
+    height: 42px;
+    width: 300px;
+    color: white;
+    display: flex;
+    position: relative;
     text-align: center;
-    line-height: 3;
-}
-.card .contenido a{
-    background-color: rgb(219, 221, 221);
-    width: 30%;
-    height: 12%;
-    text-decoration: none;
-    display: inline-block;
-    color: #000000;
-    border: 1px solid #ffffff;
-    border-radius: 10px;
-    transition: all 400ms ease;
-    font-size: 15px;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    bottom: 100px;
+    background: linear-gradient(to right, rgba(0, 255, 255, 2.0), rgba(0, 196, 196, 0.5)), rgba(0, 0, 255, 1.2);
+    }
+    
+    .rating{
+    color: white;
+    position:relative;
+    bottom: 95px;
+    background: linear-gradient(to right, rgba(0, 255, 255, 2.0), rgba(0, 196, 196, 0.5)), rgba(0, 0, 255, 1.2);
     text-align: center;
-    padding-bottom: 10%;
-    padding-top: 0px;
-}
-.card .contenido a:hover{
-    background: #454643e7;
-    color: #f8f8f8;
-}
-.card .contenido h4{
-    color: rgba(201, 144, 116, 0.856);
-}
-.image {
-    width: 100%;
-    height: 45%;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-}
-.name{
-    color:#fdfdfdd7;
-}
-.more{
-    background-color: #444444;
+    justify-content: center;
+    }
+    
+    .more{
     cursor:pointer;
-    border: none;
-    padding: 5px 10px 7px;
-    color:#ffffff;
-    font-size: 15px;
+    top:125px;
+    color: black;
+    font-size: 20px;
     font-weight: bold;
     position: relative;
-    border-radius: 12px;
     text-decoration: none;
     text-align: center;
-    padding-bottom: 0px;
-    padding-top: 0px;
-}
-.textbutton{
-    margin-top: 0px;
-    padding-top: 0px;
-    
-}
-
-
-
-
+    z-index: 1;
+    background: linear-gradient(to right, rgba(0, 255, 255, 2.0), rgba(0, 196, 196, 0.5)), rgba(0, 0, 255, 1.2);
+    }
+    .cardInner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+    }
+    .card:hover .cardInner {
+    transform: rotateY(180deg);
+    }
+    .cardFront, .cardBack {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    }
+    .cardFront {
+    background-color: none;
+    } 
+    .cardBack {
+    background-image: url('data:image/jpeg;base64,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');
+    background-repeat: no-repeat ;
+    transform: rotateY(180deg);
+    background-size: 100% 100%;
+    background-attachment: fixed;
+    };
