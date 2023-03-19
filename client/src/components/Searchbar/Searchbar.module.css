@@ -1,5 +1,6 @@
 .input {     
-    border: none;      
+    border: none;   
+    color:white;   
     height: 60%; 
     margin-top: 6px;
     border-bottom-left-radius: 10px;    
@@ -16,7 +17,9 @@
     color: black;
     border: none;
     padding: 7px 30px;
-    border-top-right-radius: 10px;    
+    border-top-right-radius: 10px; 
+    cursor: pointer;
+
 }
 
 .button:hover{
