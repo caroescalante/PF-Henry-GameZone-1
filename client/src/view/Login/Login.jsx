@@ -11,11 +11,9 @@ const Login = () => {
   const users = useSelector((state) => state.users);
   const history = useHistory();
 
-  const [cleanEmail, setCleanEmail] = useState('');
-  const [cleanPassword, setCleanPassword] = useState('');
-
   const [data, setData] = useState({
 
+    name:"",
     email: "",
     password: ""
 
@@ -52,6 +50,7 @@ const Login = () => {
     } else {
       await axios.post('http://localhost:3001/user', data)
       setData({
+        name:"",
         email: "",
         password: ","
       })
@@ -67,6 +66,25 @@ const Login = () => {
             <form onSubmit={submitHandler}>
 
             <h2 className={style.text}>Login</h2>
+
+            <div className={style.inputbox}>
+
+              <ion-icon name="person-outline"></ion-icon>
+
+              <input 
+                className={style.inputbox2} 
+                onChange={changeHandler}                             
+                type="text" 
+                name="name"
+              />
+              
+              <label 
+                className={style.label} 
+                for="name"
+                >User name
+              </label>
+
+            </div>
     
             <div className={style.inputbox}>
 
