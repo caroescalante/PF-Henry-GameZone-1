@@ -3,6 +3,7 @@ import {
   SEARCH_BY_NAME,
   ORDER_BY_NAME,
   ORDER_BY_RATING,
+  ORDER_BY_PRICE,
 
   GET_GENRES,
   FILTER_BY_GENRES,
@@ -98,7 +99,26 @@ function rootReducer(state = initialState, action) {
         ...state,
         allGames: action.payload === "All" ? allGames3Original : allGames3
       };
-
+      case ORDER_BY_PRICE:
+      const allGames4Original = state.allGamesOriginal;
+      const allGames4 = state.allGames;
+      if(action.payload === 'Asc'){
+         allGames4.sort(function (a, b) {
+              if (a.price > b.price) return 1;
+              if (b.price > a.price) return -1
+              return 0;
+            })}
+      if(action.payload === 'Desc'){
+           allGames4.sort(function (a, b) {
+              if (a.price < b.price) return 1;
+              if (b.price < a.price) return -1;
+              return 0
+            })};
+      return {
+        ...state,
+        allGames: action.payload === "All" ? allGames4Original : allGames4
+      };
+      
 
       case GET_GENRES:
         return{

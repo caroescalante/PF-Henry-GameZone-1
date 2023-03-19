@@ -4,7 +4,7 @@ import Navbar from '../../components/Navbar/Navbar';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from "react";
-import { getGames, getGenres, filterByGenres, getPlatforms, filterByPlatforms,orderByName,orderByRating } from "../../redux/actions";
+import { getGames, getGenres, filterByGenres, getPlatforms, filterByPlatforms,orderByName,orderByRating,orderByPrice } from "../../redux/actions";
 import styles from './Home.module.css';
 import Paginated from "../../components/Paginated/Paginated";
 
@@ -61,6 +61,12 @@ const Home = () => {
       setCurrentPage(1);
       setOrden(`Ordenado ${e.target.value}`);
     }
+    function handleOrderPrice(e){
+      e.preventDefault();
+      dispatch(orderByPrice(e.target.value));
+      setCurrentPage(1);
+      setOrden(`Ordenado ${e.target.value}`);
+    }
 
 
     return (
@@ -98,6 +104,11 @@ const Home = () => {
                      <option value='All'>Rating Order</option>
                      <option value= 'Asc' >Ascending Rating Order</option>
                     <option value= 'Desc'>Descending Rating Order</option>
+            </select>
+            <select onChange={(e) => handleOrderPrice(e)} className={styles.filter}>
+                     <option value='All'>Price Order</option>
+                     <option value= 'Asc' >Ascending Price Order</option>
+                    <option value= 'Desc'>Descending Price Order</option>
             </select>
                      
              <div>
