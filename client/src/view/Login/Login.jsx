@@ -11,6 +11,9 @@ const Login = () => {
   const users = useSelector((state) => state.users);
   const history = useHistory();
 
+  const [cleanEmail, setCleanEmail] = useState('');
+  const [cleanPassword, setCleanPassword] = useState('');
+
   const [data, setData] = useState({
 
     email: "",
@@ -40,8 +43,9 @@ const Login = () => {
     const correctKey = checkPassword();
     if (userExists) {
       if(correctKey) {
-        alert ("Incorrect password !")
-        history.push("/login")
+        alert ("Incorrect password !");
+        setCleanEmail('');
+        setCleanPassword('');
       } else {
         history.push("/");
       }        
