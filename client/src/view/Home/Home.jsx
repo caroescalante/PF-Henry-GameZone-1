@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 import { getGames, getGenres, filterByGenres, getPlatforms, filterByPlatforms } from "../../redux/actions";
 import styles from './Home.module.css';
 import Paginated from "../../components/Paginated/Paginated";
-import Footer from "../../components/Footer/Footer";
 
 const Home = () => {
     const dispatch = useDispatch();
@@ -96,8 +95,6 @@ const Home = () => {
              allGames={allGames.length}
              paginado={paginado}
             />
-
-            <Footer />
         </div>
     );
 };
