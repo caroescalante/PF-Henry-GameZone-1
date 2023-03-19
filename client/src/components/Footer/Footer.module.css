@@ -1,0 +1,52 @@
+.footer {
+    width: 100%;
+    background-color: black;
+    padding-top: 10px;
+}
+  
+.footer a {
+    text-decoration: none;
+}
+
+.divFirst {
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.divFirst img {
+    margin-right: 40px;
+}
+
+.linkFooter a {
+    padding-right: 80px;
+    color: aqua;
+    font-size: 20px ;
+}
+
+/* .networks {
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+} */
+
+.networks a {
+    font-size: 30px;
+    color: aqua;
+    padding-right: 60px;
+    margin: 15px 0px 15px 0px;
+}
+
+.copy {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 15px;
+    color: aqua;
+    font-size: 13px;
+    margin: 20px;
+    padding-bottom: 20px;
+}
