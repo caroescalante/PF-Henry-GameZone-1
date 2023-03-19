@@ -31,3 +31,12 @@
     background-color: rgba(0, 0, 0, 0.63);
     color :aqua;
 }
+.currentPageColor{
+    border-radius: 50px;
+    width: 30px;
+    cursor: pointer;
+    color:aqua;
+    font-size: 19px;
+    background: black;
+    border-color: aliceblue;
+}

@@ -5,6 +5,8 @@ import { NavLink } from "react-router-dom/cjs/react-router-dom";
 
 const CardsContainer = ({ name, image, rating,id }) => {
 return (
+
+
 <Link to={"/game/" + id} >
 <div className={styles.card}>
 <div className={styles.cardInner}>
@@ -21,6 +23,7 @@ return (
 </div>
 </div>
 </Link>
+
 );
 };
 export default CardsContainer;

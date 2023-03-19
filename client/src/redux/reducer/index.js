@@ -3,6 +3,7 @@ import {
   SEARCH_BY_NAME,
   ORDER_BY_NAME,
   ORDER_BY_RATING,
+  ORDER_BY_PRICE,
 
   GET_GENRES,
   FILTER_BY_GENRES,
@@ -17,6 +18,7 @@ import {
 
 const initialState = {
   allGames: [],
+  allGamesOriginal: [],
   allGamesFilter: [],
   genres: [],
   platforms: [],
@@ -32,6 +34,7 @@ function rootReducer(state = initialState, action) {
         ...state,
         allGames: action.payload,
         allGamesFilter: action.payload,
+        allGamesOriginal: action.payload
       };
 
     case SEARCH_BY_NAME:
@@ -58,43 +61,64 @@ function rootReducer(state = initialState, action) {
     //   };
 
     case ORDER_BY_NAME:
-      const allGames2 = state.allGamesFilter;
-      const orderGamesName =
-        action.payload === "Asc"
-          ? allGames2.sort(function (a, b) {
-              if (a.name > b.name) return 1 
-              if (b.name > a.name) return -1 
+      const allGames2Original = state.allGamesOriginal;
+      const allGames2 = state.allGames;
+        if (action.payload ==='Asc'){
+          allGames2.sort(function (a, b) {
+              if (a.name.toLowerCase() > b.name.toLowerCase())  return 1 
+              if (b.name.toLowerCase() > a.name.toLowerCase())  return -1 
+              return  0;
+            })}
+        if (action.payload === 'Desc'){
+         allGames2.sort(function (a, b) {
+              if (a.name.toLowerCase() < b.name.toLowerCase()) return  1;
+              if (b.name.toLowerCase() < a.name.toLowerCase()) return  -1;
               return 0;
-            })
-          : allGames2.sort(function (a, b) {
-              if (a.name < b.name) return 1;
-              if (b.name < a.name) return -1;
-              return 0;
-            });
+            })};
       return {
         ...state,
-        allGames: action.payload === "All" ? allGames2 : orderGamesName,
+        allGames: action.payload === "All" ? allGames2Original : allGames2
       };
 
     case ORDER_BY_RATING:
-      const allGames3 = state.allGamesFilter;
-      const orderGamesRating =
-        action.payload === "Asc"
-          ? allGames3.sort(function (a, b) {
-              if (a.name > b.name) return 1;
-              if (b.name > a.name) return -1
+      const allGames3Original = state.allGamesOriginal;
+      const allGames3 = state.allGames;
+      if(action.payload === 'Asc'){
+         allGames3.sort(function (a, b) {
+              if (a.rating > b.rating) return 1;
+              if (b.rating > a.rating) return -1
               return 0;
-            })
-          : allGames3.sort(function (a, b) {
-              if (a.name < b.name) return 1;
-              if (b.name < a.name) return -1;
+            })}
+      if(action.payload === 'Desc'){
+           allGames3.sort(function (a, b) {
+              if (a.rating < b.rating) return 1;
+              if (b.rating < a.rating) return -1;
               return 0
-            });
+            })};
       return {
         ...state,
-        allGames: action.payload === "All" ? allGames3 : orderGamesRating,
+        allGames: action.payload === "All" ? allGames3Original : allGames3
       };
-
+      case ORDER_BY_PRICE:
+      const allGames4Original = state.allGamesOriginal;
+      const allGames4 = state.allGames;
+      if(action.payload === 'Asc'){
+         allGames4.sort(function (a, b) {
+              if (a.price > b.price) return 1;
+              if (b.price > a.price) return -1
+              return 0;
+            })}
+      if(action.payload === 'Desc'){
+           allGames4.sort(function (a, b) {
+              if (a.price < b.price) return 1;
+              if (b.price < a.price) return -1;
+              return 0
+            })};
+      return {
+        ...state,
+        allGames: action.payload === "All" ? allGames4Original : allGames4
+      };
+      
 
       case GET_GENRES:
         return{
@@ -111,16 +135,18 @@ function rootReducer(state = initialState, action) {
 
 
       case FILTER_BY_GENRES:
-      const allGenres = state.allGamesFilter;
-      const filteredGen = action.payload === 'All' ? allGenres : allGenres.filter(e => e.genres.length > 0 && e.genres.includes(action.payload));
+      const allGenresOriginal = state.allGamesOriginal;
+      const allGenres = state.allGames;
+      const filteredGen = action.payload === 'All' ? allGenresOriginal : allGenres.filter(e => e.genres.length > 0 && e.genres.includes(action.payload));
        return {
         ...state,
-        allGames: filteredGen
+        allGames: filteredGen,
       };
 
       case FILTER_BY_PLATFORMS:
-        const allPlatforms = state.allGamesFilter;
-        const filteredPlat = action.payload === "All" ? allPlatforms : allPlatforms.filter(e => e.platforms.length > 0 && e.platforms.includes(action.payload));
+        const allPlatformsOriginal = state.allGamesOriginal;
+        const allPlatforms = state.allGames;
+        const filteredPlat = action.payload === 'All' ? allPlatformsOriginal : allPlatforms.filter(e => e.platforms.length > 0 && e.platforms.includes(action.payload));
         return {
           ...state,
           allGames: filteredPlat

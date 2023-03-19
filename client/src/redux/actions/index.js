@@ -10,6 +10,7 @@ import {
   GET_DETAIL,
   CLEAR_DETAIL,
   GET_USERS,
+  ORDER_BY_PRICE
 } from "./types";
 
 import axios from 'axios';
@@ -81,6 +82,12 @@ export function orderByName(value) {
 export function orderByRating(value) {
   return {
     type: ORDER_BY_RATING,
+    payload: value,
+  }
+}
+export function orderByPrice(value) {
+  return {
+    type: ORDER_BY_PRICE,
     payload: value,
   }
 }
