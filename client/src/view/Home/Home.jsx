@@ -131,6 +131,7 @@ const Home = () => {
              gamesPerPage={gamesPerPage}
              allGames={allGames.length}
              paginado={paginado}
+             currentPageColor={currentPageColor}
             />
         </div>
     );
