@@ -154,7 +154,7 @@ function CreateGameForm() {
   <div className={style.game}>
     <form className={style.backgroundImage}onSubmit={submitHandler}>
       <div className={style.container}>
-      <header className={style.title} >Create your Videogame </header>
+      <h3 className={style.title} >Create your Videogame </h3>
         <div className={style.containerInputs}>
         <div className={style.containerInputs1}>
         <div className={style.fields}>
@@ -197,24 +197,24 @@ function CreateGameForm() {
         </div>
          </div>
          </div>
-        <h3 className={style.title}>Select one or more genres</h3>
+        <h3 className={style.subTitle}>Select one or more genres</h3>
         <div className={style.genresContainer}>
           {genres.map((genre, index) => {
             return (
-              <div key={index}>
-                <label className={style.labelGenres}htmlFor={genre.name}> { genre.name }  </label>
-                <input type="checkbox" name="genre" id={genre.name} onChange={inputChangeHandler} />
+              <div key={index} className={style.checkboxContainer}>
+                <label className={style.labelCheckbox} htmlFor={genre.name}> { genre.name }  </label>
+                <input type="checkbox" name="genre" id={genre.name} onChange={inputChangeHandler} className={style.checkboxInput} />
                </div>);
           })}
         </div>
         
-        <h3 className={style.title}>Select one or more platforms</h3>
+        <h3 className={style.subTitle}>Select one or more platforms</h3>
         <div className={style.platformsContainer}>
           {platforms.map((platform, index) => {
             return (
-              <div key={index}>
-                <label className={style.labelGenres} htmlFor= {platform}>   { platform }  </label>
-                <input type="checkbox" name="platform" id={platform} onChange={inputChangeHandler} />
+              <div key={index} className={style.checkboxContainer}>
+                <label className={style.labelCheckbox} htmlFor= {platform}>   { platform }  </label>
+                <input type="checkbox" name="platform" id={platform} onChange={inputChangeHandler} className={style.checkboxInput} />
               </div>
             );
           })}
