@@ -151,84 +151,82 @@ function CreateGameForm() {
   }, [setErrors, validate, form]);
 
   return (
-    <div>
-      <form onSubmit={submitHandler}>
-
-        <div>
+  <div className={style.game}>
+    <form className={style.backgroundImage}onSubmit={submitHandler}>
+      <div className={style.container}>
+      <header className={style.title} >Create your Videogame </header>
+        <div className={style.containerInputs}>
+        <div className={style.containerInputs1}>
+        <div className={style.fields}>
           <label htmlFor="name">Name</label>
-          <input type="text" name="name" placeholder="Name..." value={form.name} onChange={inputChangeHandler} onFocus={focusHandler} className={style.inputForm} />
+          <input type="text" name="name" placeholder="Name..." value={form.name} onChange={inputChangeHandler} onFocus={focusHandler}  />
+         {errors.name && focus.name && <p className={style.errorText}>{errors.name}</p>}
         </div>
-        {errors.name && focus.name && <p className={style.errorText}>{errors.name}</p>}
-
-        <div>
-          <label htmlFor="image">Image</label>
-          <input type="text" name="image" placeholder="Image..." value={form.image} onChange={inputChangeHandler} onFocus={focusHandler} className={style.inputForm} />
-        </div>
-        {errors.image && focus.image && <p className={style.errorText}>{errors.image}</p>}
-
-        <div>
-          <label htmlFor="price">Price</label>
-          <input type="number" name="price" placeholder="Price..." value={form.price} onChange={inputChangeHandler} onFocus={focusHandler} className={style.inputForm} />
-        </div>
-        {errors.price && focus.price && <p className={style.errorText}>{errors.price}</p>}
-
-        <div>
-          <label htmlFor="rating">Rating</label>
-          <input type="number" name="rating" placeholder="Rating..." value={form.rating} onChange={inputChangeHandler} onFocus={focusHandler} className={style.inputForm} />
-        </div>
-        {errors.rating && focus.rating && <p className={style.errorText}>{errors.rating}</p>}
-
-        <div>
-          <label htmlFor="website">Website</label>
-          <input type="text" name="website" placeholder="Website..." value={form.website} onChange={inputChangeHandler} onFocus={focusHandler} className={style.inputForm} />
-        </div>
-        {errors.website && focus.website && <p className={style.errorText}>{errors.website}</p>}
-
-        <div>
-          <label htmlFor="released">Released</label>
-          <input type="date" name="released" placeholder="Released..." value={form.released} onChange={inputChangeHandler} onFocus={focusHandler} className={style.inputForm} />
-        </div>
-        {errors.released && focus.released && <p className={style.errorText}>{errors.released}</p>}
-
-        <div>
+        <div className={style.fields}>
           <label htmlFor="description">Description</label>
-          <input type="text" name="description" placeholder="Description..." value={form.description} onChange={inputChangeHandler} onFocus={focusHandler} className={style.inputForm} />
+          <input type="text" name="description" placeholder="Description..." value={form.description} onChange={inputChangeHandler} onFocus={focusHandler} />
+         {errors.description && focus.description && <p className={style.errorText}>{errors.description}</p>}
         </div>
-        {errors.description && focus.description && <p className={style.errorText}>{errors.description}</p>}
-
-        <h3>Select one or more genres</h3>
-
+        <label className={style.price} htmlFor="price">$</label>
+        <div className={style.fields}>
+          <label htmlFor="price">Price</label>
+          <input type="number" name="price" placeholder=" Price..." value={form.price} onChange={inputChangeHandler} onFocus={focusHandler} />
+         {errors.price && focus.price && <p className={style.errorText}>{errors.price}</p>}
+        </div>
+        <div className={style.fields}>
+          <label htmlFor="rating">Rating</label>
+          <input type="number" name="rating" placeholder="Rating..." value={form.rating} onChange={inputChangeHandler} onFocus={focusHandler} />
+         {errors.rating && focus.rating && <p className={style.errorText}>{errors.rating}</p>}
+        </div>
+         </div>
+         <div className={style.containerInputs2}>
+        <div className={style.fields}>
+          <label htmlFor="website">Website</label>
+          <input type="text" name="website" placeholder="Website..." value={form.website} onChange={inputChangeHandler} onFocus={focusHandler}  />
+         {errors.website && focus.website && <p className={style.errorText}>{errors.website}</p>}
+        </div>
+        <div className={style.fields}>
+          <label htmlFor="released">Released</label>
+          <input type="date" name="released" placeholder="Released..." value={form.released} onChange={inputChangeHandler} onFocus={focusHandler}  />
+         {errors.released && focus.released && <p className={style.errorText}>{errors.released}</p>}
+        </div>
+        <div className={style.fields}>
+          <label htmlFor="image">Image</label>
+          <input type="text" name="image" placeholder="Image..." value={form.image} onChange={inputChangeHandler} onFocus={focusHandler}  />
+         {errors.image && focus.image && <p className={style.errorText}>{errors.image}</p>} 
+        </div>
+         </div>
+         </div>
+        <h3 className={style.title}>Select one or more genres</h3>
         <div className={style.genresContainer}>
           {genres.map((genre, index) => {
             return (
               <div key={index}>
-                <label htmlFor={genre.name}>{genre.name}</label>
+                <label className={style.labelGenres}htmlFor={genre.name}> { genre.name }  </label>
                 <input type="checkbox" name="genre" id={genre.name} onChange={inputChangeHandler} />
-              </div>
-            );
+               </div>);
           })}
         </div>
-
-        <h3>Select one or more platforms</h3>
-
+        
+        <h3 className={style.title}>Select one or more platforms</h3>
         <div className={style.platformsContainer}>
           {platforms.map((platform, index) => {
             return (
               <div key={index}>
-                <label htmlFor={platform}>{platform}</label>
+                <label className={style.labelGenres} htmlFor= {platform}>   { platform }  </label>
                 <input type="checkbox" name="platform" id={platform} onChange={inputChangeHandler} />
               </div>
             );
           })}
         </div>
-
-        <button type="submit" className={style.buttonForm} disabled={
-          (errors.name || errors.image || errors.price || errors.rating || errors.description || errors.genres || errors.platforms) ? true : false
-        }>Submit</button>
-
-      </form>
-
-    </div>
+      <div className={style.containerButton}>
+        <button type="submit"  className={style.button} disabled={
+          (errors.name || errors.image || errors.price || errors.rating || errors.description || errors.genres || errors.platforms) ? true : false}>Submit
+        </button>
+        </div>
+      </div>
+    </form>
+   </div>
   );
 };
 
