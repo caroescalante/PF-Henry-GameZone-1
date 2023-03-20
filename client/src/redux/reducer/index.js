@@ -25,6 +25,8 @@ const initialState = {
   detail : [],
   users: [],
   allUsers: [],
+  filterGenres: 'All',
+  filterPlataforms: 'All',
 };
 
 function rootReducer(state = initialState, action) {
@@ -136,20 +138,23 @@ function rootReducer(state = initialState, action) {
 
       case FILTER_BY_GENRES:
       const allGenresOriginal = state.allGamesOriginal;
-      const allGenres = state.allGames;
-      const filteredGen = action.payload === 'All' ? allGenresOriginal : allGenres.filter(e => e.genres.length > 0 && e.genres.includes(action.payload));
+      const withFilterPlatforms = state.filterPlataforms === 'All' ? allGenresOriginal : allGenresOriginal.filter(e => e.platforms.length > 0 && e.platforms.includes(state.filterPlataforms));
+      const allGenres = action.payload === 'All' ? withFilterPlatforms : withFilterPlatforms.filter(e => e.genres.length > 0 && e.genres.includes(action.payload));
        return {
         ...state,
-        allGames: filteredGen,
+        allGames: allGenres,
+        filterGenres: action.payload,
       };
 
       case FILTER_BY_PLATFORMS:
         const allPlatformsOriginal = state.allGamesOriginal;
-        const allPlatforms = state.allGames;
-        const filteredPlat = action.payload === 'All' ? allPlatformsOriginal : allPlatforms.filter(e => e.platforms.length > 0 && e.platforms.includes(action.payload));
+        const withFilterGenres = state.filterGenres === 'All' ? allPlatformsOriginal : allPlatformsOriginal.filter(e => e.genres.length > 0 && e.genres.includes(state.filterGenres));
+        const allPlatforms = action.payload === 'All' ? withFilterGenres : withFilterGenres.filter(e => e.platforms.length > 0 && e.platforms.includes(action.payload));
+        
         return {
           ...state,
-          allGames: filteredPlat
+          allGames: allPlatforms,
+          filterPlataforms: action.payload,
         };
 
 
