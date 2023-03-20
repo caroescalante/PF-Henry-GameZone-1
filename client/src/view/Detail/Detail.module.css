@@ -27,7 +27,7 @@
     border-radius: 10px; 
 }
 .description{
-    font-size: 15px;
+    font-size: 14px;
     font-family: 'poppins',sans-serif;
     color: aqua;
     position: relative;
@@ -78,7 +78,7 @@
     height: 70px;
     width: 500px;
     color: aqua;
-    font-size: 50px;
+    font-size: 35px;
     font-family: 'poppins',sans-serif;
     position: relative;
     top:15px;
@@ -148,7 +148,7 @@
     /* border: solid 2px black; */
     margin-top: 15px;
     position: relative;
-    left: 550px;
+    left: 600px;
     top: 42px;
     justify-content: center;
     
