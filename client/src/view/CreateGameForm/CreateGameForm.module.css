@@ -1,10 +1,8 @@
 .errorText {
-   margin-top: 70px;
+   margin-top: 85px;
     color: red;
     position: fixed;
     font-size: bold;
-    
- 
 }
 
 .genresContainer {
@@ -14,6 +12,28 @@
     color: aqua; 
 }
 
+.checkboxContainer {
+    display: flex;
+    margin: 15px;
+}
+
+.checkboxInput {
+    margin-left: 10px;
+    width: 18px;
+    height: 18px;
+    appearance: none;
+    border: 2px solid aqua;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.checkboxInput:checked {
+    background-color: aqua;
+}
+
+.labelCheckbox {
+    font-size: 20px;
+}
 
 .platformsContainer {
     display: flex;
@@ -24,11 +44,21 @@
 .title{
     display: block;
     margin-bottom: 8px;
-    font-size: 16px;
+    font-size: 25px;
     font-weight: 500;
     margin: 6px 0;
     color: aqua;    
 }
+
+.subTitle {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 25px;
+    font-weight: 500;
+    margin: 6px 0;
+    color: aqua;   
+}
+
 .fields{
     display: flex;
     flex-wrap: wrap;
@@ -49,9 +79,9 @@
 .fields label {
     position: relative;
     color:aqua;
-    font-size: 12px;
+    font-size: 16px;
     font-weight: 500;
- 
+    margin-bottom: 10px;
 }
 
 .fields input{
@@ -152,9 +182,7 @@
     box-shadow: 1px 1px 20px 8px aqua;
     background-color: darkcyan;
 }
-.labelGenres{
-    padding-left: 5px;
-}
+
 .containerInputs1{
   
    display: flex;
@@ -179,7 +207,7 @@
     color: rgb(3, 68, 68);
     font-size: 14px;
     position: relative;
-    top: 28px;
+    top: 41px;
     left: 23px;
     z-index: 1;
 }
