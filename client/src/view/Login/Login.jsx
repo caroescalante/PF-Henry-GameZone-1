@@ -4,12 +4,14 @@ import { useHistory } from 'react-router-dom';
 import { getUsers } from '../../redux/actions';
 import style from '../Login/Login.module.css';
 import axios from 'axios';
+import Cookies from 'universal-cookie';
 
 const Login = () => {
 
   const dispatch = useDispatch();
   const users = useSelector((state) => state.users);
   const history = useHistory();
+  const cookies = new Cookies();
 
   const [data, setData] = useState({
 
@@ -22,37 +24,47 @@ const Login = () => {
   const changeHandler = (event) => {
 
     const {name, value} = event.target;   
-    setData ({...data, [name]:value});
+    setData ({...data, [name]:value});   
   }
 
   const checkUser = useCallback(() => {
     dispatch(getUsers());
-    return users.some(user => user.email === data.email );
-  }, [dispatch, getUsers, users, data.email]);
+    return users.some(user => user.name === data.name || user.email === data.email );
+  }, [dispatch, getUsers, users, data.name, data.email]);
 
   const checkPassword = useCallback(() => {
     dispatch(getUsers());
     return users.some(user => user.email === data.email && user.password !== data.password);
   }, [dispatch, getUsers, users, data.email, data.password])
 
+
+  //iniciar sesion 
   const submitHandler = async (event) => {
     event.preventDefault();
     const userExists = checkUser();
     const correctKey = checkPassword();
     if (userExists) {
+        
+        cookies.set('name', data.name, {path: "/"});
+        cookies.set('email', data.email, {path: "/"});
+        alert (`Welcome ${data.name}`)
+        
+
       if(correctKey) {
         alert ("Incorrect password !");
-        setCleanEmail('');
-        setCleanPassword('');
+        setData({email: "", password: ""});
+        
       } else {
         history.push("/");
-      }        
+      } 
+      
+      
     } else {
       await axios.post('http://localhost:3001/user', data)
       setData({
         name:"",
         email: "",
-        password: ","
+        password: ""
       })
       history.push("/registration");
     };
@@ -69,19 +81,19 @@ const Login = () => {
 
             <div className={style.inputbox}>
 
-              <ion-icon name="person-outline"></ion-icon>
+            <ion-icon name="person-outline"></ion-icon>
 
               <input 
                 className={style.inputbox2} 
                 onChange={changeHandler}                             
-                type="text" 
+                type="name" 
                 name="name"
+                required 
               />
               
               <label 
                 className={style.label} 
-                for="name"
-                >User name
+                >User Name
               </label>
 
             </div>
@@ -100,7 +112,6 @@ const Login = () => {
               
               <label 
                 className={style.label} 
-                for="email"
                 >Email
               </label>
 
@@ -120,7 +131,6 @@ const Login = () => {
 
               <label 
                 className={style.label} 
-                for="password"
                 >Password
               </label>
 
@@ -129,7 +139,7 @@ const Login = () => {
             
             <div className={style.forget}>
 
-              <label for="remenber">
+              <label htmlFor="remenber">
                 
               <input 
                 type="checkbox"
