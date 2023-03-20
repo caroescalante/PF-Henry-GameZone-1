@@ -8,24 +8,34 @@ function SearchBar() {
     const [name, setName] = useState("")
 
     function onInputChange(event) {
-         setName(event.target.value)
+        setName(event.target.value)
     }
 
     function onSubmit(event) {
-         event.preventDefault()
-         dispatch(searchByName(name))
-     }
+        event.preventDefault()
+        dispatch(searchByName(name))
+    }
 
-     return (
+    function onKeyDown(event) {
+        if (event.key === "Enter") { //Revisa si el user presiono enter con el input activo, si es asi se llama al onsubmit
+            onSubmit(event)
+        }
+    }
+
+    return (
         <div className={s.searchBar}>
-           
-                    <input className={s.input} type="text" onChange={onInputChange} placeholder="Videogame name" />
-                    <button className={s.button} type="submit" onClick={onSubmit} >Search</button>
-                
+            <input
+                className={s.input}
+                type="text"
+                placeholder="Videogame name"
+                value={name}
+                onChange={onInputChange}
+                onKeyDown={onKeyDown}
+            />
+            <button className={s.button} type="submit" onClick={onSubmit}>Search</button>
         </div>
-      );
-  }
+    );
+}
   
-  export default SearchBar;
-
+export default SearchBar;
 
