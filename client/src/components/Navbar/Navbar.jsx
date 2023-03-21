@@ -2,6 +2,7 @@ import style from "./Navbar.module.css";
 import { Link } from "react-router-dom";
 import logo from "../../Image/logo.png";
 import { clearDetail } from "../../redux/actions";
+import { useDispatch } from 'react-redux';
 
 import Cookies from 'universal-cookie';
 
@@ -9,11 +10,14 @@ const cookies = new Cookies();
 
 const Navbar = () => {
 
+    const dispatch = useDispatch();
+
     const closeSession = () => {
 
         cookies.remove('id', {path: "/"});
         cookies.remove('name', {path: "/"});
         cookies.remove('email', {path: "/"});
+        dispatch(clearDetail());
 
     }
 

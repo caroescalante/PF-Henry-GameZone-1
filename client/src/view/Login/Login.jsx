@@ -44,9 +44,13 @@ const Login = () => {
     const userExists = checkUser();
     const correctKey = checkPassword();
     if (userExists) {
-        
-        cookies.set('name', data.name, {path: "/"});
-        cookies.set('email', data.email, {path: "/"});
+
+
+        cookies.set('id', users.id, {path: "/"});
+        cookies.set('name', users.name, {path: "/"});
+        cookies.set('email', users.email, {path: "/"});
+        // cookies.set('name', data.name, {path: "/"});
+        // cookies.set('email', data.email, {path: "/"});
         
         
 

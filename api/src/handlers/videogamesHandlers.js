@@ -2,7 +2,8 @@ const {
     getAllGames,
     getGameByName,
     postGame,
-    getById
+    getById,
+    updateVideogame,
 } = require('../controllers/videogameController');
 
 
@@ -43,8 +44,19 @@ const createGameHandler = async(req, res, next) => {
 };
 
 
-const updateGameHandler = (req, res) => {
-    res.json("modificar un juego")
+const updateGameHandler = async (req, res) => {
+    
+    const { id } = req.params;
+    const newData = req.body;
+
+    try {
+        const videogame = await updateVideogame(id, newData)
+        res.json(videogame);    
+
+    } catch ( error ) {
+        res.status(400).json({ error: error.menssage });
+    }
+
 }
 
 const gameByQueryHandler = async(req, res, next) => {
