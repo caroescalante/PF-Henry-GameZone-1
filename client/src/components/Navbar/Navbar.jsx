@@ -1,7 +1,6 @@
 import style from "./Navbar.module.css";
 import { Link } from "react-router-dom";
 import logo from "../../Image/logo.png";
-import SearchBar from '../../components/Searchbar/Searchbar';
 import { clearDetail } from "../../redux/actions";
 
 import Cookies from 'universal-cookie';
@@ -24,7 +23,7 @@ const Navbar = () => {
                 <img src={logo} alt="init" width="300px" />
             </Link>
 
-            <SearchBar />
+       
 
             <Link className={style.links} to="/create">
                 <ion-icon size="large" name="game-controller-outline"></ion-icon>

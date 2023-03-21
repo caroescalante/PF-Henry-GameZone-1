@@ -140,7 +140,7 @@ const getGameByName = async(name) =>{
 
 
 const postGame = async(gamePost) => {
-  
+  console.log('crear juego', gamePost);
     try {
     const { name, description, released, rating, image, price, website, genres, platforms } = gamePost
 
@@ -162,21 +162,38 @@ const postGame = async(gamePost) => {
       website,
       // platforms
     })
-    let genresDb = await Genre.findAll({
-      where: {
 
-              name : genres 
-          }, 
+    genres.map(async (gen)=>{
+      const genresDb = await Genre.findAll({
+        where:{name : gen}
+       })
+    const respgenre = await gameCreated.addGenre(genresDb);
+       console.log(respgenre);  
     });
-    await gameCreated.addGenre(genresDb);
-
-
-    let platformsDb = await Platform.findAll({
-      where: {
-              name : platforms 
-          }, 
+    
+    platforms.map(async(plat)=>{
+        const platformsDb = await Platform.findAll({
+            where:{name : plat}
+        })
+        const respPlatform = await gameCreated.addPlatform(platformsDb);
+        console.log(respPlatform);
     });
-    await gameCreated.addPlatform(platformsDb);
+    
+    // let genresDb = await Genre.findAll({
+    //   where: {
+
+    //           name : genres 
+    //       }, 
+    // });
+    //await gameCreated.addGenre(genresDb);
+
+
+    // let platformsDb = await Platform.findAll({
+    //   where: {
+    //           name : platforms 
+    //       }, 
+    // });
+    //await gameCreated.addPlatform(platformsDb);
 
     return gameCreated;
     } catch (error) {

@@ -1,7 +1,7 @@
 import React from "react";
 import CardsContainer from '../../components/CardsContainer/CardsContainer'
 import Navbar from '../../components/Navbar/Navbar';
-
+import SearchBar from '../../components/Searchbar/Searchbar';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from "react";
 import { getGames, getGenres, filterByGenres, getPlatforms, filterByPlatforms,orderByName,orderByRating,orderByPrice,clearDetail} from "../../redux/actions";
@@ -71,6 +71,10 @@ const Home = () => {
       setOrden(`Ordenado ${e.target.value}`);
     }
 
+    function handleSearch() {
+      setCurrentPage(1);
+    }
+
 
     return (
         <div className={styles.home}>
@@ -83,6 +87,9 @@ const Home = () => {
              paginado={paginado}
              currentPageColor={currentPageColor}
             />
+        </div>
+        <div className={styles.search}>
+        <SearchBar  setCurrentPage={handleSearch}/>
         </div>
       
             <select onChange={(e) => handleGenreFilter(e)} className={styles.filter}>
