@@ -47,7 +47,7 @@ const Login = () => {
         
         cookies.set('name', data.name, {path: "/"});
         cookies.set('email', data.email, {path: "/"});
-        alert (`Welcome ${data.name}`)
+        
         
 
       if(correctKey) {
@@ -55,7 +55,9 @@ const Login = () => {
         setData({email: "", password: ""});
         
       } else {
+        
         history.push("/");
+        alert (`Welcome ${data.name}`)
       } 
       
       
