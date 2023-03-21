@@ -71,3 +71,9 @@
   background-color: rgba(0, 0, 0, 0.63);
   color :aqua;
 }
+
+.search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
