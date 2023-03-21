@@ -71,7 +71,7 @@ function CreateGameForm() {
   const platformsRaw = useSelector(state => state.platforms);
   //const platformSelect=[{value: 'pruebaPlat', label: 'pruebaPlat'},{value: 'pruebaPlat1', label: 'pruebaPlat1'}];
   const platformSelect=[];
-  platformSelect.map((t)=> {platformSelect.push({ value: t.name, label: t.name })});
+  platformsRaw.map((t)=> {platformSelect.push({ value: t.name, label: t.name })});
   console.log('platforms', platformSelect);
   const [selectedOptionP, setSelectedOptionP] = useState(null);
   console.log('estad', selectedOptionP);
