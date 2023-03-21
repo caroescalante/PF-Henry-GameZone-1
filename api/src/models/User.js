@@ -12,19 +12,24 @@ module.exports = (sequelize) => {
     },
 
     name: {
-      type: DataTypes.STRING,      
+      type: DataTypes.STRING, 
+      defaultValue:false,     
     },
     
     surname: {
       type: DataTypes.STRING,
+      defaultValue: "vacio",
+      
     },
 
     image: {
       type: DataTypes.STRING,
+      defaultValue: "vacio",
     },
 
     phone: {
       type: DataTypes.STRING,
+      defaultValue: "vacio",
     },
 
     password: {

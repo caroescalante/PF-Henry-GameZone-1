@@ -263,11 +263,28 @@ const getById = async(id) =>{
     }
 };
 
+const updateVideogame = async (id, newData) => {
+
+  const [rowsAffected, [updateVideogame]] = await Videogame.update(newData,{
+    where: {
+        id: id,
+    },
+    returning: true,
+  });
+
+  if ( rowsAffected === 0) {
+    return res.status(404).json({ error: "User not found" });
+  }
+
+  return updateVideogame;
+};
+
 
 
 module.exports = { 
     getAllGames,
     getGameByName,
     postGame,
-    getById
+    getById,
+    updateVideogame,
 }

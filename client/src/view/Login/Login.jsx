@@ -44,10 +44,14 @@ const Login = () => {
     const userExists = checkUser();
     const correctKey = checkPassword();
     if (userExists) {
+
+
+        cookies.set('id', users.id, {path: "/"});
+        cookies.set('name', users.name, {path: "/"});
+        cookies.set('email', users.email, {path: "/"});
+        // cookies.set('name', data.name, {path: "/"});
+        // cookies.set('email', data.email, {path: "/"});
         
-        cookies.set('name', data.name, {path: "/"});
-        cookies.set('email', data.email, {path: "/"});
-        alert (`Welcome ${data.name}`)
         
 
       if(correctKey) {
@@ -55,7 +59,9 @@ const Login = () => {
         setData({email: "", password: ""});
         
       } else {
+        
         history.push("/");
+        alert (`Welcome ${data.name}`)
       } 
       
       
