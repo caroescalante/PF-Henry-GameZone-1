@@ -1,10 +1,18 @@
 import React, { useState, useEffect } from 'react';
+import Select from 'react-select';
 import style from "./CreateGameForm.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getGenres, getPlatforms } from "../../redux/actions/index";
 import axios from 'axios';
 
 const validate = (form) => {
+  useEffect(() => {
+    setErrors(validate(form));
+    dispatch(getGenres());
+    dispatch(getPlatforms());
+  }, [setErrors, validate, form]);
+
+
   let errors = {};
 
   if (!form.name) {
@@ -47,13 +55,13 @@ const validate = (form) => {
     errors.description = "the description is required";
   };
 
-  if (form.genres.length === 0) {
-    errors.genres = "must have at least one gender";
-  };
+  // if (form.genres.length === 0) {
+  //   errors.genres = "must have at least one gender";
+  // };
 
-  if (!form.platforms.length) {
-    errors.platforms = "must have at least one platform";
-  };
+  // if (!form.platforms.length) {
+  //   errors.platforms = "must have at least one platform";
+  // };
 
   return errors;
 };
@@ -61,8 +69,19 @@ const validate = (form) => {
 function CreateGameForm() {
   const dispatch = useDispatch();
   const platformsRaw = useSelector(state => state.platforms);
-
+  //const platformSelect=[{value: 'pruebaPlat', label: 'pruebaPlat'},{value: 'pruebaPlat1', label: 'pruebaPlat1'}];
+  const platformSelect=[];
+  platformSelect.map((t)=> {platformSelect.push({ value: t.name, label: t.name })});
+  console.log('platforms', platformSelect);
+  const [selectedOptionP, setSelectedOptionP] = useState(null);
+  console.log('estad', selectedOptionP);
   const genres = useSelector(state => state.genres);
+  //const genresSelect=[{value: 'pruebaGen', label: 'pruebaGen'},{value: 'pruebaGen1', label: 'pruebaGen1'}];
+  const genresSelect=[];
+  genres.map((t)=> {genresSelect.push({ value: t.name, label: t.name })});
+  console.log('genres', genresSelect);
+  const [selectedOptionG, setSelectedOptionG] = useState(null);
+  console.log('estad2', selectedOptionG);
   const platforms = platformsRaw.map(platform => platform.name);
 
   const [form, setForm] = useState({
@@ -85,8 +104,8 @@ function CreateGameForm() {
     website: "",
     released: "",
     description: "",
-    genres: "",
-    platforms: "",
+    // genres: "",
+    // platforms: "",
   });
 
   const [focus, setFocus] = useState({
@@ -105,28 +124,28 @@ function CreateGameForm() {
     const typeInput = event.target.type;
     const idInput = event.target.id;
 
-    if (typeInput === "checkbox") {
-      if (property === "genre") {
-        if (event.target.checked === true) {
-          setForm({...form, genres: [...form.genres, idInput]});
-          setErrors(validate({...form, genres: [...form.genres, idInput]}));
-        } else {
-          setForm({...form, genres: form.genres.filter(elem => elem !== idInput)});
-          setErrors(validate({...form, genres: form.genres.filter(elem => elem !== idInput)}));
-        };
-      } else {
-        if (event.target.checked === true) {
-          setForm({...form, platforms: [...form.platforms, idInput]});
-          setErrors(validate({...form, platform: [...form.platforms, idInput]}));
-        } else {
-          setForm({...form, platforms: form.platforms.filter(elem => elem !== idInput)});
-          setErrors(validate({...form, platforms: form.platforms.filter(elem => elem !== idInput)}));
-        };
-      };
-    } else {
+    // if (typeInput === "checkbox") {
+    //   if (property === "genre") {
+    //     if (event.target.checked === true) {
+    //       setForm({...form, genres: [...form.genres, idInput]});
+    //       setErrors(validate({...form, genres: [...form.genres, idInput]}));
+    //     } else {
+          // setForm({...form, genres: form.genres.filter(elem => elem !== idInput)});
+          // setErrors(validate({...form, genres: form.genres.filter(elem => elem !== idInput)}));
+      //   };
+      // } else {
+      //   if (event.target.checked === true) {
+      //     setForm({...form, platforms: [...form.platforms, idInput]});
+      //     setErrors(validate({...form, platform: [...form.platforms, idInput]}));
+      //   } else {
+          // setForm({...form, platforms: form.platforms.filter(elem => elem !== idInput)});
+          // setErrors(validate({...form, platforms: form.platforms.filter(elem => elem !== idInput)}));
+    //     };
+    //   };
+    // } else {
       setForm({ ...form, [property]: value });
       setErrors(validate({ ...form, [property]: value }));
-    };
+    // };
   };
 
   const focusHandler = (event) => {
@@ -136,7 +155,17 @@ function CreateGameForm() {
   };
 
   const submitHandler = (event) => {
+    console.log(event);
+    const genresFinal=[];
+    selectedOptionG.map((t)=> {genresFinal.push(t.value)});
+    console.log('en el submit genres', genresFinal);
+    const platformsFinal=[];
+    selectedOptionP.map((t)=> {platformsFinal.push(t.value)});
+    console.log('en el submit platforms', platformsFinal);
     let finalForm = { ...form };
+    finalForm = { ...finalForm, genres: genresFinal };
+    finalForm = { ...finalForm, platforms: platformsFinal };
+    console.log('submit', finalForm);
     if (finalForm.website === "") finalForm = { ...finalForm, website: null };
     if (finalForm.released === "") finalForm = { ...finalForm, released: null };
     event.preventDefault();
@@ -144,11 +173,6 @@ function CreateGameForm() {
     location.reload();
   };
 
-  useEffect(() => {
-    setErrors(validate(form));
-    dispatch(getGenres());
-    dispatch(getPlatforms());
-  }, [setErrors, validate, form]);
 
   return (
   <div className={style.game}>
@@ -197,7 +221,21 @@ function CreateGameForm() {
         </div>
          </div>
          </div>
-        <h3 className={style.subTitle}>Select one or more genres</h3>
+      <h3 className={style.subTitle}>Select one or more genres</h3>
+         <Select
+         isMulti
+        defaultValue={selectedOptionG}
+        onChange={setSelectedOptionG}
+        options={genresSelect}
+      />
+      <h3 className={style.subTitle}>Select one or more platforms</h3>
+       <Select
+       isMulti
+        defaultValue={selectedOptionP}
+        onChange={setSelectedOptionP}
+        options={platformSelect}
+      />
+        {/* <h3 className={style.subTitle}>Select one or more genres</h3>
         <div className={style.genresContainer}>
           {genres.map((genre, index) => {
             return (
@@ -206,9 +244,10 @@ function CreateGameForm() {
                 <input type="checkbox" name="genre" id={genre.name} onChange={inputChangeHandler} className={style.checkboxInput} />
                </div>);
           })}
-        </div>
+        </div> */}
+
         
-        <h3 className={style.subTitle}>Select one or more platforms</h3>
+        {/* <h3 className={style.subTitle}>Select one or more platforms</h3>
         <div className={style.platformsContainer}>
           {platforms.map((platform, index) => {
             return (
@@ -218,10 +257,10 @@ function CreateGameForm() {
               </div>
             );
           })}
-        </div>
+        </div> */}
       <div className={style.containerButton}>
         <button type="submit"  className={style.button} disabled={
-          (errors.name || errors.image || errors.price || errors.rating || errors.description || errors.genres || errors.platforms) ? true : false}>Submit
+          (errors.name || errors.image || errors.price || errors.rating || errors.description) ? true : false}>Submit
         </button>
         </div>
       </div>
