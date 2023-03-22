@@ -12,7 +12,8 @@ import {
   GET_DETAIL,
   CLEAR_DETAIL,
 
-  GET_USERS
+  GET_USERS,
+  EMAIL_USER,
 
 } from "../actions/types";
 
@@ -23,10 +24,14 @@ const initialState = {
   genres: [],
   platforms: [],
   detail : [],
+
   users: [],
   allUsers: [],
+  emailUser:[],
+
   filterGenres: 'All',
   filterPlataforms: 'All',
+  
 };
 
 function rootReducer(state = initialState, action) {
@@ -170,11 +175,10 @@ function rootReducer(state = initialState, action) {
           }; 
           
       case GET_USERS:
-          return {
-              ...state,
-              users: action.payload,
-              allUsers: action.payload,
-          };
+          return { ...state, users: action.payload, allUsers: action.payload, };
+
+      case EMAIL_USER:
+          return { ...state, emailUser: action.payload, };
            
       default: return { ...state }
   }

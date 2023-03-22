@@ -10,7 +10,8 @@ import {
   GET_DETAIL,
   CLEAR_DETAIL,
   GET_USERS,
-  ORDER_BY_PRICE
+  ORDER_BY_PRICE,
+  EMAIL_USER,
 } from "./types";
 
 import axios from 'axios';
@@ -111,14 +112,27 @@ export function clearDetail(){
   }
 }
 
-export function getUsers(){
+export function getUsers (){
   return async function (dispatch) {
     try {
       const users = await axios.get('http://localhost:3001/user');
-      return dispatch({ type: GET_USERS, payload: users.data})
+      return dispatch({ type: GET_USERS, payload: users.data })
 
     } catch ( error ) {
       return console.log("Something went wrong. Please try again.", error.message)
     }
   }
 };
+
+export function emailUser (email) {
+  return async function (dispatch) {
+    try {
+      const emailDb = await axios.get(`http://localhost:3001/user?email=${email}`);
+      return dispatch({ type: EMAIL_USER, payload: emailDb.data, });
+
+  } catch ( error) {
+    return console.log("Something went wrong. Please try again.", error.message)
+  }
+   
+  };
+}
