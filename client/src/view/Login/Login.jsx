@@ -55,10 +55,7 @@ const Login = () => {
         cookies.set('phone', foundUser.phone, {path: "/"});
         cookies.set('password', foundUser.password, {path: "/"});
         cookies.set('rol', foundUser.rol, {path: "/"});
-        cookies.set('active', foundUser.active, {path: "/"});
-
-        
-        
+        cookies.set('active', foundUser.active, {path: "/"});       
 
       if(correctKey) {
         alert ("Incorrect password !");
@@ -68,8 +65,7 @@ const Login = () => {
         
         history.push("/");
         alert (`Welcome ${data.name}`)
-      } 
-      
+      }       
       
     } else {
       await axios.post('http://localhost:3001/user', data)
