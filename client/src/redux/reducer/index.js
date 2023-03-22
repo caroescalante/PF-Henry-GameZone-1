@@ -4,17 +4,15 @@ import {
   ORDER_BY_NAME,
   ORDER_BY_RATING,
   ORDER_BY_PRICE,
-
   GET_GENRES,
   FILTER_BY_GENRES,
   GET_PLATFORMS,
   FILTER_BY_PLATFORMS,
   GET_DETAIL,
   CLEAR_DETAIL,
-
   GET_USERS,
   EMAIL_USER,
-
+  SEARCH_BY_NAME_ERROR
 } from "../actions/types";
 
 const initialState = {
@@ -28,7 +26,7 @@ const initialState = {
   users: [],
   allUsers: [],
   emailUser:[],
-
+  searchError: null,
   filterGenres: 'All',
   filterPlataforms: 'All',
   
@@ -49,7 +47,12 @@ function rootReducer(state = initialState, action) {
         ...state,
         allGames: action.payload,
       };
-
+    
+      case SEARCH_BY_NAME_ERROR:
+        return {
+          ...state,
+          searchError: action.payload, // almacenar el error de búsqueda en el estado
+      };
 
 
     // case FILTER_BY_GENRE:
