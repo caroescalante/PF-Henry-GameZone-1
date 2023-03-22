@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { getUsers } from '../../redux/actions';
+import { getUsers, emailUser } from '../../redux/actions';
 import style from '../Login/Login.module.css';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
@@ -18,7 +18,6 @@ const Login = () => {
     name:"",
     email: "",
     password: ""
-
   })
 
   const changeHandler = (event) => {
@@ -27,15 +26,15 @@ const Login = () => {
     setData ({...data, [name]:value});   
   }
 
-  const checkUser = useCallback(() => {
-    dispatch(getUsers());
-    return users.some(user => user.name === data.name || user.email === data.email );
-  }, [dispatch, getUsers, users, data.name, data.email]);
+  const checkUser = useCallback((email) => {
+    dispatch(emailUser(email));
+    return users.some(em => em.name === data.name || em.email === data.email );
+  }, [dispatch, emailUser, users, data.name, data.email]);
 
-  const checkPassword = useCallback(() => {
-    dispatch(getUsers());
-    return users.some(user => user.email === data.email && user.password !== data.password);
-  }, [dispatch, getUsers, users, data.email, data.password])
+  const checkPassword = useCallback((email) => {
+    dispatch(emailUser(email));
+    return users.some(em => em.email === data.email && em.password !== data.password);
+  }, [dispatch, emailUser, users, data.email, data.password])
 
 
   //iniciar sesion 

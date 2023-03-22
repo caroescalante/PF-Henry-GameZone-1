@@ -10,4 +10,5 @@ export const FILTER_BY_GENRES = "FILTER_BY_GENRES"
 export const GET_DETAIL = "GET_DETAIL"
 export const CLEAR_DETAIL = "CLEAR_DETAIL"
 export const GET_USERS = "GET_USERS"
+export const EMAIL_USER = "EMAIL_USER"
 
