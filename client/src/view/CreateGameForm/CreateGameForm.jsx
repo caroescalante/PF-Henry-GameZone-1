@@ -6,13 +6,6 @@ import { getGenres, getPlatforms } from "../../redux/actions/index";
 import axios from 'axios';
 
 const validate = (form) => {
-  useEffect(() => {
-    setErrors(validate(form));
-    dispatch(getGenres());
-    dispatch(getPlatforms());
-  }, [setErrors, validate, form]);
-
-
   let errors = {};
 
   if (!form.name) {
@@ -55,14 +48,13 @@ const validate = (form) => {
     errors.description = "the description is required";
   };
 
-  // if (form.genres.length === 0) {
-  //   errors.genres = "must have at least one gender";
-  // };
+  if (form.genres.length === 0) {
+    errors.genres = "must have at least one gender";
+  };
 
-  // if (!form.platforms.length) {
-  //   errors.platforms = "must have at least one platform";
-  // };
-
+  if (!form.platforms.length) {
+    errors.platforms = "must have at least one platform";
+  };
   return errors;
 };
 
@@ -104,8 +96,8 @@ function CreateGameForm() {
     website: "",
     released: "",
     description: "",
-    // genres: "",
-    // platforms: "",
+    genres: null,
+    platforms: null,
   });
 
   const [focus, setFocus] = useState({
@@ -173,6 +165,11 @@ function CreateGameForm() {
     location.reload();
   };
 
+  useEffect(() => {
+    setErrors(validate(form));
+    dispatch(getGenres());
+    dispatch(getPlatforms());
+  }, [setErrors, validate, form]);
 
   return (
   <div className={style.game}>
@@ -228,6 +225,7 @@ function CreateGameForm() {
         onChange={setSelectedOptionG}
         options={genresSelect}
       />
+      {/* {selectedOptionP!== null && <p className={style.errorText}>{errors.genres}</p>}  */}
       <h3 className={style.subTitle}>Select one or more platforms</h3>
        <Select
        isMulti
