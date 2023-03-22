@@ -11,7 +11,7 @@ import {
   FILTER_BY_PLATFORMS,
   GET_DETAIL,
   CLEAR_DETAIL,
-
+  SEARCH_BY_NAME_ERROR,
   GET_USERS
 
 } from "../actions/types";
@@ -27,6 +27,7 @@ const initialState = {
   allUsers: [],
   filterGenres: 'All',
   filterPlataforms: 'All',
+  searchError: null 
 };
 
 function rootReducer(state = initialState, action) {
@@ -44,7 +45,12 @@ function rootReducer(state = initialState, action) {
         ...state,
         allGames: action.payload,
       };
-
+    
+      case SEARCH_BY_NAME_ERROR:
+        return {
+          ...state,
+          searchError: action.payload, // almacenar el error de búsqueda en el estado
+      };
 
 
     // case FILTER_BY_GENRE:
