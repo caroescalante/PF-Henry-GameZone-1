@@ -5,6 +5,7 @@ import {getDetail} from "../../redux/actions";
 import { useEffect } from "react";
 import styles from './Detail.module.css';
 
+
 export default function Detail(props){
     const dispatch = useDispatch();
 
@@ -21,28 +22,36 @@ export default function Detail(props){
 
                     {myGame ?<>
                     <h1 className={styles.namegame}> {myGame.name} </h1>
-
-                    <div className={styles.containeRatRel}>
-                        <h2 className={styles.rating}> Rating:{myGame.rating}</h2>
-                        <h3 className={styles.released}> Launch:{myGame.released}</h3>
+                    
+                    <div className={styles.starIcon}></div>              
+                    
+                    <div className={styles.containeRatRel}>   
+                        <h2 className={styles.rating}> {myGame.rating}</h2>
+                        <h3 className={styles.released}> Launch: {myGame.released}</h3>
+                    </div> 
+                    
+                    <div className={styles.containerWebsite}>
+                    {/* <Link to={myGame.website} className={styles.website}>{myGame.website}</Link> */}
+                    <a href={myGame.website} target="_blank" className={styles.website}>{myGame.website}</a> 
                     </div>
-
+                    
+                    
                     <img className={styles.imag} src={myGame.image} alt="imagen" />  
 
                     <div className={styles.containGenPlat}>
             
                         <div className={styles.containergenresandplatforms} >
-                            <h3 className={styles.descriptiontitle}>GENRES:</h3>
+                            <h3 className={styles.descriptiontitle}>Genres:</h3>
                             <h3 className={styles.genres}>{myGame.genres}</h3>
                             <br></br>
-                            <h3 className={styles.descriptiontitle}>PLATFORMS:</h3>              
-                            <h3 className={styles.genres}>{myGame.platforms}</h3>              
+                            <h3 className={styles.descriptiontitlePlatform}>Available for:</h3>              
+                            <h3 className={styles.platforms}>{myGame.platforms}</h3>              
                         </div>
 
                     </div>
 
-                    <div>
-                        <h3 className={styles.descriptiontitle}>Description</h3>
+                    <div className={styles.descriptionContainer}>
+                        {/* <h3 className={styles.}>Description</h3> */}
                         <h1 className={styles.description}> {myGame.description}</h1>
                     </div>
 
