@@ -18,7 +18,6 @@ const Login = () => {
     name:"",
     email: "",
     password: ""
-
   })
 
   const changeHandler = (event) => {
@@ -29,8 +28,8 @@ const Login = () => {
 
   const checkUser = useCallback(() => {
     dispatch(getUsers());
-    return users.some(user => user.name === data.name || user.email === data.email );
-  }, [dispatch, getUsers, users, data.name, data.email]);
+    return users.some(user => user.name === data.name || user .email === data.email || user.id );
+  }, [dispatch,getUsers, users, data.name, data.email, users.id]);
 
   const checkPassword = useCallback(() => {
     dispatch(getUsers());
@@ -45,12 +44,19 @@ const Login = () => {
     const correctKey = checkPassword();
     if (userExists) {
 
+      const foundUser = users.find((user) => 
+          user.id || user.email || user.name || user.surname || user.image || user.phone || user.password || user.rol || user.active );
 
-        cookies.set('id', users.id, {path: "/"});
-        cookies.set('name', users.name, {path: "/"});
-        cookies.set('email', users.email, {path: "/"});
-        // cookies.set('name', data.name, {path: "/"});
-        // cookies.set('email', data.email, {path: "/"});
+        cookies.set('id', foundUser.id, {path: "/"});
+        cookies.set('name', foundUser.name, {path: "/"});
+        cookies.set('email', foundUser.email, {path: "/"});
+        cookies.set('surname', foundUser.surname, {path: "/"});
+        cookies.set('image', foundUser.image, {path: "/"});
+        cookies.set('phone', foundUser.phone, {path: "/"});
+        cookies.set('password', foundUser.password, {path: "/"});
+        cookies.set('rol', foundUser.rol, {path: "/"});
+        cookies.set('active', foundUser.active, {path: "/"});
+
         
         
 

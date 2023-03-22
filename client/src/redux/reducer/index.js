@@ -4,16 +4,15 @@ import {
   ORDER_BY_NAME,
   ORDER_BY_RATING,
   ORDER_BY_PRICE,
-
   GET_GENRES,
   FILTER_BY_GENRES,
   GET_PLATFORMS,
   FILTER_BY_PLATFORMS,
   GET_DETAIL,
   CLEAR_DETAIL,
-  SEARCH_BY_NAME_ERROR,
-  GET_USERS
-
+  GET_USERS,
+  EMAIL_USER,
+  SEARCH_BY_NAME_ERROR
 } from "../actions/types";
 
 const initialState = {
@@ -23,11 +22,14 @@ const initialState = {
   genres: [],
   platforms: [],
   detail : [],
+
   users: [],
   allUsers: [],
+  emailUser:[],
+  searchError: null,
   filterGenres: 'All',
   filterPlataforms: 'All',
-  searchError: null 
+  
 };
 
 function rootReducer(state = initialState, action) {
@@ -176,11 +178,10 @@ function rootReducer(state = initialState, action) {
           }; 
           
       case GET_USERS:
-          return {
-              ...state,
-              users: action.payload,
-              allUsers: action.payload,
-          };
+          return { ...state, users: action.payload, allUsers: action.payload, };
+
+      case EMAIL_USER:
+          return { ...state, emailUser: action.payload, };
            
       default: return { ...state }
   }
