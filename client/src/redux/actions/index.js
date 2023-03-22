@@ -11,6 +11,7 @@ import {
   CLEAR_DETAIL,
   GET_USERS,
   ORDER_BY_PRICE,
+  SEARCH_BY_NAME_ERROR,
   EMAIL_USER,
 } from "./types";
 
@@ -35,7 +36,10 @@ export function searchByName(name) {
       payload: json.data,
     });
   } catch (error) {
-    alert('The wanted videogame does not exist')
+    dispatch({
+      type: SEARCH_BY_NAME_ERROR,
+      payload: error,
+    });
   }
    
   };

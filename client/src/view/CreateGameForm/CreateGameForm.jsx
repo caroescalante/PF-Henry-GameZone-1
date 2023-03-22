@@ -4,6 +4,7 @@ import style from "./CreateGameForm.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getGenres, getPlatforms } from "../../redux/actions/index";
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const validate = (form) => {
   let errors = {};
@@ -161,8 +162,25 @@ function CreateGameForm() {
     if (finalForm.website === "") finalForm = { ...finalForm, website: null };
     if (finalForm.released === "") finalForm = { ...finalForm, released: null };
     event.preventDefault();
-    axios.post("http://localhost:3001/videogames", finalForm).then(alert("Videogame created successfully"));
-    location.reload();
+    // axios.post("http://localhost:3001/videogames", finalForm).then(alert("Videogame created successfully"));
+    // location.reload();
+                              //*A partir de aqui es el código de la modal alert*//
+
+    axios.post("http://localhost:3001/videogames", finalForm)
+    .then(() => {
+        Swal.fire({
+            title: 'Success!',
+            text: 'The video game has been created successfully.',
+            icon: 'success',
+            backdrop: 'rgba(0, 0, 0, 0.7)',
+            confirmButtonText: 'OK'
+        }).then(() => {
+            location.reload();
+        });
+    })
+    .catch((error) => {
+        console.log(error);
+    });
   };
 
   useEffect(() => {
