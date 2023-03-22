@@ -3,7 +3,8 @@ const {
     getUserById,
     getAllUsers,
     searchUserByName,
-    updateUser
+    updateUser,
+    emailUser
 } = require ("../controllers/userController");
 
 const getUsersHandler = async (req, res) => {
@@ -57,9 +58,22 @@ const updateUserHandler = async (req, res) => {
     }
 };
 
+const emailUserHandler = async (req, res) => {
+    const {email} = req.query;
+
+    try{
+        const results = await emailUser(email);
+        res.status(200).json( results );
+
+    } catch ( error ) {
+        res.status(400).json({ error: error.menssage });
+    };
+}
+
 module.exports = {
     getUsersHandler,
     getUserHandler,
     createUserHandler,
     updateUserHandler,
+    emailUserHandler
 };

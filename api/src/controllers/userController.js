@@ -47,10 +47,18 @@ const updateUser = async (id, newData) => {
     return updateUser;
 }
 
+const emailUser = async (email) => {
+
+    const dataBaseEmail = await User.findAll({where: { email: email.trim().toLowerCase()}});
+
+    return dataBaseEmail;
+};
+
 module.exports = { 
     createUser,
     getUserById,
     getAllUsers,
     searchUserByName,
-    updateUser
+    updateUser,
+    emailUser
 };
