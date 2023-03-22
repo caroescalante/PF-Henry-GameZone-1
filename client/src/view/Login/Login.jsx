@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { getUsers, emailUser } from '../../redux/actions';
+import { getUsers } from '../../redux/actions';
 import style from '../Login/Login.module.css';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
@@ -26,15 +26,15 @@ const Login = () => {
     setData ({...data, [name]:value});   
   }
 
-  const checkUser = useCallback((email) => {
-    dispatch(emailUser(email));
-    return users.some(em => em.name === data.name || em.email === data.email );
-  }, [dispatch, emailUser, users, data.name, data.email]);
+  const checkUser = useCallback(() => {
+    dispatch(getUsers());
+    return users.some(user => user.name === data.name || user .email === data.email || user.id );
+  }, [dispatch,getUsers, users, data.name, data.email, users.id]);
 
-  const checkPassword = useCallback((email) => {
-    dispatch(emailUser(email));
-    return users.some(em => em.email === data.email && em.password !== data.password);
-  }, [dispatch, emailUser, users, data.email, data.password])
+  const checkPassword = useCallback(() => {
+    dispatch(getUsers());
+    return users.some(user => user.email === data.email && user.password !== data.password);
+  }, [dispatch, getUsers, users, data.email, data.password])
 
 
   //iniciar sesion 
@@ -44,12 +44,19 @@ const Login = () => {
     const correctKey = checkPassword();
     if (userExists) {
 
+      const foundUser = users.find((user) => 
+          user.id || user.email || user.name || user.surname || user.image || user.phone || user.password || user.rol || user.active );
 
-        cookies.set('id', users.id, {path: "/"});
-        cookies.set('name', users.name, {path: "/"});
-        cookies.set('email', users.email, {path: "/"});
-        // cookies.set('name', data.name, {path: "/"});
-        // cookies.set('email', data.email, {path: "/"});
+        cookies.set('id', foundUser.id, {path: "/"});
+        cookies.set('name', foundUser.name, {path: "/"});
+        cookies.set('email', foundUser.email, {path: "/"});
+        cookies.set('surname', foundUser.surname, {path: "/"});
+        cookies.set('image', foundUser.image, {path: "/"});
+        cookies.set('phone', foundUser.phone, {path: "/"});
+        cookies.set('password', foundUser.password, {path: "/"});
+        cookies.set('rol', foundUser.rol, {path: "/"});
+        cookies.set('active', foundUser.active, {path: "/"});
+
         
         
 

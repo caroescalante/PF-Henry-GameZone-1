@@ -12,6 +12,16 @@ const Navbar = () => {
 
     const dispatch = useDispatch();
 
+    // console.log('id:'+ cookies.get('id'));
+    // console.log('name:'+ cookies.get('name'));
+    // console.log('email:'+ cookies.get('email'));
+    // console.log('surname:'+ cookies.get('surname'));
+    // console.log('image:'+ cookies.get('image'));
+    // console.log('phone:'+ cookies.get('phone'));
+    // console.log('password:'+ cookies.get('password'));
+    // console.log('rol:'+ cookies.get('rol'));
+    // console.log('active:'+ cookies.get('active'));
+
     const closeSession = () => {
 
         cookies.remove('id', {path: "/"});
