@@ -11,30 +11,21 @@ const cookies = new Cookies();
 const Navbar = () => {
 
     const [userName, setUserName] = useState("");
-
     const dispatch = useDispatch();
-
-    const cookies = new Cookies();
 
     useEffect(() =>{
 
-        const name = cookies.get("name");        
+        const name = cookies.get("name");    
 
-        if(name) {
-            setUserName(name);
-        }
-    },[]);
-
-    
+        if(name) {setUserName(name)};
+    },[]);    
 
     const closeSession = () => {
-
         cookies.remove('id', {path: "/"});
         cookies.remove('name', {path: "/"});
         cookies.remove('email', {path: "/"});
         dispatch(clearDetail());
         setUserName("")
-
     }
 
     const rol = cookies.get("rol");
@@ -45,20 +36,25 @@ const Navbar = () => {
                 <img src={logo} alt="init" width="300px" />
             </Link>
 
-
             {rol === "admin" && (
             <>
             <Link className={style.links} to="/create">
                 <ion-icon size="large" name="game-controller-outline"></ion-icon>
             </Link>
+
+            <Link className={style.links} to="/registration">
+                <ion-icon size="large" name="create-outline"></ion-icon>
+            </Link>
             </>
             )}
 
             <Link className={style.links} to="/">
-                <ion-icon size="large" name="cart-outline"></ion-icon>
+                <ion-icon size="large" name="diamond-outline"></ion-icon>
             </Link>
 
-            
+            <Link className={style.links} to="/">
+                <ion-icon size="large" name="cart-outline"></ion-icon>
+            </Link>           
 
             {userName ? (
             <>
@@ -90,15 +86,3 @@ export default Navbar;
     // console.log('password:'+ cookies.get('password'));
     // console.log('rol:'+ cookies.get('rol'));
     // console.log('active:'+ cookies.get('active'));
-
-
-    {/* <Link className={style.links} to="/login">
-                <ion-icon size="large" name="person-outline"></ion-icon>
-            </Link> */}
-
-            {/* <h3 className={style.name}>{cookies.get("name")}</h3> */}
-
-            
-            {/* <Link className={style.links} to="/login" onClick={closeSession}>
-                <ion-icon size="large" name="log-out-outline"></ion-icon>
-            </Link> */}
