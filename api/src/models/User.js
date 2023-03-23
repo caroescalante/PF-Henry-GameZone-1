@@ -22,11 +22,6 @@ module.exports = (sequelize) => {
       
     },
 
-    image: {
-      type: DataTypes.STRING,
-      defaultValue: "vacio",
-    },
-
     phone: {
       type: DataTypes.STRING,
       defaultValue: "vacio",
