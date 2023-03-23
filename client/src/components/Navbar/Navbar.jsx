@@ -53,7 +53,7 @@ const Navbar = () => {
                 <ion-icon size="large" name="diamond-outline"></ion-icon>
             </Link>
 
-            <Link className={style.links} to="/">
+            <Link className={style.links} to="/cart">
                 <ion-icon size="large" name="cart-outline"></ion-icon>
             </Link>           
 
