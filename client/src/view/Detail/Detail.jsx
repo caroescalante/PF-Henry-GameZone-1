@@ -1,7 +1,6 @@
 import React from "react";
-import {Link} from "react-router-dom";
-import { useDispatch,useSelector } from "react-redux";
-import {getDetail} from "../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { getDetail, getFavorites } from "../../redux/actions";
 import { useEffect } from "react";
 import styles from './Detail.module.css';
 
@@ -13,12 +12,20 @@ export default function Detail(props){
         dispatch(getDetail(props.match.params.id))
     },[dispatch,props.match.params.id]);
 
-    const myGame= useSelector((state)=> state.detail)
-    console.log(myGame)
+    const myGame= useSelector((state)=> state.detail);
+
+    const favorites = useSelector(state => state.favorites);
+
+    const buttonHandler = () => {
+        if (favorites.includes(myGame)) return;
+        dispatch(getFavorites(myGame));
+    }; 
+
     return (
         <div className={styles.Background}>
             <div className={styles.videogame}>
                 <div className={styles.boxjuego}> 
+                    <button onClick={buttonHandler}>Add Favorite</button>
 
                     {myGame ?<>
                     <h1 className={styles.namegame}> {myGame.name} </h1>
@@ -34,8 +41,7 @@ export default function Detail(props){
                     {/* <Link to={myGame.website} className={styles.website}>{myGame.website}</Link> */}
                     <a href={myGame.website} target="_blank" className={styles.website}>{myGame.website}</a> 
                     </div>
-                    
-                    
+
                     <img className={styles.imag} src={myGame.image} alt="imagen" />  
 
                     <div className={styles.containGenPlat}>

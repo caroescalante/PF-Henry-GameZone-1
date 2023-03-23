@@ -13,6 +13,7 @@ import {
   ORDER_BY_PRICE,
   SEARCH_BY_NAME_ERROR,
   EMAIL_USER,
+  GET_FAVORITES,
 } from "./types";
 
 import axios from 'axios';
@@ -140,3 +141,7 @@ export function emailUser (email) {
    
   };
 }
+
+export const getFavorites = (game) => {
+  return { type: GET_FAVORITES, payload: game };
+};

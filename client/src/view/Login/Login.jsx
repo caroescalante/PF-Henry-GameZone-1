@@ -5,6 +5,8 @@ import { getUsers } from '../../redux/actions';
 import style from '../Login/Login.module.css';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
+import Swal from 'sweetalert2';
+
 
 const Login = () => {
 
@@ -58,13 +60,31 @@ const Login = () => {
         cookies.set('active', foundUser.active, {path: "/"});       
 
       if(correctKey) {
-        alert ("Incorrect password !");
+        // alert ("Incorrect password !");     
+      Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Incorrect password !',
+      backdrop: 'rgba(0, 0, 0, 0.8)',
+      confirmButtonText: 'Try again',
+      confirmButtonColor: '#FF0000',
+      confirmButtonTextColor: '#FFFFFF'
+      });
         setData({email: "", password: ""});
         
       } else {
         
         history.push("/");
-        alert (`Welcome ${data.name}`)
+        // alert (`Welcome ${data.name}`)
+        Swal.fire({
+          icon: 'success',
+          title: `¡Welcome ${data.name}!`,
+          text: 'Thank you for using our service.',
+          confirmButtonText: 'Ok',
+          confirmButtonColor: '#00FFFF',
+          backdrop: 'rgba(0, 0, 0, 0.5)',
+          timer: '5000'
+        });
       }       
       
     } else {

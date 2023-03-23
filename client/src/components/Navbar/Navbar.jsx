@@ -34,7 +34,9 @@ const Navbar = () => {
 
     return (
         <div className={style.navbarContainer}>
-            <Link to="/" className={style.image} onClick={() => dispatch(clearDetail())}>
+            <Link to="/favorites"><button>My Favorites</button></Link>
+            <Link to="/" className={style.image} onClick={() => clearDetail()}>
+
                 <img src={logo} alt="init" width="300px" />
             </Link>
 
