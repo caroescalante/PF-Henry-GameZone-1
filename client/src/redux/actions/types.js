@@ -12,4 +12,8 @@ export const CLEAR_DETAIL = "CLEAR_DETAIL"
 export const GET_USERS = "GET_USERS"
 export const SEARCH_BY_NAME_ERROR = "SEARCH_BY_NAME_ERROR"
 export const EMAIL_USER = "EMAIL_USER"
-
+export const GET_FAVORITES = "GET_FAVORITES";
+export const ADD_TO_CART = "ADD_TO_CART"
+export const REMOVE_ONE_FROM_CART = "REMOVE_ONE_FROM_CART"
+export const REMOVE_ALL_FROM_CART = "REMOVE_ALL_FROM_CART"
+export const CLEAR_CART = "CLEAR_CART"

@@ -12,7 +12,8 @@ import {
   CLEAR_DETAIL,
   GET_USERS,
   EMAIL_USER,
-  SEARCH_BY_NAME_ERROR
+  SEARCH_BY_NAME_ERROR,
+  GET_FAVORITES,
 } from "../actions/types";
 
 const initialState = {
@@ -22,14 +23,14 @@ const initialState = {
   genres: [],
   platforms: [],
   detail : [],
-
   users: [],
   allUsers: [],
   emailUser:[],
   searchError: null,
   filterGenres: 'All',
   filterPlataforms: 'All',
-  
+  favorites: [],
+  // cart: []
 };
 
 function rootReducer(state = initialState, action) {
@@ -53,22 +54,6 @@ function rootReducer(state = initialState, action) {
           ...state,
           searchError: action.payload, // almacenar el error de búsqueda en el estado
       };
-
-
-    // case FILTER_BY_GENRE:
-    //   const allGames1 = state.allGamesFilter;
-    //   const gamesFiltered =
-    //     action.payload === "All"
-    //       ? allGames1
-    //       : allGames1.filter((game) => {
-    //           return game.genres.find((gen) => {
-    //             return gen === action.payload;
-    //           });
-    //         });
-    //   return {
-    //     ...state,
-    //     allGames: gamesFiltered,
-    //   };
 
     case ORDER_BY_NAME:
       const allGames2Original = state.allGamesOriginal;
@@ -182,7 +167,8 @@ function rootReducer(state = initialState, action) {
 
       case EMAIL_USER:
           return { ...state, emailUser: action.payload, };
-           
+      case GET_FAVORITES:
+          return { ...state, favorites: [...state.favorites, action.payload] };     
       default: return { ...state }
   }
 }

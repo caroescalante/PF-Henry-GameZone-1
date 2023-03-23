@@ -13,6 +13,11 @@ import {
   ORDER_BY_PRICE,
   SEARCH_BY_NAME_ERROR,
   EMAIL_USER,
+  GET_FAVORITES,
+  ADD_TO_CART,
+  REMOVE_ONE_FROM_CART,
+  REMOVE_ALL_FROM_CART,
+  CLEAR_CART
 } from "./types";
 
 import axios from 'axios';
@@ -140,3 +145,30 @@ export function emailUser (email) {
    
   };
 }
+
+export const getFavorites = (game) => {
+  return { type: GET_FAVORITES, payload: game };
+};
+
+
+export function addToCart(id){
+  return{
+    type: ADD_TO_CART,
+    payload: id
+  }
+};
+
+export const delFromCart = (id, all = false) =>
+
+    all
+ ? {type: REMOVE_ALL_FROM_CART, payload: id}
+ : {type: REMOVE_ONE_FROM_CART, payload: id}
+
+
+export function clearCart(){
+  return{
+    type: CLEAR_CART
+  }
+};
+
+
