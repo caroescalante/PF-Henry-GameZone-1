@@ -3,25 +3,16 @@ const { name } = require("../app");
 const { gameByIdHandler } = require("../handlers/videogamesHandlers");
 
 class PaymentService {
-  async createPayment() {
+  async createPayment(datos) {
     const url = "https://api.mercadopago.com/checkout/preferences";
-
+    console.log(datos)
     const body = {
       payer_email: "test_user_36100631@testuser.com",
-      items: [
-        {
-          title: game.name,
-        //   description: "Dummy description",
-        //   picture_url: "http://www.myapp.com/myimage.jpg",
-        //   category_id: "category123",
-          quantity: 1,
-          unit_price: price
-        }
-      ],
+      items: datos.items,
       back_urls: {
-        failure: "/failure",
+        failure: "http://localhost:5173/failure",
         pending: "/pending",
-        success: "/success"
+        success: "http://localhost:5173/"
       }
     };
 
