@@ -1,5 +1,19 @@
 const { User } = require ("../db")
 
+// const useradmin = [
+// 	{
+// 		"id": "1ff21acc-e2ef-4b89-a07c-6a38ba97fdb5",
+// 		"name": "leonardo",
+// 		"surname": "tobar",
+// 		"image": "https://digimon.shadowsmith.com/img/gatomon.jpg",
+// 		"phone": "3165119136",
+// 		"password": "1111",
+// 		"rol": "admin",
+// 		"email": "leo.19-20@hotmail.com",
+// 		"active": true
+// 	}
+// ];
+
 const createUser = async (
     name, surname, phone, password, email,  ) => {
 
@@ -21,7 +35,7 @@ const getAllUsers = async () => {
     
     const database = await User.findAll();
 
-    return database
+    return database;
 };
     
 const searchUserByName = async (name) => {

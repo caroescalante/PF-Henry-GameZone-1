@@ -1,43 +1,46 @@
 import React, { useEffect, useState } from "react";
-import style from "./Navbar.module.css";
+import { useDispatch } from 'react-redux';
 import { Link } from "react-router-dom";
+import Cookies from 'universal-cookie';
+import style from "./Navbar.module.css";
 import logo from "../../Image/logo.png";
 import { clearDetail } from "../../redux/actions";
-import { useDispatch } from 'react-redux';
-import Cookies from 'universal-cookie';
 
-const cookies = new Cookies();
+
+
+
 
 const Navbar = () => {
 
     const [userName, setUserName] = useState("");
     const dispatch = useDispatch();
+    const cookies = new Cookies();
 
     useEffect(() =>{
 
-        const name = cookies.get("name");    
-
-        if(name) {setUserName(name)};
+        const name = cookies.get("name"); 
+        if(name) {
+            setUserName(name);
+        }
     },[]);    
 
     const closeSession = () => {
-        cookies.remove('id', {path: "/"});
-        cookies.remove('name', {path: "/"});
-        cookies.remove('email', {path: "/"});
+        cookies.remove('id', 'name', 'email', { path: '/' });
         dispatch(clearDetail());
         setUserName("")
     }
 
-    const rol = cookies.get("rol");
+    const isAdmin = cookies.get("rol") === "admin";
 
     return (
         <div className={style.navbarContainer}>
             <Link to="/favorites"><button>My Favorites</button></Link>
             <Link to="/" className={style.image} onClick={() => clearDetail()}>
+
                 <img src={logo} alt="init" width="300px" />
             </Link>
 
-            {rol === "admin" && (
+            {(userName && isAdmin) && (
             <>
             <Link className={style.links} to="/create">
                 <ion-icon size="large" name="game-controller-outline"></ion-icon>
@@ -57,7 +60,7 @@ const Navbar = () => {
                 <ion-icon size="large" name="cart-outline"></ion-icon>
             </Link>           
 
-            {userName ? (
+            {userName? (
             <>
                 <h3 className={style.name}>Hello {userName}!</h3>
                 <Link className={style.links} to="/login" onClick={closeSession}>
