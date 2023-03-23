@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from 'react';
+import {useAuth0} from '@Auth0/auth0-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { getUsers } from '../../redux/actions';
@@ -6,10 +7,12 @@ import style from '../Login/Login.module.css';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
 import Swal from 'sweetalert2';
-import {GoogleLogin}  from  'react-google-login' ;
+
 
 
 const Login = () => {
+
+  const {loginWithRedirect} = useAuth0();
 
   const dispatch = useDispatch();
   const users = useSelector((state) => state.users);
@@ -97,10 +100,6 @@ const Login = () => {
       })
       history.push("/registration");
     };
-  };
-
-  const responseGoogle = (response) => {
-    console.log(response);
   };
 
   return (
@@ -194,14 +193,12 @@ const Login = () => {
             Log in
             </button>
 
-            <GoogleLogin
-            className={style.google}
-            clientId="588823269366-10q37of6mm1ic18o1v4fmm9t2kplq6nb.apps.googleusercontent.com"
-            buttonText="Register with google"
-            onSuccess={responseGoogle}
-            onFailure={responseGoogle}
-            cookiePolicy={'single_host_origin'}
-            />
+            <button 
+            onClick={() => loginWithRedirect()}
+            className={style.google} 
+            type="submit">
+            Log in
+            </button>
 
             <div className={style.register}>
 
