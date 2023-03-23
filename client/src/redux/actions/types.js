@@ -12,4 +12,4 @@ export const CLEAR_DETAIL = "CLEAR_DETAIL"
 export const GET_USERS = "GET_USERS"
 export const SEARCH_BY_NAME_ERROR = "SEARCH_BY_NAME_ERROR"
 export const EMAIL_USER = "EMAIL_USER"
-
+export const GET_FAVORITES = "GET_FAVORITES";
