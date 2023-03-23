@@ -126,7 +126,7 @@ const Home = () => {
             {currentGames.length > 0 ?
                 currentGames?.map ((el) =>{
                     return(
-                        <CardsContainer name={el.name} image={el.image} id={el.id} rating={el.rating} key={el.id} />
+                        <CardsContainer name={el.name} image={el.image} id={el.id} price={el.price} key={el.id} />
                     )}) : 
                     <div>
                         
