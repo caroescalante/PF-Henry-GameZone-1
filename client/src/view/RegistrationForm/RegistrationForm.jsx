@@ -12,8 +12,6 @@ const RegistrationForm = () => {
   const history = useHistory();
 
   const user = useSelector((state) => state.users);
-
-  console.log(user);
   
   const [data, setData] = useState({
     name: "",
@@ -27,7 +25,7 @@ const RegistrationForm = () => {
 
   const changeHandler = (event) => {
     const { name, value } = event.target;
-    setData({ ...data, [name]: value });
+    setData(prevData => ({ ...prevData, [name]: value }));
   };
 
   const submitHandler = async (event) => {
@@ -42,11 +40,10 @@ const RegistrationForm = () => {
       email: "",
       estado: "",
       rol:"",
+      active: true,
     });
     history.push("/");
   };
-
-  console.log(setData);
   
   return (
     <div className={style.user}>
@@ -62,9 +59,9 @@ const RegistrationForm = () => {
                     <label>Number User</label>
                     <input
                       type="text"
-                      required
-                      name="id"
                       value={cookies.get('id')}
+                      required
+                      name="id"                      
                       onChange={changeHandler}
                     ></input>
                   </div>
@@ -72,10 +69,10 @@ const RegistrationForm = () => {
                     <label>Names</label>
                     <input
                       type="text"
+                      value={data.name}
                       placeholder={cookies.get('name')}
                       required
-                      name="name"
-                      value={data.name}
+                      name="name"                      
                       onChange={changeHandler}
                     ></input>
                   </div>
@@ -83,10 +80,10 @@ const RegistrationForm = () => {
                     <label>Surname</label>
                     <input
                       type="text"
+                      value={data.surname}
                       placeholder={cookies.get('surname')}
                       required
-                      name="surname"
-                      value={data.surname}
+                      name="surname"                      
                       onChange={changeHandler}
                     ></input>
                   </div>
@@ -94,9 +91,9 @@ const RegistrationForm = () => {
                     <label>Image</label>
                     <input
                       type="text"
-                      placeholder={cookies.get('image')}
-                      name="image"
                       value={data.image}
+                      placeholder={cookies.get('image')}
+                      name="image"                      
                       onChange={changeHandler}
                     ></input>
                   </div>
@@ -104,10 +101,10 @@ const RegistrationForm = () => {
                     <label>Phone</label>
                     <input
                       type="text"
+                      value={data.phone}
                       placeholder={cookies.get('phone')}
                       required
-                      name="phone"
-                      value={data.phone}
+                      name="phone"                      
                       onChange={changeHandler}
                     ></input>
                   </div>
@@ -115,10 +112,10 @@ const RegistrationForm = () => {
                     <label>Email</label>
                     <input
                       type="email"
+                      value={cookies.get('email')}
                       placeholder="Enter your email"
                       required
                       name="email"
-                      value={cookies.get('email')}
                       onChange={changeHandler}
                     ></input>
                   </div>
@@ -126,9 +123,9 @@ const RegistrationForm = () => {
                     <label>Estado</label>
                     <input
                       type="text"
-                      placeholder={cookies.get('active')}
-                      name="active"
                       value={data.active}
+                      placeholder={cookies.get('active')}
+                      name="active"                      
                       onChange={changeHandler}
                     ></input>
                   </div>
@@ -136,9 +133,9 @@ const RegistrationForm = () => {
                     <label>Classification</label>
                     <input
                       type="text"
-                      placeholder={cookies.get('rol')}
-                      name="rol"
                       value={data.rol}
+                      placeholder={cookies.get('rol')}
+                      name="rol"                      
                       onChange={changeHandler}
                     ></input>
                   </div>
