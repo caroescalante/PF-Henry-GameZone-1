@@ -8,7 +8,7 @@ import Contact from "./view/Contact/Contact";
 import RegistrationForm from "./view/RegistrationForm/RegistrationForm";
 import Navbar from '../src/components/Navbar/Navbar';
 import Footer from "./components/Footer/Footer";
-
+import Favorites from "./view/Favorites/Favorites";
 
 function App() {
   return (
@@ -21,6 +21,7 @@ function App() {
         <Route path="/create" component={CreateGameForm} />
         <Route path="/contact" component={Contact} />
         <Route path="/registration" component={RegistrationForm} />
+        <Route path="/favorites" component={Favorites} />
         <Footer />
 
     </div>
