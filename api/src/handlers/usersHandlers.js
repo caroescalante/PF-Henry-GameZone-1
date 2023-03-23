@@ -15,7 +15,7 @@ const getUsersHandler = async (req, res) => {
         res.status(200).json( results );
 
     } catch ( error ) {
-        res.status(400).json({ error: error.menssage });
+        res.status(400).json({ error: error.menssage });  
     };
 };
 
@@ -32,11 +32,13 @@ const getUserHandler = async (req, res) => {
 };
 
 const createUserHandler = async (req,res) => {
-    const {name, surname, image, phone, password, email } = req.body; 
+    const {name, surname, phone, password, email } = req.body;
 
     try {
-        if(!email || !password) throw Error("This information is required");       
-        const newUser = await createUser(name, surname, image, phone, password, email);
+        if(!email || !password) throw Error("This information is required");    
+        const newUser = await createUser(name, surname, phone, password, email);
+
+       
         res.status(200).json({ data:newUser });      
 
     } catch ( error ) {
