@@ -30,6 +30,7 @@ const initialState = {
   filterGenres: 'All',
   filterPlataforms: 'All',
   favorites: [],
+  // cart: []
 };
 
 function rootReducer(state = initialState, action) {
@@ -53,22 +54,6 @@ function rootReducer(state = initialState, action) {
           ...state,
           searchError: action.payload, // almacenar el error de búsqueda en el estado
       };
-
-
-    // case FILTER_BY_GENRE:
-    //   const allGames1 = state.allGamesFilter;
-    //   const gamesFiltered =
-    //     action.payload === "All"
-    //       ? allGames1
-    //       : allGames1.filter((game) => {
-    //           return game.genres.find((gen) => {
-    //             return gen === action.payload;
-    //           });
-    //         });
-    //   return {
-    //     ...state,
-    //     allGames: gamesFiltered,
-    //   };
 
     case ORDER_BY_NAME:
       const allGames2Original = state.allGamesOriginal;
