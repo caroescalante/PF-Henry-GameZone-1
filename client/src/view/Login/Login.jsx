@@ -1,5 +1,4 @@
 import React, { useState, useCallback } from 'react';
-import {useAuth0} from '@Auth0/auth0-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { getUsers } from '../../redux/actions';
@@ -11,8 +10,6 @@ import Swal from 'sweetalert2';
 
 
 const Login = () => {
-
-  const {loginWithRedirect} = useAuth0();
 
   const dispatch = useDispatch();
   const users = useSelector((state) => state.users);
@@ -189,13 +186,6 @@ const Login = () => {
 
             <button 
             className={style.button} 
-            type="submit">
-            Log in
-            </button>
-
-            <button 
-            onClick={() => loginWithRedirect()}
-            className={style.google} 
             type="submit">
             Log in
             </button>
