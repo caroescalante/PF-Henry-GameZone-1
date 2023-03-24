@@ -10,6 +10,7 @@ import Navbar from '../src/components/Navbar/Navbar';
 import Footer from "./components/Footer/Footer";
 import Favorites from "./view/Favorites/Favorites";
 import ShopCart from "./view/ShopCart/ShopCart";
+import ProfileUser from "./view/ProfileUser/ProfileUser";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/contact" component={Contact} />
         <Route path="/registration" component={RegistrationForm} />
         <Route path="/favorites" component={Favorites} />
+        <Route path="/profile" component={ProfileUser}/>
         <Footer />
         <Route path="/cart" component={ShopCart} />
 
