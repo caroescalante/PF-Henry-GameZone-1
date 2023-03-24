@@ -18,6 +18,7 @@ router.use('/name', gameQueryRouter)
 router.use('/genres', genreRouter)
 router.use('/platform', platformRouter);
 router.use('/payment', paymentRouter)
+router.use('/paymentsuccess', paymentRouter)
 
 
 
