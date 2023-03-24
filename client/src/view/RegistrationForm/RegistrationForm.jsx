@@ -18,7 +18,6 @@ const RegistrationForm = () => {
   const [data, setData] = useState({
     name: "",
     surname: "",
-    image: "",
     phone: "",
     rol: "",
     email: "",
@@ -90,7 +89,7 @@ const RegistrationForm = () => {
                       onChange={changeHandler}
                     ></input>
                   </div>
-                  <div>
+                  {/* <div>
                     <label>Image</label>
                     <input
                       type="text"
@@ -99,7 +98,7 @@ const RegistrationForm = () => {
                       value={data.image}
                       onChange={changeHandler}
                     ></input>
-                  </div>
+                  </div> */}
                   <div>
                     <label>Phone</label>
                     <input

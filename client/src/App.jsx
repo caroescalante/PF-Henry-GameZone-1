@@ -4,7 +4,7 @@ import Home from "./view/Home/Home";
 import Detail from "./view/Detail/Detail"
 import Login from "./view/Login/Login";
 import CreateGameForm from "./view/CreateGameForm/CreateGameForm";
-import Contact from "./view/Contact/Contact";
+import Community from "./view/Community/Community";
 import RegistrationForm from "./view/RegistrationForm/RegistrationForm";
 import Navbar from '../src/components/Navbar/Navbar';
 import Footer from "./components/Footer/Footer";
@@ -20,7 +20,7 @@ function App() {
         <Route exact path="/game/:id" component={Detail} />
         <Route path="/login" component={Login}/>
         <Route path="/create" component={CreateGameForm} />
-        <Route path="/contact" component={Contact} />
+        <Route path="/community" component={Community} />
         <Route path="/registration" component={RegistrationForm} />
         <Route path="/favorites" component={Favorites} />
         <Footer />
