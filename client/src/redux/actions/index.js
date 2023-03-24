@@ -158,11 +158,11 @@ export function addToCart(id){
   }
 };
 
-export const delFromCart = (id, all = false) =>
 
-    all
- ? {type: REMOVE_ALL_FROM_CART, payload: id}
- : {type: REMOVE_ONE_FROM_CART, payload: id}
+export const removeFromCart = (id) => ({
+  type: REMOVE_ONE_FROM_CART,
+  payload: id
+});
 
 
 export function clearCart(){

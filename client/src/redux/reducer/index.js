@@ -14,6 +14,10 @@ import {
   EMAIL_USER,
   SEARCH_BY_NAME_ERROR,
   GET_FAVORITES,
+  ADD_TO_CART,
+  REMOVE_ONE_FROM_CART,
+  REMOVE_ALL_FROM_CART,
+  CLEAR_CART
 } from "../actions/types";
 
 const initialState = {
@@ -30,7 +34,7 @@ const initialState = {
   filterGenres: 'All',
   filterPlataforms: 'All',
   favorites: [],
-  // cart: []
+  cart: []
 };
 
 function rootReducer(state = initialState, action) {
@@ -168,7 +172,39 @@ function rootReducer(state = initialState, action) {
       case EMAIL_USER:
           return { ...state, emailUser: action.payload, };
       case GET_FAVORITES:
-          return { ...state, favorites: [...state.favorites, action.payload] };     
+          return { ...state, favorites: [...state.favorites, action.payload] };   
+          
+          
+
+      case ADD_TO_CART:
+        const gameToAdd = state.allGames.find(game => game.id === action.payload);
+          return {
+            ...state,
+            cart: [...state.cart, gameToAdd]
+          };
+      
+      case REMOVE_ALL_FROM_CART:
+          return {
+            ...state,
+            cart: state.cart.filter(game => game.id !== action.payload)
+          };
+      
+
+      case REMOVE_ONE_FROM_CART:
+        const updatedCart = state.cart.filter(game => game.id !== action.payload);
+        return {
+          ...state,
+          cart: updatedCart
+        };
+
+      case CLEAR_CART:
+          return {
+            ...state,
+              cart: []
+            };
+
+       
+
       default: return { ...state }
   }
 }
