@@ -10,6 +10,7 @@ import Navbar from '../src/components/Navbar/Navbar';
 import Footer from "./components/Footer/Footer";
 import Favorites from "./view/Favorites/Favorites";
 import shopCart from "./view/shopCart/shopCart";
+import PaymentFailure from "./view/PaymentFailure/PaymentFailure"
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/favorites" component={Favorites} />
         <Footer />
         <Route path="/cart" component={shopCart} />
+        <Route path="/paymentfailure" component={PaymentFailure}/>
 
     </div>
   );
