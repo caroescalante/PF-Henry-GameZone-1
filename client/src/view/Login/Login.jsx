@@ -193,13 +193,6 @@ const Login = () => {
             Log in
             </button>
 
-            <button 
-            onClick={() => loginWithRedirect()}
-            className={style.google} 
-            type="submit">
-            Log in
-            </button>
-
             <div className={style.register}>
 
               <p>Don`t have a account <a href='/registration'>Register</a></p>
