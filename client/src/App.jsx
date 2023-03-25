@@ -25,8 +25,8 @@ function App() {
         <Route path="/registration" component={RegistrationForm} />
         <Route path="/favorites" component={Favorites} />
         <Route path="/profile" component={ProfileUser}/>
-        <Footer />
         <Route path="/cart" component={ShopCart} />
+        <Footer />
 
     </div>
   );
