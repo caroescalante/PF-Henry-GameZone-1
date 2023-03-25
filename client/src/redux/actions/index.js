@@ -17,7 +17,10 @@ import {
   ADD_TO_CART,
   REMOVE_ONE_FROM_CART,
   REMOVE_ALL_FROM_CART,
-  CLEAR_CART
+  CLEAR_CART,
+  INCREMENT_QUANTITY,
+  DECREMENT_QUANTITY,
+  REMOVE_FAVORITE,
 } from "./types";
 
 import axios from 'axios';
@@ -172,4 +175,16 @@ export function clearCart(){
   }
 };
 
+export const incrementQuantity = (id) => ({
+  type: INCREMENT_QUANTITY,
+  payload: id
+});
 
+export const decrementQuantity = (id) => ({
+  type: DECREMENT_QUANTITY,
+  payload: id
+});
+
+export const removeFavorite = (id) => {
+  return { type: REMOVE_FAVORITE, payload: id };
+};
