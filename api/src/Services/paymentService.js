@@ -1,6 +1,7 @@
 const axios = require("axios");
-const { name } = require("../app");
 const { gameByIdHandler } = require("../handlers/videogamesHandlers");
+const {name} = require ("../controllers/paymentController")
+
 
 class PaymentService {
   async createPayment(datos) {
