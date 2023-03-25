@@ -1,9 +1,8 @@
 import React from "react";
 import styles from "./CardsContainer.module.css";
 import {Link} from 'react-router-dom';
-import { NavLink } from "react-router-dom/cjs/react-router-dom";
 import { useDispatch } from "react-redux";
-import { addToCart } from '../../redux/actions/index.js'
+import { addToCart, addFavorites } from '../../redux/actions/index.js'
 
 const CardsContainer = ({ name, image, price, id }) => {
   const dispatch = useDispatch(); 
@@ -12,6 +11,10 @@ const CardsContainer = ({ name, image, price, id }) => {
   const handleAddToCart = () => {
     dispatch(addToCart(id)); // llamar a la acción para agregar al carrito y pasarle el id del juego
   }
+
+  const handleAddFavorite = () => {
+    dispatch(addFavorites(id));
+  };
 
 return (
 
@@ -35,7 +38,7 @@ return (
         <p className={styles.more}>Click here for more details</p>  
         </Link>
         <button   onClick={handleAddToCart} className={styles.buttomAddCart}>Add to Cart</button>
-        <button className={styles.buttomAddFavorites}>Add to Favorites</button>
+        <button className={styles.buttomAddFavorites} onClick={handleAddFavorite}>Add to Favorites</button>
       </div>
 
     </div>

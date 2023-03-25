@@ -7,8 +7,8 @@ const Favorites = () => {
 
     return (
         <div>
-            {favorites.map(favorite => {
-                return <div>
+            {favorites.map((favorite, index) => {
+                return <div key={index}>
                     <h2>{favorite.name}</h2>
                     <img src={favorite.image} alt="favorite-image" className={style.favoriteImage} />
                     <hr />

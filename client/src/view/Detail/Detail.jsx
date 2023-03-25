@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getDetail, getFavorites } from "../../redux/actions";
+import { getDetail, addFavorites } from "../../redux/actions";
 import { useEffect } from "react";
 import styles from './Detail.module.css';
 
@@ -14,18 +14,15 @@ export default function Detail(props){
 
     const myGame= useSelector((state)=> state.detail);
 
-    const favorites = useSelector(state => state.favorites);
-
-    const buttonHandler = () => {
-        if (favorites.includes(myGame)) return;
-        dispatch(getFavorites(myGame));
-    }; 
+    const handleAddFavorite = () => {
+        dispatch(addFavorites(props.match.params.id));
+    };
 
     return (
         <div className={styles.Background}>
             <div className={styles.videogame}>
                 <div className={styles.boxjuego}> 
-                    <button onClick={buttonHandler}>Add Favorite</button>
+                    <button onClick={handleAddFavorite}>Add to Favorites</button>
 
                     {myGame ?<>
                     <h1 className={styles.namegame}> {myGame.name} </h1>
