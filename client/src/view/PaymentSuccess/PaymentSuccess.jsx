@@ -15,6 +15,7 @@ function PaymentSuccess() {
             <p>Producto: </p>
             <p>Monto: $</p>
             <p>Fecha de pago:</p>
+            <a href="/">home</a>
             </div>
           </div>
         );
