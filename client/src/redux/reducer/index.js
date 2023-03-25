@@ -17,6 +17,8 @@ import {
   ADD_TO_CART,
   REMOVE_ONE_FROM_CART,
   REMOVE_ALL_FROM_CART,
+  INCREMENT_QUANTITY,
+  DECREMENT_QUANTITY,
   CLEAR_CART
 } from "../actions/types";
 
@@ -177,14 +179,26 @@ function rootReducer(state = initialState, action) {
           return { 
             ...state, 
             favorites: [...state.favorites, favoriteGame] 
-          };   
+          };         
           
       case ADD_TO_CART:
-        const gameToAdd = state.allGames.find(game => game.id === action.payload);
+        const existingGameIndex = state.cart.findIndex(game => game.id === action.payload);
+          if (existingGameIndex !== -1) {
+        // Si el juego ya está en el carrito, actualiza la cantidad
+          const updatedCart = [...state.cart];
+          updatedCart[existingGameIndex].quantity += 1;
           return {
-            ...state,
-            cart: [...state.cart, gameToAdd]
+           ...state,
+            cart: updatedCart
           };
+       } else {
+       // Si el juego no está en el carrito, agrega un nuevo objeto de juego al carrito con cantidad 1
+       const gameToAdd = state.allGames.find(game => game.id === action.payload);
+           return {
+            ...state,
+            cart: [...state.cart, { ...gameToAdd, quantity: 1 }]
+           };
+      }
       
       case REMOVE_ALL_FROM_CART:
           return {
@@ -192,13 +206,72 @@ function rootReducer(state = initialState, action) {
             cart: state.cart.filter(game => game.id !== action.payload)
           };
       
-
       case REMOVE_ONE_FROM_CART:
-        const updatedCart = state.cart.filter(game => game.id !== action.payload);
-        return {
-          ...state,
-          cart: updatedCart
+         const gameToRemoveOne = state.cart.find(game => game.id === action.payload);
+           if (gameToRemoveOne.quantity === 1) {
+           const updatedCart = state.cart.filter(game => game.id !== action.payload);
+            return {
+            ...state,
+            cart: updatedCart
+             };
+          } else {
+           const updatedCart = state.cart.map(game => {
+            if (game.id === action.payload) {
+             return {
+               ...game,
+              quantity: game.quantity - 1
+             };
+           } else {
+              return game;
+               }
+           });
+          return {
+           ...state,
+            cart: updatedCart
+          };
+        }
+
+      case INCREMENT_QUANTITY:
+        const gameToIncrement = state.cart.find(game => game.id === action.payload);
+        const updatedCartIncrement = state.cart.map(game => {
+          if (game.id === action.payload) {
+            return {
+              ...game,
+              quantity: game.quantity + 1
+              };
+            } else {
+              return game;
+              }
+          });
+            return {
+            ...state,
+            cart: updatedCartIncrement
         };
+
+      case DECREMENT_QUANTITY:
+        const gameToDecrement = state.cart.find(game => game.id === action.payload);
+        if (gameToDecrement.quantity === 1) {
+          const updatedCartDecrement = state.cart.filter(game => game.id !== action.payload);
+          return {
+            ...state,
+            cart: updatedCartDecrement
+          };
+        } else {
+        const updatedCartDecrement = state.cart.map(game => {
+          if (game.id === action.payload) {
+          return {
+            ...game,
+            quantity: game.quantity - 1
+          };
+          } else {
+            return game;
+          }
+        });
+         return {
+           ...state,
+           cart: updatedCartDecrement
+          };
+        }
 
       case CLEAR_CART:
           return {
@@ -206,7 +279,8 @@ function rootReducer(state = initialState, action) {
               cart: []
             };
 
-       
+      
+      
 
       default: return { ...state }
   }
