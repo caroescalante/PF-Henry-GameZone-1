@@ -1,0 +1,11 @@
+.Background{
+    background-image: url("../../Image/pexels-lucie-liz-3165335.jpg");
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+}
