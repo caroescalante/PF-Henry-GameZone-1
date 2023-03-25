@@ -13,7 +13,7 @@ import {
   GET_USERS,
   EMAIL_USER,
   SEARCH_BY_NAME_ERROR,
-  GET_FAVORITES,
+  ADD_FAVORITES,
   ADD_TO_CART,
   REMOVE_ONE_FROM_CART,
   REMOVE_ALL_FROM_CART,
@@ -171,11 +171,14 @@ function rootReducer(state = initialState, action) {
 
       case EMAIL_USER:
           return { ...state, emailUser: action.payload, };
-      case GET_FAVORITES:
-          return { ...state, favorites: [...state.favorites, action.payload] };   
+      case ADD_FAVORITES:
+          const favoriteGame = state.allGames.find(game => game.id === action.payload);
+          if (state.favorites.includes(favoriteGame)) return { ...state };
+          return { 
+            ...state, 
+            favorites: [...state.favorites, favoriteGame] 
+          };   
           
-          
-
       case ADD_TO_CART:
         const gameToAdd = state.allGames.find(game => game.id === action.payload);
           return {
