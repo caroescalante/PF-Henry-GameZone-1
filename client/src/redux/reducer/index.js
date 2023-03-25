@@ -19,7 +19,8 @@ import {
   REMOVE_ALL_FROM_CART,
   INCREMENT_QUANTITY,
   DECREMENT_QUANTITY,
-  CLEAR_CART
+  CLEAR_CART,
+  REMOVE_FAVORITE,
 } from "../actions/types";
 
 const initialState = {
@@ -180,6 +181,9 @@ function rootReducer(state = initialState, action) {
             ...state, 
             favorites: [...state.favorites, favoriteGame] 
           };         
+        
+        case REMOVE_FAVORITE:
+          return { ...state, favorites: state.favorites.filter(fav => fav.id !== action.payload) };
           
       case ADD_TO_CART:
         const existingGameIndex = state.cart.findIndex(game => game.id === action.payload);
