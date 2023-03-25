@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import axios from 'axios';
 import { removeFromCart, incrementQuantity, decrementQuantity } from "../../redux/actions/index";
 
 const ShopCart = () => {
@@ -17,6 +18,32 @@ const ShopCart = () => {
   const handleDecrementQuantity = (id) => {
     dispatch(decrementQuantity(id));
   };
+
+const handlePayment = async () => {
+ let arrayItems = cart.map((c)=>{
+     return {
+        title: c.name,
+        description:"ultima version",
+        picture_url: c.image,
+        category_id: c.id,
+        quantity: c.quantity,
+        unit_price: c.price
+      }
+
+})
+
+let bodypayment={
+  payer_email: "test_user_36100631@testuser.com",
+  items: arrayItems,
+  back_urls: {
+    failure: "/paymentfailure",
+    pending: "/pending",
+    success: "/paymentsuccess"
+  }
+}
+let data =await axios.post("http://localhost:3001/payment", bodypayment);
+location.href =data.data.init_point;
+  }
 
   // const getTotalPrice = () => {
   //   return cart.reduce((total, game) => total + game.price * game.quantity, 0);
@@ -51,6 +78,7 @@ const ShopCart = () => {
             );
           })}
           <p>Total: {getTotalPrice()}</p>
+          <button onClick={() => handlePayment()}>Pagar</button>
         </>
       ) : (
         <p>No hay ningún juego en el carrito</p>

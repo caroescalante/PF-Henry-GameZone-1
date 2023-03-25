@@ -1,6 +1,7 @@
 const axios = require("axios");
-const { name } = require("../app");
 const { gameByIdHandler } = require("../handlers/videogamesHandlers");
+const {name} = require ("../controllers/paymentController")
+
 
 class PaymentService {
   async createPayment(datos) {
@@ -10,9 +11,9 @@ class PaymentService {
       payer_email: "test_user_36100631@testuser.com",
       items: datos.items,
       back_urls: {
-        failure: "http://localhost:5173/failure",
+        failure: "http://localhost:5173/paymentfailure",
         pending: "/pending",
-        success: "http://localhost:5173/"
+        success: "http://localhost:5173/paymentsuccess"
       }
     };
 
