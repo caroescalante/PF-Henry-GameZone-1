@@ -15,6 +15,7 @@ import {
   EMAIL_USER,
   ADD_FAVORITES,
   ADD_TO_CART,
+  REMOVE_FROM_CART,
   REMOVE_ONE_FROM_CART,
   REMOVE_ALL_FROM_CART,
   CLEAR_CART,
@@ -155,35 +156,54 @@ export const addFavorites = (idRaw) => {
 };
 
 
+// export function addToCart(id){
+//   return{
+//     type: ADD_TO_CART,
+//     payload: id
+//   }
+// };
+
+
+// export const removeFromCart = (id) => ({
+//   type: REMOVE_ONE_FROM_CART,
+//   payload: id
+// });
+
+
+// export function clearCart(){
+//   return{
+//     type: CLEAR_CART
+//   }
+// };
+
+// export const incrementQuantity = (id) => ({
+//   type: INCREMENT_QUANTITY,
+//   payload: id
+// });
+
+// export const decrementQuantity = (id) => ({
+//   type: DECREMENT_QUANTITY,
+//   payload: id
+// });
+
 export function addToCart(id){
-  return{
+  return {
     type: ADD_TO_CART,
     payload: id
-  }
+  };
 };
-
 
 export const removeFromCart = (id) => ({
-  type: REMOVE_ONE_FROM_CART,
+  type: REMOVE_FROM_CART,
   payload: id
 });
-
 
 export function clearCart(){
-  return{
+  return {
     type: CLEAR_CART
-  }
+  };
 };
 
-export const incrementQuantity = (id) => ({
-  type: INCREMENT_QUANTITY,
-  payload: id
-});
-
-export const decrementQuantity = (id) => ({
-  type: DECREMENT_QUANTITY,
-  payload: id
-});
 
 export const removeFavorite = (id) => {
   return { type: REMOVE_FAVORITE, payload: id };
