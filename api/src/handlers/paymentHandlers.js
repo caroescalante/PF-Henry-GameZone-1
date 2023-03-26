@@ -6,4 +6,4 @@ const postPaymentHandlers = async (req,res) => {
 
 
 
-  module.exports = { postPaymentHandlers } 
+  module.exports = { postPaymentHandlers }
