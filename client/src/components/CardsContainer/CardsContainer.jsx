@@ -26,7 +26,7 @@ return (
         <img className={styles.image} src={image}/>
         <div className={styles.containerData}>
           <h3 className={styles.name}>{name}</h3>
-          <h4 className={styles.rating}>{price}</h4>
+          <h4 className={styles.rating}>${price.toLocaleString('es-ES')}</h4>
           
           
         
