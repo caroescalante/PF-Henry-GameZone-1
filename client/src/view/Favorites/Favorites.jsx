@@ -12,16 +12,21 @@ const Favorites = () => {
     };
 
     return (
-        <div>
+        
+        <div className={style.background}>
             {favorites.length ? favorites.map((favorite, index) => {
-                return <div key={index}>
-                    <h2>{favorite.name}</h2>
-                    <img src={favorite.image} alt="favorite-image" className={style.favoriteImage} />
-                    <button onClick={() => removeFavHandler(favorite.id)}>Remove</button>
-                    <hr />
-                </div>
-            }) : <h3>No games were added to favorites</h3>}
+                return <div className={style.favoriteCard} key={index}>
+                        <h2 className={style.favoriteName}>{favorite.name}</h2>
+                        <img src={favorite.image} alt="favorite-image" className={style.favoriteImage} />
+                    <div className={style.favoriteButton}>
+                        <button  onClick={() => removeFavHandler(favorite.id)}>Remove</button>
+                    </div>
+                        </div>
+                      
+                    
+            }) : <h3 className={style.favoriteEmpty}>No games were added to favorites</h3>}
         </div>
+        
     );
 };
 

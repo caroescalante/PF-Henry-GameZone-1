@@ -15,11 +15,10 @@ import {
   EMAIL_USER,
   ADD_FAVORITES,
   ADD_TO_CART,
-  REMOVE_ONE_FROM_CART,
-  REMOVE_ALL_FROM_CART,
+  REMOVE_FROM_CART,
   CLEAR_CART,
-  INCREMENT_QUANTITY,
-  DECREMENT_QUANTITY,
+
+ 
   REMOVE_FAVORITE,
 } from "./types";
 
@@ -155,35 +154,43 @@ export const addFavorites = (idRaw) => {
 };
 
 
+//  export const incrementQuantity = (id) => ({
+//   type: INCREMENT_QUANTITY,
+//   payload: id
+// });
+
+// export const decrementQuantity = (id) => ({
+//   type: DECREMENT_QUANTITY,
+//   payload: id
+// });
+
 export function addToCart(id){
-  return{
+  return {
     type: ADD_TO_CART,
     payload: id
-  }
+  };
 };
 
-
-export const removeFromCart = (id) => ({
-  type: REMOVE_ONE_FROM_CART,
-  payload: id
-});
-
+export const removeFromCart = (id) => (dispatch, getState) => {
+  const { cart } = getState();
+  const gameToRemoveIndex = cart.findIndex(game => game.id === id);
+  if (gameToRemoveIndex !== -1) {
+    const updatedCart = [...cart];
+    updatedCart.splice(gameToRemoveIndex, 1);
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
+    dispatch({
+      type: REMOVE_FROM_CART,
+      payload: id
+    });
+  }
+};
 
 export function clearCart(){
-  return{
+  return {
     type: CLEAR_CART
-  }
+  };
 };
 
-export const incrementQuantity = (id) => ({
-  type: INCREMENT_QUANTITY,
-  payload: id
-});
-
-export const decrementQuantity = (id) => ({
-  type: DECREMENT_QUANTITY,
-  payload: id
-});
 
 export const removeFavorite = (id) => {
   return { type: REMOVE_FAVORITE, payload: id };

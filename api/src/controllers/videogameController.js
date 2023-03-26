@@ -9,9 +9,9 @@ const { Op } = require('sequelize')
 function generatePrice(rating) {
   let price;
   if (rating <= 1) {
-    price = 1;
+    price = 1.999;
   } else if (rating < 3) {
-    price = 4.99;
+    price = 4.999;
   } else if (rating <= 5) {
     price = Math.round(rating * 6666) / 2;
   }
