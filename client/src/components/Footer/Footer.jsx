@@ -1,6 +1,7 @@
 import React from "react";
 import style from "./Footer.module.css";
 import { Link } from "react-router-dom"
+import logo from "../../Image/logo.png";
 
 const Footer = () => {
     return(
@@ -9,7 +10,7 @@ const Footer = () => {
             
             <div className={style.divFirst}>
     
-                <Link to="/"><img src="src/image/logo.png" alt="init" width="300px"/></Link>
+                <Link to="/"><img src={logo} alt="init" width="300px"/></Link>
 
             <div className={style.linkFooter}>
                 <Link to="/">Home</Link>

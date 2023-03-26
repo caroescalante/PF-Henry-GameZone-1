@@ -16,3 +16,26 @@
     backdrop-filter: blur(35px);
     color: white;
 }
+.button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 45px;
+    max-width: 200px;
+    background-color: aqua;
+    width: 100%;
+    border: none;
+    outline: none;
+    color: black;
+    border-radius: 5px;
+    margin: 25px 0 0px 152px;
+    transition: all 0.2s linear;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.button:hover{
+    box-shadow: 1px 1px 20px 8px aqua;
+    background-color: darkcyan;
+}
