@@ -17,8 +17,6 @@ import {
   ADD_TO_CART,
   REMOVE_FROM_CART,
   CLEAR_CART,
-
- 
   REMOVE_FAVORITE,
 } from "./types";
 

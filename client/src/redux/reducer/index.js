@@ -35,8 +35,8 @@ const initialState = {
   searchError: null,
   filterGenres: 'All',
   filterPlataforms: 'All',
-  favorites: [],
-  cart: JSON.parse(localStorage.getItem('cart')) || []
+  favorites: JSON.parse(localStorage.getItem("favorites")) || [],
+  cart: JSON.parse(localStorage.getItem('cart')) || [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -175,14 +175,19 @@ function rootReducer(state = initialState, action) {
           return { ...state, emailUser: action.payload, };
       case ADD_FAVORITES:
           const favoriteGame = state.allGames.find(game => game.id === action.payload);
-          if (state.favorites.includes(favoriteGame)) return { ...state };
+          const favoriteExist = state.favorites.find(game => game.id === action.payload);
+          if (favoriteExist) return state;
+          const finalFavorites = [...state.favorites, favoriteGame];
+          localStorage.setItem("favorites", JSON.stringify(finalFavorites));
           return { 
             ...state, 
-            favorites: [...state.favorites, favoriteGame] 
+            favorites: finalFavorites 
           };         
         
         case REMOVE_FAVORITE:
-          return { ...state, favorites: state.favorites.filter(fav => fav.id !== action.payload) };
+          const cleanFavorite = state.favorites.filter(fav => fav.id !== action.payload);
+          localStorage.setItem("favorites", JSON.stringify(cleanFavorite));
+          return { ...state, favorites: cleanFavorite };
           
       // case ADD_TO_CART:
       //   const existingGameIndex = state.cart.findIndex(game => game.id === action.payload);
