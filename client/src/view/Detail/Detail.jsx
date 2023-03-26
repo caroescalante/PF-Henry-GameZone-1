@@ -14,8 +14,11 @@ export default function Detail(props){
 
     const myGame= useSelector((state)=> state.detail);
 
+    const favorites = useSelector(state => state.favorites);
+
     const handleAddFavorite = () => {
         dispatch(addFavorites(props.match.params.id));
+        localStorage.setItem("favorites", JSON.stringify(favorites));
     };
 
     return (
