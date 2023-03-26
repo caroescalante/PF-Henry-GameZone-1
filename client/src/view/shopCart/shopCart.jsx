@@ -89,7 +89,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import axios from 'axios';
-import { removeFromCart, } from "../../redux/actions/index";
+import { removeFromCart } from "../../redux/actions/index";
 import style from "./shopCart.module.css"
 
 const ShopCart = () => {
@@ -99,6 +99,7 @@ const ShopCart = () => {
   const handleRemoveFromCart = (id) => {
     dispatch(removeFromCart(id));
   };
+
 
   const handlePayment = async () => {
     let arrayItems = cart.map((c)=>{
@@ -123,6 +124,7 @@ const ShopCart = () => {
     }
     
     let data =await axios.post("http://localhost:3001/payment", bodypayment);
+    localStorage.removeItem('cart'); 
     location.href =data.data.init_point;
   }
 
@@ -159,3 +161,5 @@ const ShopCart = () => {
 };
 
 export default ShopCart;
+
+
