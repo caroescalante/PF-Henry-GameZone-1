@@ -11,11 +11,7 @@ function PaymentSuccess() {
             <div className={styles.card}>
             <h1>Su compra fue realizada con exito</h1>
             <h2> Le enviamos a su correo el numero de token</h2>
-            <h3>detalles de su compra</h3>
-            <p>Producto: </p>
-            <p>Monto: $</p>
-            <p>Fecha de pago:</p>
-            <a href="/">home</a>
+            <a className={styles.button} href="/">home</a>
             </div>
           </div>
         );

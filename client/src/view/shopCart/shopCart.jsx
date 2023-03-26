@@ -89,7 +89,8 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import axios from 'axios';
-import { removeFromCart } from "../../redux/actions/index";
+import { removeFromCart, } from "../../redux/actions/index";
+import style from "./shopCart.module.css"
 
 const ShopCart = () => {
   const cart = useSelector(state => state.cart);
@@ -131,7 +132,7 @@ const ShopCart = () => {
   };
 
   return (
-    <div>
+    <div className={style.Background}>
       {cart.length ? (
         <>
           {cart.map(game => {
