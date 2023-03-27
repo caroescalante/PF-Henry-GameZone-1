@@ -96,7 +96,7 @@ const Home = () => {
                      <option value='All'>All Genres</option>
                     {genres.map((gen, index) => {
                         return <option key={index} value={gen.name}>{gen.name}</option>;
-                     })};
+                     })}
             </select> 
 
             
