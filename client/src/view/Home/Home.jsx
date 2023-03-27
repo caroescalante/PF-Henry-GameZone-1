@@ -93,7 +93,7 @@ const Home = () => {
         </div>
       
             <select onChange={(e) => handleGenreFilter(e)} className={styles.filter}>
-                     <option value='All'>All</option>
+                     <option value='All'>All Genres</option>
                     {genres.map((gen, index) => {
                         return <option key={index} value={gen.name}>{gen.name}</option>;
                      })}
@@ -101,7 +101,7 @@ const Home = () => {
 
             
             <select onChange={(e) => handlePlatformFilter(e)} className={styles.filter}>
-                     <option value='All'>All</option>
+                     <option value='All'>All Platforms</option>
                     {platforms.map((plat, index) => {
                         return <option key={index} value={plat.name}>{plat.name}</option>;
                      })}
