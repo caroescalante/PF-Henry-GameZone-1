@@ -1,5 +1,5 @@
 .Background{
-    background-image: url("../../Image/gameover.jpg");
+    background-image: url("../../Image/gameover2.jpg");
     color: white;
     display: flex;
     justify-content: center;
@@ -19,7 +19,7 @@
     background-color: transparent;
     backdrop-filter: blur(35px);
     color: white;
-    margin: 270px 0px 0px 0px;
+    margin: 45px 0px 0px 0px;
     
 }
 .text2{
