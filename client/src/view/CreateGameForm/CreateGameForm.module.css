@@ -267,46 +267,6 @@
     position: relative;
     flex-direction: column;
     outline: none;
-<<<<<<< HEAD
-    color: black;
-    border-radius: 5px;
-    margin: 25px 0;
-    transition: all 0.2s linear;
-    cursor: pointer;
-    font-size: 15px;
-    font-weight: 600;
-}
-
-.button:hover{
-    box-shadow: 1px 1px 20px 8px aqua;
-    background-color: darkcyan;
-}
-
-.containerInputs1{
-  
-   display: flex;
-   padding-top: 50px;
-  margin-right: 10px;
-   margin: 0px 130px;
-   
-   
-}
-.containerInputs2{
-    
-    display: flex;
-  justify-content: space-evenly;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    
-}
-.containerInputs{
-    background-color:none;
-    
-}
-.price{
-    color: rgb(3, 68, 68);
-=======
->>>>>>> d70c86abf6de035598987f724438bcdcb039aca0
     font-size: 14px;
     font-weight: 400;
     color: rgb(3, 68, 68);
