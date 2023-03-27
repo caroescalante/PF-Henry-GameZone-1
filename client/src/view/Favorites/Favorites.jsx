@@ -3,7 +3,7 @@ import style from "./Favorites.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { removeFavorite } from "../../redux/actions/index";
 
-const Favorites = (props) => {
+const Favorites = () => {
     const dispatch = useDispatch();
     const favorites = useSelector(state => state.favorites);
 

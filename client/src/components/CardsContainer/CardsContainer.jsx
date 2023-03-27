@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./CardsContainer.module.css";
-import {Link} from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import { addToCart, addFavorites } from '../../redux/actions/index.js'
 
@@ -35,11 +34,10 @@ return (
         
       </div>
       <div className={styles.cardBack}>
-        <Link to={"/game/" + id} className={styles.enlace}>
-        <p className={styles.more}>Click here for more details</p>  
-        </Link>
+        <a href={"/game/" + id} className={styles.more}>Click here for more details</a>
       <div className={styles.buttomContainer}>  
         <button   onClick={handleAddToCart} className={styles.buttomAddCart}>Add to Cart</button>
+        {/* <button className={styles.heart}></button> */}
         <button className={styles.buttomAddFavorites} onClick={handleAddFavorite}>Add to Favorites</button>
       </div>
       </div>
