@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 
 const Login = () => {
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const users = useSelector((state) => state.users);
   const history = useHistory();
   const cookies = new Cookies();

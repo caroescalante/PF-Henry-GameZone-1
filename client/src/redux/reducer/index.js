@@ -20,6 +20,7 @@ import {
   // DECREMENT_QUANTITY,
   CLEAR_CART,
   REMOVE_FAVORITE,
+  // CHARGE_STATE,
 } from "../actions/types";
 
 const initialState = {
@@ -37,6 +38,7 @@ const initialState = {
   filterPlataforms: 'All',
   favorites: JSON.parse(localStorage.getItem("favorites")) || [],
   cart: JSON.parse(localStorage.getItem('cart')) || [],
+  image: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -176,14 +178,16 @@ function rootReducer(state = initialState, action) {
       case ADD_FAVORITES:
           const favoriteGame = state.allGames.find(game => game.id === action.payload);
           const favoriteExist = state.favorites.find(game => game.id === action.payload);
-          if (favoriteExist) return state;
-          const finalFavorites = [...state.favorites, favoriteGame];
-          localStorage.setItem("favorites", JSON.stringify(finalFavorites));
-          return { 
-            ...state, 
-            favorites: finalFavorites 
-          };         
-        
+          if (favoriteExist) {
+            return { ...state }
+          } else {
+            const finalFavorites = [...state.favorites, favoriteGame];
+            localStorage.setItem("favorites", JSON.stringify(finalFavorites));
+            return { 
+              ...state, 
+              favorites: finalFavorites
+            };
+          };   
         case REMOVE_FAVORITE:
           const cleanFavorite = state.favorites.filter(fav => fav.id !== action.payload);
           localStorage.setItem("favorites", JSON.stringify(cleanFavorite));
@@ -316,6 +320,12 @@ function rootReducer(state = initialState, action) {
         ...state,
          cart: []
       };
+
+    // case CHARGE_STATE:
+    //   return{
+    //     ...state,
+    //     image: action.payload
+    //   }
 
       
   default: return { ...state }

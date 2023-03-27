@@ -3,6 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
+    color:aqua
 }
 
 .registration{
@@ -146,3 +147,15 @@
     
 
 }
+
+
+
+.fields p {
+    text-decoration: underline;
+   
+}
+
+
+
+
+
