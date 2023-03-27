@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./CardsContainer.module.css";
 import { useDispatch } from "react-redux";
 import { addToCart, addFavorites } from '../../redux/actions/index.js'
+import { Link } from "react-router-dom";
 
 
 const CardsContainer = ({ name, image, price, id }) => {
@@ -34,7 +35,7 @@ return (
         
       </div>
       <div className={styles.cardBack}>
-        <a href={"/game/" + id} className={styles.more}>Click here for more details</a>
+        <Link to={`game/${id}`} className={styles.more}>Click here for more details</Link>
       <div className={styles.buttomContainer}>  
         <button   onClick={handleAddToCart} className={styles.buttomAddCart}>Add to Cart</button>
         {/* <button className={styles.heart}></button> */}

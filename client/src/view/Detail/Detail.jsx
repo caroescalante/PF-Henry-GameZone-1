@@ -14,11 +14,8 @@ export default function Detail(props){
 
     const myGame= useSelector((state)=> state.detail);
 
-    const favorites = useSelector(state => state.favorites);
-
     const handleAddFavorite = () => {
         dispatch(addFavorites(props.match.params.id));
-        localStorage.setItem("favorites", JSON.stringify(favorites));
     };
 
     return (
@@ -28,7 +25,7 @@ export default function Detail(props){
 
                     {myGame ?<>
                     <h1 className={styles.namegame}> {myGame.name} </h1>
-                    <button className={styles.buttonFavorites}onClick={handleAddFavorite}>Add to Favorites</button>
+                    <button className={styles.buttonFavorites} onClick={handleAddFavorite}>Add to Favorites</button>
                     <button className={styles.buttonCart}onClick={handleAddFavorite}>Add to Cart</button>
                     <div className={styles.starIcon}></div>              
                     
