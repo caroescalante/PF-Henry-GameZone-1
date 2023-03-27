@@ -178,14 +178,16 @@ function rootReducer(state = initialState, action) {
       case ADD_FAVORITES:
           const favoriteGame = state.allGames.find(game => game.id === action.payload);
           const favoriteExist = state.favorites.find(game => game.id === action.payload);
-          if (favoriteExist) return state;
-          const finalFavorites = [...state.favorites, favoriteGame];
-          localStorage.setItem("favorites", JSON.stringify(finalFavorites));
-          return { 
-            ...state, 
-            favorites: finalFavorites 
-          };         
-        
+          if (favoriteExist) {
+            return { ...state }
+          } else {
+            const finalFavorites = [...state.favorites, favoriteGame];
+            localStorage.setItem("favorites", JSON.stringify(finalFavorites));
+            return { 
+              ...state, 
+              favorites: finalFavorites
+            };
+          };   
         case REMOVE_FAVORITE:
           const cleanFavorite = state.favorites.filter(fav => fav.id !== action.payload);
           localStorage.setItem("favorites", JSON.stringify(cleanFavorite));
