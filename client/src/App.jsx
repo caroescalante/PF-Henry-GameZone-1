@@ -25,7 +25,7 @@ function App() {
         <Route exact path="/game/:id" component={Detail} />
         <Route exact path="/create" component={CreateGameForm} />
         <Route exact path="/community" component={Community} />
-        <Route exact path="/registration" component={RegistrationForm} />
+        <Route exact path="/registration/:email" component={RegistrationForm} />
         <Route exact path="/favorites" component={Favorites} />
         <Route exact path="/profile" component={ProfileUser} />
         <Route exact path="/paymentsuccess" component={PaymentSuccess} />
