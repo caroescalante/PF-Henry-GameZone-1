@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getDetail, getFavorites } from "../../redux/actions";
+import { getDetail, addFavorites } from "../../redux/actions";
 import { useEffect } from "react";
 import styles from './Detail.module.css';
 
@@ -16,25 +16,26 @@ export default function Detail(props){
 
     const favorites = useSelector(state => state.favorites);
 
-    const buttonHandler = () => {
-        if (favorites.includes(myGame)) return;
-        dispatch(getFavorites(myGame));
-    }; 
+    const handleAddFavorite = () => {
+        dispatch(addFavorites(props.match.params.id));
+        localStorage.setItem("favorites", JSON.stringify(favorites));
+    };
 
     return (
         <div className={styles.Background}>
             <div className={styles.videogame}>
                 <div className={styles.boxjuego}> 
-                    <button onClick={buttonHandler}>Add Favorite</button>
 
                     {myGame ?<>
                     <h1 className={styles.namegame}> {myGame.name} </h1>
-                    
+                    <button className={styles.buttonFavorites}onClick={handleAddFavorite}>Add to Favorites</button>
+                    <button className={styles.buttonCart}onClick={handleAddFavorite}>Add to Cart</button>
                     <div className={styles.starIcon}></div>              
                     
                     <div className={styles.containeRatRel}>   
                         <h2 className={styles.rating}> {myGame.rating}</h2>
-                        <h3 className={styles.released}> Launch: {myGame.released}</h3>
+                        <h3 className={styles.released}> Launch {myGame.released}</h3>
+                        <h3 className={styles.price}> $ {myGame.price}</h3>
                     </div> 
                     
                     <div className={styles.containerWebsite}>

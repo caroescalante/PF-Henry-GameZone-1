@@ -1,9 +1,8 @@
 import React from "react";
 import styles from "./CardsContainer.module.css";
-import {Link} from 'react-router-dom';
-import { NavLink } from "react-router-dom/cjs/react-router-dom";
 import { useDispatch } from "react-redux";
-import { addToCart } from '../../redux/actions/index.js'
+import { addToCart, addFavorites } from '../../redux/actions/index.js'
+
 
 const CardsContainer = ({ name, image, price, id }) => {
   const dispatch = useDispatch(); 
@@ -12,6 +11,10 @@ const CardsContainer = ({ name, image, price, id }) => {
   const handleAddToCart = () => {
     dispatch(addToCart(id)); // llamar a la acción para agregar al carrito y pasarle el id del juego
   }
+
+  const handleAddFavorite = () => {
+    dispatch(addFavorites(id));
+  };
 
 return (
 
@@ -23,7 +26,7 @@ return (
         <img className={styles.image} src={image}/>
         <div className={styles.containerData}>
           <h3 className={styles.name}>{name}</h3>
-          <h4 className={styles.rating}>{price}</h4>
+          <h4 className={styles.rating}>${price.toLocaleString('es-ES')}</h4>
           
           
         
@@ -31,11 +34,12 @@ return (
         
       </div>
       <div className={styles.cardBack}>
-        <Link to={"/game/" + id} className={styles.enlace}>
-        <p className={styles.more}>Click here for more details</p>  
-        </Link>
+        <a href={"/game/" + id} className={styles.more}>Click here for more details</a>
+      <div className={styles.buttomContainer}>  
         <button   onClick={handleAddToCart} className={styles.buttomAddCart}>Add to Cart</button>
-        <button className={styles.buttomAddFavorites}>Add to Favorites</button>
+        {/* <button className={styles.heart}></button> */}
+        <button className={styles.buttomAddFavorites} onClick={handleAddFavorite}>Add to Favorites</button>
+      </div>
       </div>
 
     </div>

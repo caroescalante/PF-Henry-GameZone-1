@@ -9,15 +9,14 @@ const { Op } = require('sequelize')
 function generatePrice(rating) {
   let price;
   if (rating <= 1) {
-    price = 1;
+    price = 1.999;
   } else if (rating < 3) {
-    price = 4.99;
+    price = 4.999;
   } else if (rating <= 5) {
-    price = Math.ceil(rating * 10) / 2;   // a partir de 3 el rating se multiplica * 10, luego 
-  }                                       // se redondea hacia arriba al dividirse entre 2
-  return `$${price.toFixed(2)}`;
+    price = Math.round(rating * 6666) / 2;
+  }
+  return price;
 }
-
 
 const getAllGames = async () => {
                                           //Base de datos

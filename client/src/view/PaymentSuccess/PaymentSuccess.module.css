@@ -1,0 +1,93 @@
+.Background{
+    background-image: url("../../Image/fondito.jpg");
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+}
+.card{
+    border: 2px solid aqua;
+    height: 300px;
+    width: 530px;
+    background-color: transparent;
+    backdrop-filter: blur(35px);
+    color: white;
+
+
+
+}
+.button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 45px;
+    max-width: 200px;
+    background-color: aqua;
+    width: 100%;
+    border: none;
+    outline: none;
+    color: black;
+    border-radius: 5px;
+    margin: 25px 0 0px 152px;
+    transition: all 0.2s linear;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600; 
+    position: relative;
+    left: 10px;
+}
+
+.button:hover{
+    box-shadow: 1px 1px 20px 8px aqua;
+    background-color: darkcyan;
+}
+.title{
+    color: white;
+    font-size: 24px;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+}
+
+.checkIcon:before {
+    content: '\2713'; /* Código Unicode para el símbolo de check */
+    font-size: 40px;
+    display: flex;
+    position: relative;
+    width: 1.5em;
+    height: 1.5em;
+    margin-right: 0.5em;
+    color: aqua; /* Color del check */
+    border: 1px solid aqua; /* Borde del check */
+    border-radius: 50%; /* Redondear el borde para que se vea como un círculo */
+    text-align: center;
+    line-height: 1.5em;
+    justify-content: center;
+    align-items: center;
+    left: 235px;
+    top: 10px;
+    margin-bottom: 20px;
+  }
+.text{
+    font-size: 17px;
+    margin-top: 20px;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+}
+.text2{
+    
+    font-size: 17px;
+    margin-top: 20px;
+    position: relative;
+    text-align: center;
+    font-size: 18px;
+    align-items: center;
+    justify-content: center;
+    
+}

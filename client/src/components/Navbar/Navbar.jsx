@@ -5,7 +5,7 @@ import logo from "../../Image/logo.png";
 import { clearDetail } from "../../redux/actions";
 import LoginButton from "../LoginButton/LoginButton";
 import LogoutButton from "../LogoutButton/LogoutButton";
-import { useAuth0 } from "@Auth0/auth0-react";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Navbar = () => {      
 
@@ -13,10 +13,6 @@ const Navbar = () => {
 
     return (
         <div className={style.navbarContainer}>
-
-            <Link to="/favorites">
-                <button alt="init" width="300px">♡</button>
-            </Link>
 
             <Link to="/" className={style.image} onClick={() => clearDetail()}>
                 <img src={logo} alt="init" width="300px" />
@@ -28,8 +24,8 @@ const Navbar = () => {
 
           
 
-            <Link className={style.links} to="/">
-                <ion-icon size="large" name="diamond-outline"></ion-icon>
+            <Link className={style.links} to="/favorites">
+                <ion-icon size="large" name="heart-outline"></ion-icon>
             </Link>
 
             <Link className={style.links} to="/cart">

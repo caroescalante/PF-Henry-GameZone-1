@@ -9,8 +9,10 @@ import RegistrationForm from "./view/RegistrationForm/RegistrationForm";
 import Navbar from '../src/components/Navbar/Navbar';
 import Footer from "./components/Footer/Footer";
 import Favorites from "./view/Favorites/Favorites";
-import ShopCart from "./view/ShopCart/ShopCart";
+import ShopCart from "./view/shopCart/shopCart";
 import ProfileUser from "./view/ProfileUser/ProfileUser";
+import PaymentSuccess from "./view/PaymentSuccess/PaymentSuccess";
+import PaymentFailure from "./view/PaymentFailure/PaymentFailure";
 
 function App() {
   return (
@@ -25,8 +27,10 @@ function App() {
         <Route path="/registration" component={RegistrationForm} />
         <Route path="/favorites" component={Favorites} />
         <Route path="/profile" component={ProfileUser}/>
-        <Footer />
+        <Route path="/paymentsuccess" component={PaymentSuccess} />
         <Route path="/cart" component={ShopCart} />
+        <Route path="/paymentfailure" component={PaymentFailure}/>
+        <Footer />
 
     </div>
   );

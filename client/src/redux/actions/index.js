@@ -13,12 +13,11 @@ import {
   ORDER_BY_PRICE,
   SEARCH_BY_NAME_ERROR,
   EMAIL_USER,
-  GET_FAVORITES,
+  ADD_FAVORITES,
   ADD_TO_CART,
-  REMOVE_ONE_FROM_CART,
-  REMOVE_ALL_FROM_CART,
+  REMOVE_FROM_CART,
   CLEAR_CART,
-  GET_URL_IMAGE
+  REMOVE_FAVORITE,
 } from "./types";
 
 import axios from 'axios';
@@ -149,49 +148,50 @@ export function emailUser (email) {
   };
 }
 
-export const getFavorites = (game) => {
-  return { type: GET_FAVORITES, payload: game };
+export const addFavorites = (idRaw) => {
+  const id = parseInt(idRaw);
+  return { type: ADD_FAVORITES, payload: id };
 };
 
+
+//  export const incrementQuantity = (id) => ({
+//   type: INCREMENT_QUANTITY,
+//   payload: id
+// });
+
+// export const decrementQuantity = (id) => ({
+//   type: DECREMENT_QUANTITY,
+//   payload: id
+// });
 
 export function addToCart(id){
-  return{
+  return {
     type: ADD_TO_CART,
     payload: id
-  }
+  };
 };
 
-
-export const removeFromCart = (id) => ({
-  type: REMOVE_ONE_FROM_CART,
-  payload: id
-});
-
+export const removeFromCart = (id) => (dispatch, getState) => {
+  const { cart } = getState();
+  const gameToRemoveIndex = cart.findIndex(game => game.id === id);
+  if (gameToRemoveIndex !== -1) {
+    const updatedCart = [...cart];
+    updatedCart.splice(gameToRemoveIndex, 1);
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
+    dispatch({
+      type: REMOVE_FROM_CART,
+      payload: id
+    });
+  }
+};
 
 export function clearCart(){
-  return{
+  return {
     type: CLEAR_CART
-  }
+  };
 };
 
 
-// export function getUserUrlImage (acceptedFiles) {
-//   return async function(dispatch){
-//       try {
-        
-    
-//           dispatch({
-//               type: GET_URL_IMAGE,
-//               image: imageURL
-//           });
-//       } catch (error) {
-//           dispatch({
-//               type: Error,
-//               payload: error,
-//           });
-//       }
-//   }
-
-// }
-
-
+export const removeFavorite = (id) => {
+  return { type: REMOVE_FAVORITE, payload: id };
+};

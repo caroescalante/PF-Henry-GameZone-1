@@ -13,7 +13,7 @@ const Home = () => {
     const allGames = useSelector(state => state.allGames);
     const [orden, setOrden] = useState('')
     const [currentPage, setCurrentPage] = useState(1)
-    const [gamesPerPage, setGamesPerPage] = useState(8)
+    const [gamesPerPage, setGamesPerPage] = useState(9)
     const indexOfLastGame = currentPage * gamesPerPage // 10
     const indexOfFirstGame = indexOfLastGame - gamesPerPage // 0
     const currentGames = allGames.slice(indexOfFirstGame,indexOfLastGame)
@@ -93,7 +93,7 @@ const Home = () => {
         </div>
       
             <select onChange={(e) => handleGenreFilter(e)} className={styles.filter}>
-                     <option value='All'>All</option>
+                     <option value='All'>All Genres</option>
                     {genres.map((gen, index) => {
                         return <option key={index} value={gen.name}>{gen.name}</option>;
                      })}
@@ -101,7 +101,7 @@ const Home = () => {
 
             
             <select onChange={(e) => handlePlatformFilter(e)} className={styles.filter}>
-                     <option value='All'>All</option>
+                     <option value='All'>All Platforms</option>
                     {platforms.map((plat, index) => {
                         return <option key={index} value={plat.name}>{plat.name}</option>;
                      })}
