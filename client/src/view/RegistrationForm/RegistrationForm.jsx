@@ -1,25 +1,31 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
+import { useDropzone } from 'react-dropzone';
 import style from '../RegistrationForm/RegistrationForm.module.css';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
 
+const CLOUD_NAME = import.meta.env.VITE_CLOUD_NAME;
+const UPLOAD_PRESET_NAME = import.meta.env.VITE_UPLOAD_PRESET_NAME;
+
 const cookies = new Cookies();
 
 const RegistrationForm = () => {
-
   const history = useHistory();
+  const { email } = useParams();
+
 
   const user = useSelector((state) => state.users);
   
+  const [uploadedImageUrl, setUploadedImageUrl] = useState();
+
   const [data, setData] = useState({
     name: "",
     surname: "",
+    image: "",
     phone: "",
-    rol: "",
     email: "",
-    active: true,
   });
 
   const changeHandler = (event) => {
@@ -27,19 +33,31 @@ const RegistrationForm = () => {
     setData(prevData => ({ ...prevData, [name]: value }));
   };
 
-  const submitHandler = async (event) => {
-    event.preventDefault();
+  const onDrop = async (acceptedFiles) => {
+    const file = acceptedFiles[0];
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('upload_preset', UPLOAD_PRESET_NAME);
 
-    await axios.put(`http://localhost:3001/user/${cookies.get('id')}`, data);
+    const response = await axios.post(
+      `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
+      formData
+    );
+    setUploadedImageUrl(response.data.secure_url);
+  };
+
+  const { getRootProps, getInputProps } = useDropzone({ onDrop });
+  
+
+  const submitHandler =  async (event) => {
+    event.preventDefault();
+    await axios.put(`http://localhost:3001/user/${email}`, {...data, image: uploadedImageUrl});
+    console.log(image);
     setData({
       name: "",
       surname: "",
-      image: "",
       phone: "",
       email: "",
-      estado: "",
-      rol:"",
-      active: true,
     });
     history.push("/");
   };
@@ -48,29 +66,31 @@ const RegistrationForm = () => {
     <div className={style.user}>
       <div className={style.registration}>
         <div className={style.container}>
-          <header>Registration</header>
+          <header>Update your data</header>
+          <br />
+
+          <div>
+            <div {...getRootProps()} className={style.fields} >
+              <input {...getInputProps()}/>
+              {uploadedImageUrl ? (
+                <img src={uploadedImageUrl} alt="Uploaded image, please click on Record Data" />
+              ) : (
+                <p>Drag and drop an image here or click to select an image</p>
+              )}
+            </div>
+          </div>
+
           <form onSubmit={submitHandler}>
             <div className={style.formFirst}>
               <div className={style.detailsPersonal}>
                 <span className={style.title}>Personal Details</span>
                 <div className={style.fields}>
-                <div>
-                    <label>Number User</label>
-                    <input
-                      type="text"
-                      value={cookies.get('id')}
-                      required
-                      name="id"                      
-                      onChange={changeHandler}
-                    ></input>
-                  </div>
                   <div>
                     <label>Names</label>
                     <input
                       type="text"
                       value={data.name}
                       placeholder={cookies.get('name')}
-                      required
                       name="name"                      
                       onChange={changeHandler}
                     ></input>
@@ -81,28 +101,16 @@ const RegistrationForm = () => {
                       type="text"
                       value={data.surname}
                       placeholder={cookies.get('surname')}
-                      required
                       name="surname"                      
                       onChange={changeHandler}
                     ></input>
                   </div>
-                  {/* <div>
-                    <label>Image</label>
-                    <input
-                      type="text"
-                      value={data.image}
-                      placeholder={cookies.get('image')}
-                      name="image"                      
-                      onChange={changeHandler}
-                    ></input>
-                  </div> */}
                   <div>
                     <label>Phone</label>
                     <input
                       type="text"
                       value={data.phone}
                       placeholder={cookies.get('phone')}
-                      required
                       name="phone"                      
                       onChange={changeHandler}
                     ></input>
@@ -110,6 +118,7 @@ const RegistrationForm = () => {
                   <div>
                     <label>Email</label>
                     <input
+
                       type="email"
                       value={cookies.get('email')}
                       placeholder="Enter your email"
@@ -118,30 +127,10 @@ const RegistrationForm = () => {
                       onChange={changeHandler}
                     ></input>
                   </div>
-                  <div>
-                    <label>Estado</label>
-                    <input
-                      type="text"
-                      value={data.active}
-                      placeholder={cookies.get('active')}
-                      name="active"                      
-                      onChange={changeHandler}
-                    ></input>
-                  </div>
-                  <div>
-                    <label>Classification</label>
-                    <input
-                      type="text"
-                      value={data.rol}
-                      placeholder={cookies.get('rol')}
-                      name="rol"                      
-                      onChange={changeHandler}
-                    ></input>
-                  </div>
                   
                 </div>
                 <p className={style.note}>
-                  If you are already registered and want to update your data, just fill in the data you want to update.
+                  Complete your email to save the changes.
                 </p>
                 <div className={style.containerButton}>
                   <button className={style.button} type="submit">
@@ -160,12 +149,3 @@ const RegistrationForm = () => {
 
 export default RegistrationForm;
 
-  //   console.log('id:'+ cookies.get('id'));
-  //   console.log('name:'+ cookies.get('name'));
-  //   console.log('email:'+ cookies.get('email'));
-  //   console.log('surname:'+ cookies.get('surname'));
-  //   console.log('image:'+ cookies.get('image'));
-  //   console.log('phone:'+ cookies.get('phone'));
-  //   console.log('password:'+ cookies.get('password'));
-  //   console.log('rol:'+ cookies.get('rol'));
-  //   console.log('active:'+ cookies.get('active'));

@@ -45,11 +45,11 @@ const searchUserByName = async (name) => {
     return dataBaseName;
 };
 
-const updateUser = async (id, newData) => {
+const updateUser = async (email, newData) => {
 
     const [rowsAffected, [updateUser]] = await User.update(newData,{
         where: {
-            id: id,
+            email: email,
         },
         returning: true,
     });
@@ -62,10 +62,11 @@ const updateUser = async (id, newData) => {
 }
 
 const emailUser = async (email) => {
-
-    const dataBaseEmail = await User.findAll({where: { email: email.trim().toLowerCase()}});
-
-    return dataBaseEmail;
+console.log('llegue');
+    const dataBaseEmail = await User.findOne({where: { email: email.trim().toLowerCase()}});
+    console.log(dataBaseEmail)
+    if(!dataBaseEmail) return (true)
+    else return dataBaseEmail;
 };
 
 module.exports = { 
