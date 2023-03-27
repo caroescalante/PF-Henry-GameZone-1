@@ -18,9 +18,14 @@ import {
   REMOVE_FROM_CART,
   CLEAR_CART,
   REMOVE_FAVORITE,
+  // CHARGE_STATE
 } from "./types";
 
 import axios from 'axios';
+const CLOUD_NAME = import.meta.env.VITE_CLOUD_NAME;
+const UPLOAD_PRESET_NAME = import.meta.env.VITE_UPLOAD_PRESET_NAME;
+
+
 
 export function getGames() {
   return async function (dispatch) {

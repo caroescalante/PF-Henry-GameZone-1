@@ -5,7 +5,7 @@ import logo from "../../Image/logo.png";
 import { clearDetail } from "../../redux/actions";
 import LoginButton from "../LoginButton/LoginButton";
 import LogoutButton from "../LogoutButton/LogoutButton";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth0 } from "@Auth0/auth0-react";
 
 const Navbar = () => {      
 
@@ -22,9 +22,7 @@ const Navbar = () => {
                 <ion-icon size="large" name="game-controller-outline"></ion-icon>
             </Link>
 
-            <Link className={style.links} to="/registration">
-                <ion-icon size="large" name="create-outline"></ion-icon>
-            </Link>
+          
 
             <Link className={style.links} to="/favorites">
                 <ion-icon size="large" name="heart-outline"></ion-icon>
@@ -35,7 +33,10 @@ const Navbar = () => {
             </Link>
             
             {isAuthenticated &&
-                <h3 className={style.name}>{user.name}</h3>
+                <Link to="/profile">
+                 <h3 className={style.name}>{user.name}</h3>
+                </Link>
+               
             }
 
             {isAuthenticated ?
