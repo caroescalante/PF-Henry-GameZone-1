@@ -29,13 +29,8 @@ const validate = (form) => {
     errors.price = "price must be a number";
   }; 
 
-  if (!form.rating) {
-    errors.rating = "the rating is required";
-  } else if (form.rating < 0 || form.rating > 5) {
-    errors.rating = "the rating must be between 0 and 5";
-  } else if (!/^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$/.test(form.rating)) {
-    errors.rating = "rating must be a number";
-  }; 
+  
+  
 
   if (!/^(ftp|http|https):\/\/[^ "]+$/.test(form.website)) {
     errors.website = "the website must be a url";
@@ -81,7 +76,7 @@ function CreateGameForm() {
     name: "",
     image: "",
     price: "",
-    rating: "",
+    rating: 0,
     website: "",
     released: "",
     description: "",
@@ -93,7 +88,6 @@ function CreateGameForm() {
     name: "",
     image: "",
     price: "",
-    rating: "",
     website: "",
     released: "",
     description: "",
@@ -105,7 +99,7 @@ function CreateGameForm() {
     name: "",
     image: "",
     price: "",
-    rating: "",
+    rating: 0,
     website: "",
     released: "",
     description: "",
@@ -212,11 +206,7 @@ function CreateGameForm() {
           <input type="number" name="price" placeholder=" Price..." value={form.price} onChange={inputChangeHandler} onFocus={focusHandler} />
          {errors.price && focus.price && <p className={style.errorText}>{errors.price}</p>}
         </div>
-        <div className={style.fields}>
-          <label htmlFor="rating">Rating</label>
-          <input type="number" name="rating" placeholder="Rating..." value={form.rating} onChange={inputChangeHandler} onFocus={focusHandler} />
-         {errors.rating && focus.rating && <p className={style.errorText}>{errors.rating}</p>}
-        </div>
+        
          </div>
          <div className={style.containerInputs2}>
         <div className={style.fields}>
@@ -276,7 +266,7 @@ function CreateGameForm() {
         </div> */}
       <div className={style.containerButton}>
         <button type="submit"  className={style.button} disabled={
-          (errors.name || errors.image || errors.price || errors.rating || errors.description) ? true : false}>Submit
+          (errors.name || errors.image || errors.price  || errors.description) ? true : false}>Submit
         </button>
         </div>
       </div>
