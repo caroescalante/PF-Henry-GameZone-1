@@ -67,3 +67,10 @@
     margin-bottom: 5px;
 
 }
+
+.favoriteButton ion-icon {
+    color: black;
+    background: aqua;  
+    
+
+}

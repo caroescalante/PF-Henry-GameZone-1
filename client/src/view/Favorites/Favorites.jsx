@@ -19,7 +19,7 @@ const Favorites = () => {
                         <h2 className={style.favoriteName}>{favorite.name}</h2>
                         <img src={favorite.image} alt="favorite-image" className={style.favoriteImage} />
                     <div className={style.favoriteButton}>
-                        <button  onClick={() => removeFavHandler(favorite.id)}>Remove</button>
+                        <button  onClick={() => removeFavHandler(favorite.id)}><ion-icon size="small" name="trash-outline"></ion-icon></button>
                     </div>
                         </div>
                       
