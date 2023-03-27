@@ -147,7 +147,8 @@ const ShopCart = () => {
                   <div className={style.name}><h2 >{game.name}</h2></div>
                    <div className={style.priceQuantity}>
                     <p className={style.price}>$ {game.price.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-                    <button className={style.button}onClick={() => handleRemoveFromCart(game.id)}>Delete</button>
+                    {/* <button className={style.button}onClick={() => handleRemoveFromCart(game.id)}>Delete</button> */}
+                    <button onClick={() => handleRemoveFromCart(game.id)} className={style.trashButton}><i class="fas fa-trash"></i></button>
                     <p className={style.quantity}>{game.quantity}</p>
                   </div>
                   </div>
