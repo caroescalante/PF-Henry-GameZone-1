@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import {useAuth0} from '@auth0/auth0-react';
+import {useAuth0} from '@Auth0/auth0-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { getUsers } from '../../redux/actions';
@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 
 const Login = () => {
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const users = useSelector((state) => state.users);
   const history = useHistory();
   const cookies = new Cookies();

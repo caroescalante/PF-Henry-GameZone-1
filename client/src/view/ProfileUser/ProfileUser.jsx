@@ -30,7 +30,7 @@ const ProfileUser = () => {
                    
         
                 <div>
-                    <Link className={style.links} to="/registration">
+                    <Link className={style.links} to={"/registration/" + user.email}>
                         <ion-icon size="large" name="create-outline"></ion-icon>
                     </Link>
                 </div>

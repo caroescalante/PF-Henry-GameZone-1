@@ -13,18 +13,18 @@ module.exports = (sequelize) => {
 
     name: {
       type: DataTypes.STRING, 
-      defaultValue:false,     
+      defaultValue: 'empty',     
     },
     
     surname: {
       type: DataTypes.STRING,
-      defaultValue: "vacio",
+      defaultValue: "empty",
       
     },
 
     phone: {
       type: DataTypes.STRING,
-      defaultValue: "vacio",
+      defaultValue: 'empty',
     },
 
     password: {
@@ -41,11 +41,16 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
+      defaultValue: 'empty'
     },
 
     active: {
       type:DataTypes.BOOLEAN,
       defaultValue: true,
+    },
+    image:{
+      type: DataTypes.STRING,
+      defaultValue: "vacio",
     }
   },
   { timestamps: false }
