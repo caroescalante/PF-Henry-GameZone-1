@@ -158,7 +158,7 @@ function CreateGameForm() {
     event.preventDefault();
     // axios.post("http://localhost:3001/videogames", finalForm).then(alert("Videogame created successfully"));
     // location.reload();
-                              //*A partir de aqui es el código de la modal alert*//
+                              //A partir de aqui es el código de la modal alert//
 
     axios.post("http://localhost:3001/videogames", finalForm)
     .then(() => {
@@ -195,7 +195,7 @@ function CreateGameForm() {
           <input type="text" name="name" placeholder="Name..." value={form.name} onChange={inputChangeHandler} onFocus={focusHandler}  />
          {errors.name && focus.name && <p className={style.errorText}>{errors.name}</p>}
         </div>
-        <div className={style.fields}>
+        <div className={style.fieldsD}>
           <label htmlFor="description">Description</label>
           <input type="text" name="description" placeholder="Description..." value={form.description} onChange={inputChangeHandler} onFocus={focusHandler} />
          {errors.description && focus.description && <p className={style.errorText}>{errors.description}</p>}
@@ -214,7 +214,7 @@ function CreateGameForm() {
           <input type="text" name="website" placeholder="Website..." value={form.website} onChange={inputChangeHandler} onFocus={focusHandler}  />
          {errors.website && focus.website && <p className={style.errorText}>{errors.website}</p>}
         </div>
-        <div className={style.fields}>
+        <div className={style.fieldsR}>
           <label htmlFor="released">Released</label>
           <input type="date" name="released" placeholder="Released..." value={form.released} onChange={inputChangeHandler} onFocus={focusHandler}  />
          {errors.released && focus.released && <p className={style.errorText}>{errors.released}</p>}

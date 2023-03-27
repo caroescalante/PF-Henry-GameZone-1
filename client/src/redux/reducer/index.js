@@ -16,8 +16,6 @@ import {
   ADD_FAVORITES,
   ADD_TO_CART,
   REMOVE_FROM_CART,
-  REMOVE_ONE_FROM_CART,
-  REMOVE_ALL_FROM_CART,
   // INCREMENT_QUANTITY,
   // DECREMENT_QUANTITY,
   CLEAR_CART,
@@ -37,8 +35,8 @@ const initialState = {
   searchError: null,
   filterGenres: 'All',
   filterPlataforms: 'All',
-  favorites: [],
-  cart: []
+  favorites: JSON.parse(localStorage.getItem("favorites")) || [],
+  cart: JSON.parse(localStorage.getItem('cart')) || [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -177,14 +175,19 @@ function rootReducer(state = initialState, action) {
           return { ...state, emailUser: action.payload, };
       case ADD_FAVORITES:
           const favoriteGame = state.allGames.find(game => game.id === action.payload);
-          if (state.favorites.includes(favoriteGame)) return { ...state };
+          const favoriteExist = state.favorites.find(game => game.id === action.payload);
+          if (favoriteExist) return state;
+          const finalFavorites = [...state.favorites, favoriteGame];
+          localStorage.setItem("favorites", JSON.stringify(finalFavorites));
           return { 
             ...state, 
-            favorites: [...state.favorites, favoriteGame] 
+            favorites: finalFavorites 
           };         
         
         case REMOVE_FAVORITE:
-          return { ...state, favorites: state.favorites.filter(fav => fav.id !== action.payload) };
+          const cleanFavorite = state.favorites.filter(fav => fav.id !== action.payload);
+          localStorage.setItem("favorites", JSON.stringify(cleanFavorite));
+          return { ...state, favorites: cleanFavorite };
           
       // case ADD_TO_CART:
       //   const existingGameIndex = state.cart.findIndex(game => game.id === action.payload);
@@ -283,59 +286,37 @@ function rootReducer(state = initialState, action) {
       //       ...state,
       //         cart: []
       //       };
-
-  // case ADD_TO_CART:
-  //   const existingGameIndex = state.cart.findIndex(game => game.id === action.payload);
-  //     if (existingGameIndex !== -1) {
-  //   // Si el juego ya está en el carrito, actualiza la cantidad
-  //   const updatedCart = [...state.cart];
-  //   updatedCart[existingGameIndex].quantity += 1;
-  //   return {
-  //     ...state,
-  //     cart: updatedCart
-  //   };
-  // } else {
-  //   // Si el juego no está en el carrito, agrega un nuevo objeto de juego al carrito con cantidad 1
-  //   const gameToAdd = state.allGames.find(game => game.id === action.payload);
-  //   return {
-  //     ...state,
-  //     cart: [...state.cart, { ...gameToAdd }]
-  //   };
-  // }
-
-  case ADD_TO_CART:
-  const existingGameIndex = state.cart.findIndex(game => game.id === action.payload);
-  if (existingGameIndex !== -1) {
-    // Si el juego ya está en el carrito, actualiza la cantidad
-    const updatedCart = [...state.cart];
-    updatedCart[existingGameIndex].quantity = 1;
-    return {
-      ...state,
-      cart: updatedCart
-    };
-  } else {
-    // Si el juego no está en el carrito, agrega un nuevo objeto de juego al carrito con cantidad 1
+  
+    case ADD_TO_CART:
     const gameToAdd = state.allGames.find(game => game.id === action.payload);
-    return {
-      ...state,
-      cart: [...state.cart, { ...gameToAdd, quantity: 1 }]
-    };
-  }
+    const gameInCart = state.cart.find(game => game.id === action.payload);
+    if (gameInCart) {
+      // Si el juego ya está en el carrito, no lo agrega de nuevo
+      return state;
+    } else {
+      // Si el juego no está en el carrito, agrega un nuevo objeto de juego al carrito con cantidad 1
+      const updatedCart = [...state.cart, { ...gameToAdd, quantity: 1 }];
+      localStorage.setItem('cart', JSON.stringify(updatedCart)); // Almacena el carrito actualizado en Local Storage
+      return {
+        ...state,
+        cart: updatedCart
+      };
+    }
 
+    case REMOVE_FROM_CART:
+      const updatedCart = state.cart.filter(game => game.id !== action.payload);
+      localStorage.setItem('cart', JSON.stringify(updatedCart));
+      return {
+        ...state,
+        cart: updatedCart
+      };
 
+    case CLEAR_CART:
+      return {
+        ...state,
+         cart: []
+      };
 
-  case REMOVE_FROM_CART:
-    return {
-    ...state,
-    cart: state.cart.filter(game => game.id !== action.payload)
-  };
-
-  case CLEAR_CART:
-  return {
-    ...state,
-    cart: []
-  };
-   
       
   default: return { ...state }
   }

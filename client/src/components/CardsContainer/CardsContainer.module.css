@@ -259,14 +259,15 @@
     .more{
     position: relative;
     cursor:pointer;
-    bottom: 200px;
+    bottom: 240px;
     color: black;
     font-size: 20px;
     font-weight: bold;
     left:80px;
     border-radius: 10px;
-    height: 25px;
-    width: 250px;
+    padding-left: 10px;
+    border: 2px solid grey;
+    padding-right: 10px;
     text-decoration: none;
     text-align: center;
     z-index: 3;
@@ -308,29 +309,33 @@
 
     .enlace{
         position: relative;
-        z-index: 1;
+        z-index: 3;
         cursor: pointer;
         bottom: 200px;
+        font-weight: bold;
+        text-decoration: none;
     }
     .buttomAddFavorites{
     position: relative;
     cursor:pointer;
-    bottom: 180px;
-    right:50px;
+    bottom: 200px;
+    right:80px;
     color: black;
     font-size: 20px;
     font-weight: bold;
     text-decoration: none;
     text-align: center;
     border-radius: 10px;
+    width: 190px;
     z-index: 3;
     background: linear-gradient(to right, rgba(0, 255, 255, 2.0), rgba(0, 196, 196, 0.5)), rgba(0, 0, 255, 1.2);
     }
     .buttomAddCart{
     position: relative;
     cursor:pointer;
-    bottom: 140px;
-    left:90px;
+    bottom: 120px;
+    left:95px;
+    width: 160px;
     color: black;
     font-size: 20px;
     font-weight: 700; 
@@ -346,3 +351,31 @@
         justify-content: center;
         margin-top: 15px;
     }
+    .heart {
+        width: 30px;
+        height: 30px;
+        border-radius: 50% 50% 0 0;
+        border: 2px solid #FF0000;
+        position: relative;
+        cursor: pointer;
+        background-color: transparent;
+        z-index: 4;
+        bottom: 250px;
+      }
+      .heart:before {
+        content: '';
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        top: -12px;
+        left: -14px;
+        border-radius: 70%;
+        border: 2px solid #FF0000;
+        transform: rotate(45deg);
+        z-index: 4;
+      }
+      .heart.clicked:before {
+        background-color: #FF0000;
+        z-index: 4;
+      }
+    
