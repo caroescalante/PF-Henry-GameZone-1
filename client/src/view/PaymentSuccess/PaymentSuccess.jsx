@@ -9,9 +9,11 @@ function PaymentSuccess() {
         return (
           <div className={styles.Background}>
             <div className={styles.card}>
-            <h1>Su compra fue realizada con exito</h1>
-            <h2> Le enviamos a su correo el numero de token</h2>
-            <a className={styles.button} href="/">home</a>
+            <div className={styles.checkIcon}></div>
+            <h1 className={styles.title}>Your payment has been successfully completed</h1>
+            <h2 className={styles.text}> We will send you the token number to your email as soon as possible.</h2>
+            <h3 className={styles.text2}>Thanks for your purchase!</h3>
+            <a className={styles.button} href="/">Return to page</a>
             </div>
           </div>
         );

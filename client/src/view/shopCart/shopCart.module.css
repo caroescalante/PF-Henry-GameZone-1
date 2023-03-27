@@ -177,3 +177,23 @@
     margin-bottom: 50px;
     padding-top: 10px; 
 }
+.cartEmpty{
+    font-size: 30px;
+    height: 150px;
+    width: 600px;
+    background-color: rgba(0,0,0,.7);
+    backdrop-filter: blur(5px);
+    border: 2px solid black;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    position: relative;
+    text-align: center;
+    top: 235px;
+    left: 375px;
+    display: flex;
+    text-orientation: upright;
+    border-radius: 10px;
+}
+

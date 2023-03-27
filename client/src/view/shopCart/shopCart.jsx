@@ -164,7 +164,7 @@ const ShopCart = () => {
           </div>
         </>
       ) : (
-        <p>The cart is empty, please add some item</p>
+        <p className={style.cartEmpty}>The cart is empty, please add some item.</p>
         )}
     </div>
   );
