@@ -120,9 +120,9 @@
     font-weight: 600;
     position: relative;
     left: 60px;
-    border: 1px solid grey;
+    border: 2px solid grey;
     font-size: 18px; /* Tamaño de fuente del texto */
-    color: grey; /* Color del texto */
+    color: rgba(122, 122,122, 2.0  ); /* Color del texto */
     padding: 10px 20px; /* Espaciado interno del botón */
     text-align: center; /* Alineación del texto */
     text-decoration: none; /* Decoración del texto */

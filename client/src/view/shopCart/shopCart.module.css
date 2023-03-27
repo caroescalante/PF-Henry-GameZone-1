@@ -107,7 +107,7 @@
     top: 2px;
 }
 
-.button{
+/* .button{
     display: flex;
     margin-top: 7px;
     margin-left: 25px;
@@ -130,7 +130,39 @@
     .button:hover{
         box-shadow: 1px 1px 20px 8px aqua;
         background-color: darkcyan;
+    } */
+
+    .trashButton{
+        display: flex;
+        margin-top: 7px;
+        margin-left: 25px;
+        align-items: center;
+        justify-content: center;
+        background-color: aqua;
+        border: none;
+        outline: none;
+        height: 32px;
+        width: 70px;
+        color: black;
+        border-radius: 5px;
+        transition: all 0.2s linear;
+        cursor: pointer;
+        font-weight: 600;
+        position: relative;
+        left: 10px;
+        bottom: 5px;
+        border: 2px solid grey;
+        font-size: 18px; /* Tamaño de fuente del texto */
+        color: rgba(122, 122,122, 2.0  ); /* Color del texto */
+        padding: 10px 20px; /* Espaciado interno del botón */
+        text-align: center; /* Alineación del texto */
+        text-decoration: none; /* Decoración del texto */
+        /* display: inline-block;  */
     }
+    .trashButton i {
+        margin-right: 5px; /* Espaciado entre el icono y el texto */
+      }
+
 .quantity{
     color: transparent;
 }
