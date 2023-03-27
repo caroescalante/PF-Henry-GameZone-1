@@ -17,10 +17,13 @@ import {
   ADD_TO_CART,
   REMOVE_ONE_FROM_CART,
   REMOVE_ALL_FROM_CART,
-  CLEAR_CART
+  CLEAR_CART,
+  GET_URL_IMAGE
 } from "./types";
 
 import axios from 'axios';
+
+
 
 export function getGames() {
   return async function (dispatch) {
@@ -170,5 +173,25 @@ export function clearCart(){
     type: CLEAR_CART
   }
 };
+
+
+// export function getUserUrlImage (acceptedFiles) {
+//   return async function(dispatch){
+//       try {
+        
+    
+//           dispatch({
+//               type: GET_URL_IMAGE,
+//               image: imageURL
+//           });
+//       } catch (error) {
+//           dispatch({
+//               type: Error,
+//               payload: error,
+//           });
+//       }
+//   }
+
+// }
 
 

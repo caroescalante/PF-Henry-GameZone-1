@@ -17,7 +17,8 @@ import {
   ADD_TO_CART,
   REMOVE_ONE_FROM_CART,
   REMOVE_ALL_FROM_CART,
-  CLEAR_CART
+  CLEAR_CART,
+  GET_URL_IMAGE
 } from "../actions/types";
 
 const initialState = {
@@ -34,7 +35,8 @@ const initialState = {
   filterGenres: 'All',
   filterPlataforms: 'All',
   favorites: [],
-  cart: []
+  cart: [],
+  image: []
 };
 
 function rootReducer(state = initialState, action) {
@@ -202,6 +204,13 @@ function rootReducer(state = initialState, action) {
             ...state,
               cart: []
             };
+
+      case GET_URL_IMAGE:
+        return{
+          ...state,
+          image: action.payload
+        }
+
 
        
 

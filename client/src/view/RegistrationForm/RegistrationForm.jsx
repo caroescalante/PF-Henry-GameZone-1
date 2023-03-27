@@ -1,18 +1,27 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { useDropzone } from 'react-dropzone';
 import style from '../RegistrationForm/RegistrationForm.module.css';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
+// import { getUserUrlImage } from '../../redux/actions';
+const CLOUD_NAME = import.meta.env.VITE_CLOUD_NAME;
+const UPLOAD_PRESET_NAME = import.meta.env.VITE_UPLOAD_PRESET_NAME;
 
 const cookies = new Cookies();
+// const dispatch = useDispatch()
 
 const RegistrationForm = () => {
 
   const history = useHistory();
 
   const user = useSelector((state) => state.users);
+  const image = useSelector((state)=> state.image)
   
+  const [uploadedImageUrl, setUploadedImageUrl] = useState();
+
+
   const [data, setData] = useState({
     name: "",
     surname: "",
@@ -34,7 +43,6 @@ const RegistrationForm = () => {
     setData({
       name: "",
       surname: "",
-      image: "",
       phone: "",
       email: "",
       estado: "",
@@ -43,17 +51,51 @@ const RegistrationForm = () => {
     });
     history.push("/");
   };
+
+  const onDrop = async (acceptedFiles) => {
+    const file = acceptedFiles[0];
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('upload_preset', UPLOAD_PRESET_NAME);
+    
+        const response = await axios.post(
+          `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
+          formData
+        );
+    
+     setUploadedImageUrl(response.data.secure_url);
+  };
+  
+
+  const { getRootProps, getInputProps } = useDropzone({ onDrop });
+  const [url, localUrl]= useState(uploadedImageUrl)
+
+
   
   return (
     <div className={style.user}>
       <div className={style.registration}>
         <div className={style.container}>
-          <header>Registration</header>
+          <header>Update your data</header>
+          <br />
+
+         <div >
+            <div {...getRootProps()} className={style.fields} >
+               <input {...getInputProps()}/>
+                 {uploadedImageUrl ? (
+                  <img src={uploadedImageUrl} alt="Uploaded image" />
+                 ) : (
+                  <p>Drag and drop an image here or click to select an image</p>
+                  )}
+              </div>
+          </div>
+
           <form onSubmit={submitHandler}>
             <div className={style.formFirst}>
               <div className={style.detailsPersonal}>
                 <span className={style.title}>Personal Details</span>
                 <div className={style.fields}>
+               
                 <div>
                     <label>Number User</label>
                     <input
@@ -86,16 +128,6 @@ const RegistrationForm = () => {
                       onChange={changeHandler}
                     ></input>
                   </div>
-                  {/* <div>
-                    <label>Image</label>
-                    <input
-                      type="text"
-                      value={data.image}
-                      placeholder={cookies.get('image')}
-                      name="image"                      
-                      onChange={changeHandler}
-                    ></input>
-                  </div> */}
                   <div>
                     <label>Phone</label>
                     <input
@@ -118,7 +150,7 @@ const RegistrationForm = () => {
                       onChange={changeHandler}
                     ></input>
                   </div>
-                  <div>
+                  {/* <div>
                     <label>Estado</label>
                     <input
                       type="text"
@@ -127,7 +159,7 @@ const RegistrationForm = () => {
                       name="active"                      
                       onChange={changeHandler}
                     ></input>
-                  </div>
+                  </div> */}
                   <div>
                     <label>Classification</label>
                     <input
@@ -141,7 +173,7 @@ const RegistrationForm = () => {
                   
                 </div>
                 <p className={style.note}>
-                  If you are already registered and want to update your data, just fill in the data you want to update.
+                  Fill in the data you want to update.
                 </p>
                 <div className={style.containerButton}>
                   <button className={style.button} type="submit">
