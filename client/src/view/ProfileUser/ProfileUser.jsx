@@ -31,10 +31,6 @@ import style from "../Favorites/Favorites.module.css";
 const ProfileUser = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
 
-  const newUser = () => {
-
-  }
-
   if (isLoading) {
 
     return <div>Loading ...</div>;
