@@ -48,7 +48,7 @@ const createUserHandler = async (req,res) => {
 
 const updateUserHandler = async (req, res) => {
 
-    const { email } = req.query;
+    const { email } = req.params;
     const newData = req.body;
 
     try {
@@ -66,7 +66,7 @@ const updateUserHandler = async (req, res) => {
 };
 
 const emailUserHandler = async (req, res) => {
-    const {email} = req.query;
+    const {email} = req.params;
     try{
         const results = await emailUser(email);
         res.status(200).json( results );
