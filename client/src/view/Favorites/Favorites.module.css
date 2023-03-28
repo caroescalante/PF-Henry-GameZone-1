@@ -1,5 +1,5 @@
 .background{
-    background-image: url("../../Image/3.jpg");
+    background-image: url("../../Image/video-games-gamers-wallpaper-preview.jpg");
     justify-content: center;
     align-items: center;
     min-height: 100vh;
@@ -131,3 +131,12 @@
 .trashButton i {
     margin-right: 5px; /* Espaciado entre el icono y el texto */
   }
+
+  .title{
+    display: block;
+    font-size: 30px;
+    font-weight: bold;
+    color: white; 
+    padding-top: 20px; 
+    padding-left: 500px;  
+} 

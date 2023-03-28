@@ -10,8 +10,7 @@ const ProfileUser = () => {
   const image = useSelector((state) => state.image)
 
 
-    return (
-        <div className={style.user}>
+    return ( <div className={style.user}>
             <div className={style.registration}>
                 <div className={style.container}>
                      <header>Your Profile</header>
@@ -38,12 +37,11 @@ const ProfileUser = () => {
                     </Link>
                 </div>
                 </div>
-           
+                </div>
+                </div>
+           )
 
-            </div>
-        </div>
-        
-    )
-}
+  
+};
 
 export default ProfileUser;

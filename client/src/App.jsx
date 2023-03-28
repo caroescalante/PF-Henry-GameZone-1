@@ -15,6 +15,7 @@ import PaymentSuccess from "./view/PaymentSuccess/PaymentSuccess";
 import PaymentFailure from "./view/PaymentFailure/PaymentFailure";
 import Error404 from "./view/Error404/Error404";
 import News from "./view/News/News";
+import Login from "./view/Login/Login";
 
 function App() {
   return (
@@ -31,8 +32,10 @@ function App() {
         <Route exact path="/paymentsuccess" component={PaymentSuccess} />
         <Route exact path="/cart" component={ShopCart} />
         <Route exact path="/paymentfailure" component={PaymentFailure} />
+        <Route exact path="/login" component={Login} />
         <Route path="/news" component={News}/>
         <Route path="*" component={Error404} />
+        
       </Switch>
         <Footer />
     </div>
