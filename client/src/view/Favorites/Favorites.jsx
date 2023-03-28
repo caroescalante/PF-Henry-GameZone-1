@@ -19,12 +19,12 @@ const Favorites = () => {
         <div className={style.background}>
             <div className={style.containerAllCards}>
             {favorites.length ? favorites.map((favorite, index) => {
-                return <div className={style.containerCards}>
-                        <div className={style.favoriteCard} key={index}>
+                return <div className={style.containerCards} key={index}>
+                        <div className={style.favoriteCard}>
                          <img src={favorite.image} alt="favorite-image" className={style.favoriteImage} />
                         <h2 className={style.favoriteName}>{favorite.name}</h2>
                         <div className={style.favoriteButton}>
-                          <button onClick={() => removeFavHandler(favorite.id)} className={style.trashButton}><i class="fas fa-trash"></i></button>
+                          <button onClick={() => removeFavHandler(favorite.id)} className={style.trashButton}><i className="fas fa-trash"></i></button>
                         </div>
                         </div>
                 </div>          
