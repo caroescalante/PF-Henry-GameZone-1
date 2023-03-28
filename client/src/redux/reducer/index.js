@@ -20,6 +20,7 @@ import {
   // DECREMENT_QUANTITY,
   CLEAR_CART,
   REMOVE_FAVORITE,
+  // CHARGE_STATE,
 } from "../actions/types";
 
 const initialState = {
@@ -37,6 +38,7 @@ const initialState = {
   filterPlataforms: 'All',
   favorites: JSON.parse(localStorage.getItem("favorites")) || [],
   cart: JSON.parse(localStorage.getItem('cart')) || [],
+  image: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -318,6 +320,12 @@ function rootReducer(state = initialState, action) {
         ...state,
          cart: []
       };
+
+    // case CHARGE_STATE:
+    //   return{
+    //     ...state,
+    //     image: action.payload
+    //   }
 
       
   default: return { ...state }

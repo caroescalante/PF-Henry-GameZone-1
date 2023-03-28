@@ -48,21 +48,25 @@ const createUserHandler = async (req,res) => {
 
 const updateUserHandler = async (req, res) => {
 
-    const { id } = req.params;
+    const { email } = req.params;
     const newData = req.body;
 
     try {
-        const user = await updateUser(id, newData)
-        res.json(user);    
-
+        const results = await emailUser(email);
+        if(results === true) {
+            await createUser(email, newData)
+        return('User created')}
+        else {
+            const user = await updateUser(email, newData)
+            res.json(user);  
+        }
     } catch ( error ) {
         res.status(400).json({ error: error.menssage });
     }
 };
 
 const emailUserHandler = async (req, res) => {
-    const {email} = req.query;
-
+    const {email} = req.params;
     try{
         const results = await emailUser(email);
         res.status(200).json( results );
@@ -77,5 +81,5 @@ module.exports = {
     getUserHandler,
     createUserHandler,
     updateUserHandler,
-    emailUserHandler
+    emailUserHandler,
 };
