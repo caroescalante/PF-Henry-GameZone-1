@@ -8,7 +8,7 @@ class PaymentService {
     const url = "https://api.mercadopago.com/checkout/preferences";
     console.log(datos)
     const body = {
-      payer_email: "test_user_36100631@testuser.com",
+      payer_email: "TEST_USER_132757737",
       items: datos.items,
       back_urls: {
         failure: "http://localhost:5173/paymentfailure",

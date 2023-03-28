@@ -2,9 +2,6 @@ import React from "react";
 import style from "./Favorites.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { removeFavorite } from "../../redux/actions/index";
-// import { render } from "react-dom";
-// import { faHome } from "@fortawesome/free-solid-svg-icons";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Favorites = () => {
     const dispatch = useDispatch();
