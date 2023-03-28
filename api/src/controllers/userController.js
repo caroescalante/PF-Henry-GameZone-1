@@ -14,13 +14,10 @@ const { User } = require ("../db")
 // 	}
 // ];
 
-const createUser = async (
-    name, surname, phone, password, email,  ) => {
-
-    const newUser = await User.create({name, surname, phone, password, email});
-
-    return newUser;    
-};
+const createUser = async (userData) => {
+    const newUser = await User.create(userData);
+    return newUser;
+  };
 
 const getUserById = async (id) => {
 
@@ -46,28 +43,22 @@ const searchUserByName = async (name) => {
 };
 
 const updateUser = async (email, newData) => {
-
-    const [rowsAffected, [updateUser]] = await User.update(newData,{
-        where: {
-            email: email,
-        },
-        returning: true,
+    const [rowsAffected, [updatedUser]] = await User.update(newData, {
+      where: {
+        email: email,
+      },
+      returning: true,
     });
-
-    if ( rowsAffected === 0) {
-        return res.status(404).json({ error: "User not found" });
-    }
-
-    return updateUser;
-}
-
-const emailUser = async (email) => {
-console.log('llegue');
-    const dataBaseEmail = await User.findOne({where: { email: email.trim().toLowerCase()}});
-    console.log(dataBaseEmail)
-    if(!dataBaseEmail) return (true)
-    else return dataBaseEmail;
-};
+    return [rowsAffected, updatedUser];
+  };
+  
+  const emailUser = async (email) => {
+    const dataBaseEmail = await User.findOne({
+      where: { email: email.trim().toLowerCase() },
+    });
+    if (!dataBaseEmail) return true;
+    else return false;
+  };
 
 module.exports = { 
     createUser,

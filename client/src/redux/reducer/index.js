@@ -20,7 +20,7 @@ import {
   // DECREMENT_QUANTITY,
   CLEAR_CART,
   REMOVE_FAVORITE,
-  // CHARGE_STATE,
+  CHARGE_IMAGE,
 } from "../actions/types";
 
 const initialState = {
@@ -321,11 +321,11 @@ function rootReducer(state = initialState, action) {
          cart: []
       };
 
-    // case CHARGE_STATE:
-    //   return{
-    //     ...state,
-    //     image: action.payload
-    //   }
+    case CHARGE_IMAGE:
+      return{
+        ...state,
+        image: action.payload
+      }
 
       
   default: return { ...state }
