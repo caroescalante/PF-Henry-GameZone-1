@@ -10,6 +10,7 @@
 }
 
 .card{
+    text-decoration: none;
     height: 300px;
     width: 410px;
     display:inline-block;
@@ -35,6 +36,9 @@
     justify-content: center;
     color: aqua;
     text-align: center;
+    cursor:pointer;
+
+  
     }
 .imag {
         width: 100%;
@@ -57,4 +61,24 @@
     background: linear-gradient(to right, rgb(183, 0, 255), aqua); 
     font-family: 'poppins',sans-serif;
     font-style: italic;
+    
+}
+.card:hover{
+    background-color: aqua;
+    color: black;  
+    filter: sepia(70%);
+    transform: rotate(-10deg) scale(0.8);
+    transform: translateY(-5px);  
+    box-shadow: rgb(0, 0, 0) 5px 5px 5px 0px; 
+}
+.info{
+    position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  transform: translateY(0%);
+  transition: transform 0.3s ease-in-out;
 }
