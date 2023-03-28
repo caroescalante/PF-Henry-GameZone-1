@@ -1,6 +1,6 @@
 import React from "react";
 import { useAuth0 } from "@Auth0/auth0-react";
-import style from "../Favorites/Favorites.module.css";
+import style from "./ProfileUser.module.css";
 import {Link} from 'react-router-dom'
 import { useSelector } from 'react-redux';
 

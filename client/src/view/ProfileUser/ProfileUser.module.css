@@ -3,7 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
-    color:aqua;
+    color:black;
     font-size: 12px;
     font-weight: 500;
 }
@@ -16,24 +16,12 @@
     background-image: url("../../Image/registration.jpg");    
 }
 
-.container{
-    background: rgba(0,0,0,.6);
-    border-radius: 6px;
-    border: 2px solid rgb(72, 134, 134);
-    backdrop-filter: blur(15px);
-    position: relative;
-    max-width: 900px;
-    width: 100%;
-    padding: 30px;
-    margin: 0 15px;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-}
 
 .container header{
     position: relative;
     font-size: 40px;
     font-weight: 400;
-    color: aqua;
+    color: black;
 }
 
 .container header::before{
