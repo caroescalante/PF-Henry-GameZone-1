@@ -1,7 +1,5 @@
 import React from "react";
 import { useAuth0 } from "@Auth0/auth0-react";
-<<<<<<< HEAD
-=======
 // import style from "../Favorites/Favorites.module.css"
 
 // const ProfileUser = () => {
@@ -28,7 +26,6 @@ import { useAuth0 } from "@Auth0/auth0-react";
 // };
 
 // export default ProfileUser;
->>>>>>> 6ede3cb26c4a66c7c48a1f36f743b5bc66acd561
 import style from "../Favorites/Favorites.module.css";
 
 const ProfileUser = () => {
