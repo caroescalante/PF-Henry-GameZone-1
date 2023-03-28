@@ -21,7 +21,7 @@ function generatePrice(rating) {
 const getAllGames = async () => {
                                           //Base de datos
       let dbGames = await Videogame.findAll({
-        attributes: ['id','name', 'image', 'rating','price', 'created'],
+        attributes: ['id','name', 'image', 'rating','price', 'created','released'],
           include: [ 
          {
             model: Genre,
@@ -48,6 +48,7 @@ const getAllGames = async () => {
       price: el.price,
       genres: el.genres.map((genre) => genre.name).join(', '),
       platforms: el.platforms.map((platform) => platform.name).join(', '),
+      released:el.released,
       }));
 
   
@@ -65,7 +66,8 @@ const getAllGames = async () => {
                   rating: el.rating,
                   genres: el.genres.map((el) => el.name).join(', '),
                   platforms: el.platforms.map((el) => el.platform.name).join(', '),
-                  price: price
+                  price: price,
+                  released:el.released
               }
           })
           resultAll = [...resultAll, ...gamesMap]  //concateno api y bdd con el spread operator.
