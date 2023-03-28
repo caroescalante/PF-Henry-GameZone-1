@@ -1,10 +1,13 @@
 import React from "react";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth0 } from "@Auth0/auth0-react";
 import style from "../Favorites/Favorites.module.css";
 import {Link} from 'react-router-dom'
+import { useSelector } from 'react-redux';
+
 
 const ProfileUser = () => {
   const { user, isAuthenticated } = useAuth0();
+  const image = useSelector((state) => state.image)
 
 
     return (
@@ -17,8 +20,9 @@ const ProfileUser = () => {
                     <div>
                          { isAuthenticated && (
                             <div> 
-                                <img src={user.picture} />
-                                <br />
+                                <img src={image} />
+                                {console.log(image)}
+                                 <br />
                                 <h2>User Name: {user.name} </h2>
                                 <br />
                                 <h2>Email: {user.email}</h2>

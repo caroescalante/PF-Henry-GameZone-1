@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { useDropzone } from 'react-dropzone';
 import style from '../RegistrationForm/RegistrationForm.module.css';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
+import { chargeImage } from '../../redux/actions';
 
 const CLOUD_NAME = import.meta.env.VITE_CLOUD_NAME;
 const UPLOAD_PRESET_NAME = import.meta.env.VITE_UPLOAD_PRESET_NAME;
@@ -14,9 +15,11 @@ const cookies = new Cookies();
 const RegistrationForm = () => {
   const history = useHistory();
   const { email } = useParams();
+  const dispatch = useDispatch()
 
 
   const user = useSelector((state) => state.users);
+  const image = useSelector((state)=> state.image)
   
   const [uploadedImageUrl, setUploadedImageUrl] = useState();
 
@@ -51,8 +54,8 @@ const RegistrationForm = () => {
 
   const submitHandler =  async (event) => {
     event.preventDefault();
-    await axios.put(`http://localhost:3001/user/${email}`, {...data, image: uploadedImageUrl});
-    console.log(image);
+    await axios.put(`http://localhost:3001/user/${email}`, {...data, image: uploadedImageUrl, ...image=uploadedImageUrl});
+    console.log(...image);
     setData({
       name: "",
       surname: "",
@@ -61,6 +64,10 @@ const RegistrationForm = () => {
     });
     history.push("/");
   };
+  function handlerChargeImage(e) {
+    e.preventDefault();
+    dispatch(chargeImage(e.target.value));
+}
   
   return (
     <div className={style.user}>
@@ -73,11 +80,14 @@ const RegistrationForm = () => {
             <div {...getRootProps()} className={style.fields} >
               <input {...getInputProps()}/>
               {uploadedImageUrl ? (
-                <img src={uploadedImageUrl} alt="Uploaded image, please click on Record Data" />
+                <img src={uploadedImageUrl} alt="Uploaded image, please click on Record Data"  />
               ) : (
                 <p>Drag and drop an image here or click to select an image</p>
               )}
             </div>
+            <button  onClick={e => handlerChargeImage(e)}> 
+                   Upload your image
+              </button><br/>
           </div>
 
           <form onSubmit={submitHandler}>
