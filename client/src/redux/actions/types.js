@@ -19,6 +19,6 @@ export const CLEAR_CART = "CLEAR_CART"
 // export const NT_QUANTITY = " DECREMENT_QUANTITY"
 export const REMOVE_FAVORITE = "REMOVE_FAVORITE";
 export const REMOVE_FROM_CART = "REMOVE_FROM_CART"
-// export const CHARGE_STATE = "CHARGE_STATE"
+export const CHARGE_IMAGE = "CHARGE_IMAGE"
 
 

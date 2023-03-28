@@ -18,7 +18,7 @@ import {
   REMOVE_FROM_CART,
   CLEAR_CART,
   REMOVE_FAVORITE,
-  // CHARGE_STATE
+  CHARGE_IMAGE
 } from "./types";
 
 import axios from 'axios';
@@ -198,3 +198,11 @@ export function clearCart(){
 export const removeFavorite = (id) => {
   return { type: REMOVE_FAVORITE, payload: id };
 };
+
+
+export function chargeImage(payload) {
+  return {
+    type: CHARGE_IMAGE,
+    payload
+  };
+}
