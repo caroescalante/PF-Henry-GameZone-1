@@ -54,7 +54,7 @@ const RegistrationForm = () => {
 
   const submitHandler =  async (event) => {
     event.preventDefault();
-    await axios.post(`http://localhost:3001/user/`, {...data, image: uploadedImageUrl});
+    await axios.put(`http://localhost:3001/user/`, {...data, image: uploadedImageUrl});
     setData({
       name: "",
       surname: "",
@@ -120,6 +120,7 @@ const RegistrationForm = () => {
                       onChange={changeHandler}
                     ></input>
                   </div>
+                  
                   <div>
                     <label>Email</label>
                     <input

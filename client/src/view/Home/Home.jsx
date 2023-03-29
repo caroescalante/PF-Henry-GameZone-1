@@ -10,6 +10,7 @@ import styles from './Home.module.css';
 import Paginated from "../../components/Paginated/Paginated";
 import { Link, useHistory } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import axios from "axios";
 
 
 
@@ -83,6 +84,10 @@ const Home = () => {
     function handleSearch() {
       setCurrentPage(1);
     }
+
+    const db = async () => {
+      await axios.get()
+    };
 
     useEffect(() => {
       if (isAuthenticated) {
