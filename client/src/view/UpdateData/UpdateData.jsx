@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { useSelector} from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { useDropzone } from 'react-dropzone';
@@ -7,6 +7,7 @@ import axios from 'axios';
 import Cookies from 'universal-cookie';
 import { emailUser } from '../../redux/actions';
 import { useAuth0 } from '@Auth0/auth0-react';
+import { useDispatch } from 'react-redux';
 
 const CLOUD_NAME = import.meta.env.VITE_CLOUD_NAME;
 const UPLOAD_PRESET_NAME = import.meta.env.VITE_UPLOAD_PRESET_NAME;
@@ -31,7 +32,7 @@ const UpdateData = () => {
   const { user, isAuthenticated } = useAuth0();
   
   const [uploadedImageUrl, setUploadedImageUrl] = useState();
-  console.log(e);
+  console.log(estadoEmail);
 
   const {
     image,

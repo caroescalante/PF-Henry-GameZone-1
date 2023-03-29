@@ -54,7 +54,7 @@ const RegistrationForm = () => {
 
   const submitHandler =  async (event) => {
     event.preventDefault();
-    await axios.put(`http://localhost:3001/user/`, {...data, image: uploadedImageUrl});
+    await axios.post(`http://localhost:3001/user/`, {...data, image: uploadedImageUrl});
     setData({
       name: "",
       surname: "",
@@ -70,7 +70,7 @@ const RegistrationForm = () => {
     <div className={style.user}>
       <div className={style.registration}>
         <div className={style.container}>
-          <header>Update your data</header>
+          <header>Register your data</header>
           <br />
 
           <div>
