@@ -5,10 +5,12 @@ import {Link} from 'react-router-dom'
 import { useSelector } from 'react-redux';
 
 
+
 const ProfileUser = () => {
   const { user, isAuthenticated } = useAuth0();
   const image = useSelector((state) => state.image)
 
+  
 
     return ( <div className={style.user}>
             <div className={style.registration}>

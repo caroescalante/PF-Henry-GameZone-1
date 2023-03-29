@@ -1,4 +1,5 @@
 import React from "react";
+import { useAuth0 } from '@Auth0/auth0-react';
 import CardsContainer from '../../components/CardsContainer/CardsContainer'
 import Navbar from '../../components/Navbar/Navbar';
 import SearchBar from '../../components/Searchbar/Searchbar';
@@ -7,10 +8,17 @@ import { useEffect, useState } from "react";
 import { getGames, getGenres, filterByGenres, getPlatforms, filterByPlatforms,orderByName,orderByRating,orderByPrice,clearDetail} from "../../redux/actions";
 import styles from './Home.module.css';
 import Paginated from "../../components/Paginated/Paginated";
+import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
+
+
+
 
 const Home = () => {
     const dispatch = useDispatch();
     const allGames = useSelector(state => state.allGames);
+    const { user, isAuthenticated } = useAuth0();
+
     const [orden, setOrden] = useState('')
     const [currentPage, setCurrentPage] = useState(1)
     const [gamesPerPage, setGamesPerPage] = useState(9)
@@ -75,10 +83,27 @@ const Home = () => {
       setCurrentPage(1);
     }
 
+    useEffect(() => {
+      if (isAuthenticated) {
+          Swal.
+          fire({
+              html: '<div style="max-height: 450px;"><Link to="/registration"> Hola, mundo</Link> <br><br><p style="color:white;">porfa funcioná</p></div>',
+              background: '#000000',
+              backdrop: 'rgba(0, 0, 0, 0.8)',
+              confirmButtonColor: '#ff0000',
+              confirmButtonText: 'GO!',
+          })
+          .then(result => {
+            if(result){
+              <Link to='localhost:5173/registration/'></Link>
+            } else {return('esto es una poronga')}
+          })
+      }
+  }, [isAuthenticated]);
+
 
     return (
         <div className={styles.home}>
-
            
           <div>
             <Paginated
