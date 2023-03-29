@@ -1,5 +1,5 @@
 import React from "react";
-import { useAuth0 } from '@Auth0/auth0-react';
+import { useAuth0 } from '@auth0/auth0-react';
 import CardsContainer from '../../components/CardsContainer/CardsContainer'
 import Navbar from '../../components/Navbar/Navbar';
 import SearchBar from '../../components/Searchbar/Searchbar';
@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { getGames, getGenres, filterByGenres, getPlatforms, filterByPlatforms,orderByName,orderByRating,orderByPrice,clearDetail} from "../../redux/actions";
 import styles from './Home.module.css';
 import Paginated from "../../components/Paginated/Paginated";
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 
@@ -18,6 +18,7 @@ const Home = () => {
     const dispatch = useDispatch();
     const allGames = useSelector(state => state.allGames);
     const { user, isAuthenticated } = useAuth0();
+    const history = useHistory();
 
     const [orden, setOrden] = useState('')
     const [currentPage, setCurrentPage] = useState(1)
@@ -95,7 +96,7 @@ const Home = () => {
           })
           .then(result => {
             if(result){
-              <Link to='localhost:5173/registration/'></Link>
+              history.push("/registration/")
             } else {return('esto es una poronga')}
           })
       }
