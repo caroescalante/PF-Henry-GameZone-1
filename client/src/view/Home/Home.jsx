@@ -1,11 +1,10 @@
 import React from "react";
-import { useAuth0 } from '@auth0/auth0-react';
+import { useAuth0 } from '@Auth0/auth0-react';
 import CardsContainer from '../../components/CardsContainer/CardsContainer'
-import Navbar from '../../components/Navbar/Navbar';
 import SearchBar from '../../components/Searchbar/Searchbar';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from "react";
-import { getGames, getGenres, filterByGenres, getPlatforms, filterByPlatforms,orderByName,orderByRating,orderByPrice,clearDetail} from "../../redux/actions";
+import { getGames, getGenres, filterByGenres, getPlatforms, filterByPlatforms,orderByName,orderByRating,orderByPrice,clearDetail, emailUser} from "../../redux/actions";
 import styles from './Home.module.css';
 import Paginated from "../../components/Paginated/Paginated";
 import { Link, useHistory } from 'react-router-dom';
@@ -20,6 +19,7 @@ const Home = () => {
     const allGames = useSelector(state => state.allGames);
     const { user, isAuthenticated } = useAuth0();
     const history = useHistory();
+    const estadoEmail= useSelector((state)=>state.emailUser)
 
     const [orden, setOrden] = useState('')
     const [currentPage, setCurrentPage] = useState(1)
@@ -85,27 +85,31 @@ const Home = () => {
       setCurrentPage(1);
     }
 
-    const db = async () => {
-      await axios.get()
-    };
 
     useEffect(() => {
       if (isAuthenticated) {
-          Swal.
-          fire({
+        const db = async () => await dispatch(emailUser(user.email));
+        let variable = user.email
+        db().then((result) => {
+          console.log(result);
+          if (result.payload === true) {
+            Swal.fire({
               html: '<div style="max-height: 450px;"><Link to="/registration"> Hola, mundo</Link> <br><br><p style="color:white;">porfa funcioná</p></div>',
               background: '#000000',
               backdrop: 'rgba(0, 0, 0, 0.8)',
               confirmButtonColor: '#ff0000',
               confirmButtonText: 'GO!',
-          })
-          .then(result => {
-            if(result){
-              history.push("/registration/")
-            } else {return('esto es una poronga')}
-          })
+            })
+            .then(result => {
+              if(result){
+                history.push("/registration/")
+              } else {return('esto es una poronga')}
+            })
+          }
+        });
       }
-  }, [isAuthenticated]);
+      // console.log(variable);
+    }, [dispatch, variable]);
 
 
     return (

@@ -71,11 +71,10 @@ const updateUserHandler = async (req, res) => {
 
 const emailUserHandler = async (req, res) => {
     const { email } = req.params;
-
+    console.log(email);
+  console.log('entre')
   try {
-    const dataBaseEmail = await User.findOne({
-      where: { email: email.trim().toLowerCase() }
-    });
+    const dataBaseEmail = await emailUser(email)
     res.status(200).json(dataBaseEmail);
   } catch (error) {
     res.status(400).json({ error: error.message });
