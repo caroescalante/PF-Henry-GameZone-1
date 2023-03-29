@@ -1,19 +1,23 @@
 import React, { useState } from 'react';
-import { useSelector} from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { useHistory, useParams } from 'react-router-dom';
 import { useDropzone } from 'react-dropzone';
-import style from './RegistrationForm.module.css';
+import style from './UpdateData.module.css';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
 import { chargeImage } from '../../redux/actions';
 
 const CLOUD_NAME = import.meta.env.VITE_CLOUD_NAME;
 const UPLOAD_PRESET_NAME = import.meta.env.VITE_UPLOAD_PRESET_NAME;
+
 const cookies = new Cookies();
 
-
-const RegistrationForm = () => {
+const UpdateData = () => {
   const history = useHistory();
+  const { email } = useParams();
+  const dispatch = useDispatch()
+
+
   const user = useSelector((state) => state.users);
   const image = useSelector((state)=> state.image)
   
@@ -51,7 +55,7 @@ const RegistrationForm = () => {
 
   const submitHandler =  async (event) => {
     event.preventDefault();
-    await axios.post(`http://localhost:3001/user/`, {...data, image: uploadedImageUrl});
+    await axios.put(`http://localhost:3001/user/${email}`, {...data, image: uploadedImageUrl});
     setData({
       name: "",
       surname: "",
@@ -93,7 +97,7 @@ const RegistrationForm = () => {
                 <span className={style.title}>Personal Details</span>
                 <div className={style.fields}>
                   <div>
-                    <label>Name</label>
+                    <label>Names</label>
                     <input
                       type="text"
                       value={data.name}
@@ -154,4 +158,5 @@ const RegistrationForm = () => {
   );
 }
 
-export default RegistrationForm;
+export default UpdateData;
+
