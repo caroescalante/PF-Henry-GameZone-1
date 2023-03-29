@@ -2,9 +2,6 @@ import React from "react";
 import style from "./Favorites.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { removeFavorite } from "../../redux/actions/index";
-// import { render } from "react-dom";
-// import { faHome } from "@fortawesome/free-solid-svg-icons";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Favorites = () => {
     const dispatch = useDispatch();
@@ -17,7 +14,6 @@ const Favorites = () => {
     return (
         
         <div className={style.background}>
-            <h1 className={style.title}>Add here your favorite games</h1>
             {favorites.length ? 
                
             <div className={style.containerAllCards}>
@@ -30,9 +26,9 @@ const Favorites = () => {
                          </div>
                        </div>          
                 }) 
-                };
+                }
             </div> 
-           : (<p className={style.favoriteEmpty}>No games have been added to favorites.</p>) 
+           : (<p className={style.favoriteEmpty}>No games were added to favorites</p>) 
    }
         </div>
         

@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./News.module.css";
 import {useSelector } from 'react-redux';
-import CardsContainer from '../../components/CardsContainer/CardsContainer'
+import { Link } from "react-router-dom";
 
 const News = () => {
 
@@ -29,12 +29,15 @@ const News = () => {
             {allGames2.length > 0 ?
                 allGames2?.map ((el) =>{
                     return(
-                        <div key={el.id} className={style.card}>
+                                <Link key={el.id} className={style.card} to={`game/${el.id}`}>
+                        <div className={style.info}>
                             <p>{el.name}</p>
                             <p>{el.released}</p>
+                            <p>{el.description}</p>
+                            </div>
                             <img className={style.imag} src={el.image}/>
 
-                        </div>
+                        </Link>
                     )}) : 
                     <div>
                         
