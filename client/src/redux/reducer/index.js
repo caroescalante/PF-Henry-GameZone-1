@@ -167,7 +167,8 @@ function rootReducer(state = initialState, action) {
       case CLEAR_DETAIL:
           return{
               ...state,
-              detail:[]
+              detail:[],
+              allGames:[]
           }; 
           
       case GET_USERS:
@@ -325,8 +326,9 @@ function rootReducer(state = initialState, action) {
       return{
         ...state,
         image: action.payload
-      }
-
+      };
+    
+      
       
   default: return { ...state }
   }
