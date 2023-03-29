@@ -1,3 +1,79 @@
 .home{
-    background-color: rgb(20, 20, 20);
+    background-image: url("../../Image/home.jpg");
+}
+.loader {
+  position: relative;
+  border: 72px solid #f2d648;
+  border-radius: 50%;
+  box-sizing: border-box;
+  animation: eat 1s linear infinite;
+}
+.loader::after , .loader::before {
+  content: '';
+  position: absolute;
+  left: 50px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #f2d648;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  box-sizing: border-box;
+  opacity: 0;
+  animation: move 2s linear infinite;
+}
+
+.loader::before {
+  animation-delay: 1s;
+}
+
+@keyframes eat {
+  0% , 49% { border-right-color: #f2d648 }
+  50% , 100% { border-right-color: #0000 }
+}
+@keyframes move {
+  0% { left: 150px ; opacity: 1}
+  50% { left: 0px; opacity: 1 }
+  52%, 100% { left: -5px; opacity: 0; }
+}
+
+  .img {
+    width: 100vw;
+    height: 100vh;
+    background-attachment:fixed;   
+    background-size: 100%;
+    display: grid;
+    place-items: center;
+    color:aqua;
+    font-size:140px;
+  }
+  .filter {
+    position: relative;
+    left: 300px;
+    top: 5px;
+    margin-left: 8px ;
+    margin-right: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 10%;
+    height: 100%;
+    text-align: center;
+    font-size: 13px;
+    color: rgb(0, 0, 0);
+    background: aqua;
+    border-radius: 4px;
+    border: 2px solid #050141;
+    cursor: pointer;
+    font-family:'Trebuchet MS', sans-serif;
+}
+.filter:hover{
+  border-color: aliceblue;
+  background-color: rgba(0, 0, 0, 0.63);
+  color :aqua;
+}
+
+.search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

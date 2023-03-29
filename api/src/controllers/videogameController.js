@@ -6,11 +6,24 @@ const { API_KEY } = process.env;
 const { Op } = require('sequelize')
 
 
+function generatePrice(rating) {
+  let price;
+  if (rating <= 1) {
+    price = 1.999;
+  } else if (rating < 3) {
+    price = 4.999;
+  } else if (rating <= 5) {
+    price = Math.round(rating * 6666) / 2;
+  }
+  return price;
+}
+
 const getAllGames = async () => {
                                           //Base de datos
       let dbGames = await Videogame.findAll({
-        attributes: ['id','name', 'image', 'rating', 'created'],
-          include: [ {
+        attributes: ['id','name', 'image', 'rating','price', 'created','released'],
+          include: [ 
+         {
             model: Genre,
             attributes: ["name"],
             through: {
@@ -32,34 +45,35 @@ const getAllGames = async () => {
       name: el.name,
       image: el.image,
       rating: el.rating,
+      price: el.price,
       genres: el.genres.map((genre) => genre.name).join(', '),
       platforms: el.platforms.map((platform) => platform.name).join(', '),
+      released:el.released,
       }));
-                                  
-                                          //Api
-      let apiGames = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page_size=100`);
-      let response = apiGames.data.results.map(el => {
-          return{
-              id: el.id,
-              name: el.name,
-              image: el.background_image,
-              rating: el.rating,
-              genres: el.genres.map((el) => el.name).join(', '),
-              platforms: el.platforms.map((el) => el.platform.name).join(', ')
-          }
-      })
-      resultAll = [...resultAll, ...response]
-     
-      if (!resultAll) {
-        // Lanzamiento de un error personalizado
-        const error = new Error("sorry, we can't obtain all games ☹");
-        error.name = 'NotFoundError';
-        error.status = 404;
-        throw error;
-      }
-      return resultAll;
-};  
 
+  
+      //Api
+      let pages = 0;
+      let response = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}`)
+      while(pages < 4){ //obtener 80 resultados.
+          pages++;
+          const gamesMap = response.data.results.map(el => {
+          const price = generatePrice(el.rating);
+              return {
+                  id: el.id,  
+                  name: el.name,
+                  image: el.background_image, 
+                  rating: el.rating,
+                  genres: el.genres.map((el) => el.name).join(', '),
+                  platforms: el.platforms.map((el) => el.platform.name).join(', '),
+                  price: price,
+                  released:el.released
+              }
+          })
+          resultAll = [...resultAll, ...gamesMap]  //concateno api y bdd con el spread operator.
+          response = await axios.get(response.data.next)
+      }  return resultAll;
+}  
 
 
 
@@ -67,7 +81,7 @@ const getGameByName = async(name) =>{
     
                                       //Base de datos
     let db = await Videogame.findAll({
-      attributes: ['id', 'name','image','rating', 'created'],
+      attributes: ['id', 'name','image','rating','price', 'created'],
       where:{
           name : {
               [Op.iLike]: `%${name}%`  
@@ -84,7 +98,7 @@ const getGameByName = async(name) =>{
         }
       ]
     });
-
+ 
       const dbGames = db.map((game) => {
         const genres = game.genres.map(gen => gen.name).join(', ');
         const platforms = game.platforms.map((plat) => plat.name).flat().sort().join(', ');
@@ -100,13 +114,15 @@ const getGameByName = async(name) =>{
                                       //Api
     let apiName = await axios.get(`https://api.rawg.io/api/games?search=${name}&key=${API_KEY}`);
     let results = apiName.data.results.map(el => {
+    const price = generatePrice(el.rating);
     return{
         id: el.id,
         name: el.name,
         image: el.background_image,
         rating: el.rating,
         genres: el.genres.map(el => el.name).join(',  '),
-        platforms: el.platforms.map(el => el.platform.name).flat().sort().join(',  ')
+        platforms: el.platforms.map(el => el.platform.name).flat().sort().join(',  '),
+        price: price
         }
     })
     response = [...response, ...results]
@@ -125,7 +141,7 @@ const getGameByName = async(name) =>{
 
 
 const postGame = async(gamePost) => {
-  
+  console.log('crear juego', gamePost);
     try {
     const { name, description, released, rating, image, price, website, genres, platforms } = gamePost
 
@@ -133,7 +149,7 @@ const postGame = async(gamePost) => {
     if (!description) throw new Error('The description field is required');
     if (!platforms) throw new Error('The platforms field is required');
     if (!genres) throw new Error('The genres field is required');
-    if (typeof rating !== 'number' || rating < 0 || rating > 5) {
+    if (rating < 0 || rating > 5) {
     throw new Error('The rating field must be a number between 0 and 5 (e.g. 4.5)');
     }
 
@@ -147,21 +163,38 @@ const postGame = async(gamePost) => {
       website,
       // platforms
     })
-    let genresDb = await Genre.findAll({
-      where: {
 
-              name : genres 
-          }, 
+    genres.map(async (gen)=>{
+      const genresDb = await Genre.findAll({
+        where:{name : gen}
+       })
+    const respgenre = await gameCreated.addGenre(genresDb);
+       console.log(respgenre);  
     });
-    await gameCreated.addGenre(genresDb);
-
-
-    let platformsDb = await Platform.findAll({
-      where: {
-              name : platforms 
-          }, 
+    
+    platforms.map(async(plat)=>{
+        const platformsDb = await Platform.findAll({
+            where:{name : plat}
+        })
+        const respPlatform = await gameCreated.addPlatform(platformsDb);
+        console.log(respPlatform);
     });
-    await gameCreated.addPlatform(platformsDb);
+    
+    // let genresDb = await Genre.findAll({
+    //   where: {
+
+    //           name : genres 
+    //       }, 
+    // });
+    //await gameCreated.addGenre(genresDb);
+
+
+    // let platformsDb = await Platform.findAll({
+    //   where: {
+    //           name : platforms 
+    //       }, 
+    // });
+    //await gameCreated.addPlatform(platformsDb);
 
     return gameCreated;
     } catch (error) {
@@ -177,7 +210,7 @@ const getById = async(id) =>{
     if(isNaN(id)){
       
       let videogameIdDb = await Videogame.findOne({
-        attributes: ['id', 'name', 'description', 'released', 'image', 'rating', 'created'],
+        attributes: ['id', 'name', 'description', 'released','price','website', 'image', 'rating', 'created'],
         where: {
             id: id     
         },      
@@ -211,6 +244,7 @@ const getById = async(id) =>{
     } else if(!isNaN(id)){
       let gameId = await axios.get(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`)
       let gameData = gameId.data;
+      const price = generatePrice(gameData.rating);
       if (!gameData.id) {
         throw new Error("ID of videogame not found :'c"); //** sin terminar
       }
@@ -218,15 +252,32 @@ const getById = async(id) =>{
           id: gameData.id,
           name: gameData.name,
           image: gameData.background_image,
-          description: gameData.description,
+          description: gameData.description_raw ,
           released: gameData.released,
           rating: gameData.rating,
+          website: gameData.website,
           platforms: gameData.platforms.map(el => el.platform.name).flat().sort().join(',  '),
-          genres: gameData.genres.map(el => el.name).join(',  ')
-        
+          genres: gameData.genres.map(el => el.name).join(',  '),
+          price: price
         }  
         return game
     }
+};
+
+const updateVideogame = async (id, newData) => {
+
+  const [rowsAffected, [updateVideogame]] = await Videogame.update(newData,{
+    where: {
+        id: id,
+    },
+    returning: true,
+  });
+
+  if ( rowsAffected === 0) {
+    return res.status(404).json({ error: "User not found" });
+  }
+
+  return updateVideogame;
 };
 
 
@@ -235,5 +286,6 @@ module.exports = {
     getAllGames,
     getGameByName,
     postGame,
-    getById
+    getById,
+    updateVideogame,
 }

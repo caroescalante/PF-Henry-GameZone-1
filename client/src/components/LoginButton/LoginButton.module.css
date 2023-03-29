@@ -1,0 +1,17 @@
+.login ion-icon {
+    color:aqua;
+    padding: 10px 10px;   
+    background-color: black;
+    border-radius: 50px;
+    border: none; 
+}
+
+.login ion-icon:hover {   
+    color: aqua;
+    box-shadow: 1px 1px 20px 8px aqua;
+    border-radius: 50px;
+    transform: translateY(5px);
+    padding: 10px 10px;  
+    background-color: black;
+    border: none;  
+}

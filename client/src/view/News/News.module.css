@@ -1,0 +1,84 @@
+.background{
+    background-image: url("../../Image/pexels-lucie-liz-3165335.jpg");
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+}
+
+.card{
+    text-decoration: none;
+    height: 300px;
+    width: 410px;
+    display:inline-block;
+    flex-direction: column;
+    position: relative;
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    left: 20px;
+    overflow: hidden;
+    z-index: 1;
+    touch-action: none;
+    border-radius: 10px;
+    box-shadow: -5px -5px 5px -5px var(--color1), 5px 5px 5px -5px var(--color2), -7px -7px 10px -5px transparent, 7px 7px 10px -5px transparent, 0 0 5px 0px rgba(255, 255, 255, 0), 0 55px 35px -20px rgba(0, 0, 0, 0.5);
+    transition: transform 0.5s ease, box-shadow 0.2s ease;
+    will-change: transform, filter;
+    background-color: #040712;
+    background-image: var(--front);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    transform-origin: center;
+    justify-content: center;
+    color: aqua;
+    text-align: center;
+    cursor:pointer;
+
+  
+    }
+.imag {
+        width: 100%;
+        height: 100%;
+        background-attachment:fixed;   
+        background-size: 100%;
+        align-items: center;
+        display: grid;
+        place-items: center;
+        color:aqua;
+        font-size:20px;
+}
+.titulo{
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: black; 
+    background: linear-gradient(to right, rgb(183, 0, 255), aqua); 
+    font-family: 'poppins',sans-serif;
+    font-style: italic;
+    
+}
+.card:hover{
+    background-color: aqua;
+    color: black;  
+    filter: sepia(70%);
+    transform: rotate(-10deg) scale(0.8);
+    transform: translateY(-5px);  
+    box-shadow: rgb(0, 0, 0) 5px 5px 5px 0px; 
+}
+.info{
+    position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  transform: translateY(0%);
+  transition: transform 0.3s ease-in-out;
+}

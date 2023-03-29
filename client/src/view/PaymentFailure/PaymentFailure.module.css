@@ -1,0 +1,60 @@
+.Background{
+    background-image: url("../../Image/gameover2.jpg");
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+    height: 100%;
+    padding-top: 100px;
+    background-position: center;
+    background-size: cover;
+}
+.text{
+    position: relative;
+    bottom: 50px;
+    border: 2px solid aqua;
+    height: 300px;
+    line-height: 50px;
+    width: 500px;
+    background-color: transparent;
+    backdrop-filter: blur(35px);
+    color: white;
+    margin: 45px 0px 0px 0px;
+    
+}
+.text2{
+    color: red;
+    left: 200px;
+    bottom: 600px;
+}
+.links ion-icon {
+    color:aqua;
+    padding: 10px 10px;
+}
+.button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 45px;
+    max-width: 200px;
+    background-color: aqua;
+    width: 100%;
+    border: none;
+    outline: none;
+    color: black;
+    border-radius: 5px;
+    margin: 25px 0 0px 152px;
+    transition: all 0.2s linear;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.button:hover{
+    box-shadow: 1px 1px 20px 8px aqua;
+    background-color: darkcyan;
+}

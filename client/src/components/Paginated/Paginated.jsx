@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from "../Paginated/Paginated.module.css";
 
-const Paginated = ({gamesPerPage, allGames,paginado}) =>{
+const Paginated = ({gamesPerPage, allGames,paginado,currentPageColor}) =>{
   const pageNumbers = []
 
   for (let i = 0; i <= Math.ceil(allGames/gamesPerPage)-1; i++){
@@ -15,7 +15,7 @@ const Paginated = ({gamesPerPage, allGames,paginado}) =>{
                {pageNumbers && 
               pageNumbers.map(number =>(
                   <li  key={number} className={styles.buttonpage0}>
-                  <button className={styles.button} onClick={()=> paginado(number)}> {number}</button>
+                  <button className={number === currentPageColor? styles.currentPageColor : styles.button} onClick={()=> paginado(number)}> {number}</button>
                   </li>
               ))}
             

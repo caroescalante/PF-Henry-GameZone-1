@@ -12,19 +12,19 @@ module.exports = (sequelize) => {
     },
 
     name: {
-      type: DataTypes.STRING,      
+      type: DataTypes.STRING, 
+      defaultValue: 'empty',     
     },
     
     surname: {
       type: DataTypes.STRING,
-    },
-
-    image: {
-      type: DataTypes.STRING,
+      defaultValue: "empty",
+      
     },
 
     phone: {
       type: DataTypes.STRING,
+      defaultValue: 'empty',
     },
 
     password: {
@@ -32,14 +32,25 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
 
-    admin: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false,
+    rol: {
+      type: DataTypes.ENUM('admin', 'client'),
+      defaultValue: 'client',
     },
 
     email: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
+      defaultValue: 'empty'
+    },
+
+    active: {
+      type:DataTypes.BOOLEAN,
+      defaultValue: true,
+    },
+    image:{
+      type: DataTypes.STRING,
+      defaultValue: "vacio",
     }
   },
   { timestamps: false }

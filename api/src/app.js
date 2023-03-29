@@ -2,10 +2,12 @@ const express = require ("express");
 const morgan = require ("morgan");
 const cookieParser = require ("cookie-parser");
 const routes = require ("./routes/index");  // requiero lo que será la raiz de ruta en mi app
-
+const dotenv = require ("dotenv")
 const server = express();     //creo instancia de mi servidor express
 
 server.name = 'API';     //la propiedad "name" del servidor será API
+
+dotenv.config();
 
 server.use(express.urlencoded({ extended: false, limit: '50mb' }));//middlweare solicitudes url
 server.use(express.json());//lo mismo de arriba pero "notación de objeto de JavaScript" json

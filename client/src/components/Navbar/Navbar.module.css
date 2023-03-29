@@ -7,24 +7,23 @@
     align-items: center;
 }
 
-.links{
+.links ion-icon {
     color:aqua;
-    background: transparent;
-    padding: 10px 10px; /*centra los enlaces*/
-    text-decoration: none; /*quita las lineas de los links*/
-    font-weight: 800;
-    width: 5%; /* le da el tamaño del fondo*/
-    border-bottom-left-radius: 10px; /*redondea la esquina de abajo lado izquiero */
-    border-top-right-radius: 10px; /*redondea la esquina de arriba lado derecho */
-    
+    padding: 10px 10px;
 }
 
-.links:hover {
-    width: 5%; /* le da el tamaño del fondo*/
-    background: aqua; 
-    color: black;
-    /* transform: translateY(10px); */
-    padding: 10px 10px;
-    
+.links ion-icon:hover {   
+    color: aqua;
+    box-shadow: 1px 1px 20px 8px aqua;
+    border-radius: 50px;
+    transform: translateY(5px);
+    padding: 10px 10px;    
 }
+
+.name{
+    color: aqua;
+}
+
+
+
 
