@@ -6,6 +6,7 @@ import style from './RegistrationForm.module.css';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
 import { chargeImage } from '../../redux/actions';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const CLOUD_NAME = import.meta.env.VITE_CLOUD_NAME;
 const UPLOAD_PRESET_NAME = import.meta.env.VITE_UPLOAD_PRESET_NAME;
@@ -14,8 +15,10 @@ const cookies = new Cookies();
 
 const RegistrationForm = () => {
   const history = useHistory();
-  const user = useSelector((state) => state.users);
+  const users = useSelector((state) => state.users);
   const image = useSelector((state)=> state.image)
+
+  const [user] = useAuth0();
   
   const [uploadedImageUrl, setUploadedImageUrl] = useState();
 
@@ -51,7 +54,7 @@ const RegistrationForm = () => {
 
   const submitHandler =  async (event) => {
     event.preventDefault();
-    await axios.post(`http://localhost:3001/user/`, {...data, image: uploadedImageUrl});
+    await axios.put(`http://localhost:3001/user/`, {...data, image: uploadedImageUrl});
     setData({
       name: "",
       surname: "",
@@ -61,10 +64,7 @@ const RegistrationForm = () => {
     });
     history.push("/");
   };
-  function handlerChargeImage(e) {
-    e.preventDefault();
-    dispatch(chargeImage(e.target.value));
-}
+  
   
   return (
     <div className={style.user}>
@@ -82,9 +82,7 @@ const RegistrationForm = () => {
                 <p>Drag and drop an image here or click to select an image</p>
               )}
             </div>
-            <button  onClick={e => handlerChargeImage(e)}> 
-                   Upload your image
-              </button><br/>
+            <br></br>
           </div>
 
           <form onSubmit={submitHandler}>
@@ -122,12 +120,13 @@ const RegistrationForm = () => {
                       onChange={changeHandler}
                     ></input>
                   </div>
+                  
                   <div>
                     <label>Email</label>
                     <input
 
                       type="email"
-                      value={cookies.get('email')}
+                      value={user.email}
                       placeholder="Enter your email"
                       required
                       name="email"
