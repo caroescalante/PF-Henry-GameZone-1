@@ -85,14 +85,14 @@ const Home = () => {
       setCurrentPage(1);
     }
 
+   
+
 
     useEffect(() => {
       if (isAuthenticated) {
         const db = async () => await dispatch(emailUser(user.email));
-        let variable = user.email
         db().then((result) => {
-          console.log(result);
-          if (result.payload === true) {
+          if (result.payload.variable === true) {
             Swal.fire({
               html: '<div style="max-height: 450px;"><Link to="/registration"> Hola, mundo</Link> <br><br><p style="color:white;">porfa funcioná</p></div>',
               background: '#000000',
@@ -108,8 +108,7 @@ const Home = () => {
           }
         });
       }
-      // console.log(variable);
-    }, [dispatch, variable]);
+    }, [dispatch, emailUser, isAuthenticated, estadoEmail.email, history ]);
 
 
     return (

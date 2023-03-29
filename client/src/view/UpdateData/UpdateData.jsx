@@ -1,36 +1,54 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector} from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { useDropzone } from 'react-dropzone';
 import style from './UpdateData.module.css';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
-import { chargeImage } from '../../redux/actions';
+import { emailUser } from '../../redux/actions';
+import { useAuth0 } from '@Auth0/auth0-react';
 
 const CLOUD_NAME = import.meta.env.VITE_CLOUD_NAME;
 const UPLOAD_PRESET_NAME = import.meta.env.VITE_UPLOAD_PRESET_NAME;
-
 const cookies = new Cookies();
+
 
 const UpdateData = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
+  const users = useSelector((state) => state.users);
+  const estadoEmail= useSelector((state)=>state.emailUser)
   const { email } = useParams();
-  const dispatch = useDispatch()
 
+  
+  useEffect(() => {
+    dispatch(emailUser(email));
+    return () => {
+      dispatch(getClean()); // limpia el state
+    }
+  }, [dispatch, email]);
 
-  const user = useSelector((state) => state.users);
-  const image = useSelector((state)=> state.image)
+  const { user, isAuthenticated } = useAuth0();
   
   const [uploadedImageUrl, setUploadedImageUrl] = useState();
+  console.log(e);
+
+  const {
+    image,
+    name,
+    password,
+    phone,
+    surname } = estadoEmail.variable;
 
   const [data, setData] = useState({
-    name: "",
-    surname: "",
-    image: "",
-    phone: "",
-    email: "",
-    password: ""
+    name: name,
+    surname: surname,
+    image: image,
+    phone: phone,
+    email: estadoEmail.email,
+    password: password
   });
+  console.log(data.email);
 
   const changeHandler = (event) => {
     const { name, value } = event.target;
@@ -52,7 +70,7 @@ const UpdateData = () => {
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
   
-
+console.log(estadoEmail.email);
   const submitHandler =  async (event) => {
     event.preventDefault();
     await axios.put(`http://localhost:3001/user/${email}`, {...data, image: uploadedImageUrl});
@@ -60,15 +78,12 @@ const UpdateData = () => {
       name: "",
       surname: "",
       phone: "",
-      email: "",
+      email: email,
       password:""
     });
     history.push("/");
   };
-  function handlerChargeImage(e) {
-    e.preventDefault();
-    dispatch(chargeImage(e.target.value));
-}
+  
   
   return (
     <div className={style.user}>
@@ -86,9 +101,7 @@ const UpdateData = () => {
                 <p>Drag and drop an image here or click to select an image</p>
               )}
             </div>
-            <button  onClick={e => handlerChargeImage(e)}> 
-                   Upload your image
-              </button><br/>
+            <br></br>
           </div>
 
           <form onSubmit={submitHandler}>
@@ -97,7 +110,7 @@ const UpdateData = () => {
                 <span className={style.title}>Personal Details</span>
                 <div className={style.fields}>
                   <div>
-                    <label>Names</label>
+                    <label>Name</label>
                     <input
                       type="text"
                       value={data.name}
@@ -126,12 +139,13 @@ const UpdateData = () => {
                       onChange={changeHandler}
                     ></input>
                   </div>
+                  
                   <div>
                     <label>Email</label>
                     <input
 
                       type="email"
-                      value={cookies.get('email')}
+                      value={user.email}
                       placeholder="Enter your email"
                       required
                       name="email"

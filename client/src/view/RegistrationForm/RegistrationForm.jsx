@@ -18,7 +18,7 @@ const RegistrationForm = () => {
   const users = useSelector((state) => state.users);
   const image = useSelector((state)=> state.image)
 
-  const [user] = useAuth0();
+  const { user, isAuthenticated } = useAuth0();
   
   const [uploadedImageUrl, setUploadedImageUrl] = useState();
 
