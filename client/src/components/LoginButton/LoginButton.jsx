@@ -10,8 +10,8 @@ const LoginButton = () => {
     return (
         <Link 
         className={style.login} 
-        to=""
-        onClick={() => loginWithRedirect()}>
+        onClick={() => loginWithRedirect()}
+        to=''>
             <ion-icon size="large" name="person-outline"></ion-icon>
         </Link>
     );
