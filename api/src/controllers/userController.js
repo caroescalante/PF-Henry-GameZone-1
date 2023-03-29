@@ -57,7 +57,7 @@ const updateUser = async (email, newData) => {
       where: { email: email.trim().toLowerCase() },
     });
     if (!dataBaseEmail) return true;
-    else return false;
+    else return dataBaseEmail;
   };
 
 module.exports = { 

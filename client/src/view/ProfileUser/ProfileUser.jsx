@@ -43,7 +43,7 @@ const ProfileUser = () => {
                    
         
                     <div>
-                        <Link className={style.links} to={"/registration/" + email}>
+                        <Link className={style.links} to={"/update/" + email}>
                             <ion-icon size="large" name="create-outline"></ion-icon>
                         </Link>
                     </div>
