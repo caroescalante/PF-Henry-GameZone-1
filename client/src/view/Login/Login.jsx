@@ -2,10 +2,13 @@ import GoogleLogin from 'react-google-login'
 import { gapi } from 'gapi-script';
 import style from '../Login/Login.module.css';
 import { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 
 
 const Login = () => {
+
+  const history = useHistory();
 
   const clientID = "588823269366-10q37of6mm1ic18o1v4fmm9t2kplq6nb.apps.googleusercontent.com";
 
@@ -31,6 +34,8 @@ const Login = () => {
 
   const onSuccess = (response) => {
     setUser(response.profileObj);
+    history.push("/profile")
+
   }
 
 
@@ -132,7 +137,9 @@ const Login = () => {
             buttonText = "Iniciar sesión" 
             onSuccess = { onSuccess }
             isSignedIn = { true } 
+            to="/registration"
             cookiePolicy = { 'single_host_origin' } />
+
 
             <div className={user? "profile": "hidden"}>
               <h3>{user.name}</h3>

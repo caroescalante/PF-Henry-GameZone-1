@@ -15,6 +15,6 @@ userRouter.get("/", getUsersHandler);
 userRouter.get("/:id", getUserHandler);
 userRouter.post("/", createUserHandler);
 userRouter.put("/:email", updateUserHandler);
-userRouter.get("/", emailUserHandler );
+userRouter.get("/email/:email", emailUserHandler );
 
 module.exports = userRouter;
