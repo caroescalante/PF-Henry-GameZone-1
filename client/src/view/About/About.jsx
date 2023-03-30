@@ -3,35 +3,39 @@ import styles from './About.module.css';
 
 
 const About = () => {
+  const integrantes = [
+    { nombre: "Carolina Escalante", linkedin: "https://www.linkedin.com/in/carolinaescalante/" },
+    { nombre: "Fabrizio Ossola", linkedin: "https://www.linkedin.com/in/fabrizio-ossola/" },
+    { nombre: "Pablo Alvarez", linkedin: "https://www.linkedin.com/in/pabloalvarez/" },
+    { nombre: "Leonardo Guerrero", linkedin: "https://www.linkedin.com/in/leonardoguerrero/" },
+    { nombre: "Nahuel Castelar", linkedin: "https://www.linkedin.com/in/nahuel-castelar/" },
+    { nombre: "Yorlin Pazos", linkedin: "https://www.linkedin.com/in/yorlinpazos/" },
+  ];
+  const tecnologias = ["Javascript", "React", "Redux", "Express", "Mercado Pago", "Postgress", "Auth0"];
   return (
+    <div className={styles.background}>
     <div className={styles.about}>
-      <div className={styles.overlay} />
+      <div className={styles.overlay}/>
       <div className={styles.content}>
-        <h1>About Us</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.</p>
-        <h2>Our Team</h2>
-        <ul>
-          <li>Carolina Escalante</li>
-          <li>Fabrizio Ossola</li>
-          <li>Pablo Alvarez</li>
-          <li>Leonardo Guerrero</li>
-          <li>Nahuel Castelar</li>
-          <li>Yorlin Pazos</li>
-        </ul>
-        <h2>Technologies</h2>
-        <ul>
-          <li>JavaScript</li>
-          <li>React</li>
-          <li>Redux</li>
-          <li>Express</li>
-          <li>Mercado Pago</li>
-          <li>PostgreSQL</li>
-          <li>Auth0</li>
-        </ul>
-        <h2>Take a Tour</h2>
-        <p>Watch our video tour to see our website in action!</p>
-        <iframe title="Video Tour" width="560" height="315" src="https://www.youtube.com/watch?v=qFlEnsMfep4&t=546s" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        <h1 className={styles.titulo}>About Us</h1>
+        <p className={styles.parrafo}>We are a team of passionate gamers who love to bring the latest and greatest games to you. Our goal is to provide a seamless shopping experience with a wide selection of games and easy checkout process.</p>
+        <h3 className={styles.titulo2}>Our Team</h3>
+      <ul className={styles.integrantes}>
+        {integrantes.map((integrante) => (
+          <li key={integrante.nombre}>
+            {integrante.nombre} - <a href={integrante.linkedin}>LinkedIn</a>
+          </li>
+        ))}
+      </ul>
+
+      <h3 className={styles.titulo2}>Technologies</h3>
+      <ul className={styles.tecnologias}>
+        {tecnologias.map((tecnologia) => (
+          <li key={tecnologia}>{tecnologia}</li>
+        ))}
+      </ul>  
       </div>
+    </div>
     </div>
   );
 };
