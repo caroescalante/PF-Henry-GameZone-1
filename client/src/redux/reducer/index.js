@@ -168,15 +168,16 @@ function rootReducer(state = initialState, action) {
           return{
               ...state,
               detail:[],
-              allGames:[]
+              allGames:[],
+              emailUser: []
           }; 
           
       case GET_USERS:
           return { ...state, users: action.payload, allUsers: action.payload, };
 
       case EMAIL_USER:
-        console.log(action.payload);
           return { ...state, emailUser: action.payload, };
+          
       case ADD_FAVORITES:
           const favoriteGame = state.allGames.find(game => game.id === action.payload);
           const favoriteExist = state.favorites.find(game => game.id === action.payload);

@@ -1,5 +1,5 @@
 import React from "react";
-import { useAuth0 } from '@auth0/auth0-react';
+import { useAuth0 } from '@Auth0/auth0-react';
 import CardsContainer from '../../components/CardsContainer/CardsContainer'
 import SearchBar from '../../components/Searchbar/Searchbar';
 import { useDispatch, useSelector } from 'react-redux';
@@ -87,7 +87,6 @@ const Home = () => {
 
 
  
-  //
   useEffect( () => {
      if(isAuthenticated){
       const db = async () => await dispatch(emailUser(user.email))
@@ -105,7 +104,6 @@ const Home = () => {
     }
   }, [dispatch, emailUser, isAuthenticated, estadoEmail.email, history ])
    
-
 
 
 
