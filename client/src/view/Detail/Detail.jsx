@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getDetail, addFavorites } from "../../redux/actions";
+import { getDetail, addFavorites,addToCart } from "../../redux/actions";
 import { useEffect } from "react";
 import styles from './Detail.module.css';
 
@@ -13,9 +13,12 @@ export default function Detail(props){
     },[dispatch,props.match.params.id]);
 
     const myGame= useSelector((state)=> state.detail);
-
     const handleAddFavorite = () => {
         dispatch(addFavorites(props.match.params.id));
+    };
+
+    const handleAddToCart= () => {
+        dispatch(addToCart(myGame.id));
     };
 
     return (
@@ -26,7 +29,7 @@ export default function Detail(props){
                     {myGame ?<>
                     <h1 className={styles.namegame}> {myGame.name} </h1>
                     <button className={styles.buttonFavorites} onClick={handleAddFavorite}>Add to Favorites</button>
-                    <button className={styles.buttonCart}onClick={handleAddFavorite}>Add to Cart</button>
+                    <button className={styles.buttonCart}onClick={handleAddToCart}>Add to Cart</button>
                     <div className={styles.starIcon}></div>              
                     
                     <div className={styles.containeRatRel}>   

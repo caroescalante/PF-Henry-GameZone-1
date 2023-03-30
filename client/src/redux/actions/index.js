@@ -160,8 +160,8 @@ export function emailUser (email) {
 
 
 
-export const addFavorites = (idRaw) => {
-  const id = parseInt(idRaw);
+export const addFavorites = (id) => {
+  // const id = parseInt(idRaw);
   return { type: ADD_FAVORITES, payload: id };
 };
 
