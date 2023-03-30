@@ -30,6 +30,7 @@ module.exports = (sequelize) => {
     password: {
       type: DataTypes.STRING,
       allowNull: false,
+      defaultValue:"empty"
     },
 
     rol: {
@@ -50,7 +51,7 @@ module.exports = (sequelize) => {
     },
     image:{
       type: DataTypes.STRING,
-      defaultValue: "vacio",
+      defaultValue: "empty",
     }
   },
   { timestamps: false }
