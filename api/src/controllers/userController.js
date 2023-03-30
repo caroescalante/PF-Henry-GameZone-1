@@ -14,13 +14,46 @@ const { User } = require ("../db")
 // 	}
 // ];
 
-const createUser = async (userData) => {
-    const newUser = await User.create(userData);
+const createUser = async ({name, image, surname, email, password, phone}) => {
+    // const dbName = await User.findOne({
+    //   where: { name: name.trim().toLowerCase() },
+    // });
+    // const dbImage = await User.findOne({
+    //   where: { image: image.trim().toLowerCase() },
+    // });
+    // const dbSurname = await User.findOne({
+    //   where: { surname: surname.trim().toLowerCase() },
+    // });
+    // const dbPassword = await User.findOne({
+    //   where: { password: password.trim().toLowerCase() },
+    // });
+    // const dbPhone = await User.findOne({
+    //   where: { phone: phone.trim().toLowerCase() },
+    // });
+
+    // let nameF = name;
+    // let imageF = image;
+    // let surnameF = surname;
+    // let passwordF = password;
+    // let phoneF = phone;
+
+    // if(dbName) { nameF = dbName}
+    // if(dbImage) {imageF = dbImage}
+    // if(dbSurname) {surnameF = dbSurname}
+    // if(dbPassword) {passwordF = dbPassword}
+    // if(dbPhone) {phoneF = dbPhone}
+
+    // console.log(nameF);
+    // console.log(imageF);
+    // console.log(surnameF);
+    // console.log(passwordF);
+    // console.log(phoneF);
+
+    const newUser = await User.create({name, image, surname, email, password, phone});
     return newUser;
   };
 
 const getUserById = async (id) => {
-
     if(id) {
         const databaseUser = await User.findByPk(id);
 
@@ -42,8 +75,8 @@ const searchUserByName = async (name) => {
     return dataBaseName;
 };
 
-const updateUser = async (email, newData) => {
-    const [rowsAffected, [updatedUser]] = await User.update(newData, {
+const updateUser = async ({name, image, surname, email, password, phone}) => {
+    const [rowsAffected, [updatedUser]] = await User.update({name, image, surname, password, phone}, {
       where: {
         email: email,
       },
