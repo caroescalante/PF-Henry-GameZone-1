@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { useAuth0 } from "@auth0/auth0-react";
+import React, { useEffect } from "react";
 import style from "./ProfileUser.module.css";
 import {Link} from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
@@ -9,14 +8,11 @@ import { emailUser } from "../../redux/actions";
 
 const ProfileUser = () => {
 
-  const { user, isAuthenticated } = useAuth0();
   const stateEmail = useSelector((state) => state.emailUser)
-  console.log(stateEmail);
 
   const dispatch = useDispatch();
-//   const [email, setEmail] = useState("");
 
-const {
+  const {
     name,
     email,
     image,
@@ -26,12 +22,6 @@ const {
     useEffect(() => {
         dispatch(emailUser(stateEmail.email))
     }, [dispatch, stateEmail.email])
-
-//   useEffect(() => {
-//     if (isAuthenticated) {
-//       setEmail(user.email);
-//     }
-//   }, [isAuthenticated, user.email]);
 
 
 

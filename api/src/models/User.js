@@ -27,12 +27,6 @@ module.exports = (sequelize) => {
       defaultValue: '',
     },
 
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      defaultValue:""
-    },
-
     rol: {
       type: DataTypes.ENUM('admin', 'client'),
       defaultValue: 'client',
@@ -42,7 +36,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
-      defaultValue: ''
+      isEmail: true,
     },
 
     active: {

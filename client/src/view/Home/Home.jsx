@@ -92,8 +92,6 @@ const Home = () => {
       const db = async () => await dispatch(emailUser(user.email))
       db().then((result) => {
         if(result.payload.variable === true) { axios.put(`http://localhost:3001/user/${user.email}`)}
-        
-        console.log(estadoEmail);
         history.push("/")
       }).then(result => {
            if(result){
