@@ -52,6 +52,7 @@ const updateUserHandler = async (req, res) => {
     const newData = req.body;
 
     try {
+      if(email){
         const emailExists = await emailUser(email);
         if (emailExists === true) {
           const user = await createUser(newData);
@@ -64,6 +65,11 @@ const updateUserHandler = async (req, res) => {
             res.status(200).json(updatedUser);
           }
         }
+      }else{
+        const newUser = await createUser(newData);
+        res.status(200).json(newUser)
+      }
+        
       } catch (error) {
         res.status(400).json({ error: error.message });
       }

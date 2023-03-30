@@ -6,7 +6,7 @@ import style from './RegistrationForm.module.css';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
 import { chargeImage } from '../../redux/actions';
-import { useAuth0 } from '@Auth0/auth0-react';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const CLOUD_NAME = import.meta.env.VITE_CLOUD_NAME;
 const UPLOAD_PRESET_NAME = import.meta.env.VITE_UPLOAD_PRESET_NAME;
@@ -54,7 +54,7 @@ const RegistrationForm = () => {
 
   const submitHandler =  async (event) => {
     event.preventDefault();
-    await axios.put(`http://localhost:3001/user/`, {...data, image: uploadedImageUrl});
+    await axios.post(`http://localhost:3001/user/`, {...data, image: uploadedImageUrl});
     setData({
       name: "",
       surname: "",
@@ -70,7 +70,7 @@ const RegistrationForm = () => {
     <div className={style.user}>
       <div className={style.registration}>
         <div className={style.container}>
-          <header>Update your data</header>
+          <header>Register your data</header>
           <br />
 
           <div>

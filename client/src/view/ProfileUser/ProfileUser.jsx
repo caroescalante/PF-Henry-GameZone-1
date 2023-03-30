@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useAuth0 } from "@Auth0/auth0-react";
+import { useAuth0 } from "@auth0/auth0-react";
 import style from "./ProfileUser.module.css";
 import {Link} from 'react-router-dom'
 import { useSelector } from 'react-redux';
@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 const ProfileUser = () => {
 
   const { user, isAuthenticated } = useAuth0();
-  const image = useSelector((state) => state.image)
+  const stateEmail = useSelector((state) => state.emailUser)
 
   const [email, setEmail] = useState("");
 
@@ -19,7 +19,7 @@ const ProfileUser = () => {
     }
   }, [isAuthenticated, user.email]);
 
-  
+  console.log(stateEmail);
 
     return ( 
         <div className={style.user}>
