@@ -16,7 +16,8 @@ import PaymentFailure from "./view/PaymentFailure/PaymentFailure";
 import Error404 from "./view/Error404/Error404";
 import News from "./view/News/News";
 import Login from "./view/Login/Login";
-import UpdateData from "./view/RegistrationForm/RegistrationForm";
+import UpdateData from "./view/UpdateData/UpdateData";
+import About from "./view/About/About";
 
 function App() {
   return (
@@ -27,7 +28,6 @@ function App() {
         <Route exact path="/game/:id" component={Detail} />
         <Route exact path="/create" component={CreateGameForm} />
         <Route exact path="/community" component={Community} />
-        <Route exact path="/registration/" component={RegistrationForm} />
         <Route exact path="/update/:email" component={UpdateData} />
         <Route exact path="/favorites" component={Favorites} />
         <Route exact path="/profile" component={ProfileUser} />
@@ -36,6 +36,7 @@ function App() {
         <Route exact path="/paymentfailure" component={PaymentFailure} />
         <Route exact path="/login" component={Login} />
         <Route path="/news" component={News}/>
+        <Route path="/about" component={About}/>
         <Route path="*" component={Error404} />
         
       </Switch>

@@ -24,9 +24,7 @@ const UpdateData = () => {
   
   useEffect(() => {
     dispatch(emailUser(email));
-    return () => {
-      dispatch(getClean()); // limpia el state
-    }
+    
   }, [dispatch, email]);
 
   const { user, isAuthenticated } = useAuth0();
@@ -49,7 +47,6 @@ const UpdateData = () => {
     email: estadoEmail.email,
     password: password
   });
-  console.log(data.email);
 
   const changeHandler = (event) => {
     const { name, value } = event.target;
@@ -70,21 +67,22 @@ const UpdateData = () => {
   };
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
-  
-console.log(estadoEmail.email);
+
+  console.log(data)
   const submitHandler =  async (event) => {
     event.preventDefault();
-    await axios.put(`http://localhost:3001/user/${email}`, {...data, image: uploadedImageUrl});
+    await axios.put(`http://localhost:3001/user/${email}`,{ ...data, image:uploadedImageUrl});
     setData({
-      name: "",
-      surname: "",
-      phone: "",
+      name: data.name,
+      surname: data.surname,
+      phone: data.phone,
       email: email,
-      password:""
+      password: data.password
     });
+    
     history.push("/");
   };
-  
+ ;
   
   return (
     <div className={style.user}>
@@ -146,7 +144,7 @@ console.log(estadoEmail.email);
                     <input
 
                       type="email"
-                      value={user.email}
+                      value={data.email}
                       placeholder="Enter your email"
                       required
                       name="email"

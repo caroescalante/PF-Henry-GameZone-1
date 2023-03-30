@@ -86,15 +86,22 @@ const Home = () => {
     }
 
 
-   const [data, setData] = useState({
-    password: ""
-  });
-    if(isAuthenticated){
-      const db = async () => await axios.put(`http://localhost:3001/user/${user.email}`, ...data)
-      const result = db()
-      console.log(result);
+ 
+  useEffect( () => {
+     if(isAuthenticated){
+      const db = async () => await dispatch(emailUser(user.email))
+      db().then((result) => {
+        if(result.payload.variable === true) { axios.put(`http://localhost:3001/user/${user.email}`)}
+        history.push("/")
+      }).then(result => {
+           if(result){
+          history.push("/")
+          }
+        })
+      
     }
-
+  }, [dispatch, emailUser, isAuthenticated, estadoEmail.email, history ])
+   
 
 
 
