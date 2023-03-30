@@ -85,30 +85,40 @@ const Home = () => {
       setCurrentPage(1);
     }
 
-   
+
+   const [data, setData] = useState({
+    password: ""
+  });
+    if(isAuthenticated){
+      const db = async () => await axios.put(`http://localhost:3001/user/${user.email}`, ...data)
+      const result = db()
+      console.log(result);
+    }
 
 
-    useEffect(() => {
-      if (isAuthenticated) {
-        const db = async () => await dispatch(emailUser(user.email));
-        db().then((result) => {
-          if (result.payload.variable === true) {
-            Swal.fire({
-              html: '<div style="max-height: 450px;"><Link to="/registration"> Hola, mundo</Link> <br><br><p style="color:white;">porfa funcioná</p></div>',
-              background: '#000000',
-              backdrop: 'rgba(0, 0, 0, 0.8)',
-              confirmButtonColor: '#ff0000',
-              confirmButtonText: 'GO!',
-            })
-            .then(result => {
-              if(result){
-                history.push("/registration/")
-              } else {return('esto es una poronga')}
-            })
-          }
-        });
-      }
-    }, [dispatch, emailUser, isAuthenticated, estadoEmail.email, history ]);
+
+
+    // useEffect(() => {
+    //   if (isAuthenticated) {
+    //     const db = async () => await dispatch(emailUser(user.email));
+    //     db().then((result) => {
+    //       if (result.payload.variable === true) {
+    //         Swal.fire({
+    //           html: '<div style="max-height: 450px;"><Link to="/registration"> Hola, mundo</Link> <br><br><p style="color:white;">porfa funcioná</p></div>',
+    //           background: '#000000',
+    //           backdrop: 'rgba(0, 0, 0, 0.8)',
+    //           confirmButtonColor: '#ff0000',
+    //           confirmButtonText: 'GO!',
+    //         })
+    //         .then(result => {
+    //           if(result){
+    //             history.push("/registration/")
+    //           } else {return('esto es una poronga')}
+    //         })
+    //       }
+    //     });
+    //   }
+    // }, [dispatch, emailUser, isAuthenticated, estadoEmail.email, history ]);
 
 
     return (

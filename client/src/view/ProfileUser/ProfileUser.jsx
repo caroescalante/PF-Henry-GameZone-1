@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 const ProfileUser = () => {
 
   const { user, isAuthenticated } = useAuth0();
-  const image = useSelector((state) => state.image)
+  const stateEmail = useSelector((state) => state.emailUser)
 
   const [email, setEmail] = useState("");
 
@@ -19,7 +19,7 @@ const ProfileUser = () => {
     }
   }, [isAuthenticated, user.email]);
 
-  
+  console.log(stateEmail);
 
     return ( 
         <div className={style.user}>
