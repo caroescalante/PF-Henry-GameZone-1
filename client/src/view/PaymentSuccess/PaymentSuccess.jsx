@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./PaymentSuccess.module.css";
-import ReactDOM from 'react-dom';
+
 
 
 
@@ -25,14 +25,6 @@ function PaymentSuccess() {
         date: '2023-03-30'
       };
       
-      ReactDOM.render(
-        <PaymentSuccess 
-          client={PaymentData.user} 
-          amount={PaymentData.TotalAmount} 
-          date={PaymentData.date} 
-        />,
-        document.getElementById('root')
-      );
 
 
 export default PaymentSuccess;

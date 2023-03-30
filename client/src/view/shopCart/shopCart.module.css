@@ -14,7 +14,9 @@
 .containerCards{
     display: inline-block;
     flex-direction: column;
+    
 }
+
 .card{
     height: 215px;
     width: 250px;
