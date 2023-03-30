@@ -17,6 +17,7 @@ import Error404 from "./view/Error404/Error404";
 import News from "./view/News/News";
 import Login from "./view/Login/Login";
 import UpdateData from "./view/UpdateData/UpdateData";
+import About from "./view/About/About";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
         <Route exact path="/paymentfailure" component={PaymentFailure} />
         <Route exact path="/login" component={Login} />
         <Route path="/news" component={News}/>
+        <Route path="/about" component={About}/>
         <Route path="*" component={Error404} />
         
       </Switch>
