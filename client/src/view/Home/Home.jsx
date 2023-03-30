@@ -1,5 +1,5 @@
 import React from "react";
-import { useAuth0 } from '@auth0/auth0-react';
+import { useAuth0 } from '@Auth0/auth0-react';
 import CardsContainer from '../../components/CardsContainer/CardsContainer'
 import SearchBar from '../../components/Searchbar/Searchbar';
 import { useDispatch, useSelector } from 'react-redux';
@@ -86,15 +86,24 @@ const Home = () => {
     }
 
 
-   const [data, setData] = useState({
-    password: ""
-  });
-    if(isAuthenticated){
-      const db = async () => await axios.put(`http://localhost:3001/user/${user.email}`, ...data)
-      const result = db()
-      console.log(result);
+ 
+  useEffect( () => {
+     if(isAuthenticated){
+      const db = async () => await dispatch(emailUser(user.email))
+      db().then((result) => {
+        if(result.payload.variable === true) { axios.put(`http://localhost:3001/user/${user.email}`)}
+        
+        console.log(estadoEmail);
+        history.push("/")
+      }).then(result => {
+           if(result){
+          history.push("/")
+          }
+        })
+      
     }
-
+  }, [dispatch, emailUser, isAuthenticated, estadoEmail.email, history ])
+   
 
 
 

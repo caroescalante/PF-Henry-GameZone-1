@@ -13,23 +13,24 @@ module.exports = (sequelize) => {
 
     name: {
       type: DataTypes.STRING, 
-      defaultValue: 'empty',     
+      defaultValue: '',     
     },
     
     surname: {
       type: DataTypes.STRING,
-      defaultValue: "empty",
+      defaultValue: "",
       
     },
 
     phone: {
       type: DataTypes.STRING,
-      defaultValue: 'empty',
+      defaultValue: '',
     },
 
     password: {
       type: DataTypes.STRING,
       allowNull: false,
+      defaultValue:""
     },
 
     rol: {
@@ -41,7 +42,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
-      defaultValue: 'empty'
+      defaultValue: ''
     },
 
     active: {
@@ -50,7 +51,7 @@ module.exports = (sequelize) => {
     },
     image:{
       type: DataTypes.STRING,
-      defaultValue: "vacio",
+      defaultValue: "",
     }
   },
   { timestamps: false }
