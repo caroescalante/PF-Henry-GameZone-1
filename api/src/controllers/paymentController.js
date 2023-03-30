@@ -1,3 +1,6 @@
+const nodemailer = require("nodemailer");
+const { EMAIL_USER, EMAIL_PASS } = process.env;
+
 class PaymentController {
   constructor(subscriptionService) {
     this.subscriptionService = subscriptionService;
@@ -19,4 +22,29 @@ class PaymentController {
 
 }
 
-module.exports = PaymentController;
+const sendEmailController = async () => {
+    let transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
+      auth: {
+        user: EMAIL_USER,
+        pass: EMAIL_PASS,
+      },
+    });
+
+    await transporter.sendMail({
+      from: 'Thank you for shopping at Henry Game Zone',
+      to: "bar@example.com, baz@example.com",
+      subject: "Hello ✔",
+      text: "Hello world?",
+      html: "<b>Hello world?</b>",
+    });
+};
+
+
+//fnchklxlyvvpjjex
+module.exports = {
+  PaymentController,
+  sendEmailController,
+};
