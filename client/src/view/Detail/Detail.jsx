@@ -14,7 +14,8 @@ export default function Detail(props){
 
     const myGame= useSelector((state)=> state.detail);
     const handleAddFavorite = () => {
-        dispatch(addFavorites(props.match.params.id));
+        // dispatch(addFavorites(props.match.params.id));
+        dispatch(addFavorites(myGame.id));
     };
 
     const handleAddToCart= () => {
