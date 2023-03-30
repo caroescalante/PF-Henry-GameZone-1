@@ -4,11 +4,11 @@ import styles from './About.module.css';
 
 const About = () => {
   const integrantes = [
-    { nombre: "Carolina Escalante", linkedin: "https://www.linkedin.com/in/carolinaescalante/" },
+    { nombre: "Carolina Escalante", linkedin: "https://www.linkedin.com/in/carolina-escalante-548888201" },
     { nombre: "Fabrizio Ossola", linkedin: "https://www.linkedin.com/in/fabrizio-ossola/" },
-    { nombre: "Pablo Alvarez", linkedin: "https://www.linkedin.com/in/pabloalvarez/" },
-    { nombre: "Leonardo Guerrero", linkedin: "https://www.linkedin.com/in/leonardoguerrero/" },
-    { nombre: "Nahuel Castelar", linkedin: "https://www.linkedin.com/in/nahuel-castelar/" },
+    { nombre: "Pablo Alvarez", linkedin: "https://www.linkedin.com/in/pablo-alvarez-54b1a5248/" },
+    { nombre: "Leonardo Guerrero", linkedin: "https://www.linkedin.com/in/leonardo-guerrero-5aa501207" },
+    { nombre: "Nahuel Castelar", linkedin: "https://www.linkedin.com/in/nahuel-nestor-castelar-61ab23157" },
     { nombre: "Yorlin Pazos", linkedin: "https://www.linkedin.com/in/yorlinpazos/" },
   ];
   const tecnologias = ["Javascript", "React", "Redux", "Express", "Mercado Pago", "Postgress", "Auth0"];
