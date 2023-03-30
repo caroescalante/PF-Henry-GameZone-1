@@ -91,8 +91,11 @@ import { useSelector, useDispatch } from "react-redux";
 import axios from 'axios';
 import { removeFromCart } from "../../redux/actions/index";
 import style from "./shopCart.module.css"
+import { useAuth0 } from "@auth0/auth0-react";
+import Swal from 'sweetalert2';
 
 const ShopCart = () => {
+  const { isAuthenticated } = useAuth0();
   const cart = useSelector(state => state.cart);
   const dispatch = useDispatch();
 
@@ -102,31 +105,47 @@ const ShopCart = () => {
 
 
   const handlePayment = async () => {
-    let arrayItems = cart.map((c)=>{
-      return {
-        title: c.name,
-        description:"ultima version",
-        picture_url: c.image,
-        category_id: c.id,
-        quantity: c.quantity,
-        unit_price: c.price
+    if(isAuthenticated){
+      let arrayItems = cart.map((c)=>{  
+        return {
+          title: c.name,
+          description:"ultima version",
+          picture_url: c.image,
+          category_id: c.id,
+          quantity: c.quantity,
+          unit_price: c.price
+        }
+      })
+      let bodypayment={
+        payer_email: "test_user_36100631@testuser.com",
+        items: arrayItems,
+        back_urls: {
+          failure: "/paymentfailure",
+          pending: "/pending",
+          success: "/paymentsuccess"
+        }
       }
-    })
-
-    let bodypayment={
-      payer_email: "test_user_36100631@testuser.com",
-      items: arrayItems,
-      back_urls: {
-        failure: "/paymentfailure",
-        pending: "/pending",
-        success: "/paymentsuccess"
-      }
+      let data =await axios.post("http://localhost:3001/payment", bodypayment);
+      // localStorage.removeItem('cart'); 
+      location.href = data.data.init_point;
     }
-    
-    let data =await axios.post("http://localhost:3001/payment", bodypayment);
-    localStorage.removeItem('cart'); 
-    location.href =data.data.init_point;
+    else{//acá deberia tirarlo para que se logee
+        Swal.fire({
+        title: 'Not be registered!',
+        text: 'Please log in to make the purchase.',
+        icon: 'warning',
+        backdrop: 'rgba(0, 0, 0, 0.5)',
+        confirmButtonText: '<span style="color: black">OK</span>',
+        confirmButtonColor: '#00FFFF',
+        confirmButtonTextColor: '#000000',
+        customClass: {
+          title: 'mi-titulo',
+          content: 'mi-contenido'
+        }
+    })   
+    }
   }
+
 
   const getTotalPrice = () => {
     const total = cart.reduce((total, game) => total + game.price, 0);
