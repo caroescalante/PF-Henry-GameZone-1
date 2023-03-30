@@ -5,7 +5,7 @@ import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./redux/store/index";
-import {Auth0Provider} from "@Auth0/auth0-react"
+import {Auth0Provider} from "@auth0/auth0-react"
 
 
 const domain = import.meta.env.VITE_AUTH0_DOMAIN;
