@@ -6,14 +6,14 @@
     color:black;
     font-size: 12px;
     font-weight: 500;
-}
-
-.registration{
-    min-height: 80vh;
+    background-image: url("../../Image/profile.png");
     display: flex;
-    align-items: center;
     justify-content: center;
-    background-image: url("../../Image/registration.jpg");    
+    align-items: center;
+    min-height: 111vh;
+    width: 100%;
+    background-position: center;
+    background-size: cover; 
 }
 
 
@@ -36,7 +36,7 @@
 }
 
 .container {
-    background-image: url("../../Image/profile.png");
+    
     display: flex;
     justify-content: center;
     align-items: center;

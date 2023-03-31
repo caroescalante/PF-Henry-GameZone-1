@@ -171,7 +171,8 @@ function rootReducer(state = initialState, action) {
               ...state,
               detail:[],
               allGames:[],
-              emailUser: []
+              emailUser: [],
+              searchError: null
           }; 
           
       case GET_USERS:
