@@ -19,6 +19,7 @@ import {
   CLEAR_CART,
   REMOVE_FAVORITE,
   
+  GET_EMAIL
 } from "./types";
 
 import axios from 'axios';
@@ -132,6 +133,17 @@ export function getUsers (){
       return dispatch({ type: GET_USERS, payload: users.data })
 
     } catch ( error ) {
+      return console.log("Something went wrong. Please try again.", error.message)
+    }
+  }
+};
+
+export function emailUserE (email) {
+  return async function (dispatch) {
+    try {
+      const emailUser = await axios.get(`http://localhost:3001/user?email=${email}`);
+      return dispatch({ type: GET_EMAIL, payload:emailUser.data})
+    } catch ( error) {
       return console.log("Something went wrong. Please try again.", error.message)
     }
   }
