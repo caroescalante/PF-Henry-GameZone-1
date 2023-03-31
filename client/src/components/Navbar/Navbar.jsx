@@ -21,6 +21,7 @@ const Navbar = () => {
     
     const users = useSelector((state) => state.userEmail)
     const rolUser = users?.[0]?.rol;
+    console.log(user)
 
   return (
 
