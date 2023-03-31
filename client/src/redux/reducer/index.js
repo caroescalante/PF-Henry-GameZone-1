@@ -21,6 +21,7 @@ import {
   CLEAR_CART,
   REMOVE_FAVORITE,
   CHARGE_IMAGE,
+  GET_EMAIL,
 } from "../actions/types";
 
 const initialState = {
@@ -39,6 +40,7 @@ const initialState = {
   favorites: JSON.parse(localStorage.getItem("favorites")) || [],
   cart: JSON.parse(localStorage.getItem('cart')) || [],
   image: [],
+  userEmail: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -178,6 +180,9 @@ function rootReducer(state = initialState, action) {
 
       case EMAIL_USER:
           return { ...state, emailUser: action.payload, };
+
+      case GET_EMAIL:
+          return { ...state, userEmail: action.payload,};
           
       case ADD_FAVORITES:
           const favoriteGame = state.allGames.find(game => game.id === action.payload);
