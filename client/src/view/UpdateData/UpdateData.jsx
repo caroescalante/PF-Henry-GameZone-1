@@ -95,13 +95,9 @@ const UpdateData = () => {
             <div {...getRootProps()} className={style.fields1} >
               <input {...getInputProps()}/>
               {uploadedImageUrl ? (
-<<<<<<< HEAD
-                <img className={style.image} src={uploadedImageUrl} alt="Uploaded image, please click on Record Data"  />
-=======
                 <div className={style.conteinerImg}>
                   <img src={uploadedImageUrl} alt="Uploaded image, please click on Record Data" className={style.img} />
                 </div>
->>>>>>> 02f31db45e26c16e2ee02307a0ad79570d1ca4ae
               ) : (
                 <p className={style.drop}><p className={style.textDrop}>Click here to load an image</p></p>
               )}
