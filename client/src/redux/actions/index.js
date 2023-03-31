@@ -18,7 +18,8 @@ import {
   REMOVE_FROM_CART,
   CLEAR_CART,
   REMOVE_FAVORITE,
-  CHARGE_IMAGE
+  CHARGE_IMAGE,
+  GET_EMAIL
 } from "./types";
 
 import axios from 'axios';
@@ -137,6 +138,13 @@ export function getUsers (){
     }
   }
 };
+
+export function emailUserE (email) {
+  return async function (dispatch) {
+    const emailUser = await axios.get(`http://localhost:3001/user?email=${email}`);
+    return dispatch({ type: GET_EMAIL, payload:emailUser.data})
+  }
+}
 
 export function emailUser (email) {
   return async function (dispatch) {

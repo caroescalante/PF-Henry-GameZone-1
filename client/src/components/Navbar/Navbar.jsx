@@ -1,46 +1,38 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import style from "./Navbar.module.css";
 import logo from "../../Image/logo.png";
-import { clearDetail, emailUser } from "../../redux/actions";
+import { clearDetail, emailUserE } from "../../redux/actions";
 import LoginButton from "../LoginButton/LoginButton";
 import LogoutButton from "../LogoutButton/LogoutButton";
 import { useAuth0 } from "@Auth0/auth0-react";
-import { useDispatch} from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 
 const Navbar = () => {
 
-    const { user, isAuthenticated } = useAuth0();
+    const { user, isAuthenticated } = useAuth0(); 
     const dispatch = useDispatch();
-    const [userData, setUserData] = useState(null);
-  
+
     useEffect(() => {
-        if (isAuthenticated) {
-          
-            const result = async() => {
-                const res = await dispatch(emailUser(user.email));
+        if (isAuthenticated && user) {
+          dispatch(emailUserE(user.email));
+        }
+    }, [dispatch, isAuthenticated, user]);
+    
+    const users = useSelector((state) => state.userEmail)
+    const rolUser = users?.[0]?.rol;
 
-                const {name, email, rol, active} = res.payload.variable;
-                console.log(name, email, rol, active);
-            }
-            result()
-            }
-    },[isAuthenticated, dispatch])
+    console.log(rolUser);
 
-            
-            
-        //     if (result.payload.variable === true) {
-        //       setUserData(result.payload.userData);
-        //       console.log(result.payload.userData.rol);
-             
-        //   };
-        //   fetchUserData();
-        //   console.log(fetchUserData);
-    //     }
-    //   }, [dispatch, emailUser, isAuthenticated]);
+    // if(isAuthenticated) {
+    //     const data = async () => await dispatch(emailUserE(user.email))
+    //     return data.data
+    // }
 
-    // console.log(userData);
+    
+    // const rolUser = users[0].rol; 
 
+    // console.log(users);
 
   return (
 
@@ -49,7 +41,7 @@ const Navbar = () => {
         <img src={logo} alt="init" width="300px" />
       </Link>
 
-      {isAuthenticated && userData === "admin" && (
+      {isAuthenticated && rolUser === "admin" && (
         <Link className={style.links} to="/create">
           <ion-icon size="large" name="game-controller-outline"></ion-icon>
         </Link>
