@@ -92,27 +92,25 @@ const Home = () => {
     }
 
     useEffect(() => {
-      if (isAuthenticated) {
-        const db = async () => await dispatch(emailUser(user.email));
-        db().then((result) => {
-          const userExists = result.payload.variable;
-    
-          if (!userExists) {
-            axios
-              .post(`http://localhost:3001/user/`, { name: user.name, email: user.email })
-              .then((result) => {
-                if (result.data.userCreated) {
-                  // usuario creado correctamente
-                } else {
-                  // usuario ya existe en la base de datos
-                }
-              });
-          } else {
-            // email ya existe en la base de datos
-          }
-        });
-      }
-    }, [dispatch, emailUser, isAuthenticated]);
+        if (isAuthenticated) {
+          const db = async () => await dispatch(emailUser(user.email));
+          db().then((result) => {
+            if (result.payload.variable === true) {
+              axios
+                .post(`http://localhost:3001/user/`, { email: user.email })
+                .then((result) => {
+                  if (result.data.userCreated) {
+                    // usuario creado correctamente
+                  } else {
+                    // usuario ya existe en la base de datos
+                  }
+                });
+            } else {
+              // email ya existe en la base de datos
+            }
+          });
+        }
+      }, [dispatch, emailUser, isAuthenticated]);
 
     return (
         <div className={styles.home}>           
