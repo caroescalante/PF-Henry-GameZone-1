@@ -21,6 +21,7 @@ import {
   CLEAR_CART,
   REMOVE_FAVORITE,
   CHARGE_IMAGE,
+  GET_EMAIL,
 } from "../actions/types";
 
 const initialState = {
@@ -39,6 +40,7 @@ const initialState = {
   favorites: JSON.parse(localStorage.getItem("favorites")) || [],
   cart: JSON.parse(localStorage.getItem('cart')) || [],
   image: [],
+  userEmail: [],
 };
 
 function rootReducer(state = initialState, action) {
