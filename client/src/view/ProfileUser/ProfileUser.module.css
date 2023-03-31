@@ -13,7 +13,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: url("../../Image/registration.jpg");    
+    background-image: url("../../Image/registration.jpg");
+     
 }
 
 
@@ -44,4 +45,16 @@
     width: 100%;
     background-position: center;
     background-size: cover;
+}
+.image{
+    background-size: 100px 100px;  
+    max-height: 150px;
+    max-width: 150px;
+}
+.title{
+    color: white;
+    position: relative;
+    font-size: 40px;
+    font-weight: 400;
+    right: 300px;
 }

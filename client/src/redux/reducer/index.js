@@ -169,10 +169,11 @@ function rootReducer(state = initialState, action) {
               ...state,
               detail:[],
               allGames:[],
-              emailUser: []
+              emailUser: [],
+              searchError: null
           }; 
           
-      case GET_USERS:
+          case GET_USERS:
           return { ...state, users: action.payload, allUsers: action.payload, };
 
       case EMAIL_USER:

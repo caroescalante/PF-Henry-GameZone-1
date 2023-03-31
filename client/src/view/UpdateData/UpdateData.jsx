@@ -95,7 +95,7 @@ const UpdateData = () => {
             <div {...getRootProps()} className={style.fields} >
               <input {...getInputProps()}/>
               {uploadedImageUrl ? (
-                <img src={uploadedImageUrl} alt="Uploaded image, please click on Record Data"  />
+                <img className={style.image} src={uploadedImageUrl} alt="Uploaded image, please click on Record Data"  />
               ) : (
                 <p>Drag and drop an image here or click to select an image</p>
               )}

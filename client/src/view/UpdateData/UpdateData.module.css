@@ -157,5 +157,9 @@
 
 
 
-
+.image{
+    background-size: 100px 100px;  
+    max-height: 150px;
+    max-width: 150px;
+}
 

@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-import React, { useState, useEffect } from "react";
-import { useAuth0 } from "@auth0/auth0-react";
-=======
 import React, { useEffect } from "react";
->>>>>>> 18b5249370862a985f33b862073a44408b1bf7d9
 import style from "./ProfileUser.module.css";
 import {Link} from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
@@ -36,13 +31,13 @@ const ProfileUser = () => {
         <div className={style.user}>
             <div className={style.registration}>
                 <div className={style.container}>
-                     <header>Your Profile</header>
+                     <header className={style.title}>Your Profile</header>
                      <br/>
   
                     <div>
                         { stateEmail.email && (
                         <div> 
-                            <img src={image} alt=""/>
+                            <img className={style.image} src={image} alt=""/>
                             <br/>
                             <h2>Name: {name} </h2>
                             <br/>
