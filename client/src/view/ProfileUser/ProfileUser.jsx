@@ -54,7 +54,7 @@ const ProfileUser = () => {
         
                     <div>
                         <Link to={"/update/" + email}>
-                        <button className={style.iconRegisterButton}><i class="fas fa-edit"></i></button> 
+                        <button className={style.iconRegisterButton}><i className="fas fa-edit"></i></button> 
                         </Link>
 
                      
