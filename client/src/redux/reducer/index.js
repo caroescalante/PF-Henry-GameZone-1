@@ -20,7 +20,6 @@ import {
   // DECREMENT_QUANTITY,
   CLEAR_CART,
   REMOVE_FAVORITE,
-  CHARGE_IMAGE,
 } from "../actions/types";
 
 const initialState = {
@@ -177,7 +176,7 @@ function rootReducer(state = initialState, action) {
 
       case EMAIL_USER:
           return { ...state, emailUser: action.payload, };
-          
+
       case ADD_FAVORITES:
           const favoriteGame = state.allGames.find(game => game.id === action.payload);
           const favoriteExist = state.favorites.find(game => game.id === action.payload);
@@ -324,11 +323,7 @@ function rootReducer(state = initialState, action) {
          cart: []
       };
 
-    case CHARGE_IMAGE:
-      return{
-        ...state,
-        image: action.payload
-      };
+   
     
       
       

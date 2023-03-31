@@ -46,10 +46,8 @@ const createUserHandler = async (req,res) => {
 const updateUserHandler = async (req, res) => {
 
     const { email } = req.params;
-    const name = '';
-    const image = '';
-    const phone = '';
-    const surname = '';
+    const {name, surname, phone, image} = req.body
+    console.log(name, surname, phone, image);
 
     try {
         const emailExists = await emailUser(email);
@@ -57,6 +55,7 @@ const updateUserHandler = async (req, res) => {
           const user = await createUser({name, image, surname, email, phone});
           res.status(201).json({ message: 'User created', user });
         } else {
+          console.log(image);
           const [rowsAffected, [updatedUser]] = await updateUser({name, image, surname, email, phone});
           if (rowsAffected === 0) {
             res.status(404).json({ error: 'User not found' });
