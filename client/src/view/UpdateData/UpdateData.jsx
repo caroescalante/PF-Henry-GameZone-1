@@ -24,9 +24,7 @@ const UpdateData = () => {
   
   useEffect(() => {
     dispatch(emailUser(email));
-    return () => {
-      dispatch(getClean()); // limpia el state
-    }
+    
   }, [dispatch, email]);
 
   const { user, isAuthenticated } = useAuth0();
@@ -49,7 +47,6 @@ const UpdateData = () => {
     email: estadoEmail.email,
     password: password
   });
-  console.log(data.email);
 
   const changeHandler = (event) => {
     const { name, value } = event.target;
@@ -70,21 +67,22 @@ const UpdateData = () => {
   };
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
-  
-console.log(estadoEmail.email);
+
+  console.log(data)
   const submitHandler =  async (event) => {
     event.preventDefault();
-    await axios.put(`http://localhost:3001/user/${email}`, {...data, image: uploadedImageUrl});
+    await axios.put(`http://localhost:3001/user/${email}`,{ ...data, image:uploadedImageUrl});
     setData({
-      name: "",
-      surname: "",
-      phone: "",
+      name: data.name,
+      surname: data.surname,
+      phone: data.phone,
       email: email,
-      password:""
+      password: data.password
     });
+    
     history.push("/");
   };
-  
+ ;
   
   return (
     <div className={style.user}>
@@ -94,12 +92,14 @@ console.log(estadoEmail.email);
           <br />
 
           <div>
-            <div {...getRootProps()} className={style.fields} >
+            <div {...getRootProps()} className={style.fields1} >
               <input {...getInputProps()}/>
               {uploadedImageUrl ? (
-                <img src={uploadedImageUrl} alt="Uploaded image, please click on Record Data"  />
+                <div className={style.conteinerImg}>
+                  <img src={uploadedImageUrl} alt="Uploaded image, please click on Record Data" className={style.img} />
+                </div>
               ) : (
-                <p>Drag and drop an image here or click to select an image</p>
+                <p className={style.drop}><p className={style.textDrop}>Click here to load an image</p></p>
               )}
             </div>
             <br></br>
@@ -146,7 +146,7 @@ console.log(estadoEmail.email);
                     <input
 
                       type="email"
-                      value={user.email}
+                      value={data.email}
                       placeholder="Enter your email"
                       required
                       name="email"
@@ -155,14 +155,12 @@ console.log(estadoEmail.email);
                   </div>
                   
                 </div>
-                <p className={style.note}>
-                  Complete your email to save the changes.
-                </p>
                 <div className={style.containerButton}>
-                  <button className={style.button} type="submit">
+                  {/* <button className={style.button} type="submit">
                     Record Data
-                    <ion-icon name="person-add-outline"></ion-icon>
-                  </button>
+                    <ion-icon name="person-add-outline" className={style.icon}></ion-icon>
+                  </button> */}
+                  <button className={style.iconRegisterButton}>register data <p className={style.guion}>__</p>      <i className="fas fa-user">  </i></button>
                 </div>
               </div>
             </div>

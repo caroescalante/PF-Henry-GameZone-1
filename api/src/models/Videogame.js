@@ -15,7 +15,8 @@ module.exports = (sequelize) => {
         unique: true
     },
     image: {
-        type: DataTypes.STRING,
+        //  type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: false
     },
     price: {
@@ -44,7 +45,12 @@ module.exports = (sequelize) => {
         type: DataTypes.BOOLEAN,
         defaultValue: true,
         allowNull: false,
-    }
+    },
+    active: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
+        allowNull: false
+    },
   },
   {timestamps: false}
 )}

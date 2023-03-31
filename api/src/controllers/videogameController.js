@@ -3,7 +3,7 @@ const axios = require('axios');
 const { Videogame, Genre, Platform } = require("../db");
 
 const { API_KEY } = process.env;
-const { Op } = require('sequelize')
+const { Op, NUMBER } = require('sequelize')
 
 
 function generatePrice(rating) {
@@ -17,11 +17,29 @@ function generatePrice(rating) {
   }
   return price;
 }
+ const active = true
+// function logicalDeletion(id) {
+// if(typeof id === "number")
+// active = true
+// }
+
+const logicalDeletion = async (id) => {
+  // Buscamos el videojuego correspondiente en nuestra lista de videojuegos
+  const videogame = videogame.find(juego => juego.id === id);
+
+  // Si encontramos el videojuego, establecemos su propiedad "activo" en "false"
+  if (videogame) {
+    videogame.active = false;
+    console.log(`El videojuego ${videogame.name} ha sido borrado lógicamente.`);
+  } else {
+    console.log(`No se encontró ningún videojuego con el ID ${id}.`);
+  }
+}
 
 const getAllGames = async () => {
                                           //Base de datos
       let dbGames = await Videogame.findAll({
-        attributes: ['id','name', 'image', 'rating','price', 'created','released'],
+        attributes: ['id','name', 'image', 'rating','price', 'created','released','active'],
           include: [ 
          {
             model: Genre,
@@ -49,6 +67,7 @@ const getAllGames = async () => {
       genres: el.genres.map((genre) => genre.name).join(', '),
       platforms: el.platforms.map((platform) => platform.name).join(', '),
       released:el.released,
+      
       }));
 
   
@@ -67,6 +86,7 @@ const getAllGames = async () => {
                   genres: el.genres.map((el) => el.name).join(', '),
                   platforms: el.platforms.map((el) => el.platform.name).join(', '),
                   price: price,
+                  active: active,
                   released:el.released
               }
           })
@@ -81,7 +101,7 @@ const getGameByName = async(name) =>{
     
                                       //Base de datos
     let db = await Videogame.findAll({
-      attributes: ['id', 'name','image','rating','price', 'created'],
+      attributes: ['id', 'name','image','rating','price', 'created','active'],
       where:{
           name : {
               [Op.iLike]: `%${name}%`  
@@ -122,7 +142,8 @@ const getGameByName = async(name) =>{
         rating: el.rating,
         genres: el.genres.map(el => el.name).join(',  '),
         platforms: el.platforms.map(el => el.platform.name).flat().sort().join(',  '),
-        price: price
+        price: price,
+        active: active,
         }
     })
     response = [...response, ...results]
@@ -210,7 +231,7 @@ const getById = async(id) =>{
     if(isNaN(id)){
       
       let videogameIdDb = await Videogame.findOne({
-        attributes: ['id', 'name', 'description', 'released','price','website', 'image', 'rating', 'created'],
+        attributes: ['id', 'name', 'description', 'released','price','website', 'image', 'rating', 'created','active' ],
         where: {
             id: id     
         },      
@@ -258,8 +279,12 @@ const getById = async(id) =>{
           website: gameData.website,
           platforms: gameData.platforms.map(el => el.platform.name).flat().sort().join(',  '),
           genres: gameData.genres.map(el => el.name).join(',  '),
-          price: price
-        }  
+          price: price,
+          active: active,
+        } 
+        if(game.active === false){
+          return null
+        } 
         return game
     }
 };
@@ -288,4 +313,5 @@ module.exports = {
     postGame,
     getById,
     updateVideogame,
+    logicalDeletion 
 }

@@ -14,7 +14,9 @@
 .containerCards{
     display: inline-block;
     flex-direction: column;
+    
 }
+
 .card{
     height: 215px;
     width: 250px;
@@ -162,6 +164,15 @@
     .trashButton i {
         margin-right: 5px; /* Espaciado entre el icono y el texto */
       }
+      .trashButton:hover{
+        box-shadow: 1px 1px 3px 3px aqua;
+        background-color: darkcyan;
+      }
+    .trashButton:active{
+        color:aqua;
+        background-color: black;
+    }
+    
 
 .quantity{
     color: transparent;
@@ -188,6 +199,10 @@
     .buttonPay:hover{
         box-shadow: 1px 1px 20px 8px aqua;
         background-color: darkcyan;
+    }
+    .buttonPay:active{
+            color:aqua;
+            background-color: black;
     }
 .titlePay{
     align-items: center;
