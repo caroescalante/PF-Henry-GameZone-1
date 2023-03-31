@@ -19,4 +19,18 @@ class PaymentController {
 
 }
 
-module.exports = PaymentController;
+const randomCode = () => {
+  const longitud = 20;
+  const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let random = "";
+  for (let i = 0; i < longitud; i++) {
+    random += characters.charAt(Math.floor(Math.random() * characters.length));
+  };
+  return random;
+};
+
+//fnchklxlyvvpjjex
+module.exports = {
+  PaymentController,
+  randomCode,
+};
