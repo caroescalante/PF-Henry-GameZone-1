@@ -131,6 +131,14 @@
 .trashButton i {
     margin-right: 5px; /* Espaciado entre el icono y el texto */
   }
+  .trashButton:hover{
+    box-shadow: 1px 1px 3px 3px aqua;
+    background-color: darkcyan;
+  }
+.trashButton:active{
+    color:aqua;
+    background-color: black;
+}
 
   .title{
     display: block;

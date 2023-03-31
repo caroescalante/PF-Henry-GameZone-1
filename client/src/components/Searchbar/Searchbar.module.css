@@ -23,9 +23,13 @@
 }
 
 .button:hover{
-    background:rgb(71, 66, 66);
+    background:rgba(53, 52, 52, 0.664);
     color: aqua;
-    box-shadow: 1px 1px 20px 8px aqua;    
+    box-shadow: 1px 1px 2px 2px aqua;    
+}
+.button:active{
+    color:black;
+    background: aqua;
 }
 
 
