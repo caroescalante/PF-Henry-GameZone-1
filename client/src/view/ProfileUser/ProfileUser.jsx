@@ -29,15 +29,15 @@ const ProfileUser = () => {
 
     return ( 
         <div className={style.user}>
-            <div className={style.registration}>
+            <div>
                 <div className={style.container}>
-                     <header>Your Profile</header>
+                        <header className={style.title}>Your Profile</header>
                      <br/>
   
-                    <div>
+                    <div className={style.containerData}>
                         { stateEmail.email && (
-                        <div> 
-                            <img src={image} alt=""/>
+                            <div> 
+                            <img className={style.image} src={image} alt=""/>
                             <br/>
                             <h2>Name: {name} </h2>
                             <br/>
@@ -49,14 +49,17 @@ const ProfileUser = () => {
                             <br />
                         </div>
                         )}
-                    </div>
+                    
                    
         
                     <div>
-                        <Link className={style.links} to={"/update/" + email}>
-                            <ion-icon size="large" name="create-outline"></ion-icon>
+                        <Link to={"/update/" + email}>
+                        <button className={style.iconRegisterButton}><i class="fas fa-edit"></i></button> 
                         </Link>
+
+                     
                     </div>
+                </div>
                 </div>
             </div>
         </div>

@@ -44,6 +44,10 @@
     box-shadow: 1px 1px 20px 8px aqua;
     background-color: darkcyan;
 }
+.button:active{
+    color: aqua;
+    background-color: black;
+}
 .title{
     color: white;
     font-size: 24px;
