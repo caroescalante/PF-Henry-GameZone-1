@@ -33,7 +33,7 @@ const initialState = {
   detail : [],
   users: [],
   allUsers: [],
-  emailUser:[],
+  emailUser: JSON.parse(localStorage.getItem("emailUser")) || [],
   searchError: null,
   filterGenres: 'All',
   filterPlataforms: 'All',
@@ -171,17 +171,17 @@ function rootReducer(state = initialState, action) {
               ...state,
               detail:[],
               allGames:[],
-              emailUser: []
+              emailUser: [],
+              searchError: null
           }; 
           
-      case GET_USERS:
+          case GET_USERS:
           return { ...state, users: action.payload, allUsers: action.payload, };
 
       case EMAIL_USER:
-          return { ...state, emailUser: action.payload, };
-
-      case GET_EMAIL:
-          return { ...state, userEmail: action.payload,};
+          const newEmailUser = { ...action.payload };
+          localStorage.setItem("emailUser", JSON.stringify(newEmailUser));
+          return { ...state, emailUser: newEmailUser };
           
       case ADD_FAVORITES:
           const favoriteGame = state.allGames.find(game => game.id === action.payload);
