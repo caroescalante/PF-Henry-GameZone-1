@@ -9,22 +9,37 @@ import { useAuth0 } from "@Auth0/auth0-react";
 import { useDispatch} from "react-redux";
 
 const Navbar = () => {
-  const { user, isAuthenticated } = useAuth0();
-  const dispatch = useDispatch();
-  const [userData, setUserData] = useState(null);
-  
-    // useEffect( () => {
-    //     if(isAuthenticated){
-    //         const db = async () => await dispatch(emailUser(user.email));
-    //         db().then ((result) => {
-    //             if(result.payload.variable === true) { 
-    //                setUserData(result.payload.userData)
-    //             }
-    //         });
-    //     }   
-    // }, [dispatch, emailUser, isAuthenticated, user.email])
 
-    // console.log(user.email);
+    const { user, isAuthenticated } = useAuth0();
+    const dispatch = useDispatch();
+    const [userData, setUserData] = useState(null);
+  
+    useEffect(() => {
+        if (isAuthenticated) {
+          
+            const result = async() => {
+                const res = await dispatch(emailUser(user.email));
+
+                const {name, email, rol, active} = res.payload.variable;
+                console.log(name, email, rol, active);
+            }
+            result()
+            }
+    },[isAuthenticated, dispatch])
+
+            
+            
+        //     if (result.payload.variable === true) {
+        //       setUserData(result.payload.userData);
+        //       console.log(result.payload.userData.rol);
+             
+        //   };
+        //   fetchUserData();
+        //   console.log(fetchUserData);
+    //     }
+    //   }, [dispatch, emailUser, isAuthenticated]);
+
+    // console.log(userData);
 
 
   return (
