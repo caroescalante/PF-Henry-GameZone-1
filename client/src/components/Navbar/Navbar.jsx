@@ -5,7 +5,7 @@ import logo from "../../Image/logo.png";
 import { clearDetail, emailUserE } from "../../redux/actions";
 import LoginButton from "../LoginButton/LoginButton";
 import LogoutButton from "../LogoutButton/LogoutButton";
-import { useAuth0 } from "@Auth0/auth0-react";
+import { useAuth0 } from "@auth0/auth0-react";
 import { useDispatch, useSelector} from "react-redux";
 
 const Navbar = () => {
@@ -33,6 +33,12 @@ const Navbar = () => {
         <Link className={style.links} to="/create">
             <ion-icon size="large" name="game-controller-outline"></ion-icon>
         </Link>
+        )}
+
+        {isAuthenticated && rolUser === "admin" && (
+            <Link className={style.links} to="/users">
+                <ion-icon size="large" name="people-outline"></ion-icon>            
+            </Link>
         )}
 
         <Link className={style.links} to="/favorites">
