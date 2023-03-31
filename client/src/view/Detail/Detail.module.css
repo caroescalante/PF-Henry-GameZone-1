@@ -339,6 +339,10 @@
   box-shadow: 1px 1px 20px 8px aqua;
   background-color: darkcyan;
 }
+.buttonFavorites:active{
+  color:aqua;
+  background-color: black;
+}
 .buttonCart{
   display: flex;
   position: relative;
@@ -364,6 +368,10 @@
 .buttonCart:hover{
   box-shadow: 1px 1px 20px 8px aqua;
   background-color: darkcyan;
+}
+.buttonCart:active{
+    color:aqua;
+    background-color: black;
 }
 .price{
   color: white;
