@@ -141,10 +141,14 @@ export function getUsers (){
 
 export function emailUserE (email) {
   return async function (dispatch) {
-    const emailUser = await axios.get(`http://localhost:3001/user?email=${email}`);
-    return dispatch({ type: GET_EMAIL, payload:emailUser.data})
+    try {
+      const emailUser = await axios.get(`http://localhost:3001/user?email=${email}`);
+      return dispatch({ type: GET_EMAIL, payload:emailUser.data})
+    } catch ( error) {
+      return console.log("Something went wrong. Please try again.", error.message)
+    }
   }
-}
+};
 
 export function emailUser (email) {
   return async function (dispatch) {
