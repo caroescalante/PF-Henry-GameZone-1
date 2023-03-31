@@ -36,6 +36,12 @@ const Navbar = () => {
         </Link>
         )}
 
+        {isAuthenticated && rolUser === "admin" && (
+            <Link className={style.links} to="/users">
+                <ion-icon size="large" name="people-outline"></ion-icon>            
+            </Link>
+        )}
+
         <Link className={style.links} to="/favorites">
             <ion-icon size="large" name="heart-outline"></ion-icon>
         </Link>
