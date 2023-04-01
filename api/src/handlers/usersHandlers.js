@@ -79,6 +79,16 @@ try {
 }
   };
 
+const favoriteUserHandler = (req, res) => {
+  const { favorites } = req.body;
+
+  try {
+    
+  } catch (error) {
+    
+  };
+};
+
 
 module.exports = {
   getUsersHandler,
@@ -86,4 +96,5 @@ module.exports = {
   createUserHandler,
   updateUserHandler,
   emailUserHandler,
+  favoriteUserHandler,
 };

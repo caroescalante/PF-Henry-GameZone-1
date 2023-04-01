@@ -47,7 +47,11 @@ module.exports = (sequelize) => {
     image:{
       type: DataTypes.STRING,
       defaultValue: "",
-    }
+    },
+    favorites: {
+      type: DataTypes.ARRAY(DataTypes.JSON),
+      defaultValue: [],
+    },
   },
   { timestamps: false }
   );
