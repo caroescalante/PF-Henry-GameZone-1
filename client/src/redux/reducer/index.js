@@ -184,6 +184,13 @@ function rootReducer(state = initialState, action) {
           const newEmailUser = { ...action.payload };
           localStorage.setItem("emailUser", JSON.stringify(newEmailUser));
           return { ...state, emailUser: newEmailUser };
+
+      //por favor no borrar este case es el que pasa el rol a la navbar "leonardo" 
+
+      case GET_EMAIL:
+          return { ...state, userEmail: action.payload, }
+
+      //*************** */
           
       case ADD_FAVORITES:
           const favoriteGame = state.allGames.find(game => game.id === action.payload);

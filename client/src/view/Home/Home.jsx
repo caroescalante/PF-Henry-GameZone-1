@@ -97,7 +97,7 @@ const Home = () => {
           db().then((result) => {
             if (result.payload.variable === true) {
               axios
-                .post(`http://localhost:3001/user/`, { email: user.email })
+                .post(`http://localhost:3001/user/`, { name: user.name, email: user.email })
                 .then((result) => {
                   if (result.data.userCreated) {
                     // usuario creado correctamente
@@ -128,17 +128,31 @@ const Home = () => {
       
             <select onChange={(e) => handleGenreFilter(e)} className={styles.filter}>
                      <option value='All'>All Genres</option>
-                    {genres.map((gen, index) => {
+                    {genres.slice(0, 15).map((gen, index) => {
                         return <option key={index} value={gen.name}>{gen.name}</option>;
                      })}
             </select> 
-            
+
             <select onChange={(e) => handlePlatformFilter(e)} className={styles.filter}>
                      <option value='All'>All Platforms</option>
-                    {platforms.map((plat, index) => {
+                    {platforms.filter(plat => plat.name !== 'Neo Geo' && plat.name !== 'Game Gear' && plat.name !== 'Jaguar'&& plat.name !== '3DO' && plat.name !== 'SEGA Master System'&& plat.name !== 'SEGA CD' && plat.name !== 'SEGA Saturn'&& plat.name !== 'Genesis' && plat.name !== 'SEGA 32X'&& plat.name !== 'Atari XEGS' && plat.name !== 'Atari Lynx'&& plat.name !== 'Atari ST' && plat.name !== 'Atari 8-bit'&& plat.name !== 'Atari 2600' && plat.name !== 'Atari 5200'&& plat.name !== 'Atari 7800' && plat.name !== 'Commodore / Amiga'&& plat.name !== 'Atari Flashback'&& plat.name !== 'Apple II' && plat.name !== 'Classic Macintosh'&& plat.name !== 'NES' && plat.name !== 'SNES'&& plat.name !== 'Game Boy' && plat.name !== 'Game Boy Color'&& plat.name !== 'Game Boy Advance' && plat.name !== 'Nintendo 64'&& plat.name !== 'GameCube' && plat.name !== 'PSP'&& plat.name !== 'Nintendo DSi' && plat.name !== 'Nintendo DS').map((plat, index) => {
                         return <option key={index} value={plat.name}>{plat.name}</option>;
                      })}
             </select>
+
+
+            {/* <select onChange={(e) => handlePlatformFilter(e)} className={styles.filter}>
+    <option value='All'>All Platforms</option>
+    {platforms.filter(plat => plat.name !== 'Xbox' && plat.name !== 'PlayStation' && plat.name !== 'Nintendo Switch')
+              .map((plat, index) => {
+                  return <option key={index} value={plat.name}>{plat.name}</option>;
+              })}
+</select> */}
+
+
+
+
+
 
             <select onChange={(e) => handleOrderName(e)} className={styles.filter}>
                      <option value='All'>Alphabetical Order</option>

@@ -35,10 +35,9 @@ function App() {
         <Route exact path="/cart" component={ShopCart} />
         <Route exact path="/paymentfailure" component={PaymentFailure} />
         <Route exact path="/login" component={Login} />
-        <Route path="/news" component={News}/>
-        <Route path="/about" component={About}/>
-        <Route path="*" component={Error404} />
-        
+        <Route exact path="/news" component={News} />
+        <Route exact path="/about" component={About} />
+        <Route path="*" component={Error404} />   
       </Switch>
         <Footer />
     </div>
