@@ -21,6 +21,7 @@ const Navbar = () => {
     
     const users = useSelector((state) => state.userEmail)
     const rolUser = users?.[0]?.rol;
+    console.log(user)
 
   return (
 
@@ -33,6 +34,12 @@ const Navbar = () => {
         <Link className={style.links} to="/create">
             <ion-icon size="large" name="game-controller-outline"></ion-icon>
         </Link>
+        )}
+
+        {isAuthenticated && rolUser === "admin" && (
+            <Link className={style.links} to="/users">
+                <ion-icon size="large" name="people-outline"></ion-icon>            
+            </Link>
         )}
 
         <Link className={style.links} to="/favorites">

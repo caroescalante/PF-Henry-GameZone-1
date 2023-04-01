@@ -160,7 +160,7 @@ const UpdateData = () => {
                     Record Data
                     <ion-icon name="person-add-outline" className={style.icon}></ion-icon>
                   </button> */}
-                  <button className={style.iconRegisterButton}>register data <p className={style.guion}>__</p>      <i class="fas fa-user">  </i></button>
+                  <button className={style.iconRegisterButton}>register data <p className={style.guion}>__</p>      <i className="fas fa-user">  </i></button>
                 </div>
               </div>
             </div>

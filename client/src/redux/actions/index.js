@@ -143,6 +143,7 @@ export function emailUserE (email) {
   return async function (dispatch) {
     try {
       const emailUser = await axios.get(`http://localhost:3001/user?email=${email}`);
+      console.log(emailUser)
       return dispatch({ type: GET_EMAIL, payload:emailUser.data})
       
 
