@@ -23,7 +23,7 @@ const About = () => {
       <ul className={styles.integrantes}>
         {integrantes.map((integrante) => (
           <li key={integrante.nombre}>
-            {integrante.nombre} - <a href={integrante.linkedin}>LinkedIn</a>
+            {integrante.nombre} - <a href={integrante.linkedin}><i className="fa fa-linkedin"></i></a>
           </li>
         ))}
       </ul>
