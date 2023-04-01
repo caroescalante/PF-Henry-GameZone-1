@@ -260,12 +260,14 @@ function CreateGameForm() {
             );
           })}
         </div> */}
-      <div className={style.containerButton}>
-        <button type="submit"  className={style.button} disabled={
-          (errors.name || errors.image || errors.price  || errors.description) ? true : false}>Submit
-        </button>
-        </div>
-      </div>
+       <div className={style.containerButton}> 
+        {/* <button type="submit"  className={style.button} disabled={
+          (errors.name || errors.image || errors.price  || errors.description) ? true : false } */}
+        {!errors.name && !errors.image && !errors.price && !errors.description  && !errors.released && selectedOptionG !== null && selectedOptionP !== null && (<button type="submit"  className={style.button} >Submit
+        </button>)} 
+          
+         </div> 
+               </div>
     </form>
    </div>
   );
