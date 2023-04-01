@@ -6,7 +6,7 @@ import style from './UpdateData.module.css';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
 import { emailUser } from '../../redux/actions';
-import { useAuth0 } from '@auth0/auth0-react';
+import { useAuth0 } from '@Auth0/auth0-react';
 import { useDispatch } from 'react-redux';
 
 const CLOUD_NAME = import.meta.env.VITE_CLOUD_NAME;
@@ -35,17 +35,16 @@ const UpdateData = () => {
   const {
     image,
     name,
-    password,
     phone,
     surname } = estadoEmail.variable;
-
+console.log(estadoEmail.variable);
   const [data, setData] = useState({
     name: name,
     surname: surname,
     image: image,
     phone: phone,
     email: estadoEmail.email,
-    password: password
+    
   });
 
   const changeHandler = (event) => {
@@ -72,14 +71,15 @@ const UpdateData = () => {
   const submitHandler =  async (event) => {
     event.preventDefault();
     await axios.put(`http://localhost:3001/user/${email}`,{ ...data, image:uploadedImageUrl});
+    console.log(uploadedImageUrl);
     setData({
       name: data.name,
       surname: data.surname,
       phone: data.phone,
       email: email,
-      password: data.password
+      image: uploadedImageUrl
     });
-    
+    console.log(setData);
     history.push("/");
   };
  ;
@@ -172,4 +172,3 @@ const UpdateData = () => {
 }
 
 export default UpdateData;
-
