@@ -21,5 +21,6 @@ export const REMOVE_FAVORITE = "REMOVE_FAVORITE";
 export const REMOVE_FROM_CART = "REMOVE_FROM_CART"
 export const CHARGE_IMAGE = "CHARGE_IMAGE"
 export const GET_EMAIL = "GET_EMAIL"
+export const DISABLE_USER = "DISABLE_USER"
 
 

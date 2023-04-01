@@ -22,6 +22,7 @@ import {
   REMOVE_FAVORITE,
   CHARGE_IMAGE,
   GET_EMAIL,
+  DISABLE_USER
 } from "../actions/types";
 
 const initialState = {
@@ -41,6 +42,7 @@ const initialState = {
   cart: JSON.parse(localStorage.getItem('cart')) || [],
   image: [],
   userEmail: [],
+  disabledUsers: []
 };
 
 function rootReducer(state = initialState, action) {
@@ -335,6 +337,15 @@ function rootReducer(state = initialState, action) {
         image: action.payload
       };
     
+    case DISABLE_USER:
+      const disabledUser = state.users.find(user => user.id === action.payload);
+      const updatedUsers = state.users.filter(user => user.id !== action.payload);
+      return {
+      ...state,
+        users: updatedUsers,
+        disabledUsers: [...state.disabledUsers, disabledUser]
+      };
+      
       
       
   default: return { ...state }

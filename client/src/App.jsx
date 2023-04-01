@@ -4,7 +4,7 @@ import Home from "./view/Home/Home";
 import Detail from "./view/Detail/Detail"
 //import Login from "./view/Login/Login";
 import CreateGameForm from "./view/CreateGameForm/CreateGameForm";
-import Community from "./view/Community/Community";
+import Users from "./view/Users/Users";
 import RegistrationForm from "./view/UpdateData/UpdateData";
 import Navbar from '../src/components/Navbar/Navbar';
 import Footer from "./components/Footer/Footer";
@@ -27,7 +27,7 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route exact path="/game/:id" component={Detail} />
         <Route exact path="/create" component={CreateGameForm} />
-        <Route exact path="/community" component={Community} />
+        <Route exact path="/users" component={Users} />
         <Route exact path="/update/:email" component={UpdateData} />
         <Route exact path="/favorites" component={Favorites} />
         <Route exact path="/profile" component={ProfileUser} />

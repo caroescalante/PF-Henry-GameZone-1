@@ -4,7 +4,8 @@ const {
   getAllUsers,
   searchUserByName,
   updateUser,
-  emailUser
+  emailUser,
+  disabledUser
 } = require ("../controllers/userController");
 
 const getUsersHandler = async (req, res) => {
@@ -80,10 +81,22 @@ try {
   };
 
 
+const disableUserHandler = async (req, res, next) => {
+  const { id } = req.params;
+    try {
+    await disabledUser(id);
+    res.sendStatus(204);
+    } catch (error) {
+         next(error);
+    }
+};
+
+
 module.exports = {
   getUsersHandler,
   getUserHandler,
   createUserHandler,
   updateUserHandler,
   emailUserHandler,
+  disableUserHandler
 };

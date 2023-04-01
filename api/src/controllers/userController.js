@@ -93,11 +93,26 @@ const updateUser = async ({name, image, surname, email, password, phone}) => {
     else return dataBaseEmail;
   };
 
+  
+ const disabledUser = async (id) => {
+  const [rowsAffected, [updatedUser]] = await User.update(
+    { active: false },
+    { where: { id }, returning: true }
+  );
+
+  if (rowsAffected !== 1) {
+    throw new Error(`User with ID ${id} not found`);
+  }
+
+  return updatedUser;
+};
+
 module.exports = { 
     createUser,
     getUserById,
     getAllUsers,
     searchUserByName,
     updateUser,
-    emailUser
+    emailUser,
+    disabledUser
 };
