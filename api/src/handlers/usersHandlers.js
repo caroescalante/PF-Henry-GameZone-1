@@ -47,11 +47,11 @@ const updateUserHandler = async (req, res) => {
 
   const { email } = req.params;
   const {name, surname, phone, image} = req.body
-
+  console.log(name, surname, phone, image);
   try {
       const emailExists = await emailUser(email);
       if (emailExists === true) {
-        const user = await createUser({name, image, surname, email, phone});
+        const user = await createUser({name, surname, phone, image, email});
         res.status(201).json({ message: 'User created', user });
       } else {
         const [rowsAffected, [updatedUser]] = await updateUser({name, image, surname, email, phone});
