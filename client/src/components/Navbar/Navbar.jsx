@@ -55,6 +55,7 @@ const Navbar = () => {
             <LogoutButton className={style.links} />
         ) : (
             <LoginButton className={style.links} />
+            
         )}
     </div>
   );
