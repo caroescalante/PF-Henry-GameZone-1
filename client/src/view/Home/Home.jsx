@@ -97,7 +97,7 @@ const Home = () => {
           db().then((result) => {
             if (result.payload.variable === true) {
               axios
-                .post(`http://localhost:3001/user/`, { name: user.name, email: user.email })
+                .post(`http://localhost:3001/user/`, { email: user.email })
                 .then((result) => {
                   if (result.data.userCreated) {
                     // usuario creado correctamente

@@ -19,9 +19,8 @@ const Navbar = () => {
         }
     }, [dispatch, isAuthenticated, user]);
     
-    const users = useSelector((state) => state.userEmail)
-    const rolUser = users?.[0]?.rol;
-    console.log(user)
+    const users = useSelector((state) => state.userEmail[0])
+    const rolUser = users?.rol;
 
   return (
 
