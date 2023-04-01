@@ -145,6 +145,8 @@ export function emailUserE (email) {
       const emailUser = await axios.get(`http://localhost:3001/user?email=${email}`);
       console.log(emailUser)
       return dispatch({ type: GET_EMAIL, payload:emailUser.data})
+      
+
     } catch ( error) {
       return console.log("Something went wrong. Please try again.", error.message)
     }
