@@ -15,11 +15,16 @@ const cookies = new Cookies();
 
 
 const UpdateData = () => {
-  const history = useHistory();
-  const dispatch = useDispatch();
-  const users = useSelector((state) => state.users);
-  const estadoEmail= useSelector((state)=>state.userEmail[0])
-  const { email } = useParams();
+
+    const history = useHistory();
+    const dispatch = useDispatch();
+    const users = useSelector((state) => state.userEmail[0]);
+
+    //console.log(users);
+
+    const estadoEmail= useSelector((state)=>state.userEmail[0])
+    const { email } = useParams();
+    const { user, isAuthenticated } = useAuth0();
 
   
   useEffect(() => {
@@ -27,17 +32,17 @@ const UpdateData = () => {
     
   }, [dispatch, email]);
 
-  const { user, isAuthenticated } = useAuth0();
+  
   
   const [uploadedImageUrl, setUploadedImageUrl] = useState();
-  //console.log(estadoEmail);
+  
 
   const {
     image,
     name,
     phone,
     surname } = estadoEmail;
-//console.log(estadoEmail.variable);
+
   const [data, setData] = useState({
     name: name,
     surname: surname,
@@ -67,11 +72,10 @@ const UpdateData = () => {
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
-  //console.log(data)
   const submitHandler =  async (event) => {
     event.preventDefault();
     await axios.put(`http://localhost:3001/user/${email}`,{ ...data, image:uploadedImageUrl});
-    //console.log(uploadedImageUrl);
+    
     setData({
       name: data.name,
       surname: data.surname,
@@ -79,7 +83,7 @@ const UpdateData = () => {
       email: email,
       image: uploadedImageUrl
     });
-    //console.log(setData);
+    
     history.push("/profile");
   };
  ;
