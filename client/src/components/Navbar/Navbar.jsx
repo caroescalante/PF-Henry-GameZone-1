@@ -58,7 +58,7 @@ const Navbar = () => {
 
         {isAuthenticated && (
         <Link className={style.links} to="/profile">
-            {user.name}
+            {users.name}
         </Link>
         )}
 
