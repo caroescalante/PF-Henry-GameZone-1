@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import style from "./ProfileUser.module.css";
 import {Link} from 'react-router-dom'
 import { useSelector } from "react-redux";
-import {useAuth0} from '@auth0/auth0-react';
+import {useAuth0} from '@Auth0/auth0-react';
 
 const ProfileUser = () => {
 
@@ -29,11 +29,11 @@ const ProfileUser = () => {
                     <div className={style.containerData}>
                         { user&& (
                         <div> 
-                            <img className={style.image} src={image} alt=""/>
+                            <img className={style.image} src={image || " "} alt=""/>
                             <br/>
-                            <h2>Name: {name} </h2>
+                            <h2>Name: {name || " "} </h2>
                             <br/>
-                            <h2>Email: {email}</h2>
+                            <h2>Email: {email || " "}</h2>
                         </div>
                         )}                  
                         
