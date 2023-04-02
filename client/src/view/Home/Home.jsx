@@ -20,7 +20,6 @@ import {
   emailUserE
 } from "../../redux/actions";
 
-
 const Home = () => {
 
     const dispatch = useDispatch();
@@ -134,7 +133,6 @@ const Home = () => {
                      })}
             </select>
 
-
             {/* <select onChange={(e) => handlePlatformFilter(e)} className={styles.filter}>
     <option value='All'>All Platforms</option>
     {platforms.filter(plat => plat.name !== 'Xbox' && plat.name !== 'PlayStation' && plat.name !== 'Nintendo Switch')
@@ -142,11 +140,6 @@ const Home = () => {
                   return <option key={index} value={plat.name}>{plat.name}</option>;
               })}
 </select> */}
-
-
-
-
-
 
             <select onChange={(e) => handleOrderName(e)} className={styles.filter}>
                      <option value='All'>Alphabetical Order</option>
@@ -187,6 +180,7 @@ const Home = () => {
         </div>
     );
 };
+
 export default Home;
 
     // useEffect(() => {
