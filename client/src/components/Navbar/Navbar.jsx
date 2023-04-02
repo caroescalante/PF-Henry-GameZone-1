@@ -5,7 +5,7 @@ import logo from "../../Image/logo.png";
 import { reloadGames, emailUserE } from "../../redux/actions";
 import LoginButton from "../LoginButton/LoginButton";
 import LogoutButton from "../LogoutButton/LogoutButton";
-import { useAuth0 } from "@Auth0/auth0-react";
+import { useAuth0 } from "@auth0/auth0-react";
 import { useDispatch, useSelector} from "react-redux";
 
 const Navbar = () => {
@@ -19,9 +19,8 @@ const Navbar = () => {
         }
     }, [dispatch, isAuthenticated, user]);
     
-    const users = useSelector((state) => state.userEmail)
-    const rolUser = users?.[0]?.rol;
-    console.log(user)
+    const users = useSelector((state) => state.userEmail[0])
+    const rolUser = users?.rol;
 
     function handleClick(e){
         e.preventDefault();

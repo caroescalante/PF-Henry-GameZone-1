@@ -3,26 +3,31 @@ import { gapi } from 'gapi-script';
 import style from '../Login/Login.module.css';
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 
 
 const Login = () => {
 
-  const history = useHistory();
+  // const history = useHistory();
 
-  const clientID = "588823269366-10q37of6mm1ic18o1v4fmm9t2kplq6nb.apps.googleusercontent.com";
+  // const clientID = "588823269366-10q37of6mm1ic18o1v4fmm9t2kplq6nb.apps.googleusercontent.com";
+
+  const users = useSelector((state) => state.userEmail)
+
+  //console.log(users[0].rol);
 
   const [user, setUser] = useState({});
 
-  useEffect(()=> {
+  // useEffect(()=> {
 
-    const start = () => {
-      gapi.auth2.init({
-        clientId: clientID,
-      })
-    }
-    gapi.load("client:auth2", start)
-  },[])
+  //   const start = () => {
+  //     gapi.auth2.init({
+  //       clientId: clientID,
+  //     })
+  //   }
+  //   gapi.load("client:auth2", start)
+  // },[])
 
   const changeHandler = () => {
 
@@ -32,11 +37,11 @@ const Login = () => {
 
   }
 
-  const onSuccess = (response) => {
-    setUser(response.profileObj);
-    history.push("/profile")
+  // const onSuccess = (response) => {
+  //   setUser(response.profileObj);
+  //   history.push("/profile")
 
-  }
+  // }
 
 
 
@@ -131,14 +136,14 @@ const Login = () => {
             Log in
             </button>
 
-            <GoogleLogin
+            {/* <GoogleLogin
             className={style.google}
             clientId = {clientID} 
             buttonText = "Iniciar sesión" 
             onSuccess = { onSuccess }
             isSignedIn = { true } 
             to="/registration"
-            cookiePolicy = { 'single_host_origin' } />
+            cookiePolicy = { 'single_host_origin' } /> */}
 
 
             <div className={user? "profile": "hidden"}>

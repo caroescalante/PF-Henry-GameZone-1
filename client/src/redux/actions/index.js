@@ -149,9 +149,7 @@ export function emailUserE (email) {
   return async function (dispatch) {
     try {
       const emailUser = await axios.get(`http://localhost:3001/user?email=${email}`);
-      console.log(emailUser)
-      return dispatch({ type: GET_EMAIL, payload:emailUser.data})
-      
+      return dispatch({ type: GET_EMAIL, payload:emailUser.data})    
 
     } catch ( error) {
       return console.log("Something went wrong. Please try again.", error.message)
@@ -162,11 +160,8 @@ export function emailUserE (email) {
 export function emailUser (email) {
   return async function (dispatch) {
     try {
-      console.log(email);
       const emailDb = await axios.get(`http://localhost:3001/user/email/${email}`);
-      console.log(emailDb);
       const variable = emailDb.data;
-      console.log(variable);
 
       return dispatch({ 
         type: EMAIL_USER, 
