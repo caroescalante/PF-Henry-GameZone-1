@@ -18,6 +18,7 @@ import {
   REMOVE_FROM_CART,
   CLEAR_CART,
   REMOVE_FAVORITE,
+  RELOAD_GAMES,
   
   GET_EMAIL
 } from "./types";
@@ -36,7 +37,13 @@ export function getGames() {
     });
   };
 }
-
+export function reloadGames(){
+  return async function (dispatch){
+    return dispatch({
+      type: RELOAD_GAMES,
+    })
+  }
+}
 export function searchByName(name) {
   return async function (dispatch) {
   try {
