@@ -80,7 +80,7 @@ console.log(estadoEmail.variable);
       image: uploadedImageUrl
     });
     console.log(setData);
-    history.push("/");
+    history.push("/profile");
   };
  ;
   
@@ -160,7 +160,7 @@ console.log(estadoEmail.variable);
                     Record Data
                     <ion-icon name="person-add-outline" className={style.icon}></ion-icon>
                   </button> */}
-                  <button className={style.iconRegisterButton}>register data <p className={style.guion}>__</p>      <i className="fas fa-user">  </i></button>
+                  <button className={style.iconRegisterButton} type="submit">Record Data <p className={style.guion}>__</p>      <i className="fas fa-user">  </i></button>
                 </div>
               </div>
             </div>
