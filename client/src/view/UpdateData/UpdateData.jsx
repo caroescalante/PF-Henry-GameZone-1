@@ -5,7 +5,7 @@ import { useDropzone } from 'react-dropzone';
 import style from './UpdateData.module.css';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
-import { emailUser } from '../../redux/actions';
+import { emailUserE } from '../../redux/actions';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useDispatch } from 'react-redux';
 
@@ -18,26 +18,26 @@ const UpdateData = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const users = useSelector((state) => state.users);
-  const estadoEmail= useSelector((state)=>state.emailUser)
+  const estadoEmail= useSelector((state)=>state.userEmail[0])
   const { email } = useParams();
 
   
   useEffect(() => {
-    dispatch(emailUser(email));
+    dispatch(emailUserE(email));
     
   }, [dispatch, email]);
 
   const { user, isAuthenticated } = useAuth0();
   
   const [uploadedImageUrl, setUploadedImageUrl] = useState();
-  console.log(estadoEmail);
+  //console.log(estadoEmail);
 
   const {
     image,
     name,
     phone,
-    surname } = estadoEmail.variable;
-console.log(estadoEmail.variable);
+    surname } = estadoEmail;
+//console.log(estadoEmail.variable);
   const [data, setData] = useState({
     name: name,
     surname: surname,
@@ -67,11 +67,11 @@ console.log(estadoEmail.variable);
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
-  console.log(data)
+  //console.log(data)
   const submitHandler =  async (event) => {
     event.preventDefault();
     await axios.put(`http://localhost:3001/user/${email}`,{ ...data, image:uploadedImageUrl});
-    console.log(uploadedImageUrl);
+    //console.log(uploadedImageUrl);
     setData({
       name: data.name,
       surname: data.surname,
@@ -79,7 +79,7 @@ console.log(estadoEmail.variable);
       email: email,
       image: uploadedImageUrl
     });
-    console.log(setData);
+    //console.log(setData);
     history.push("/profile");
   };
  ;
