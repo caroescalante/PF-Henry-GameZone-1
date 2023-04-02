@@ -93,19 +93,22 @@ const updateUser = async ({name, image, surname, email, password, phone}) => {
     else return dataBaseEmail;
   };
 
-  
- const disabledUser = async (id) => {
+const toggleActiveUser = async (id) => {
+  const user = await User.findByPk(id);
+  if (!user) {
+    throw new Error(`User with ID ${id} not found`);
+  }
   const [rowsAffected, [updatedUser]] = await User.update(
-    { active: false },
+    { active: !user.active },
     { where: { id }, returning: true }
   );
-
   if (rowsAffected !== 1) {
     throw new Error(`User with ID ${id} not found`);
   }
-
   return updatedUser;
 };
+
+
 
 module.exports = { 
     createUser,
@@ -114,5 +117,5 @@ module.exports = {
     searchUserByName,
     updateUser,
     emailUser,
-    disabledUser
+    toggleActiveUser
 };

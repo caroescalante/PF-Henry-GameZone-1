@@ -343,17 +343,18 @@ function rootReducer(state = initialState, action) {
         ...state,
         image: action.payload
       };
-    
+ 
     case DISABLE_USER:
-      const disabledUser = state.users.find(user => user.id === action.payload);
-      const updatedUsers = state.users.filter(user => user.id !== action.payload);
-      return {
-      ...state,
-        users: updatedUsers,
-        disabledUsers: [...state.disabledUsers, disabledUser]
-      };
-      
-      
+  return {
+    ...state,
+    allUsers: state.allUsers.map(user => {
+      if (user.id === action.payload) {
+        return { ...user, active: !user.active };
+      }
+      return user;
+    })
+  };
+     
       
   default: return { ...state }
   }

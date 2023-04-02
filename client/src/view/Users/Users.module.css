@@ -1,0 +1,29 @@
+#switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    background-color: #ccc;
+    border-radius: 34px;
+    margin: 10px;
+    cursor: pointer;
+  }
+  #switch:before {
+    content: "";
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    top: 4px;
+    left: 4px;
+    background-color: white;
+    transition: all 0.3s;
+  }
+
+  #switch:disabled {
+    background-color: #999;
+    cursor: default;
+  }
+  #switch:disabled:before {
+    transform: translateX(26px);
+  }

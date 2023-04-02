@@ -1,13 +1,16 @@
 const { Router } = require("express");
 const {
-    disableUserHandler
+    toggleActiveHandler
+
 } = require("../handlers/usersHandlers");
 
 
-const userRouter = Router();
+const userDisabledRouter = Router();
 
 
-userRouter.put("/:id/disable", disableUserHandler);
+
+userDisabledRouter.put("/:id", toggleActiveHandler);
 
 
-module.exports = userRouter;
+
+module.exports = userDisabledRouter;

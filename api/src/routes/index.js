@@ -6,7 +6,7 @@ const genreRouter = require('./genreRouter');
 const platformRouter = require("./platformRouter");
 const router = Router();
 const paymentRouter = require ("./paymentRouter")
-const disabled = require('./disabledUserRouter')
+const disabledUserRouter = require('./disabledUserRouter')
 
 
 // const paymentController = require ("../controllers/paymentController")
@@ -20,7 +20,7 @@ router.use('/genres', genreRouter)
 router.use('/platform', platformRouter);
 router.use('/payment', paymentRouter)
 router.use('/paymentsuccess', paymentRouter)
-router.use('/disabled', disabled);
+router.use('/disabled', disabledUserRouter);
 
 
 module.exports = router;

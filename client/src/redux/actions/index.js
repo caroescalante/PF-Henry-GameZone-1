@@ -132,7 +132,6 @@ export function getUsers (){
   return async function (dispatch) {
     try {
       const users = await axios.get('http://localhost:3001/user');
-      console.log(users, 'hola')
       return dispatch({ type: GET_USERS, payload: users.data })
 
     } catch ( error ) {
@@ -237,10 +236,9 @@ export function chargeImage(payload) {
 export const disableUser = (id) => {
   return async (dispatch) => {
     try {
-      await axios.put(`http://localhost:3001/user/${id}/disable`);
+      await axios.put(`http://localhost:3001/disabled/${id}`);
       dispatch({ type: DISABLE_USER, payload: id });
     } catch (error) {
-      console.log('Error disabling user', error);
     }
   };
 };
