@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import styles from './Home.module.css';
 import Paginated from "../../components/Paginated/Paginated";
 import axios from "axios";
+import { useHistory } from 'react-router-dom';
 import { 
   getGames, 
   getGenres, 
@@ -27,6 +28,8 @@ const Home = () => {
     const { user, isAuthenticated } = useAuth0();
     const genres = useSelector((state) => state.genres);
     const platforms = useSelector((state) => state.platforms);
+    const history = useHistory();
+    const estadoEmail= useSelector((state)=>state.emailUser)
 
     const [orden, setOrden] = useState('')
     const [currentPage, setCurrentPage] = useState(1)
@@ -91,26 +94,57 @@ const Home = () => {
         setCurrentPage(1);
     }
 
+
+    // useEffect( () => {
+    //     if(isAuthenticated){
+    //      const db = async () => await dispatch(emailUser(user.email))
+    //      db().then((result) => {
+    //        if(result.payload.variable === true) { axios.put(`http://localhost:3001/user/${user.email}`)}
+    //        history.push("/")
+    //      }).then(result => {
+    //           if(result){
+    //          history.push("/")
+    //          }
+    //        })
+         
+    //    }
+    //  }, [dispatch, emailUser, isAuthenticated, estadoEmail.email, history ])
+
+
     useEffect(() => {
         if (isAuthenticated) {
-          const db = async () => await dispatch(emailUser(user.email));
+          const db = async () => await dispatch(emailUser(user.email))
           db().then((result) => {
             if (result.payload.variable === true) {
-              axios
-                .post(`http://localhost:3001/user/`, { email: user.email })
-                .then((result) => {
-                  if (result.data.userCreated) {
-                    // usuario creado correctamente
-                  } else {
-                    // usuario ya existe en la base de datos
-                  }
-                });
-            } else {
-              // email ya existe en la base de datos
+              return axios.put(`http://localhost:3001/user/${user.email}`)
             }
-          });
+          }).then(() => {
+            history.push("/")
+          })
         }
-      }, [dispatch, emailUser, isAuthenticated]);
+      }, [dispatch, emailUser, isAuthenticated, estadoEmail.email, history])
+
+
+    // useEffect(() => {
+    //     if (isAuthenticated) {
+    //       const db = async () => await dispatch(emailUser(user.email));
+    //       console.log(emailUser.data);
+    //       db().then((result) => {
+    //         if (result.payload === true) {
+    //           axios.put(`http://localhost:3001/user/email/${user.email}`)
+    //             .then((result) => {
+    //               if (result.data.userCreated) {
+    //                 // usuario creado correctamente
+    //               } else {
+    //                 // usuario ya existe en la base de datos
+    //               }
+    //             });
+    //         } else {
+    //           // email ya existe en la base de datos
+    //         }
+    //       });
+    //     }
+    //   }, [dispatch, emailUser, isAuthenticated]);
 
     return (
         <div className={styles.home}>           

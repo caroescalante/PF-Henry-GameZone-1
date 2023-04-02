@@ -20,7 +20,7 @@ import {
   // DECREMENT_QUANTITY,
   CLEAR_CART,
   REMOVE_FAVORITE,
-  CHARGE_IMAGE,
+  
   GET_EMAIL,
 } from "../actions/types";
 
@@ -180,8 +180,17 @@ function rootReducer(state = initialState, action) {
 
       case EMAIL_USER:
           const newEmailUser = { ...action.payload };
+          
+          console.log(newEmailUser); 
           localStorage.setItem("emailUser", JSON.stringify(newEmailUser));
           return { ...state, emailUser: newEmailUser };
+
+      //por favor no borrar este case es el que pasa el rol a la navbar "leonardo" 
+
+      case GET_EMAIL:
+          return { ...state, userEmail: action.payload, }
+
+      //*************** */
           
       case ADD_FAVORITES:
           const favoriteGame = state.allGames.find(game => game.id === action.payload);
@@ -329,11 +338,7 @@ function rootReducer(state = initialState, action) {
          cart: []
       };
 
-    case CHARGE_IMAGE:
-      return{
-        ...state,
-        image: action.payload
-      };
+   
     
       
       

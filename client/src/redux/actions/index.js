@@ -18,13 +18,12 @@ import {
   REMOVE_FROM_CART,
   CLEAR_CART,
   REMOVE_FAVORITE,
-  CHARGE_IMAGE,
+  
   GET_EMAIL
 } from "./types";
 
 import axios from 'axios';
-const CLOUD_NAME = import.meta.env.VITE_CLOUD_NAME;
-const UPLOAD_PRESET_NAME = import.meta.env.VITE_UPLOAD_PRESET_NAME;
+
 
 
 
@@ -145,6 +144,8 @@ export function emailUserE (email) {
       const emailUser = await axios.get(`http://localhost:3001/user?email=${email}`);
       console.log(emailUser)
       return dispatch({ type: GET_EMAIL, payload:emailUser.data})
+      
+
     } catch ( error) {
       return console.log("Something went wrong. Please try again.", error.message)
     }
@@ -154,8 +155,11 @@ export function emailUserE (email) {
 export function emailUser (email) {
   return async function (dispatch) {
     try {
+      console.log(email);
       const emailDb = await axios.get(`http://localhost:3001/user/email/${email}`);
+      console.log(emailDb);
       const variable = emailDb.data;
+      console.log(variable);
 
       return dispatch({ 
         type: EMAIL_USER, 
@@ -222,9 +226,3 @@ export const removeFavorite = (id) => {
 };
 
 
-export function chargeImage(payload) {
-  return {
-    type: CHARGE_IMAGE,
-    payload
-  };
-}

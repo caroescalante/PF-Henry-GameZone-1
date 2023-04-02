@@ -12,7 +12,7 @@ module.exports = (sequelize) => {
 
     name: {
       type: DataTypes.STRING, 
-      defaultValue: '',     
+      defaultValue: "",     
     },
     
     surname: {
@@ -23,12 +23,12 @@ module.exports = (sequelize) => {
 
     phone: {
       type: DataTypes.STRING,
-      defaultValue: '',
+      defaultValue: "",
     },
 
     rol: {
       type: DataTypes.ENUM('admin', 'client'),
-      defaultValue: 'client',
+      defaultValue: 'admin',
     },
 
     email: {
