@@ -1,5 +1,6 @@
 import {
   GET_GAMES,
+  RELOAD_GAMES,
   SEARCH_BY_NAME,
   ORDER_BY_NAME,
   ORDER_BY_RATING,
@@ -50,9 +51,17 @@ function rootReducer(state = initialState, action) {
         ...state,
         allGames: action.payload,
         allGamesFilter: action.payload,
-        allGamesOriginal: action.payload
+        allGamesOriginal: action.payload,
+        detail: []
       };
-
+    case RELOAD_GAMES:
+      return{
+        ...state,
+        allGames: state.allGamesOriginal,
+        detail:[],
+        filterGenres: 'All',
+        filterPlataforms: 'All'
+      };
     case SEARCH_BY_NAME:
       return {
         ...state,

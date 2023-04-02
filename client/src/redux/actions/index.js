@@ -18,6 +18,7 @@ import {
   REMOVE_FROM_CART,
   CLEAR_CART,
   REMOVE_FAVORITE,
+  RELOAD_GAMES,
   
   GET_EMAIL
 } from "./types";
@@ -36,7 +37,13 @@ export function getGames() {
     });
   };
 }
-
+export function reloadGames(){
+  return async function (dispatch){
+    return dispatch({
+      type: RELOAD_GAMES,
+    })
+  }
+}
 export function searchByName(name) {
   return async function (dispatch) {
   try {
@@ -142,9 +149,7 @@ export function emailUserE (email) {
   return async function (dispatch) {
     try {
       const emailUser = await axios.get(`http://localhost:3001/user?email=${email}`);
-      console.log(emailUser)
-      return dispatch({ type: GET_EMAIL, payload:emailUser.data})
-      
+      return dispatch({ type: GET_EMAIL, payload:emailUser.data})    
 
     } catch ( error) {
       return console.log("Something went wrong. Please try again.", error.message)
@@ -155,11 +160,8 @@ export function emailUserE (email) {
 export function emailUser (email) {
   return async function (dispatch) {
     try {
-      console.log(email);
       const emailDb = await axios.get(`http://localhost:3001/user/email/${email}`);
-      console.log(emailDb);
       const variable = emailDb.data;
-      console.log(variable);
 
       return dispatch({ 
         type: EMAIL_USER, 
