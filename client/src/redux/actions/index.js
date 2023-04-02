@@ -18,13 +18,13 @@ import {
   REMOVE_FROM_CART,
   CLEAR_CART,
   REMOVE_FAVORITE,
-  CHARGE_IMAGE,
+  RELOAD_GAMES,
+  
   GET_EMAIL
 } from "./types";
 
 import axios from 'axios';
-const CLOUD_NAME = import.meta.env.VITE_CLOUD_NAME;
-const UPLOAD_PRESET_NAME = import.meta.env.VITE_UPLOAD_PRESET_NAME;
+
 
 
 
@@ -37,7 +37,13 @@ export function getGames() {
     });
   };
 }
-
+export function reloadGames(){
+  return async function (dispatch){
+    return dispatch({
+      type: RELOAD_GAMES,
+    })
+  }
+}
 export function searchByName(name) {
   return async function (dispatch) {
   try {
@@ -222,9 +228,3 @@ export const removeFavorite = (id) => {
 };
 
 
-export function chargeImage(payload) {
-  return {
-    type: CHARGE_IMAGE,
-    payload
-  };
-}

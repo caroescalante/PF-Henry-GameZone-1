@@ -1,5 +1,6 @@
 import {
   GET_GAMES,
+  RELOAD_GAMES,
   SEARCH_BY_NAME,
   ORDER_BY_NAME,
   ORDER_BY_RATING,
@@ -20,7 +21,7 @@ import {
   // DECREMENT_QUANTITY,
   CLEAR_CART,
   REMOVE_FAVORITE,
-  CHARGE_IMAGE,
+  
   GET_EMAIL,
 } from "../actions/types";
 
@@ -50,9 +51,17 @@ function rootReducer(state = initialState, action) {
         ...state,
         allGames: action.payload,
         allGamesFilter: action.payload,
-        allGamesOriginal: action.payload
+        allGamesOriginal: action.payload,
+        detail: []
       };
-
+    case RELOAD_GAMES:
+      return{
+        ...state,
+        allGames: state.allGamesOriginal,
+        detail:[],
+        filterGenres: 'All',
+        filterPlataforms: 'All'
+      };
     case SEARCH_BY_NAME:
       return {
         ...state,
@@ -180,6 +189,7 @@ function rootReducer(state = initialState, action) {
 
       case EMAIL_USER:
           const newEmailUser = { ...action.payload };
+          
           localStorage.setItem("emailUser", JSON.stringify(newEmailUser));
           return { ...state, emailUser: newEmailUser };
 
@@ -336,11 +346,7 @@ function rootReducer(state = initialState, action) {
          cart: []
       };
 
-    case CHARGE_IMAGE:
-      return{
-        ...state,
-        image: action.payload
-      };
+   
     
       
       
