@@ -1,65 +1,52 @@
 import React, { useEffect } from "react";
 import style from "./ProfileUser.module.css";
 import {Link} from 'react-router-dom'
-import { useDispatch, useSelector } from "react-redux";
-import { emailUser } from "../../redux/actions";
-
-
+import { useSelector } from "react-redux";
+import {useAuth0} from '@Auth0/auth0-react';
 
 const ProfileUser = () => {
 
-  const stateEmail = useSelector((state) => state.emailUser)
-
-  const dispatch = useDispatch();
-
-  const {
-    name,
-    email,
-    image,
-    surname,
-    phone } = stateEmail.variable;
+    const { isAuthenticated } = useAuth0();
+    const user = useSelector((state) => state.userEmail[0]);
 
     useEffect(() => {
-        dispatch(emailUser(stateEmail.email))
-    }, [dispatch, stateEmail.email])
+        if(!isAuthenticated || !user) {
+          window.location.href = "/"
+        }
+    })
 
-
-
-  console.log(stateEmail);
+    
+    const { name, email, image } = user;
 
     return ( 
-        <div className={style.Background}>
-            <div className={style.container}>
-                 <div className={style.card}>
-                    <h1 className={style.title}>Your Profile</h1>
-                 <div className={style.containerData}>
-                        { stateEmail.email && (
-                    <div> 
-                        <div className={style.containerImage}>
-                            <img className={style.image} src={image} alt=""/>
-                         </div>  
+       
+        <div className={style.user}>
+            <div>
+                <div className={style.container}>
+                    <header className={style.title}>Your Profile</header>
+                    <br/>
+  
+                    <div className={style.containerData}>
+                        { user&& (
+                        <div> 
+                            <img className={style.image} src={image || " "} alt=""/>
                             <br/>
-                            <h2>Name: {name} </h2>
+                            <h2>Name: {name || " "} </h2>
                             <br/>
-                            <h2>Email: {email}</h2>
-                            <br />
-                            
+                            <h2>Email: {email || " "}</h2>
+                        </div>
+                        )}                  
+                        
+                        <div>
+                        <Link to={"/update/"}>
+                            <button className={style.iconRegisterButton}><i className="fas fa-edit"></i></button> 
+                        </Link>                     
+                        </div>
                     </div>
-                    )}
-                    
-                   
-        
-                    <div>
-                        <Link to={"/update/" + email}>
-                        <button className={style.iconRegisterButton}><i className="fas fa-edit"></i></button> 
-                        </Link>
-
-                     
-                    </div>
-                 </div>
-                 </div>
+                </div>
             </div>
         </div>
+        
     )  
 };
 

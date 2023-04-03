@@ -27,23 +27,29 @@ const searchUserByName = async (name) => {
     return dataBaseName;
 };
 
-const updateUser = async ({name, image, surname, email, phone}) => {
-    const [rowsAffected, [updatedUser]] = await User.update({name, image, surname, phone}, {
+//***no tocar "leonardo" */
+const updateUser = async (id, newData) => {
+    const [rowsAffected, [updatedUser]] = await User.update(newData, {
       where: {
-        email: email,
+        id: id,
       },
       returning: true,
     });
-    return [rowsAffected, updatedUser];
-  };
+    if ( rowsAffected === 0) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    return updatedUser
+};
+//***************** */
   
-  const emailUser = async (email) => {
+const emailUser = async (email) => {
     const dataBaseEmail = await User.findOne({
       where: { email: email.trim().toLowerCase() },
     });
     if (!dataBaseEmail) return true;
     else return dataBaseEmail;
-  };
+};
 
 module.exports = { 
     createUser,
@@ -53,3 +59,13 @@ module.exports = {
     updateUser,
     emailUser
 };
+
+// const updateUser = async ({name, image, surname, email, phone}) => {
+//   const [rowsAffected, [updatedUser]] = await User.update({name, image, surname, phone}, {
+//     where: {
+//       email: email,
+//     },
+//     returning: true,
+//   });
+//   return [rowsAffected, updatedUser];
+// };

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useAuth0 } from '@auth0/auth0-react';
+import { useAuth0 } from '@Auth0/auth0-react';
 import CardsContainer from '../../components/CardsContainer/CardsContainer'
 import SearchBar from '../../components/Searchbar/Searchbar';
 import { useDispatch, useSelector } from 'react-redux';
@@ -20,7 +20,6 @@ import {
   clearDetail, 
   emailUserE
 } from "../../redux/actions";
-
 
 const Home = () => {
 
@@ -136,7 +135,6 @@ const Home = () => {
                      })}
                 </select>
 
-
             {/* <select onChange={(e) => handlePlatformFilter(e)} className={styles.filter}>
     <option value='All'>All Platforms</option>
     {platforms.filter(plat => plat.name !== 'Xbox' && plat.name !== 'PlayStation' && plat.name !== 'Nintendo Switch')
@@ -144,7 +142,8 @@ const Home = () => {
                   return <option key={index} value={plat.name}>{plat.name}</option>;
               })}
 </select> */}
-                <select onChange={(e) => handleOrderName(e)} className={styles.filter}>
+
+            <select onChange={(e) => handleOrderName(e)} className={styles.filter}>
                      <option value='All'>Alphabetical Order</option>
                      <option value= 'Asc' >Ascending Alphabetical Order</option>
                     <option value= 'Desc'>Descending Alphabetical Order</option>
@@ -184,6 +183,7 @@ const Home = () => {
         </div>
     );
 };
+
 export default Home;
 
     // useEffect(() => {
