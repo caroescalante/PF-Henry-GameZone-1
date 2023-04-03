@@ -5,7 +5,7 @@ import logo from "../../Image/logo.png";
 import { reloadGames, emailUserE } from "../../redux/actions";
 import LoginButton from "../LoginButton/LoginButton";
 import LogoutButton from "../LogoutButton/LogoutButton";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth0 } from "@Auth0/auth0-react";
 import { useDispatch, useSelector} from "react-redux";
 
 const Navbar = () => {
@@ -27,6 +27,8 @@ const Navbar = () => {
         dispatch(reloadGames());
         history.push('/')
     }
+    const stateEmail = useSelector((state) => state.emailUser);
+    const {image} = stateEmail.variable;
   return (
 
     <div className={style.navbarContainer}>
@@ -57,8 +59,9 @@ const Navbar = () => {
         
 
         {isAuthenticated && (
-        <Link className={style.links} to="/profile">
-            {user.name}
+            <Link className={style.links2} to="/profile">
+            {image? <img src={image} alt="imag" width="35px" height="35px" className={style.img}/> : <p className={style.imageAlt}>{user.name[0]}</p>}
+            <p className={style.name}>{user.name}</p>
         </Link>
         )}
 
