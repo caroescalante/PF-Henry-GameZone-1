@@ -51,6 +51,20 @@ const emailUser = async (email) => {
     else return dataBaseEmail;
 };
 
+const addUserFavorites = async (email, favorites) => {
+    await User.update({
+      favorites: favorites,
+    }, {
+      where: {
+        email: email,
+      },
+    });
+    const user = await User.findOne({
+      where: { email: email },
+    });
+    return user;
+};
+
 const toggleActiveUser = async (id) => {
   const user = await User.findByPk(id);
   if (!user) {
@@ -75,6 +89,7 @@ module.exports = {
     searchUserByName,
     updateUser,
     emailUser,
+    addUserFavorites,
     toggleActiveUser
 };
 
