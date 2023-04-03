@@ -20,20 +20,18 @@ const ProfileUser = () => {
 
     return ( 
        
-        <div className={style.user}>
-            <div>
-                <div className={style.container}>
-                    <header className={style.title}>Your Profile</header>
-                    <br/>
-  
-                    <div className={style.containerData}>
+        <div className={style.Background}>
+            <div className={style.container}>
+                <div>
+                       
+                    <h1 className={style.title}>Your Profile</h1>
                         { user&& (
-                        <div> 
+                        <div > 
                             <img className={style.image} src={image || " "} alt=""/>
                             <br/>
-                            <h2>Name: {name || " "} </h2>
+                            <h2 className={style.name}>Name: {name || " "} </h2>
                             <br/>
-                            <h2>Email: {email || " "}</h2>
+                            <h2 className={style.email}>Email: {email || " "}</h2>
                         </div>
                         )}                  
                         
@@ -45,7 +43,7 @@ const ProfileUser = () => {
                     </div>
                 </div>
             </div>
-        </div>
+       
         
     )  
 };

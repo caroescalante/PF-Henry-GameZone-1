@@ -57,7 +57,7 @@ const Navbar = () => {
             {isAuthenticated && users && (
                 <Link className={style.links2} to="/profile">
                     {users.name ? (
-                        <h2 className={style.name}>{users.name}</h2>
+                        <h2 className={style.linksName}>{users.name}</h2>
                     ) : (
                         <h2 className={style.imageAlt}>{user.given_name}</h2>
                     )}

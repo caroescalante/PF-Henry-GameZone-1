@@ -1,0 +1,30 @@
+.containerData{
+    text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  justify-content: left;
+  align-items: left;
+  flex-direction: row;
+  align-self: center;
+  width: 100%;
+  padding-left: 15px;
+  padding-top: 30px;
+}
+.name{
+    font-size: 1.8rem;
+    top: 1px;
+    margin-left: 4rem;
+}
+.email{
+    font-size: 1.8rem;
+    margin-left: 4rem;
+}
+.rol{
+    font-size: 1.8rem;
+    
+}
+.active{
+    font-size: 1.8rem;
+    margin-left: 4rem;
+}

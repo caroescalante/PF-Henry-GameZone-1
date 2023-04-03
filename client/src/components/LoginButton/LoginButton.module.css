@@ -4,6 +4,7 @@
     background-color: black;
     border-radius: 50px;
     border: none; 
+    margin-top: 10px;
 }
 
 .login ion-icon:hover {   
