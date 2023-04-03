@@ -39,7 +39,7 @@
     cursor: pointer;
     background-color: rgba(128, 128, 128, 0.349);
     left: 600px;
-    top: 220px;
+    top: 190px;
     
 }
 .title{
@@ -63,7 +63,7 @@
     font-size: 16px;
     padding-left: 50px;
     padding-top: 90px;
-    bottom: 400px;
+    bottom: 370px;
 }
 .iconRegisterButton{
     color: white;

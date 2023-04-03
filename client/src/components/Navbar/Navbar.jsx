@@ -58,12 +58,25 @@ const Navbar = () => {
         </Link>
         
 
-        {isAuthenticated && (
+        {isAuthenticated && users &&(
             <Link className={style.links2} to="/profile">
-            {image? <img src={image} alt="imag" width="35px" height="35px" className={style.img}/> : <p className={style.imageAlt}>{user.name[0]}</p>}
-            <p className={style.name}>{user.name}</p>
+            {users.name?             
+            <h2 className={style.name}>{users.name}</h2>
+            : 
+            <h2 className={style.imageAlt}>{user.name} </h2>            
+            }            
         </Link>
         )}
+
+        {isAuthenticated && users &&(
+        <img 
+        src={users.image} 
+        alt="imag" 
+        width="35px" 
+        height="35px" 
+        className={style.img}
+        />
+        )}        
 
         {isAuthenticated ? (
             <LogoutButton className={style.links} />

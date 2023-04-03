@@ -93,9 +93,9 @@ const UpdateData = () => {
                             className={style.img}/>
                         </div>
                         ) : (
-                        <p className={style.drop}>
+                        <div className={style.drop}>
                           <p className={style.textDrop}>Click here to load an image</p>
-                        </p>
+                        </div>
                         )}
                     </div>
                     <br></br>
