@@ -346,15 +346,6 @@ function rootReducer(state = initialState, action) {
          cart: []
       };
 
-<<<<<<< HEAD
-    // case CHARGE_IMAGE:
-    //   return{
-    //     ...state,
-    //     image: action.payload
-    //   };
-    
-      
-=======
     case DISABLE_USER:
   return {
     ...state,
@@ -365,7 +356,6 @@ function rootReducer(state = initialState, action) {
       return user;
     })
   };   
->>>>>>> 98ff0e2ada06f281af8841c985815a6549521823
       
   default: return { ...state }
   }

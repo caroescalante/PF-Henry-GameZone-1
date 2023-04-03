@@ -8,6 +8,8 @@
     background-position: center;
     background-size: cover;
     font-family: 'Poppins', sans-serif;
+    padding-top: 50px;
+    padding-bottom: 50px;
 }
 .user{    
     margin: 0;
@@ -77,6 +79,7 @@
     margin-bottom: 8px;
     font-size: 2rem;
     font-weight: 500;
+    width: 150px;
     margin: 6px 0;
     color: aqua;    
     position: relative;
