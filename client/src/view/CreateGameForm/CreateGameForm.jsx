@@ -5,8 +5,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { getGenres, getPlatforms } from "../../redux/actions/index";
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { useAuth0 } from "@Auth0/auth0-react";
+
+
 
 const validate = (form) => {
+  
   let errors = {};
 
   if (!form.name) {
@@ -55,6 +59,16 @@ const validate = (form) => {
 };
 
 function CreateGameForm() {
+
+  const { isAuthenticated } = useAuth0();
+  const user = useSelector((state) => state.userEmail[0])
+
+  useEffect(() => {
+  if(!isAuthenticated || user.rol === "client") {
+    window.location.href = "/"
+  }
+  })
+
   const dispatch = useDispatch();
   const platformsRaw = useSelector(state => state.platforms);
   //const platformSelect=[{value: 'pruebaPlat', label: 'pruebaPlat'},{value: 'pruebaPlat1', label: 'pruebaPlat1'}];

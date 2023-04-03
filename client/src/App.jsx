@@ -19,16 +19,17 @@ import Login from "./view/Login/Login";
 import UpdateData from "./view/UpdateData/UpdateData";
 import About from "./view/About/About";
 
-function App() {
+function App() { 
+
   return (
     <div className="App">
         <Navbar />
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/game/:id" component={Detail} />
-        <Route exact path="/create" component={CreateGameForm} />
+        <Route exact path="/create" component={CreateGameForm} />                     
         <Route exact path="/users" component={Users} />
-        <Route exact path="/update/:email" component={UpdateData} />
+        <Route exact path="/update" component={UpdateData} />
         <Route exact path="/favorites" component={Favorites} />
         <Route exact path="/profile" component={ProfileUser} />
         <Route exact path="/paymentsuccess" component={PaymentSuccess} />

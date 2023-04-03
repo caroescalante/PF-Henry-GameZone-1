@@ -1,19 +1,5 @@
 const { User } = require ("../db")
 
-// const useradmin = [
-// 	{
-// 		"id": "1ff21acc-e2ef-4b89-a07c-6a38ba97fdb5",
-// 		"name": "leonardo",
-// 		"surname": "tobar",
-// 		"image": "https://digimon.shadowsmith.com/img/gatomon.jpg",
-// 		"phone": "3165119136",
-// 		"password": "1111",
-// 		"rol": "admin",
-// 		"email": "leo.19-20@hotmail.com",
-// 		"active": true
-// 	}
-// ];
-
 const createUser = async ({name, image, surname, email, phone}) => {
     const newUser = await User.create({name, image, surname, email, phone});
     return newUser;
@@ -41,23 +27,29 @@ const searchUserByName = async (name) => {
     return dataBaseName;
 };
 
-const updateUser = async ({name, image, surname, email, phone}) => {
-    const [rowsAffected, [updatedUser]] = await User.update({name, image, surname, phone}, {
+//***no tocar "leonardo" */
+const updateUser = async (id, newData) => {
+    const [rowsAffected, [updatedUser]] = await User.update(newData, {
       where: {
-        email: email,
+        id: id,
       },
       returning: true,
     });
-    return [rowsAffected, updatedUser];
-  };
+    if ( rowsAffected === 0) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    return updatedUser
+};
+//***************** */
   
-  const emailUser = async (email) => {
+const emailUser = async (email) => {
     const dataBaseEmail = await User.findOne({
       where: { email: email.trim().toLowerCase() },
     });
     if (!dataBaseEmail) return true;
     else return dataBaseEmail;
-  };
+};
 
 const addUserFavorites = async (id, favorites) => {
     const user = await User.update({

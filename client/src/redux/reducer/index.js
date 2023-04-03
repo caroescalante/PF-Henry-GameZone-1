@@ -1,5 +1,6 @@
 import {
   GET_GAMES,
+  RELOAD_GAMES,
   SEARCH_BY_NAME,
   ORDER_BY_NAME,
   ORDER_BY_RATING,
@@ -19,8 +20,7 @@ import {
   // INCREMENT_QUANTITY,
   // DECREMENT_QUANTITY,
   CLEAR_CART,
-  REMOVE_FAVORITE,
-  
+  REMOVE_FAVORITE,  
   GET_EMAIL,
 } from "../actions/types";
 
@@ -44,13 +44,25 @@ const initialState = {
 };
 
 function rootReducer(state = initialState, action) {
+
   switch (action.type) {
+
     case GET_GAMES:
       return {
         ...state,
         allGames: action.payload,
         allGamesFilter: action.payload,
-        allGamesOriginal: action.payload
+        allGamesOriginal: action.payload,
+        detail: []
+      };
+
+    case RELOAD_GAMES:
+      return{
+        ...state,
+        allGames: state.allGamesOriginal,
+        detail:[],
+        filterGenres: 'All',
+        filterPlataforms: 'All'
       };
 
     case SEARCH_BY_NAME:
@@ -59,7 +71,7 @@ function rootReducer(state = initialState, action) {
         allGames: action.payload,
       };
     
-      case SEARCH_BY_NAME_ERROR:
+    case SEARCH_BY_NAME_ERROR:
         return {
           ...state,
           searchError: action.payload, // almacenar el error de búsqueda en el estado
@@ -104,7 +116,8 @@ function rootReducer(state = initialState, action) {
         ...state,
         allGames: action.payload === "All" ? allGames3Original : allGames3
       };
-      case ORDER_BY_PRICE:
+
+    case ORDER_BY_PRICE:
       const allGames4Original = state.allGamesOriginal;
       const allGames4 = state.allGames;
       if(action.payload === 'Asc'){
@@ -124,22 +137,19 @@ function rootReducer(state = initialState, action) {
         allGames: action.payload === "All" ? allGames4Original : allGames4
       };
       
-
-      case GET_GENRES:
+    case GET_GENRES:
         return{
             ...state,
             genres: action.payload
         };
 
-        
-       case GET_PLATFORMS:
+    case GET_PLATFORMS:
         return{
             ...state,
            platforms: action.payload
         };
 
-
-      case FILTER_BY_GENRES:
+    case FILTER_BY_GENRES:
       const allGenresOriginal = state.allGamesOriginal;
       const withFilterPlatforms = state.filterPlataforms === 'All' ? allGenresOriginal : allGenresOriginal.filter(e => e.platforms.length > 0 && e.platforms.includes(state.filterPlataforms));
       const allGenres = action.payload === 'All' ? withFilterPlatforms : withFilterPlatforms.filter(e => e.genres.length > 0 && e.genres.includes(action.payload));
@@ -149,19 +159,18 @@ function rootReducer(state = initialState, action) {
         filterGenres: action.payload,
       };
 
-      case FILTER_BY_PLATFORMS:
+    case FILTER_BY_PLATFORMS:
         const allPlatformsOriginal = state.allGamesOriginal;
         const withFilterGenres = state.filterGenres === 'All' ? allPlatformsOriginal : allPlatformsOriginal.filter(e => e.genres.length > 0 && e.genres.includes(state.filterGenres));
         const allPlatforms = action.payload === 'All' ? withFilterGenres : withFilterGenres.filter(e => e.platforms.length > 0 && e.platforms.includes(action.payload));
         
-        return {
+    return {
           ...state,
           allGames: allPlatforms,
           filterPlataforms: action.payload,
         };
 
-
-      case GET_DETAIL:
+    case GET_DETAIL:
           return{
               ...state,
               detail: action.payload
@@ -171,7 +180,7 @@ function rootReducer(state = initialState, action) {
               ...state,
               detail:[],
               allGames:[],
-              emailUser: [],
+              userEmail: [],
               searchError: null
           }; 
           
@@ -181,7 +190,6 @@ function rootReducer(state = initialState, action) {
       case EMAIL_USER:
           const newEmailUser = { ...action.payload };
           
-          console.log(newEmailUser); 
           localStorage.setItem("emailUser", JSON.stringify(newEmailUser));
           return { ...state, emailUser: newEmailUser };
 
