@@ -8,21 +8,39 @@
     background-position: center;
     background-size: cover;
 }
+.containerCard{
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    align-self: center;
+    width: 100%;
+
+}
+
 .card{
     border: 2px solid aqua;
-    height: 300px;
+    height: 310px;
     width: 530px;
     background-color: transparent;
+    font-size: 1.8rem;
     backdrop-filter: blur(35px);
     color: white;
-
+    text-align: center;
+   
 
 
 }
 .button{
+    text-align: center;
     display: flex;
-    align-items: center;
+    flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    align-self: center;
     height: 45px;
     max-width: 200px;
     background-color: aqua;
@@ -31,13 +49,13 @@
     outline: none;
     color: black;
     border-radius: 5px;
-    margin: 25px 0 0px 152px;
     transition: all 0.2s linear;
     cursor: pointer;
-    font-size: 15px;
+    font-size: 1.5rem;
     font-weight: 600; 
-    position: relative;
-    left: 10px;
+    position: absolute;
+    margin-left: 165px;
+    margin-top: 8px;
 }
 
 .button:hover{

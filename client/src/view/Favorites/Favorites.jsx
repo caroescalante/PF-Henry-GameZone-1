@@ -14,7 +14,8 @@ const Favorites = () => {
     return (
         
         <div className={style.background}>
-            <h1 className={style.title}>Add here your favorite games</h1>
+            <div className={style.container}>
+                <h1 className={style.title}>Add here your favorite games</h1>
             {favorites.length ? 
                
             <div className={style.containerAllCards}>
@@ -30,7 +31,7 @@ const Favorites = () => {
                 }
             </div> 
            : (<p className={style.favoriteEmpty}>No games were added to favorites</p>) 
-   }
+   }      </div>
         </div>
         
     );

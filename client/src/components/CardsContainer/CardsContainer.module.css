@@ -14,10 +14,10 @@
     display:inline-block;
     flex-direction: column;
     position: relative;
+    margin-top: 25px;
+    margin-right: 20px;
     margin-left: 20px;
-    margin-top: 20px;
-    margin-bottom: 5px;
-    left: 20px;
+    margin-bottom: 10px;
     overflow: hidden;
     z-index: 1;
     touch-action: none;
@@ -234,6 +234,7 @@
     }
     .name{
     height: 42px;
+    font-size: 2rem;
     width: 410px;
     color: white;
     display: flex;
@@ -254,6 +255,7 @@
     background: linear-gradient(to right, rgba(0, 255, 255, 2.0), rgba(0, 196, 196, 0.5)), rgba(0, 0, 255, 1.2);
     text-align: center;
     justify-content: center;
+    font-size: 2rem;
     }
     
     .more{
@@ -263,7 +265,6 @@
     color: black;
     font-size: 20px;
     font-weight: bold;
-    left:80px;
     border-radius: 10px;
     padding-left: 10px;
     border: 2px solid grey;
