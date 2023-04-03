@@ -7,14 +7,15 @@ import {useAuth0} from '@Auth0/auth0-react';
 const ProfileUser = () => {
 
     const { isAuthenticated } = useAuth0();
+    const user = useSelector((state) => state.userEmail[0]);
 
     useEffect(() => {
-        if(!isAuthenticated) {
+        if(!isAuthenticated || !user) {
           window.location.href = "/"
         }
     })
 
-    const user = useSelector((state) => state.userEmail[0]);
+    
     const { name, email, image } = user;
 
     return ( 

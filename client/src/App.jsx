@@ -5,7 +5,6 @@ import Detail from "./view/Detail/Detail"
 //import Login from "./view/Login/Login";
 import CreateGameForm from "./view/CreateGameForm/CreateGameForm";
 import Users from "./view/Users/Users";
-import RegistrationForm from "./view/UpdateData/UpdateData";
 import Navbar from '../src/components/Navbar/Navbar';
 import Footer from "./components/Footer/Footer";
 import Favorites from "./view/Favorites/Favorites";
