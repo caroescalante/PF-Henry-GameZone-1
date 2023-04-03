@@ -18,8 +18,10 @@ import {
   REMOVE_FROM_CART,
   CLEAR_CART,
   REMOVE_FAVORITE,
-  RELOAD_GAMES,  
-  GET_EMAIL
+  GET_EMAIL,
+  DISABLE_USER,
+  RELOAD_GAMES, 
+
 } from "./types";
 
 import axios from 'axios';
@@ -226,3 +228,12 @@ export const removeFavorite = (id) => {
 };
 
 
+export const disableUser = (id) => {
+  return async (dispatch) => {
+    try {
+      await axios.put(`http://localhost:3001/disabled/${id}`);
+      dispatch({ type: DISABLE_USER, payload: id });
+    } catch (error) {
+    }
+  };
+};
