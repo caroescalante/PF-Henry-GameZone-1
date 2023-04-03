@@ -51,13 +51,16 @@ const emailUser = async (email) => {
     else return dataBaseEmail;
 };
 
-const addUserFavorites = async (id, favorites) => {
-    const user = await User.update({
+const addUserFavorites = async (email, favorites) => {
+    await User.update({
       favorites: favorites,
     }, {
       where: {
-        id: id,
+        email: email,
       },
+    });
+    const user = await User.findOne({
+      where: { email: email },
     });
     return user;
 };

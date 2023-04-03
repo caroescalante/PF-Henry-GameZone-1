@@ -22,6 +22,8 @@ import {
   CLEAR_CART,
   REMOVE_FAVORITE,  
   GET_EMAIL,
+  CLEAN_FAVORITES,
+  NEW_FAVORITES,
 } from "../actions/types";
 
 const initialState = {
@@ -217,7 +219,11 @@ function rootReducer(state = initialState, action) {
           const cleanFavorite = state.favorites.filter(fav => fav.id !== action.payload);
           localStorage.setItem("favorites", JSON.stringify(cleanFavorite));
           return { ...state, favorites: cleanFavorite };
-          
+        case CLEAN_FAVORITES:
+          localStorage.setItem("favorites", JSON.stringify([]));
+          return { ...state, favorites: [] }
+        case NEW_FAVORITES:
+          return { ...state, favorites: action.payload };
       // case ADD_TO_CART:
       //   const existingGameIndex = state.cart.findIndex(game => game.id === action.payload);
       //     if (existingGameIndex !== -1) {

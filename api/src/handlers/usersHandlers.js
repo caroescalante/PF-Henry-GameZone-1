@@ -73,12 +73,12 @@ try {
 }
   };
 
-const addFavoriteUserHandler = async (req, res) => {
-  const { id } = req.params;
+const favoriteUserHandler = async (req, res) => {
+  const { email } = req.params;
   const { favorites } = req.body;
 
   try {
-    const addFavorites = await addUserFavorites(id, favorites);
+    const addFavorites = await addUserFavorites(email, favorites);
     return res.status(200).json(addFavorites);
   } catch (error) {
     return res.status(400).json({ message: error.message });
@@ -92,7 +92,7 @@ module.exports = {
   createUserHandler,
   updateUserHandler,
   emailUserHandler,
-  addFavoriteUserHandler,
+  favoriteUserHandler,
 };
 
 

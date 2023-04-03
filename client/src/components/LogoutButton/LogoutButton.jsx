@@ -2,13 +2,13 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {useAuth0} from '@auth0/auth0-react';
 import { Link } from 'react-router-dom';
-import { clearDetail } from '../../redux/actions';
+import { clearDetail, cleanFavorites } from '../../redux/actions';
 import style from './LogoutButton.module.css';
 import axios from 'axios';
 
 const LogoutButton = () => {
     const favorites = useSelector(state => state.favorites);
-    const userId = useSelector(state => state.emailUser?.variable?.id);
+    const email = useSelector(state => state.emailUser?.email);
 
     const dispatch = useDispatch();
     const {logout} = useAuth0();
@@ -18,7 +18,8 @@ const LogoutButton = () => {
    },[])
     
    const logoutButtonHandler = async () => {
-        //if (userId) await axios.put(`http://localhost:3001/user/favorites/${userId}`, favorites);
+        if (email) await axios.post(`http://localhost:3001/user/favorites/${email}`, {favorites});
+        dispatch(cleanFavorites());
         logout();
    };
 

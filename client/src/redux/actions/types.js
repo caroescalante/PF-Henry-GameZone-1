@@ -21,5 +21,5 @@ export const REMOVE_FAVORITE = "REMOVE_FAVORITE";
 export const REMOVE_FROM_CART = "REMOVE_FROM_CART"
 export const GET_EMAIL = "GET_EMAIL"
 export const RELOAD_GAMES = "RELOAD_GAMES"
-
-
+export const CLEAN_FAVORITES = "CLEAN_FAVORITES";
+export const NEW_FAVORITES = "NEW_FAVORITES";

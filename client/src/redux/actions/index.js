@@ -19,7 +19,9 @@ import {
   CLEAR_CART,
   REMOVE_FAVORITE,
   RELOAD_GAMES,  
-  GET_EMAIL
+  GET_EMAIL,
+  CLEAN_FAVORITES,
+  NEW_FAVORITES,
 } from "./types";
 
 import axios from 'axios';
@@ -225,4 +227,13 @@ export const removeFavorite = (id) => {
   return { type: REMOVE_FAVORITE, payload: id };
 };
 
+export const cleanFavorites = () => {
+  return { type: CLEAN_FAVORITES };
+};
 
+export const newFavorites = (arrFavorites) => {
+  return async function (dispatch) {
+    //await axios.post(`http://localhost:3001/user/favorites/${email}`, {arrFavorites});
+    return dispatch({ type: NEW_FAVORITES, payload: arrFavorites });
+  };
+};
