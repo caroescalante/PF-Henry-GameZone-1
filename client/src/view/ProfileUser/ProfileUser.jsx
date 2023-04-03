@@ -28,11 +28,11 @@ const ProfileUser = () => {
                     <div className={style.containerData}>
                         { user&& (
                         <div> 
-                            <img className={style.image} src={image} alt=""/>
+                            <img className={style.image} src={image || " "} alt=""/>
                             <br/>
-                            <h2>Name: {name} </h2>
+                            <h2>Name: {name || " "} </h2>
                             <br/>
-                            <h2>Email: {email}</h2>
+                            <h2>Email: {email || " "}</h2>
                         </div>
                         )}                  
                         
