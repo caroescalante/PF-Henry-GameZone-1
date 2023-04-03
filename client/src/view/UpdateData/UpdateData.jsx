@@ -30,7 +30,6 @@ const UpdateData = () => {
   const { user, isAuthenticated } = useAuth0();
   
   const [uploadedImageUrl, setUploadedImageUrl] = useState();
-  console.log(estadoEmail);
 
   const {
     image,
