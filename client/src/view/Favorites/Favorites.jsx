@@ -3,22 +3,21 @@ import style from "./Favorites.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { removeFavorite, newFavorites } from "../../redux/actions/index";
 import { useAuth0 } from '@auth0/auth0-react';
-import axios from "axios";
 
 const Favorites = () => {
     const { user, isAuthenticated } = useAuth0();
     const dispatch = useDispatch();
     let favoritesUser = useSelector(state => state?.userEmail[0]?.favorites?.map(elem => JSON.parse(elem)));
     let favorites = useSelector(state => state.favorites);
-    //const finalFavorites = [...favorites, ...favoritesUser];
 
     const removeFavHandler = (id) => {
         dispatch(removeFavorite(id));
-        //axios.post(`http://localhost:3001/user/favorites/${user.email}`, {finalFavorites});
     };
 
     useEffect(() => {
-      dispatch(newFavorites([...favorites, ...favoritesUser]));
+      if (favoritesUser) {
+        dispatch(newFavorites([...favorites, ...favoritesUser]));
+      };
     }, []);
 
     return (
@@ -26,7 +25,7 @@ const Favorites = () => {
         <div className={style.background}>
             <h1 className={style.title}>Add here your favorite games</h1>
 
-            {/* {isAuthenticated === true && favoritesUser.length > 0 ?  
+            {isAuthenticated === true && favoritesUser.length > 0 ?  
             <div className={style.containerAllCards}>
                {favorites.map((favorite, index) => { 
                 return  <div className={style.containerCards} key={index}>
@@ -50,11 +49,9 @@ const Favorites = () => {
                        </div>          
                 }) 
                 }
-            </div> : <p className={style.favoriteEmpty}>No games were added to favorites</p>} */}
+            </div> : <p className={style.favoriteEmpty}>No games were added to favorites</p>}
 
-            <div className={style.container}>
-                <h1 className={style.title}>Add here your favorite games</h1>
-            {favorites.length ? 
+            {/* {favorites.length ? 
                
             <div className={style.containerAllCards}>
                {favorites.map((favorite, index) => { 
@@ -69,9 +66,8 @@ const Favorites = () => {
                 }
             </div> 
            : (<p className={style.favoriteEmpty}>No games were added to favorites</p>) 
-   }      </div>
+   }       */}
         </div>
-        
     );
 };
 

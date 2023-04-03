@@ -18,17 +18,12 @@ import {
   REMOVE_FROM_CART,
   CLEAR_CART,
   REMOVE_FAVORITE,
-<<<<<<< HEAD
   RELOAD_GAMES,  
   GET_EMAIL,
   CLEAN_FAVORITES,
   NEW_FAVORITES,
-=======
-  GET_EMAIL,
   DISABLE_USER,
-  RELOAD_GAMES, 
 
->>>>>>> cb8e16aa6bb6de28cddf1fc83655b7a756157d09
 } from "./types";
 
 import axios from 'axios';

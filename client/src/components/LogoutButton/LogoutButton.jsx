@@ -17,8 +17,8 @@ const LogoutButton = () => {
         dispatch(clearDetail())
    },[])
     
-   const logoutButtonHandler = async () => {
-        if (email) await axios.post(`http://localhost:3001/user/favorites/${email}`, {favorites});
+   const logoutButtonHandler = () => {
+        axios.post(`http://localhost:3001/user/favorites/${email}`, {favorites: favorites});
         dispatch(cleanFavorites());
         logout();
    };
