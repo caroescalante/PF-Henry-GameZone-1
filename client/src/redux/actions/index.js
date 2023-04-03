@@ -20,8 +20,7 @@ import {
   REMOVE_FAVORITE,
   GET_EMAIL,
   DISABLE_USER,
-  RELOAD_GAMES,  
-  GET_EMAIL
+  RELOAD_GAMES, 
 
 } from "./types";
 
