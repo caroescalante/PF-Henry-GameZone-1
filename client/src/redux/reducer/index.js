@@ -180,7 +180,7 @@ function rootReducer(state = initialState, action) {
               ...state,
               detail:[],
               allGames:[],
-              emailUser: [],
+              userEmail: [],
               searchError: null
           }; 
           

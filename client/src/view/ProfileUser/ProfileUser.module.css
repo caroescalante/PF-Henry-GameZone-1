@@ -1,4 +1,4 @@
-.user{    
+/* .user{    
     margin: 0;
     position: relative;
     box-sizing: border-box;
@@ -6,7 +6,7 @@
     color:black;
     font-size: 12px;
     font-weight: 500;
-    background-image: url("../../Image/profile.png");
+   
     display: flex;
     justify-content: center;
     align-items: center;
@@ -15,17 +15,20 @@
     background-position: center;
     background-size: cover; 
     text-decoration: none;
-}
+} */
 
 .container {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    align-self: center;
     
-    background-color: rgba(0,0,0,.7);
-    backdrop-filter: blur(5px);
-    border: 2px solid black;
-    height: 500px;
-    width: 1000px;
-    border-radius: 10px;
-    margin-bottom: 10px;
+
 }
 .image {
     width: 300px;
@@ -38,13 +41,12 @@
     position: relative;
     cursor: pointer;
     background-color: rgba(128, 128, 128, 0.349);
-    left: 580px;
-    top: 250px;
-    
+    top: 275px;
+    margin-left: 500px;
 }
 .title{
     color: white;
-    position: relative;
+    position: absolute;
     align-items: top;
     justify-content: top;
     font-size: 40px;
@@ -52,17 +54,21 @@
     padding-left: 20px;
     padding-top: 10px;
     text-decoration: none;
-    bottom: 750x;
+    bottom: 950x;
     border-radius: 10px;
     
     
 }
 .containerData{
     position: relative;
+    align-items: left;
+    align-self: left;
+    justify-content: left;
     color: white;
     font-size: 16px;
     padding: 25px;
-    bottom: 250px;
+    bottom: 210px;
+    right: 360px;
 }
 .iconRegisterButton{
     color: white;
@@ -71,4 +77,31 @@
     text-decoration: none;
     margin-top: 50px;
     font-size: 30px;
+}
+.Background{
+    background-image: url("../../Image/profile.png");
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+}
+.card{
+    margin-bottom: 10px;
+    border-radius: 10px;
+    border: 2px solid black;
+    backdrop-filter: blur(5px);
+    background-color: rgba(0,0,0,.7);
+    height: 400px;
+}
+.containerImage{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: right;
+    align-items: right;
+    position: relative;
+    left: 350px;
+    bottom: 30px;
 }

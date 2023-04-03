@@ -2,10 +2,10 @@
     border: none;   
     color:white;   
     height: 60%; 
-    margin-top: 6px;
     border-bottom-left-radius: 10px;    
     padding: 7px 30px; 
     background-color: darkslategray;   
+    margin-bottom: 10px;
 }
 
 ::placeholder {

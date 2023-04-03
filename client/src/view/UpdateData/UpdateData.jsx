@@ -67,7 +67,7 @@ console.log(estadoEmail.variable);
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
-  console.log(data)
+  // console.log(data)
   const submitHandler =  async (event) => {
     event.preventDefault();
     await axios.put(`http://localhost:3001/user/${email}`,{ ...data, image:uploadedImageUrl});
@@ -85,10 +85,10 @@ console.log(estadoEmail.variable);
  ;
   
   return (
-    <div className={style.user}>
+    <div className={style.Background}>
       <div className={style.registration}>
         <div className={style.container}>
-          <header>Update your data</header>
+          <h1 className={style.title1}>Update your data</h1>
           <br />
 
           <div>
@@ -120,26 +120,8 @@ console.log(estadoEmail.variable);
                       onChange={changeHandler}
                     ></input>
                   </div>
-                  <div>
-                    <label>Surname</label>
-                    <input
-                      type="text"
-                      value={data.surname}
-                      placeholder={cookies.get('surname')}
-                      name="surname"                      
-                      onChange={changeHandler}
-                    ></input>
-                  </div>
-                  <div>
-                    <label>Phone</label>
-                    <input
-                      type="text"
-                      value={data.phone}
-                      placeholder={cookies.get('phone')}
-                      name="phone"                      
-                      onChange={changeHandler}
-                    ></input>
-                  </div>
+              
+                 
                   
                   <div>
                     <label>Email</label>

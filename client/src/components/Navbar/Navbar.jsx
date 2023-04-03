@@ -57,7 +57,7 @@ const Navbar = () => {
         
 
         {isAuthenticated && (
-        <Link className={style.links} to="/profile">
+        <Link className={style.linksName} to="/profile">
             {user.name}
         </Link>
         )}
