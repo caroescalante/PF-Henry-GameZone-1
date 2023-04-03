@@ -1,21 +1,23 @@
 import React from "react";
-import styles from "../../components/CardsContainer/CardsContainer.module.css";
+import styles from "../UserCard/UserCard.module.css";
 
-const userCardsContainer = ({ name, image, surname }) => {
+const UserCard = ({ name, email, rol, active, id }) => {
     return (
         <div className={styles.card}>
             <div className={styles.cardInner}>
                 <div className={styles.cardFront}>
-                    <img className={styles.image} src={image}/>
                         <div className={styles.containerData}>
                             <h3 className={styles.name}>{name}</h3>
-                            <h4 className={styles.rating}>Surname: {surname}</h4>
+                            <h4 className={styles.email}>E-mail: {email}</h4>
+                            <h3 className={styles.rol}>{rol}</h3>
+                            <h3 className={styles.active}>{active}</h3>
+                            <p>{id}</p>
                         </div>
                 </div>
             </div>
         </div> );
 };
-export default userCardsContainer;
+export default UserCard;
 
 
 

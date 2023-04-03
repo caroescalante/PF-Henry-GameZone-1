@@ -51,13 +51,31 @@ const emailUser = async (email) => {
     else return dataBaseEmail;
 };
 
+const toggleActiveUser = async (id) => {
+  const user = await User.findByPk(id);
+  if (!user) {
+    throw new Error(`User with ID ${id} not found`);
+  }
+  const [rowsAffected, [updatedUser]] = await User.update(
+    { active: !user.active },
+    { where: { id }, returning: true }
+  );
+  if (rowsAffected !== 1) {
+    throw new Error(`User with ID ${id} not found`);
+  }
+  return updatedUser;
+};
+
+
+
 module.exports = { 
     createUser,
     getUserById,
     getAllUsers,
     searchUserByName,
     updateUser,
-    emailUser
+    emailUser,
+    toggleActiveUser
 };
 
 // const updateUser = async ({name, image, surname, email, phone}) => {

@@ -4,7 +4,8 @@ const {
   getAllUsers,
   searchUserByName,
   updateUser,
-  emailUser
+  emailUser,
+  toggleActiveUser
 } = require ("../controllers/userController");
 
 const getUsersHandler = async (req, res) => {
@@ -73,12 +74,24 @@ try {
   };
 
 
+const toggleActiveHandler = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const user = await toggleActiveUser(id);
+    res.json(user);
+  } catch (error) {
+    next(error);
+  }
+};
+
+
 module.exports = {
   getUsersHandler,
   getUserHandler,
   createUserHandler,
   updateUserHandler,
   emailUserHandler,
+  toggleActiveHandler
 };
 
 //const updateUserHandler = async (req, res) => {
