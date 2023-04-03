@@ -245,12 +245,13 @@ function CreateGameForm() {
       />
       {/* {selectedOptionP!== null && <p className={style.errorText}>{errors.genres}</p>}  */}
       <h3 className={style.subTitle}>Select one or more platforms</h3>
-       <Select
        isMulti
+       <div ><Select
         defaultValue={selectedOptionP}
         onChange={setSelectedOptionP}
         options={platformSelect}
       />
+      </div>
         {/* <h3 className={style.subTitle}>Select one or more genres</h3>
         <div className={style.genresContainer}>
           {genres.map((genre, index) => {
