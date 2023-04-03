@@ -1,90 +1,82 @@
 import React from "react";
-import userCardsContainer from '../UserCardsContainer/userCardsContainer'                                                                    
-import Navbar from '../../components/Navbar/Navbar';
-import SearchBar from '../../components/Searchbar/Searchbar';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from "react";
-import { getUsers, orderByName} from "../../redux/actions";
-import styles from '../Home/Home.module.css';
-import Paginated from "../../components/Paginated/Paginated";
+import UserCard from "../../components/UserCard/UserCard";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getUsers, disableUser } from "../../redux/actions";
+import styles from "./Users.module.css";
 
-const Community = () => {
+const Users = () => {
+  const allUsers = useSelector((state) => state.allUsers);
   const dispatch = useDispatch();
-  const allUsers = useSelector(state => state.allUsers);
-  const [orden, setOrden] = useState('')
-  const [currentPage, setCurrentPage] = useState(1)
-  const [usersPerPage, setUsersPerPage] = useState(8)
-  const indexOfLastUser = currentPage * usersPerPage // 10
-  const indexOfFirstUser = indexOfLastUser - usersPerPage // 0
-  const currentUsers = allUsers.slice(indexOfFirstUser,indexOfLastUser)
 
-  const currentPageColor =  currentPage
+  useEffect(() => {
+    dispatch(getUsers());
+  }, []);
+
+  const handleDisableClick = (userId) => {
+    dispatch(disableUser(userId));
+  };
+
+  return (
+    <div className={styles.Background}>
+      <div className={styles.containerUser}>
+      {allUsers ? (
+        allUsers.map((user) => (
+          <div className={styles.user} key={user.id}>
+            <UserCard className={styles.data}
+              key={user.id}
+               name={user.name}  
+               email={user.email} 
+               active={user.active} 
+               rol={user.rol}
+            />
+            {/* <button onClick={() => handleDisableClick(user.id)}>
+              {user.active ? "Desactivar" : "Activar"}
+            </button> */}
+
+            <div className={styles.containerButton}>
+                <label className={styles.switch}>
+                 <h3 className={styles.ennabled}>Client</h3>
+                 <h3 className={styles.disabled}>Admin</h3>
+                 <input    onClick={() => handleDisableClick(user.id)} type="checkbox"/>
+                 {user.active ? "" : ""}
+                 <span className={styles.slider}></span>
+                </label>
+            </div>
+
+             <div className={styles.containerButton2}>
+               <label className={styles.switch}>
+                <h3 className={styles.client}>Ennabled</h3>
+                <h3 className={styles.admin}>Disabled</h3>
+                <input onClick={() => handleDisableClick(user.id)} type="checkbox"/>
+                {user.active ? "" : ""}
+                <span className={styles.slider}></span>
+               </label> 
+             </div>
 
 
 
-    useEffect(()=>{
-         dispatch(getUsers());
-    },[])
-    
-    function handleOrderName(e){
-      e.preventDefault();
-      dispatch(orderByName(e.target.value));
-      setCurrentPage(1);
-      setOrden(`Ordenado ${e.target.value}`);
-  }
-    function handleSearch() {
-    setCurrentPage(1);
-  }
 
-   const paginado = (pageNumber) =>{
-       setCurrentPage(pageNumber)
-   } 
-   return (
-      <div className={styles.home}>
 
-         
-        <div>
-          <Paginated
-           usersPerPage={usersPerPage}
-           allUsers={allUsers.length}
-           paginado={paginado}
-           currentPageColor={currentPageColor}
-          />
-      </div>
-      
-      <div className={styles.search}>
-      <SearchBar  setCurrentPage={handleSearch}/>
-      </div>
+{/* 
+            <button className={styles.button}  onClick={() => handleDisableClick(user.id)}>
+            {user.active ? "Desactivar" : "Activar"}
+            </button> */}
 
-          <select onChange={(e) => handleOrderName(e)} className={styles.filter}>
-                   <option value='All'>Alphabetical Order</option>
-                   <option value= 'Asc' >Ascending Alphabetical Order</option>
-                  <option value= 'Desc'>Descending Alphabetical Order</option>
-          </select>
-                   
-           <div>
-          {currentUsers.length > 0 ?
-              currentUsers?.map ((el) =>{
-                  return(
-                      <userCardsContainer name={el.name} image={el.image} surname={el.surnmae} key={el.name} />
-                  )}) : 
-                  <div>
-                      
-                      <p className={styles.img} ><span className={styles.loader}></span></p>
-                  </div>
-          }
+
+
           </div>
-          <Paginated
-           usersPerPage={usersPerPage}
-           allUsers={allUsers.length}
-           paginado={paginado}
-           currentPageColor={currentPageColor}
-          />
+        ))
+        ) : (
+          <div>
+          <p className={styles.img}>
+            <span className={styles.loader}></span>
+          </p>
+        </div>
+      )}
       </div>
+    </div>
   );
-  }
+};
 
-
- 
-
-export default Community;
+export default Users;

@@ -1,4 +1,14 @@
-.user{    
+.Background{
+    background-image: url("../../Image/profile.png");
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+}
+/* .user{    
     margin: 0;
     position: relative;
     box-sizing: border-box;
@@ -6,7 +16,7 @@
     color:black;
     font-size: 12px;
     font-weight: 500;
-    background-image: url("../../Image/profile.png");
+   
     display: flex;
     justify-content: center;
     align-items: center;
@@ -15,10 +25,18 @@
     background-position: center;
     background-size: cover; 
     text-decoration: none;
-}
+} */
 
 .container {
-    
+    width: 100%;
+    text-align: left;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    justify-content: left;
+    align-items: left;
+    flex-direction: column;
+    align-self: left;
     background-color: rgba(0,0,0,.7);
     backdrop-filter: blur(5px);
     border: 2px solid black;
@@ -38,38 +56,92 @@
     position: relative;
     cursor: pointer;
     background-color: rgba(128, 128, 128, 0.349);
-    left: 600px;
-    top: 220px;
+    left: 680px;
+    bottom: 30px;
+
     
 }
 .title{
+    display: flex;
+    flex-wrap: wrap;
     color: white;
     position: relative;
     align-items: top;
     justify-content: top;
     font-size: 40px;
     font-weight: 400;
-    padding-left: 50px;
-    padding-top: 50px;
+    padding-left: 10px;
+    padding-top: 10px;
     text-decoration: none;
-    bottom: 750x;
     border-radius: 10px;
+    
     
     
 }
 .containerData{
     position: relative;
+    align-items: left;
+    align-self: left;
+    justify-content: left;
     color: white;
     font-size: 16px;
     padding-left: 50px;
     padding-top: 90px;
-    bottom: 400px;
+    bottom: 370px;
 }
 .iconRegisterButton{
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    align-items: top;
+    align-self: top;
+    justify-content: top;
     color: white;
     background-color: transparent;
     border: none;
     text-decoration: none;
-    margin-top: 50px;
-    font-size: 30px;
+    font-size: 4rem;
+    bottom: 150px;
+    margin-left: 30px;
+
+    
+}
+/* .card{
+    margin-bottom: 10px;
+    border-radius: 10px;
+    border: 2px solid black;
+    backdrop-filter: blur(5px);
+    background-color: rgba(0,0,0,.7);
+    height: 400px;
+} */
+
+.name{
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    font-size: 2.5rem;
+    justify-content: top;
+    align-items: top;
+    margin-left: 20px;
+    bottom: 230px;
+    color: var(--white);
+}
+.email{
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    font-size: 2.5rem;
+    justify-content: top;
+    align-items: top;
+    margin-left: 20px;
+    bottom: 230px;
+    color: var(--white);
+}
+.containerData2{
+    position: relative;
+    align-items: left;
+    align-self: left;
+    justify-content: left;
+    color: white;
+    font-size: 16px;
 }

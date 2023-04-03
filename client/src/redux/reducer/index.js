@@ -24,6 +24,7 @@ import {
   GET_EMAIL,
   CLEAN_FAVORITES,
   NEW_FAVORITES,
+  DISABLE_USER
 } from "../actions/types";
 
 const initialState = {
@@ -42,7 +43,7 @@ const initialState = {
   favorites: JSON.parse(localStorage.getItem("favorites")) || [],
   cart: JSON.parse(localStorage.getItem('cart')) || [],
   image: [],
-  userEmail: [],
+  userEmail: []
 };
 
 function rootReducer(state = initialState, action) {
@@ -191,7 +192,6 @@ function rootReducer(state = initialState, action) {
 
       case EMAIL_USER:
           const newEmailUser = { ...action.payload };
-          
           localStorage.setItem("emailUser", JSON.stringify(newEmailUser));
           return { ...state, emailUser: newEmailUser };
 
@@ -352,9 +352,16 @@ function rootReducer(state = initialState, action) {
          cart: []
       };
 
-   
-    
-      
+    case DISABLE_USER:
+  return {
+    ...state,
+    allUsers: state.allUsers.map(user => {
+      if (user.id === action.payload) {
+        return { ...user, active: !user.active };
+      }
+      return user;
+    })
+  };   
       
   default: return { ...state }
   }

@@ -76,10 +76,10 @@ const UpdateData = () => {
  
   
     return (
-        <div className={style.user}>
+        <div className={style.Background}>
             <div className={style.registration}>
                 <div className={style.container}>
-                    <header>Update your data</header>
+                    <h1 className={style.title1}>Update your data</h1>
                     <br />
 
                 <div>
@@ -93,16 +93,16 @@ const UpdateData = () => {
                             className={style.img}/>
                         </div>
                         ) : (
-                        <p className={style.drop}>
+                        <div className={style.drop}>
                           <p className={style.textDrop}>Click here to load an image</p>
-                        </p>
+                        </div>
                         )}
                     </div>
                     <br></br>
                     </div>
 
                     <form onSubmit={submitHandler}>
-                    <div className={style.formFirst}>
+                    
                         <div className={style.detailsPersonal}>
                             <span className={style.title}>Personal Details</span>
                             <div className={style.fields}>
@@ -143,7 +143,7 @@ const UpdateData = () => {
                                 </button>
                             </div>
                         </div>
-                    </div>
+                    
                 </form>
             </div>
         </div>

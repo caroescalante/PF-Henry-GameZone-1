@@ -65,6 +65,23 @@ const addUserFavorites = async (email, favorites) => {
     return user;
 };
 
+const toggleActiveUser = async (id) => {
+  const user = await User.findByPk(id);
+  if (!user) {
+    throw new Error(`User with ID ${id} not found`);
+  }
+  const [rowsAffected, [updatedUser]] = await User.update(
+    { active: !user.active },
+    { where: { id }, returning: true }
+  );
+  if (rowsAffected !== 1) {
+    throw new Error(`User with ID ${id} not found`);
+  }
+  return updatedUser;
+};
+
+
+
 module.exports = { 
     createUser,
     getUserById,
@@ -73,4 +90,15 @@ module.exports = {
     updateUser,
     emailUser,
     addUserFavorites,
+    toggleActiveUser
 };
+
+// const updateUser = async ({name, image, surname, email, phone}) => {
+//   const [rowsAffected, [updatedUser]] = await User.update({name, image, surname, phone}, {
+//     where: {
+//       email: email,
+//     },
+//     returning: true,
+//   });
+//   return [rowsAffected, updatedUser];
+// };

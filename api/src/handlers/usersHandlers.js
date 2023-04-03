@@ -6,6 +6,7 @@ const {
   updateUser,
   emailUser,
   addUserFavorites,
+  toggleActiveUser
 } = require ("../controllers/userController");
 
 const getUsersHandler = async (req, res) => {
@@ -86,6 +87,17 @@ const favoriteUserHandler = async (req, res) => {
 };
 
 
+const toggleActiveHandler = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const user = await toggleActiveUser(id);
+    res.json(user);
+  } catch (error) {
+    next(error);
+  }
+};
+
+
 module.exports = {
   getUsersHandler,
   getUserHandler,
@@ -93,6 +105,7 @@ module.exports = {
   updateUserHandler,
   emailUserHandler,
   favoriteUserHandler,
+  toggleActiveHandler
 };
 
 

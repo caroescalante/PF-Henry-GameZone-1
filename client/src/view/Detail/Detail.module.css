@@ -19,7 +19,7 @@
 .boxjuego{
     display:inline;
     background-color: transparent;
-    border: 1px solid black;
+    border: 1px solid --black;
     backdrop-filter: blur(15px);
     height: 715px;
     width: 1050px;
@@ -28,10 +28,10 @@
     border-radius: 10px; 
 }
 .description{
-    font-size: 15px;
+    font-size: 1.5rem;
     font-weight: 300;
     font-family: 'poppins',sans-serif;
-    color: white;
+    color: #ffffff;
     position: relative;
     padding-left: 10px;
     padding-right: 10px;
@@ -47,7 +47,7 @@
     position: relative;
     margin: 0;
     padding: 5px 10px;
-    bottom: 340px;
+    bottom: 330px;
     text-align: center;
     background-color: rgba(0,0,0,.6);
     border-radius: 5px;
@@ -59,13 +59,13 @@
 .genres{
     margin: 2px 2px 2px 0px;
     padding: 15px 0;
-    font-size: 16px;
+    font-size: 1.6rem;
     font-family: 'poppins',sans-serif;
     color: white;
     /* border: solid 2px yellow; */
     display: inline-block;
     position: relative;
-    bottom: 346px;
+    bottom: 336px;
     justify-content: center;
     display: flex;
     
@@ -85,7 +85,7 @@
     color: white;
     -webkit-text-stroke: 1px aqua;
     text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8);
-    font-size: 37px;
+    font-size: 3.7rem;
     font-family: 'poppins',sans-serif;
     position: relative;
     bottom: 2px;
@@ -130,7 +130,7 @@
     flex-direction: row;
     align-items: left;
     margin: 5px;
-    font-size: 24px;
+    font-size: 2.4rem;
     font-family: 'poppins',sans-serif;
     color: white;
     padding-left: 50px;
@@ -146,7 +146,7 @@
     flex-direction: row;
     align-items: left;
    margin-left: 10px;
-    font-size: 24px;
+   font-size: 2.4rem;
     font-family: 'poppins',sans-serif;
     color: white;
     padding: 1px;
@@ -273,26 +273,26 @@
   .platforms{
     margin: 2px;
     padding-top: 10px;
-    font-size: 16px;
+    font-size: 1.6rem;
     font-family: 'poppins',sans-serif;
     color: white;
     /* border: solid 2px yellow; */
     display: inline-block;
     position: relative;
-    bottom: 375px;
+    bottom: 355px;
     justify-content: center;
     display: flex;
     
 
 }
 .descriptiontitlePlatform{
-    font-size: 20px;
+  font-size: 2rem;
     font-family: 'poppins',sans-serif;
     color: white;
     position: relative;
     margin: 0;
     padding: 5px 10px;
-    bottom: 375px;
+    bottom: 355px;
     text-align: center;
     background-color: rgba(0,0,0,.6);
     border-radius: 5px;
@@ -329,7 +329,7 @@
   margin: 25px 0 0px 152px;
   transition: all 0.2s linear;
   cursor: pointer;
-  font-size: 15px;
+  font-size: 1.5rem;
   font-weight: 600;
   left: 430px;
   bottom: 10px;
@@ -359,7 +359,7 @@
   margin: 25px 0 0px 152px;
   transition: all 0.2s linear;
   cursor: pointer;
-  font-size: 15px;
+  font-size: 1.5rem;
   font-weight: 600;
   left: 670px;
   bottom: 80px;
@@ -376,7 +376,7 @@
 .price{
   color: white;
   position: relative;
-  font-size: 24px;
+  font-size: 2.4rem;
   left: 363px;
  bottom: 28px;
   font-weight: 600;

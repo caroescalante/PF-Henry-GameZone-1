@@ -27,8 +27,8 @@ module.exports = (sequelize) => {
     },
 
     rol: {
-      type: DataTypes.ENUM('admin', 'client'),
-      defaultValue: 'admin',
+      type: DataTypes.ENUM('Admin', 'Client'),
+      defaultValue: 'Client',
     },
 
     email: {
@@ -43,6 +43,7 @@ module.exports = (sequelize) => {
     active: {
       type:DataTypes.BOOLEAN,
       defaultValue: true,
+      allowNull: false
     },
     image:{
       type: DataTypes.STRING,

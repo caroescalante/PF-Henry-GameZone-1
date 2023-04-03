@@ -7,6 +7,7 @@ import styles from './Home.module.css';
 import Paginated from "../../components/Paginated/Paginated";
 import axios from "axios";
 import { useHistory } from 'react-router-dom';
+
 import { 
   getGames, 
   getGenres, 
@@ -106,32 +107,33 @@ const Home = () => {
     },[isAuthenticated, dispatch, history]);
 
     return (
-        <div className={styles.home}>           
-            <div>
-                <Paginated
-                gamesPerPage={gamesPerPage}
-                allGames={allGames.length}
-                paginado={paginado}
-                currentPageColor={currentPageColor}
-                />
-            </div>
-        <div className={styles.search}>
-            <SearchBar  setCurrentPage={handleSearch}/>
-        </div>
-      
-            <select onChange={(e) => handleGenreFilter(e)} className={styles.filter}>
+        <div className={styles.Background}>
+            <div>           
+                <div >
+                  <Paginated
+                  gamesPerPage={gamesPerPage}
+                  allGames={allGames.length}
+                  paginado={paginado}
+                  currentPageColor={currentPageColor}
+                  />
+                </div>
+                <div className={styles.search}>
+                  <SearchBar  setCurrentPage={handleSearch}/>
+                 </div>
+                <div className={styles.containerFilters}>
+                <select onChange={(e) => handleGenreFilter(e)} className={styles.filter}>
                      <option value='All'>All Genres</option>
                     {genres.slice(0, 15).map((gen, index) => {
                         return <option key={index} value={gen.name}>{gen.name}</option>;
                      })}
-            </select> 
+                </select> 
 
-            <select onChange={(e) => handlePlatformFilter(e)} className={styles.filter}>
+                <select onChange={(e) => handlePlatformFilter(e)} className={styles.filter}>
                      <option value='All'>All Platforms</option>
                     {platforms.filter(plat => plat.name !== 'Neo Geo' && plat.name !== 'Game Gear' && plat.name !== 'Jaguar'&& plat.name !== '3DO' && plat.name !== 'SEGA Master System'&& plat.name !== 'SEGA CD' && plat.name !== 'SEGA Saturn'&& plat.name !== 'Genesis' && plat.name !== 'SEGA 32X'&& plat.name !== 'Atari XEGS' && plat.name !== 'Atari Lynx'&& plat.name !== 'Atari ST' && plat.name !== 'Atari 8-bit'&& plat.name !== 'Atari 2600' && plat.name !== 'Atari 5200'&& plat.name !== 'Atari 7800' && plat.name !== 'Commodore / Amiga'&& plat.name !== 'Atari Flashback'&& plat.name !== 'Apple II' && plat.name !== 'Classic Macintosh'&& plat.name !== 'NES' && plat.name !== 'SNES'&& plat.name !== 'Game Boy' && plat.name !== 'Game Boy Color'&& plat.name !== 'Game Boy Advance' && plat.name !== 'Nintendo 64'&& plat.name !== 'GameCube' && plat.name !== 'PSP'&& plat.name !== 'Nintendo DSi' && plat.name !== 'Nintendo DS').map((plat, index) => {
                         return <option key={index} value={plat.name}>{plat.name}</option>;
                      })}
-            </select>
+                </select>
 
             {/* <select onChange={(e) => handlePlatformFilter(e)} className={styles.filter}>
     <option value='All'>All Platforms</option>
@@ -145,38 +147,39 @@ const Home = () => {
                      <option value='All'>Alphabetical Order</option>
                      <option value= 'Asc' >Ascending Alphabetical Order</option>
                     <option value= 'Desc'>Descending Alphabetical Order</option>
-            </select>
+                </select>
 
-             <select onChange={(e) => handleOrderRating(e)} className={styles.filter}>
+               <select onChange={(e) => handleOrderRating(e)} className={styles.filter}>
                      <option value='All'>Rating Order</option>
                      <option value= 'Asc' >Ascending Rating Order</option>
                     <option value= 'Desc'>Descending Rating Order</option>
-            </select>
+                </select>
 
-            <select onChange={(e) => handleOrderPrice(e)} className={styles.filter}>
+                <select onChange={(e) => handleOrderPrice(e)} className={styles.filter}>
                      <option value='All'>Price Order</option>
                      <option value= 'Asc' >Ascending Price Order</option>
                     <option value= 'Desc'>Descending Price Order</option>
-            </select>
-                     
-            <div>
-                {currentGames.length > 0 ?
-                    currentGames?.map ((el) =>{
-                    return(
+                </select>
+                </div>     
+                <div className={styles.containerCards}>
+                  {currentGames.length > 0 ?
+                      currentGames?.map ((el) =>{
+                      return(
                         <CardsContainer name={el.name} image={el.image} id={el.id} price={el.price} key={el.id} />
-                    )}) : 
-                    <div>                        
+                      )}) : 
+                      <div>                        
                         <p className={styles.img} ><span className={styles.loader}></span></p>
-                    </div>
-                }
+                      </div>
+                    }
+                </div>
+   
+                 <Paginated
+                  gamesPerPage={gamesPerPage}
+                  allGames={allGames.length}
+                  paginado={paginado}
+                  currentPageColor={currentPageColor}
+                  />
             </div>
-
-            <Paginated
-             gamesPerPage={gamesPerPage}
-             allGames={allGames.length}
-             paginado={paginado}
-             currentPageColor={currentPageColor}
-            />
         </div>
     );
 };
