@@ -63,7 +63,8 @@ function rootReducer(state = initialState, action) {
         allGames: state.allGamesOriginal,
         detail:[],
         filterGenres: 'All',
-        filterPlataforms: 'All'
+        filterPlataforms: 'All',
+        searchError: null
       };
 
     case SEARCH_BY_NAME:
