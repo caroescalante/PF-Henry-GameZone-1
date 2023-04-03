@@ -18,16 +18,14 @@ import {
   REMOVE_FROM_CART,
   CLEAR_CART,
   REMOVE_FAVORITE,
-  CHARGE_IMAGE,
   GET_EMAIL,
-  DISABLE_USER
+  DISABLE_USER,
+  RELOAD_GAMES,  
+  GET_EMAIL
+
 } from "./types";
 
 import axios from 'axios';
-const CLOUD_NAME = import.meta.env.VITE_CLOUD_NAME;
-const UPLOAD_PRESET_NAME = import.meta.env.VITE_UPLOAD_PRESET_NAME;
-
-
 
 export function getGames() {
   return async function (dispatch) {
@@ -37,6 +35,14 @@ export function getGames() {
       payload: json.data,
     });
   };
+}
+
+export function reloadGames(){
+  return async function (dispatch){
+    return dispatch({
+      type: RELOAD_GAMES,
+    })
+  }
 }
 
 export function searchByName(name) {
@@ -57,7 +63,6 @@ export function searchByName(name) {
   };
 }
 
-
 export function getGenres(){
   return async function(dispatch){
       let infoGen = await axios.get("http://localhost:3001/genres",{})   //generos
@@ -65,15 +70,12 @@ export function getGenres(){
   }
 }
 
-
 export function getPlatforms(){
   return async function(dispatch){
       let infoPlat = await axios.get("http://localhost:3001/platform",{})   //plataformas 
       return dispatch({type: GET_PLATFORMS, payload: infoPlat.data})
   }
 }
-
-
 
 export function filterByGenres(value) {
   return {
@@ -102,6 +104,7 @@ export function orderByRating(value) {
     payload: value,
   }
 }
+
 export function orderByPrice(value) {
   return {
     type: ORDER_BY_PRICE,
@@ -122,6 +125,7 @@ export function getDetail(id){
       }
   }
 }
+
 export function clearDetail(){
   return {
     type: CLEAR_DETAIL,
@@ -140,19 +144,19 @@ export function getUsers (){
   }
 };
 
+//no tocar ***********"leonardo"
 export function emailUserE (email) {
   return async function (dispatch) {
     try {
       const emailUser = await axios.get(`http://localhost:3001/user?email=${email}`);
-      console.log(emailUser)
-      return dispatch({ type: GET_EMAIL, payload:emailUser.data})
-      
+      return dispatch({ type: GET_EMAIL, payload:emailUser.data})    
 
     } catch ( error) {
       return console.log("Something went wrong. Please try again.", error.message)
     }
   }
 };
+//********************************* */
 
 export function emailUser (email) {
   return async function (dispatch) {
@@ -223,14 +227,6 @@ export function clearCart(){
 export const removeFavorite = (id) => {
   return { type: REMOVE_FAVORITE, payload: id };
 };
-
-
-export function chargeImage(payload) {
-  return {
-    type: CHARGE_IMAGE,
-    payload
-  };
-}
 
 
 export const disableUser = (id) => {
