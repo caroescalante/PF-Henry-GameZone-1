@@ -48,10 +48,6 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       defaultValue: "",
     },
-    favorites: {
-      type: DataTypes.ARRAY(DataTypes.JSON),
-      defaultValue: [],
-    },
   },
   { timestamps: false }
   );

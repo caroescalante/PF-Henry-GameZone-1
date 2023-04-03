@@ -59,11 +59,23 @@ const updateUser = async ({name, image, surname, email, phone}) => {
     else return dataBaseEmail;
   };
 
+const addUserFavorites = async (id, favorites) => {
+    const user = await User.update({
+      favorites: favorites,
+    }, {
+      where: {
+        id: id,
+      },
+    });
+    return user;
+};
+
 module.exports = { 
     createUser,
     getUserById,
     getAllUsers,
     searchUserByName,
     updateUser,
-    emailUser
+    emailUser,
+    addUserFavorites,
 };

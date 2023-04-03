@@ -5,7 +5,7 @@ import { useDropzone } from 'react-dropzone';
 import style from './RegistrationForm.module.css';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
-import { useAuth0 } from '@Auth0/auth0-react';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const CLOUD_NAME = import.meta.env.VITE_CLOUD_NAME;
 const UPLOAD_PRESET_NAME = import.meta.env.VITE_UPLOAD_PRESET_NAME;

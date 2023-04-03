@@ -5,11 +5,13 @@ import logo from "../../Image/logo.png";
 import { clearDetail, emailUserE } from "../../redux/actions";
 import LoginButton from "../LoginButton/LoginButton";
 import LogoutButton from "../LogoutButton/LogoutButton";
-import { useAuth0 } from "@Auth0/auth0-react";
+import { useAuth0 } from "@auth0/auth0-react";
 import { useDispatch, useSelector} from "react-redux";
+import axios from "axios";
 
 const Navbar = () => {
-
+    const favorites = useSelector(state => state.favorites);
+    const userIdRaw = useSelector(state => state.emailUser.variable);
     const { user, isAuthenticated } = useAuth0(); 
     const dispatch = useDispatch();
 
@@ -22,6 +24,10 @@ const Navbar = () => {
     const users = useSelector((state) => state.userEmail)
     const rolUser = users?.[0]?.rol;
     console.log(user)
+
+    // const logoutButtonHandler = async () => {
+    //     await axios.put(`http://localhost:3001/user/favorites/${userIdRaw.id}`, favorites);
+    // };
 
   return (
 
