@@ -20,6 +20,7 @@ import {
   REMOVE_FAVORITE,
   RELOAD_GAMES,  
   GET_EMAIL,
+  CLEAR_EMAIL,
   CLEAN_FAVORITES,
   NEW_FAVORITES,
   DISABLE_USER,
@@ -132,6 +133,15 @@ export function clearDetail(){
     type: CLEAR_DETAIL,
   }
 }
+
+
+//*****NO TOCAR => LEONARDO */
+export function clearUserEmail () {
+  return {
+    type: CLEAR_EMAIL,
+  };
+}
+//*********** */
 
 export function getUsers (){
   return async function (dispatch) {

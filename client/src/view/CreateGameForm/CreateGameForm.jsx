@@ -60,14 +60,18 @@ const validate = (form) => {
 
 function CreateGameForm() {
 
-  const { isAuthenticated } = useAuth0();
-  const user = useSelector((state) => state.userEmail[0])
+  const { user, isAuthenticated } = useAuth0();
+  const users = useSelector((state) => state.userEmail)
+
+  
 
   useEffect(() => {
-  if(!isAuthenticated || user.rol === "client") {
+  if(!isAuthenticated || users.rol === "client") {
     window.location.href = "/"
   }
   })
+
+
 
   const dispatch = useDispatch();
   const platformsRaw = useSelector(state => state.platforms);
