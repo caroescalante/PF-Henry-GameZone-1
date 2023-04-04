@@ -274,7 +274,8 @@
   
 }
 
-.slider {
+
+.slider2 {
   position: absolute;
   cursor: pointer;
   top: 0;
@@ -288,7 +289,7 @@
   
 }
 
-.slider:before {
+.slider2:before {
   position: absolute;
   content: "";
   height: 40px;
@@ -301,13 +302,13 @@
   
 }
 
-input:checked + .slider {
+input:checked + .slider2 {
   background-color: var(--black);
   border: 1px solid var(--aqua);
   
 }
 
-input:checked + .slider:before {
+input:checked + .slider2:before {
   transform: translateX(46px);
   
 }
