@@ -30,19 +30,19 @@ const ProfileUser = () => {
   const { name, email, image } = users ?? {};
 
   return (
-    <div className={style.user}>
+    <div className={style.Background}>
       <div className={style.container}>
-        <header className={style.title}>Your Profile</header>
+        <h1 className={style.title}>Your Profile</h1>
         <br />
 
-        <div className={style.containerData}>
+        <div className={style.containerData2}>
           {isAuthenticated && users  && (
             <div>              
               <img className={style.image} src={image} alt="" />              
               <br />  
-              <h2>Name: {name || " "}</h2>
+              <h2 className={style.name}>Name: {name || " "}</h2>
               <br />
-              <h2>Email: {email || " "}</h2>
+              <h2 className={style.email}>Email: {email || " "}</h2>
             </div>
           )}
 
