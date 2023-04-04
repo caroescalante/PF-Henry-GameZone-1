@@ -235,7 +235,6 @@ export const cleanFavorites = () => {
 
 export const newFavorites = (arrFavorites) => {
   return async function (dispatch) {
-    //await axios.post(`http://localhost:3001/user/favorites/${email}`, {arrFavorites});
     return dispatch({ type: NEW_FAVORITES, payload: arrFavorites });
   };
 };
