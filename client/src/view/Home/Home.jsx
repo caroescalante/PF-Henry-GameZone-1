@@ -31,6 +31,7 @@ const Home = () => {
     const genres = useSelector((state) => state.genres);
     const platforms = useSelector((state) => state.platforms);
     const history = useHistory();
+    const allUsers = useSelector((state) => state.allUsers);
 
     const [orden, setOrden] = useState('')
     const [currentPage, setCurrentPage] = useState(1)
@@ -95,18 +96,54 @@ const Home = () => {
         setCurrentPage(1);
     }
 
+    // useEffect(() => {   
+    //     if(isAuthenticated) {
+    //         dispatch(clearUserEmail());
+    //         dispatch(emailUserE(user.email))            
+    //         if(users && user.email === users.email) {
+    //             history.push("/");
+    //         } else {
+    //             axios.post(`http://localhost:3001/user/`, { email: user.email });
+    //             history.push("/");
+    //         }
+    //     }
+    // },[isAuthenticated, dispatch, history]);
+
+    
+// Función para obtener el usuario actual
+const getCurrentUser = () => {
+    if (isAuthenticated && allUsers) {
+      return allUsers.find((u) => u.email === user.email);
+    }
+    return null;
+  };
+  
+  const currentUser = getCurrentUser();
+  
+  
+  useEffect(() => {
+    if (currentUser && !currentUser.active) {
+      history.push('/banneduser');
+    }
+  }, [currentUser, history]);
+
+
+
     useEffect(() => {   
         if(isAuthenticated) {
-            dispatch(clearUserEmail());
-            dispatch(emailUserE(user.email))            
-            if(users && user.email === users.email) {
-                history.push("/");
-            } else {
-                axios.post(`http://localhost:3001/user/`, { email: user.email });
-                history.push("/");
-            }
+          dispatch(clearUserEmail());
+          dispatch(emailUserE(user.email));
+          if (user.active === false) {
+            history.push("/banneduser");
+          } else if(users && user.email === users.email) {
+            history.push("/");
+          } else {
+            axios.post(`http://localhost:3001/user/`, { email: user.email });
+            history.push("/");
+          }
         }
-    },[isAuthenticated, dispatch, history]);
+      },[isAuthenticated, dispatch, history, user]);
+      
 
     return (
         <div className={styles.Background}>
