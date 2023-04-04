@@ -11,8 +11,6 @@ const UserCard = ({ name, email, rol, active, id }) => {
                             <h4 className={styles.email}>E-mail: {email}</h4>
                             <h2 className={styles.name}>{name}</h2>
                             <h3 className={styles.active}>{active}</h3>
-                            {/* <h5>Enabbled</h5>
-                            <h5>Disabled</h5> */}
                             <p>{id}</p>
                         </div>
                 </div>
