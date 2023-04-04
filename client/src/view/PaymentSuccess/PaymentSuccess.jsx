@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import styles from "./PaymentSuccess.module.css";
 import axios from "axios";
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom"; 
    
 function PaymentSuccess() {
