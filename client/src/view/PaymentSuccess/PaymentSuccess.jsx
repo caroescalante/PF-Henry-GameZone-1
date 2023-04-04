@@ -5,8 +5,7 @@ import { useSelector } from "react-redux";
    
 function PaymentSuccess() {
   const email = useSelector(state => state.emailUser.email);
-
-  useEffect(() => {
+   useEffect(() => {
     axios.post("http://localhost:3001/payment/sendEmail", { email: email });
   }, []);
 

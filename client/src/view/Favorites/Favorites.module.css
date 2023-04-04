@@ -1,6 +1,6 @@
 .background{
     background-image: url("../../Image/video-games-gamers-wallpaper-preview.jpg");
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     min-height: 100vh;
     background-position: center;
@@ -13,6 +13,7 @@
 
 .containerAllCards{
     position: relative;
+    justify-content: space-between;
     top: 12px;
     padding-top: 10px;
     padding-left: 0;
@@ -29,6 +30,7 @@
 .containerCards{
     display: inline-block;
     flex-direction: column;
+    justify-content: space-between;
 }
 
 .favoriteCard{
@@ -91,12 +93,24 @@
     align-content: center;
     position: relative;
     text-align: center;
-    top: 235px;
-    left: 375px;
     display: flex;
     text-orientation: upright;
     border-radius: 10px;
 }
+
+.favoriteEmptyContainer{
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    position: relative;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    top: 200px;
+    text-orientation: upright;
+    border-radius: 10px;
+}
+
 
 
 

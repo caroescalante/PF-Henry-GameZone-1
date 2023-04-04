@@ -18,9 +18,9 @@
   justify-content: left;
   align-items: left;
   flex-direction: column;
-  align-self: center;
-  left: 25px;
+  align-self: left;
   width: 100%;
+ 
 }
 .user{
   height: 8rem;
@@ -202,7 +202,7 @@ font-size: 1.8rem;
   .ennabled{
    
     position: relative;
-    right: 60px;
+    right: 90px;
     font-size: 1.8rem;
     top: 18px;
     
@@ -234,7 +234,7 @@ font-size: 1.8rem;
   .client{
    
     position: relative;
-    right: 87px;
+    right: 65px;
     font-size: 1.8rem;
     top: 18px;
     
@@ -247,3 +247,38 @@ font-size: 1.8rem;
     bottom: 10px;
     
   }
+.containerTitle{
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  align-items: top;
+  align-self: top;
+  justify-content: top;
+  margin-right: 20px;
+  margin-bottom: 500px;
+  left: 630px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+  border-radius:10px ;
+  height: 100%;
+  width: 80%;
+}
+.title{
+  
+  
+  color: var(--aqua);
+  font-size: 3.5rem;
+  height: 5rem;
+  width: 125rem;
+  margin-left:25px ;
+  font-weight: bold;
+  background-color: rgba(0,0,0,.7); 
+  backdrop-filter: blur(5px);
+  border: 1px solid aqua;
+  border-radius: 10px;
+  padding-top: 6px;
+  margin-top: 10px;
+
+  
+  
+}
