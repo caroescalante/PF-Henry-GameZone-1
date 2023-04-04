@@ -39,13 +39,13 @@ const ProfileUser = () => {
           {isAuthenticated && users  && (
             <div className={style.containerData}>              
               <img className={style.image} src={image} alt="" />              
-              <h2 className={style.name}>Name:{name || " "}</h2>
-              <h2 className={style.email}>Email:{email || " "}</h2>
+              <h2 className={style.name}>Name: {name || " "}</h2>
+              <h2 className={style.email}>Email: {email || " "}</h2>
           <div>
             <Link to={"/update/"}>
               <button className={style.iconRegisterButton}>
                 <i className="fas fa-edit"></i>
-              </button>
+              </button> 
             </Link>
           </div>
             </div>
