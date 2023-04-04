@@ -50,9 +50,9 @@ const Users = () => {
                <label className={styles.switch2}>
                 <h3 className={styles.client}>Client</h3>
                 <h3 className={styles.admin}>Admin</h3>
-                {/* <input onClick={() => handleDisableClick(user.id)} type="checkbox"/>
-                {user.rol ? "" : ""} */}
-                <span className={styles.slider}></span>
+                <input onClick={() => handleDisableClick(user.id)} type="checkbox"/>
+                {user.rol ? "" : ""}
+                <span className={styles.slider2}></span>
                </label> 
              </div>
 
