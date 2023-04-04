@@ -2,10 +2,8 @@ import React, { useEffect } from "react";
 import style from "./Favorites.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { removeFavorite, newFavorites } from "../../redux/actions/index";
-import { useAuth0 } from '@Auth0/auth0-react';
 
 const Favorites = () => {
-    const { user, isAuthenticated } = useAuth0();
     const dispatch = useDispatch();
     let favoritesUser = useSelector(state => state?.userEmail[0]?.favorites?.map(elem => JSON.parse(elem)));
     let favorites = useSelector(state => state.favorites);
@@ -23,8 +21,6 @@ const Favorites = () => {
           hash[current.id] = true;
           return exists;
         });
-        // console.log(finalFavorites);
-        // console.log(finalFavorites);
         dispatch(newFavorites(finalFavorites));
       };
     }, []);
