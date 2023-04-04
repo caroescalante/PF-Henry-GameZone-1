@@ -25,7 +25,7 @@ const Favorites = () => {
         <div className={style.background}>
             <h1 className={style.title}>Add here your favorite games</h1>
 
-            {isAuthenticated === true && favoritesUser.length > 0 ?  
+            {isAuthenticated === true && favoritesUser?.length > 0 ?  
             <div className={style.containerAllCards}>
                {favorites.map((favorite, index) => { 
                 return  <div className={style.containerCards} key={index}>
