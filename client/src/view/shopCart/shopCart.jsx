@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import axios from 'axios';
 import { removeFromCart } from "../../redux/actions/index";
 import style from "./shopCart.module.css"
-import { useAuth0 } from "@Auth0/auth0-react";
+import { useAuth0 } from "@auth0/auth0-react";
 import Swal from 'sweetalert2';
 
 const ShopCart = () => {
@@ -62,40 +62,45 @@ const ShopCart = () => {
   };
 
   return (
-    <div className={style.Background}>
-      {cart.length ? (
-        <>
-      <div className={style.containerAllCards}>
-          {cart.map(game => {
-            return (
-              <div className={style.containerCards}>
-              <div className={style.card} key={game.id}>
-                <div>
-                  <img src={game.image} alt={game.name} className={style.image} />
-                  <div className={style.name}><h2 >{game.name}</h2></div>
-                   <div className={style.priceQuantity}>
-                    <p className={style.price}>$ {game.price.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-                    {/* <button className={style.button}onClick={() => handleRemoveFromCart(game.id)}>Delete</button> */}
-                    <button onClick={() => handleRemoveFromCart(game.id)} className={style.trashButton}><i class="fas fa-trash"></i></button>
-                    <p className={style.quantity}>{game.quantity}</p>
+  <div className={style.Background}>
+          
+          {cart.length ? (
+            <>
+       <div className={style.containerElements}>
+            <div className={style.containerAllCards}>
+              {cart.map(game => {
+                return (
+                  <div className={style.containerCards}>
+                     <div className={style.card} key={game.id}>
+                             <img src={game.image} alt={game.name} className={style.image} />
+                             <h2 className={style.name}>{game.name}</h2>
+                              <div className={style.priceQuantity}>
+                                 <p className={style.price}>$ {game.price.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                                 <button onClick={() => handleRemoveFromCart(game.id)} className={style.trashButton}><i class="fas fa-trash"></i></button>
+                                 <p className={style.quantity}>{game.quantity}</p>
+                              </div>
+                     </div>
                   </div>
-                  </div>
+                  );
+              })}
               </div>
-            </div>
-            );
-          })}
+           <div className={style.containerPayment} >
+             <p className={style.titlePay}>Game summary</p>
+             <p>-------------------------------------</p>
+             <p className={style.subtotal}>Subtotal: {getTotalPrice()}</p>
+            <button className={style.buttonPay} onClick={() => handlePayment()}>Go to purchase screen</button>
+          </div>    
+          <div>
           </div>
-          <div className={style.containerPayment} >
-          <p className={style.titlePay}>Game summary</p>
-          <p>-------------------------------------</p>
-          <p className={style.subtotal}>Subtotal: {getTotalPrice()}</p>
-          <button className={style.buttonPay} onClick={() => handlePayment()}>Go to purchase screen</button>
           </div>
         </>
       ) : (
-        <p className={style.cartEmpty}>The cart is empty, please add some item.</p>
+        <div className={style.cartEmptyContainer}><p className={style.cartEmpty}>The cart is empty, please add some item.</p></div>
         )}
-    </div>
+
+        </div>
+
+  
   );
 };
 

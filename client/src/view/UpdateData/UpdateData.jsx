@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector, useStore} from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { useDropzone } from 'react-dropzone';
 import style from './UpdateData.module.css';
 import axios from 'axios';
-import { useAuth0 } from '@Auth0/auth0-react';
+import { useAuth0 } from '@auth0/auth0-react';
 import { getUsers } from '../../redux/actions';
 
 const CLOUD_NAME = import.meta.env.VITE_CLOUD_NAME;
@@ -13,7 +12,6 @@ const UPLOAD_PRESET_NAME = import.meta.env.VITE_UPLOAD_PRESET_NAME;
 const UpdateData = () => {
 
     const { isAuthenticated, user } = useAuth0();
-    const history = useHistory();
     const dispatch = useDispatch();
     const allUsers = useSelector((state) => state.users);
     const [uploadedImageUrl, setUploadedImageUrl] = useState();   
@@ -90,10 +88,10 @@ const UpdateData = () => {
  
   
     return (
-        <div className={style.user}>
+        <div className={style.Background}>
             <div className={style.registration}>
                 <div className={style.container}>
-                    <header>Update your data</header>
+                    <h1 className={style.title1}>Update your data</h1>
                     <br />
 
                 <div>
@@ -116,7 +114,7 @@ const UpdateData = () => {
                     </div>
 
                     <form onSubmit={submitHandler}>
-                    <div className={style.formFirst}>
+                    
                         <div className={style.detailsPersonal}>
                             <span className={style.title}>Personal Details</span>
                             <div className={style.fields}>
@@ -157,7 +155,7 @@ const UpdateData = () => {
                                 </button>
                             </div>
                         </div>
-                    </div>
+                    
                 </form>
             </div>
         </div>

@@ -21,6 +21,10 @@ import {
   RELOAD_GAMES,  
   GET_EMAIL,
   CLEAR_EMAIL,
+  CLEAN_FAVORITES,
+  NEW_FAVORITES,
+  DISABLE_USER,
+
 } from "./types";
 
 import axios from 'axios';
@@ -235,4 +239,22 @@ export const removeFavorite = (id) => {
   return { type: REMOVE_FAVORITE, payload: id };
 };
 
+export const cleanFavorites = () => {
+  return { type: CLEAN_FAVORITES };
+};
 
+export const newFavorites = (arrFavorites) => {
+  return async function (dispatch) {
+    return dispatch({ type: NEW_FAVORITES, payload: arrFavorites });
+  };
+};
+
+export const disableUser = (id) => {
+  return async (dispatch) => {
+    try {
+      await axios.put(`http://localhost:3001/disabled/${id}`);
+      dispatch({ type: DISABLE_USER, payload: id });
+    } catch (error) {
+    }
+  };
+};

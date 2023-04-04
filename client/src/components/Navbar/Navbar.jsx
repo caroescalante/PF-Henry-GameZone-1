@@ -5,11 +5,13 @@ import logo from "../../Image/logo.png";
 import { reloadGames, getUsers } from "../../redux/actions";
 import LoginButton from "../LoginButton/LoginButton";
 import LogoutButton from "../LogoutButton/LogoutButton";
-import { useAuth0 } from "@Auth0/auth0-react";
+import { useAuth0 } from "@auth0/auth0-react";
 import { useDispatch, useSelector} from "react-redux";
+import axios from "axios";
 
 const Navbar = () => {
-
+    const favorites = useSelector(state => state.favorites);
+    const userIdRaw = useSelector(state => state.emailUser.variable);
     const { user, isAuthenticated } = useAuth0(); 
     const dispatch = useDispatch();
     const history = useHistory()
@@ -30,6 +32,10 @@ const Navbar = () => {
     
     const users = data();
     const rolUser = users?.rol;    
+
+    // const logoutButtonHandler = async () => {
+    //     await axios.put(`http://localhost:3001/user/favorites/${userIdRaw.id}`, favorites);
+    // };
 
     function handleClick(e){
         e.preventDefault();
@@ -66,7 +72,7 @@ const Navbar = () => {
             {isAuthenticated && users && (
                 <Link className={style.links2} to="/profile">
                     {users.name ? (
-                        <h2 className={style.name}>{users.name}</h2>
+                        <h2 className={style.linksName}>{users.name}</h2>
                     ) : (
                         <h2 className={style.imageAlt}>{user.given_name}</h2>
                     )}

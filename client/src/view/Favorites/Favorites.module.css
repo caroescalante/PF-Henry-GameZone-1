@@ -1,6 +1,6 @@
 .background{
     background-image: url("../../Image/video-games-gamers-wallpaper-preview.jpg");
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     min-height: 100vh;
     background-position: center;
@@ -13,8 +13,8 @@
 
 .containerAllCards{
     position: relative;
+    justify-content: space-between;
     top: 12px;
-    left: 12px;
     padding-top: 10px;
     padding-left: 0;
     border-radius:10px ;
@@ -30,6 +30,7 @@
 .containerCards{
     display: inline-block;
     flex-direction: column;
+    justify-content: space-between;
 }
 
 .favoriteCard{
@@ -65,7 +66,7 @@
     border-radius: 10px 10px 0px 0px;
 }
 .favoriteName {
-    font-size: 22px;
+    font-size: 2rem;
     margin-top: 0px; 
     color: white;
     text-align: center;
@@ -92,12 +93,24 @@
     align-content: center;
     position: relative;
     text-align: center;
-    top: 235px;
-    left: 375px;
     display: flex;
     text-orientation: upright;
     border-radius: 10px;
 }
+
+.favoriteEmptyContainer{
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    position: relative;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    top: 200px;
+    text-orientation: upright;
+    border-radius: 10px;
+}
+
 
 
 
@@ -141,10 +154,29 @@
 }
 
   .title{
-    display: block;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    align-self: center;
+    width: 100%;
     font-size: 30px;
     font-weight: bold;
     color: white; 
     padding-top: 20px; 
-    padding-left: 500px;  
+    
 } 
+.container{
+    text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  align-self: center;
+  width: 100%;
+}

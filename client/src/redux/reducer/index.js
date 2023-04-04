@@ -23,6 +23,9 @@ import {
   REMOVE_FAVORITE,  
   GET_EMAIL,
   CLEAR_EMAIL,
+  CLEAN_FAVORITES,
+  NEW_FAVORITES,
+  DISABLE_USER
 } from "../actions/types";
 
 const initialState = {
@@ -63,7 +66,8 @@ function rootReducer(state = initialState, action) {
         allGames: state.allGamesOriginal,
         detail:[],
         filterGenres: 'All',
-        filterPlataforms: 'All'
+        filterPlataforms: 'All',
+        searchError: null
       };
 
     case SEARCH_BY_NAME:
@@ -197,7 +201,6 @@ function rootReducer(state = initialState, action) {
 
       case EMAIL_USER:
           const newEmailUser = { ...action.payload };
-          
           localStorage.setItem("emailUser", JSON.stringify(newEmailUser));
           return { ...state, emailUser: newEmailUser };
 
@@ -228,7 +231,11 @@ function rootReducer(state = initialState, action) {
           const cleanFavorite = state.favorites.filter(fav => fav.id !== action.payload);
           localStorage.setItem("favorites", JSON.stringify(cleanFavorite));
           return { ...state, favorites: cleanFavorite };
-          
+        case CLEAN_FAVORITES:
+          localStorage.setItem("favorites", JSON.stringify([]));
+          return { ...state, favorites: [] }
+        case NEW_FAVORITES:
+          return { ...state, favorites: action.payload };
       // case ADD_TO_CART:
       //   const existingGameIndex = state.cart.findIndex(game => game.id === action.payload);
       //     if (existingGameIndex !== -1) {
@@ -357,9 +364,16 @@ function rootReducer(state = initialState, action) {
          cart: []
       };
 
-   
-    
-      
+    case DISABLE_USER:
+  return {
+    ...state,
+    allUsers: state.allUsers.map(user => {
+      if (user.id === action.payload) {
+        return { ...user, active: !user.active };
+      }
+      return user;
+    })
+  };   
       
   default: return { ...state }
   }
