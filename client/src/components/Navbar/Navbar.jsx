@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import style from "./Navbar.module.css";
 import logo from "../../Image/logo.png";
-import { reloadGames, emailUserE } from "../../redux/actions";
+import { reloadGames, getUsers } from "../../redux/actions";
 import LoginButton from "../LoginButton/LoginButton";
 import LogoutButton from "../LogoutButton/LogoutButton";
 import { useAuth0 } from "@Auth0/auth0-react";
@@ -15,14 +15,23 @@ const Navbar = () => {
     const { user, isAuthenticated } = useAuth0(); 
     const dispatch = useDispatch();
     const history = useHistory()
+    const allUsers = useSelector((state) => state.users)
+
     useEffect(() => {
-        if (isAuthenticated && user) {
-          dispatch(emailUserE(user.email));
+        if(isAuthenticated) {
+        dispatch(getUsers());
         }
-    }, [dispatch, isAuthenticated, user]);
+    },[isAuthenticated])
+
+    const data = () => {
+        if(isAuthenticated && allUsers) {
+            return allUsers.find((u) => u.email === user.email); 
+        }
+            return null;
+    };
     
-    const users = useSelector((state) => state.userEmail[0])
-    const rolUser = users?.rol;
+    const users = data();
+    const rolUser = users?.rol;    
 
     // const logoutButtonHandler = async () => {
     //     await axios.put(`http://localhost:3001/user/favorites/${userIdRaw.id}`, favorites);
@@ -32,7 +41,7 @@ const Navbar = () => {
         e.preventDefault();
         dispatch(reloadGames());
         history.push('/')
-    }
+    };
 
     return (
         <div className={style.navbarContainer}>

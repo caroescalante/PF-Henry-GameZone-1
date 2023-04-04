@@ -95,7 +95,7 @@ const ShopCart = () => {
           </div>
         </>
       ) : (
-        <p className={style.cartEmpty}>The cart is empty, please add some item.</p>
+        <div className={style.cartEmptyContainer}><p className={style.cartEmpty}>The cart is empty, please add some item.</p></div>
         )}
 
         </div>

@@ -16,7 +16,16 @@ const Favorites = () => {
 
     useEffect(() => {
       if (favoritesUser) {
-        dispatch(newFavorites([...favorites, ...favoritesUser]));
+        let finalFavorites = [...favorites, ...favoritesUser]
+        let hash = {};
+        finalFavorites = finalFavorites.filter(function(current) {
+          let exists = !hash[current.id];
+          hash[current.id] = true;
+          return exists;
+        });
+        // console.log(finalFavorites);
+        // console.log(finalFavorites);
+        dispatch(newFavorites(finalFavorites));
       };
     }, []);
 
@@ -25,14 +34,14 @@ const Favorites = () => {
         <div className={style.background}>
             <h1 className={style.title}>Add here your favorite games</h1>
 
-            {isAuthenticated === true && favoritesUser?.length > 0 ?  
+            {/* {isAuthenticated === true && favoritesUser?.length > 0 ?  
             <div className={style.containerAllCards}>
                {favorites.map((favorite, index) => { 
                 return  <div className={style.containerCards} key={index}>
                          <div className={style.favoriteCard}>
                            <img src={favorite.image} alt="favorite-image" className={style.favoriteImage} />
                            <h2 className={style.favoriteName}>{favorite.name}</h2>
-                           <button onClick={() => removeFavHandler(favorite.id)} className={style.trashButton}><i class="fas fa-trash"></i></button>
+                           <button onClick={() => removeFavHandler(favorite.id)} className={style.trashButton}><i className="fas fa-trash"></i></button>
                          </div>
                        </div>          
                 }) 
@@ -49,9 +58,9 @@ const Favorites = () => {
                        </div>          
                 }) 
                 }
-            </div> : <p className={style.favoriteEmpty}>No games were added to favorites</p>}
+            </div> : <p className={style.favoriteEmpty}>No games were added to favorites</p>} */}
 
-            {/* {favorites.length ? 
+            {favorites.length ? 
                
             <div className={style.containerAllCards}>
                {favorites.map((favorite, index) => { 
@@ -65,8 +74,10 @@ const Favorites = () => {
                 }) 
                 }
             </div> 
-           : (<p className={style.favoriteEmpty}>No games were added to favorites</p>) 
-   }       */}
+           : ( <div className={style.favoriteEmptyContainer}>
+            <p className={style.favoriteEmpty}>No games were added to favorites</p>
+            </div>) 
+   }      
         </div>
     );
 };

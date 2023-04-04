@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import style from './LoginButton.module.css';
 
 const LoginButton = () => {   
-    const { loginWithRedirect } = useAuth0();      
+    const { loginWithRedirect } = useAuth0(); 
 
     return (
         <Link 

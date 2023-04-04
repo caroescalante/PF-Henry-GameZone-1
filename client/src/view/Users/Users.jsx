@@ -19,7 +19,9 @@ const Users = () => {
 
   return (
     <div className={styles.Background}>
+     
       <div className={styles.containerUser}>
+       <h1 className={styles.title}  >User control panel </h1>
       {allUsers ? (
         allUsers.map((user) => (
           <div className={styles.user} key={user.id}>
@@ -36,8 +38,8 @@ const Users = () => {
 
             <div className={styles.containerButton}>
                 <label className={styles.switch}>
-                 <h3 className={styles.ennabled}>Client</h3>
-                 <h3 className={styles.disabled}>Admin</h3>
+                 <h3 className={styles.ennabled}>Ennabled</h3>
+                 <h3 className={styles.disabled}>Disabled</h3>
                  <input    onClick={() => handleDisableClick(user.id)} type="checkbox"/>
                  {user.active ? "" : ""}
                  <span className={styles.slider}></span>
@@ -45,12 +47,12 @@ const Users = () => {
             </div>
 
              <div className={styles.containerButton2}>
-               <label className={styles.switch}>
-                <h3 className={styles.client}>Ennabled</h3>
-                <h3 className={styles.admin}>Disabled</h3>
+               <label className={styles.switch2}>
+                <h3 className={styles.client}>Client</h3>
+                <h3 className={styles.admin}>Admin</h3>
                 <input onClick={() => handleDisableClick(user.id)} type="checkbox"/>
-                {user.active ? "" : ""}
-                <span className={styles.slider}></span>
+                {user.rol ? "" : ""}
+                <span className={styles.slider2}></span>
                </label> 
              </div>
 
@@ -75,6 +77,7 @@ const Users = () => {
         </div>
       )}
       </div>
+      
     </div>
   );
 };

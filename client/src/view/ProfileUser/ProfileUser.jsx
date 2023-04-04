@@ -1,51 +1,60 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useAuth0 } from "@auth0/auth0-react";
+import { Link } from "react-router-dom";
 import style from "./ProfileUser.module.css";
-import {Link} from 'react-router-dom'
-import { useSelector } from "react-redux";
-import {useAuth0} from '@Auth0/auth0-react';
+import { getUsers } from "../../redux/actions";
 
 const ProfileUser = () => {
+  const { isAuthenticated, user } = useAuth0();
+  const dispatch = useDispatch();
+  const allUsers = useSelector((state) => state.users);
 
-    const { isAuthenticated } = useAuth0();
-    const user = useSelector((state) => state.userEmail[0]);
+  useEffect(() => {
+    if (!isAuthenticated || !allUsers) {
+      window.location.href = "/";      
+    } else {
+      dispatch(getUsers());
+    }
+  }, [isAuthenticated]);
 
-    useEffect(() => {
-        if(!isAuthenticated || !user) {
-          window.location.href = "/"
-        }
-    })
+  const data = () => {
+    if(isAuthenticated && allUsers) {
+        return allUsers.find((u) => u.email === user.email); 
+    }
+        return null;
+  };
 
-    
-    const { name, email, image } = user;
+  const users = data()
 
-    return ( 
-       
-        <div className={style.Background}>
-            <div className={style.container}>
-                <div>
-                       
-                    <h1 className={style.title}>Your Profile</h1>
-                        { user&& (
-                        <div > 
-                            <img className={style.image} src={image || " "} alt=""/>
-                            <br/>
-                            <h2 className={style.name}>Name: {name || " "} </h2>
-                            <br/>
-                            <h2 className={style.email}>Email: {email || " "}</h2>
-                        </div>
-                        )}                  
-                        
-                        <div>
-                        <Link to={"/update/"}>
-                            <button className={style.iconRegisterButton}><i className="fas fa-edit"></i></button> 
-                        </Link>                     
-                        </div>
-                    </div>
-                </div>
+  const { name, email, image } = users ?? {};
+
+  return (
+    <div className={style.Background}>
+      <div className={style.container}>
+        <h1 className={style.title}>Your Profile</h1>
+        <br />
+
+        <div className={style.containerData2}>
+          {isAuthenticated && users  && (
+            <div className={style.containerData}>              
+              <img className={style.image} src={image} alt="" />              
+              <h2 className={style.name}>Name:{name || " "}</h2>
+              <h2 className={style.email}>Email:{email || " "}</h2>
+          <div>
+            <Link to={"/update/"}>
+              <button className={style.iconRegisterButton}>
+                <i className="fas fa-edit"></i>
+              </button>
+            </Link>
+          </div>
             </div>
-       
-        
-    )  
+          )}
+
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default ProfileUser;
