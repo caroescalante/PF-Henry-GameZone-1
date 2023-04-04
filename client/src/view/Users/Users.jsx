@@ -19,6 +19,7 @@ const Users = () => {
 
   return (
     <div className={styles.Background}>
+     
       <div className={styles.containerUser}>
        <h1 className={styles.title}  >User control panel </h1>
       {allUsers ? (
@@ -46,7 +47,7 @@ const Users = () => {
             </div>
 
              <div className={styles.containerButton2}>
-               <label className={styles.switch}>
+               <label className={styles.switch2}>
                 <h3 className={styles.client}>Client</h3>
                 <h3 className={styles.admin}>Admin</h3>
                 {/* <input onClick={() => handleDisableClick(user.id)} type="checkbox"/>
@@ -76,6 +77,7 @@ const Users = () => {
         </div>
       )}
       </div>
+      
     </div>
   );
 };
