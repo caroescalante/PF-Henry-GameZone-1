@@ -13,14 +13,14 @@ const Footer = () => {
                 <Link to="/"><img src={logo} alt="init" width="300px"/></Link>
 
             <div className={style.linkFooter}>
-                <Link to="/">Home</Link>
+               
                 <Link to="/about">About</Link>
                 <Link to="/news">News</Link>
-                <Link to="/community">Community</Link>
+                
             </div>
 
             <div className={style.networks}>
-                <Link to="/" className="fa fa-github"></Link>
+                <Link to="/" className="fa fa-github"></Link>                       
             </div>
                 
             </div>

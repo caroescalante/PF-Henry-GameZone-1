@@ -3,8 +3,8 @@ import style from "./Error404.module.css";
 
 const Error404 = () => {
     return (
-        <div>
-            <h1>Error 404 Not Found</h1>
+        <div className={style.Background}>
+            <h1></h1>
         </div>
     );
 };

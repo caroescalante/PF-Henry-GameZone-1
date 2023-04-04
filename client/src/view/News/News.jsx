@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const News = () => {
 
-    const allGames = useSelector(state => state.allGames);
+    const allGames = useSelector(state => state.allGamesOriginal);
     let allGames2 = []
     allGames.sort(function (a, b) {
         if (a.released < b.released) return  1;

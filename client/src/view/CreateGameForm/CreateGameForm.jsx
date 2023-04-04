@@ -5,8 +5,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { getGenres, getPlatforms } from "../../redux/actions/index";
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { useAuth0 } from "@auth0/auth0-react";
+
+
 
 const validate = (form) => {
+  
   let errors = {};
 
   if (!form.name) {
@@ -55,21 +59,35 @@ const validate = (form) => {
 };
 
 function CreateGameForm() {
+
+  const { user, isAuthenticated } = useAuth0();
+  const users = useSelector((state) => state.userEmail)
+
+  
+
+  useEffect(() => {
+  if(!isAuthenticated || users.rol === "client") {
+    window.location.href = "/"
+  }
+  })
+
+
+
   const dispatch = useDispatch();
   const platformsRaw = useSelector(state => state.platforms);
   //const platformSelect=[{value: 'pruebaPlat', label: 'pruebaPlat'},{value: 'pruebaPlat1', label: 'pruebaPlat1'}];
   const platformSelect=[];
-  platformsRaw.map((t)=> {platformSelect.push({ value: t.name, label: t.name })});
-  console.log('platforms', platformSelect);
+  platformsRaw.filter(plat => plat.name !== 'Neo Geo' && plat.name !== 'Game Gear' && plat.name !== 'Jaguar'&& plat.name !== '3DO' && plat.name !== 'SEGA Master System'&& plat.name !== 'SEGA CD' && plat.name !== 'SEGA Saturn'&& plat.name !== 'Genesis' && plat.name !== 'SEGA 32X'&& plat.name !== 'Atari XEGS' && plat.name !== 'Atari Lynx'&& plat.name !== 'Atari ST' && plat.name !== 'Atari 8-bit'&& plat.name !== 'Atari 2600' && plat.name !== 'Atari 5200'&& plat.name !== 'Atari 7800' && plat.name !== 'Commodore / Amiga'&& plat.name !== 'Atari Flashback'&& plat.name !== 'Apple II' && plat.name !== 'Classic Macintosh'&& plat.name !== 'NES' && plat.name !== 'SNES'&& plat.name !== 'Game Boy' && plat.name !== 'Game Boy Color'&& plat.name !== 'Game Boy Advance' && plat.name !== 'Nintendo 64'&& plat.name !== 'GameCube' && plat.name !== 'PSP'&& plat.name !== 'Nintendo DSi' && plat.name !== 'Nintendo DS').map((t)=> {platformSelect.push({ value: t.name, label: t.name })});
+ 
   const [selectedOptionP, setSelectedOptionP] = useState(null);
-  console.log('estad', selectedOptionP);
+
   const genres = useSelector(state => state.genres);
   //const genresSelect=[{value: 'pruebaGen', label: 'pruebaGen'},{value: 'pruebaGen1', label: 'pruebaGen1'}];
   const genresSelect=[];
-  genres.map((t)=> {genresSelect.push({ value: t.name, label: t.name })});
-  console.log('genres', genresSelect);
+  genres.slice(0, 15).map((t)=> {genresSelect.push({ value: t.name, label: t.name })});
+ 
   const [selectedOptionG, setSelectedOptionG] = useState(null);
-  console.log('estad2', selectedOptionG);
+ 
   const platforms = platformsRaw.map(platform => platform.name);
 
   const [form, setForm] = useState({
@@ -142,17 +160,13 @@ function CreateGameForm() {
   };
 
   const submitHandler = (event) => {
-    console.log(event);
     const genresFinal=[];
     selectedOptionG.map((t)=> {genresFinal.push(t.value)});
-    console.log('en el submit genres', genresFinal);
     const platformsFinal=[];
     selectedOptionP.map((t)=> {platformsFinal.push(t.value)});
-    console.log('en el submit platforms', platformsFinal);
     let finalForm = { ...form };
     finalForm = { ...finalForm, genres: genresFinal };
     finalForm = { ...finalForm, platforms: platformsFinal };
-    console.log('submit', finalForm);
     if (finalForm.website === "") finalForm = { ...finalForm, website: null };
     if (finalForm.released === "") finalForm = { ...finalForm, released: null };
     event.preventDefault();
@@ -264,12 +278,14 @@ function CreateGameForm() {
             );
           })}
         </div> */}
-      <div className={style.containerButton}>
-        <button type="submit"  className={style.button} disabled={
-          (errors.name || errors.image || errors.price  || errors.description) ? true : false}>Submit
-        </button>
-        </div>
-      </div>
+       <div className={style.containerButton}> 
+        {/* <button type="submit"  className={style.button} disabled={
+          (errors.name || errors.image || errors.price  || errors.description) ? true : false } */}
+        {!errors.name && !errors.image && !errors.price && !errors.description  && !errors.released && selectedOptionG !== null && selectedOptionP !== null && (<button type="submit"  className={style.button} >Submit
+        </button>)} 
+          
+         </div> 
+               </div>
     </form>
    </div>
   );

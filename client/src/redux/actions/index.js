@@ -18,15 +18,16 @@ import {
   REMOVE_FROM_CART,
   CLEAR_CART,
   REMOVE_FAVORITE,
-  CHARGE_IMAGE,
-  GET_EMAIL
+  RELOAD_GAMES,  
+  GET_EMAIL,
+  CLEAR_EMAIL,
+  CLEAN_FAVORITES,
+  NEW_FAVORITES,
+  DISABLE_USER,
+
 } from "./types";
 
 import axios from 'axios';
-const CLOUD_NAME = import.meta.env.VITE_CLOUD_NAME;
-const UPLOAD_PRESET_NAME = import.meta.env.VITE_UPLOAD_PRESET_NAME;
-
-
 
 export function getGames() {
   return async function (dispatch) {
@@ -36,6 +37,14 @@ export function getGames() {
       payload: json.data,
     });
   };
+}
+
+export function reloadGames(){
+  return async function (dispatch){
+    return dispatch({
+      type: RELOAD_GAMES,
+    })
+  }
 }
 
 export function searchByName(name) {
@@ -56,7 +65,6 @@ export function searchByName(name) {
   };
 }
 
-
 export function getGenres(){
   return async function(dispatch){
       let infoGen = await axios.get("http://localhost:3001/genres",{})   //generos
@@ -64,15 +72,12 @@ export function getGenres(){
   }
 }
 
-
 export function getPlatforms(){
   return async function(dispatch){
       let infoPlat = await axios.get("http://localhost:3001/platform",{})   //plataformas 
       return dispatch({type: GET_PLATFORMS, payload: infoPlat.data})
   }
 }
-
-
 
 export function filterByGenres(value) {
   return {
@@ -101,6 +106,7 @@ export function orderByRating(value) {
     payload: value,
   }
 }
+
 export function orderByPrice(value) {
   return {
     type: ORDER_BY_PRICE,
@@ -121,11 +127,21 @@ export function getDetail(id){
       }
   }
 }
+
 export function clearDetail(){
   return {
     type: CLEAR_DETAIL,
   }
 }
+
+
+//*****NO TOCAR => LEONARDO */
+export function clearUserEmail () {
+  return {
+    type: CLEAR_EMAIL,
+  };
+}
+//*********** */
 
 export function getUsers (){
   return async function (dispatch) {
@@ -139,16 +155,19 @@ export function getUsers (){
   }
 };
 
+//no tocar ***********"leonardo"
 export function emailUserE (email) {
   return async function (dispatch) {
     try {
       const emailUser = await axios.get(`http://localhost:3001/user?email=${email}`);
-      return dispatch({ type: GET_EMAIL, payload:emailUser.data})
+      return dispatch({ type: GET_EMAIL, payload:emailUser.data})    
+
     } catch ( error) {
       return console.log("Something went wrong. Please try again.", error.message)
     }
   }
 };
+//********************************* */
 
 export function emailUser (email) {
   return async function (dispatch) {
@@ -220,10 +239,22 @@ export const removeFavorite = (id) => {
   return { type: REMOVE_FAVORITE, payload: id };
 };
 
+export const cleanFavorites = () => {
+  return { type: CLEAN_FAVORITES };
+};
 
-export function chargeImage(payload) {
-  return {
-    type: CHARGE_IMAGE,
-    payload
+export const newFavorites = (arrFavorites) => {
+  return async function (dispatch) {
+    return dispatch({ type: NEW_FAVORITES, payload: arrFavorites });
   };
-}
+};
+
+export const disableUser = (id) => {
+  return async (dispatch) => {
+    try {
+      await axios.put(`http://localhost:3001/disabled/${id}`);
+      dispatch({ type: DISABLE_USER, payload: id });
+    } catch (error) {
+    }
+  };
+};
