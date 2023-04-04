@@ -1,15 +1,16 @@
 import React, { useEffect } from "react";
 import styles from "./PaymentSuccess.module.css";
 import axios from "axios";
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom"; 
    
 function PaymentSuccess() {
-  
-  const email = useSelector(state => state.emailUser.email);
+
+const { user, isAuthenticated } = useAuth0(); 
+
    useEffect(() => {
-    axios.post("http://localhost:3001/payment/sendEmail", { email: email });
-  }, []);
+    if(isAuthenticated){
+    axios.post("http://localhost:3001/payment/sendEmail", { email: user.email });
+  }}, [isAuthenticated]);
 
   return (
     <div className={styles.Background}>
@@ -27,6 +28,8 @@ function PaymentSuccess() {
 };
 
 export default PaymentSuccess;
+
+
 // const PaymentData = {
 //     client: 'Juan Perez',
 //     amount: 1000,
