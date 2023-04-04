@@ -22,6 +22,7 @@ import {
   CLEAR_CART,
   REMOVE_FAVORITE,  
   GET_EMAIL,
+  CLEAR_EMAIL,
 } from "../actions/types";
 
 const initialState = {
@@ -40,7 +41,7 @@ const initialState = {
   favorites: JSON.parse(localStorage.getItem("favorites")) || [],
   cart: JSON.parse(localStorage.getItem('cart')) || [],
   image: [],
-  userEmail: [],
+  userEmail: {},
 };
 
 function rootReducer(state = initialState, action) {
@@ -180,9 +181,16 @@ function rootReducer(state = initialState, action) {
               ...state,
               detail:[],
               allGames:[],
-              userEmail: [],
+              userEmail: {},
               searchError: null
           }; 
+
+      case CLEAR_EMAIL:
+        return {
+          ...state,
+          userEmail: {},
+        };
+
           
           case GET_USERS:
           return { ...state, users: action.payload, allUsers: action.payload, };
@@ -196,7 +204,10 @@ function rootReducer(state = initialState, action) {
       //por favor no borrar este case es el que pasa el rol a la navbar "leonardo" 
 
       case GET_EMAIL:
-          return { ...state, userEmail: action.payload, }
+          const userData = { ...action.payload };
+          
+          localStorage.setItem("userEmail", JSON.stringify(userData));
+          return { ...state, userEmail: userData };
 
       //*************** */
           

@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import {useAuth0} from '@Auth0/auth0-react';
 import { Link } from 'react-router-dom';
-import { clearDetail } from '../../redux/actions';
+import { clearDetail, clearUserEmail } from '../../redux/actions';
 import style from './LogoutButton.module.css';
 
 const LogoutButton = () => {
@@ -12,6 +12,7 @@ const LogoutButton = () => {
 
     useEffect(()=>{
         dispatch(clearDetail())
+        dispatch(clearUserEmail())
    },[])
     
 

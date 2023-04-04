@@ -17,14 +17,15 @@ import {
   orderByRating,
   orderByPrice,
   clearDetail, 
-  emailUserE
+  emailUserE,
+  clearUserEmail
 } from "../../redux/actions";
 
 const Home = () => {
 
     const dispatch = useDispatch();
     const allGames = useSelector(state => state.allGames);
-    const users = useSelector((state) => state.userEmail[0])
+    const users = useSelector((state) => state.userEmail)
     const { user, isAuthenticated } = useAuth0();
     const genres = useSelector((state) => state.genres);
     const platforms = useSelector((state) => state.platforms);
@@ -95,6 +96,7 @@ const Home = () => {
 
     useEffect(() => {   
         if(isAuthenticated) {
+            dispatch(clearUserEmail());
             dispatch(emailUserE(user.email))            
             if(users && user.email === users.email) {
                 history.push("/");
