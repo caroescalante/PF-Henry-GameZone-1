@@ -244,9 +244,7 @@ export const cleanFavorites = () => {
 };
 
 export const newFavorites = (arrFavorites) => {
-  return async function (dispatch) {
-    return dispatch({ type: NEW_FAVORITES, payload: arrFavorites });
-  };
+  return { type: NEW_FAVORITES, payload: arrFavorites };
 };
 
 export const disableUser = (id) => {
