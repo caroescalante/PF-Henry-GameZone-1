@@ -6,6 +6,7 @@ const {
     createUserHandler,
     updateUserHandler,
     emailUserHandler,
+    favoriteUserHandler,
 } = require("../handlers/usersHandlers");
 
 
@@ -16,6 +17,7 @@ userRouter.get("/:id", getUserHandler);
 userRouter.post("/", createUserHandler);
 userRouter.put("/:id", updateUserHandler);
 userRouter.get("/email/:email", emailUserHandler );
+userRouter.post("/favorites/:email", favoriteUserHandler);
 
 module.exports = userRouter;
 

@@ -7,9 +7,11 @@ import LoginButton from "../LoginButton/LoginButton";
 import LogoutButton from "../LogoutButton/LogoutButton";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useDispatch, useSelector} from "react-redux";
+import axios from "axios";
 
 const Navbar = () => {
-
+    const favorites = useSelector(state => state.favorites);
+    const userIdRaw = useSelector(state => state.emailUser.variable);
     const { user, isAuthenticated } = useAuth0(); 
     const dispatch = useDispatch();
     const history = useHistory()
@@ -21,6 +23,10 @@ const Navbar = () => {
     
     const users = useSelector((state) => state.userEmail[0])
     const rolUser = users?.rol;
+
+    // const logoutButtonHandler = async () => {
+    //     await axios.put(`http://localhost:3001/user/favorites/${userIdRaw.id}`, favorites);
+    // };
 
     function handleClick(e){
         e.preventDefault();

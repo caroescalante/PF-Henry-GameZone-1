@@ -5,6 +5,7 @@ const {
   searchUserByName,
   updateUser,
   emailUser,
+  addUserFavorites,
   toggleActiveUser
 } = require ("../controllers/userController");
 
@@ -73,6 +74,18 @@ try {
 }
   };
 
+const favoriteUserHandler = async (req, res) => {
+  const { email } = req.params;
+  const { favorites } = req.body;
+
+  try {
+    const addFavorites = await addUserFavorites(email, favorites);
+    return res.status(200).json(addFavorites);
+  } catch (error) {
+    return res.status(400).json({ message: error.message });
+  };
+};
+
 
 const toggleActiveHandler = async (req, res, next) => {
   const { id } = req.params;
@@ -91,8 +104,10 @@ module.exports = {
   createUserHandler,
   updateUserHandler,
   emailUserHandler,
+  favoriteUserHandler,
   toggleActiveHandler
 };
+
 
 //const updateUserHandler = async (req, res) => {
 

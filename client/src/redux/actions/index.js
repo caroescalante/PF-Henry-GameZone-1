@@ -18,9 +18,11 @@ import {
   REMOVE_FROM_CART,
   CLEAR_CART,
   REMOVE_FAVORITE,
+  RELOAD_GAMES,  
   GET_EMAIL,
+  CLEAN_FAVORITES,
+  NEW_FAVORITES,
   DISABLE_USER,
-  RELOAD_GAMES, 
 
 } from "./types";
 
@@ -227,6 +229,15 @@ export const removeFavorite = (id) => {
   return { type: REMOVE_FAVORITE, payload: id };
 };
 
+export const cleanFavorites = () => {
+  return { type: CLEAN_FAVORITES };
+};
+
+export const newFavorites = (arrFavorites) => {
+  return async function (dispatch) {
+    return dispatch({ type: NEW_FAVORITES, payload: arrFavorites });
+  };
+};
 
 export const disableUser = (id) => {
   return async (dispatch) => {
