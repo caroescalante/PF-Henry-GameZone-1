@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getGenres, getPlatforms } from "../../redux/actions/index";
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import { useAuth0 } from "@Auth0/auth0-react";
+import { useAuth0 } from "@auth0/auth0-react";
 
 
 
@@ -245,13 +245,12 @@ function CreateGameForm() {
       />
       {/* {selectedOptionP!== null && <p className={style.errorText}>{errors.genres}</p>}  */}
       <h3 className={style.subTitle}>Select one or more platforms</h3>
+       <Select
        isMulti
-       <div ><Select
         defaultValue={selectedOptionP}
         onChange={setSelectedOptionP}
         options={platformSelect}
       />
-      </div>
         {/* <h3 className={style.subTitle}>Select one or more genres</h3>
         <div className={style.genresContainer}>
           {genres.map((genre, index) => {
