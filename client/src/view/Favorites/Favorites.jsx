@@ -74,7 +74,9 @@ const Favorites = () => {
                 }) 
                 }
             </div> 
-           : (<p className={style.favoriteEmpty}>No games were added to favorites</p>) 
+           : ( <div className={style.favoriteEmptyContainer}>
+            <p className={style.favoriteEmpty}>No games were added to favorites</p>
+            </div>) 
    }      
         </div>
     );
