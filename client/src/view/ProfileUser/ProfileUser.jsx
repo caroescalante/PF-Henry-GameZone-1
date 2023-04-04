@@ -37,15 +37,10 @@ const ProfileUser = () => {
 
         <div className={style.containerData2}>
           {isAuthenticated && users  && (
-            <div>              
+            <div className={style.containerData}>              
               <img className={style.image} src={image} alt="" />              
-              <br />  
-              <h2 className={style.name}>Name: {name || " "}</h2>
-              <br />
-              <h2 className={style.email}>Email: {email || " "}</h2>
-            </div>
-          )}
-
+              <h2 className={style.name}>Name:{name || " "}</h2>
+              <h2 className={style.email}>Email:{email || " "}</h2>
           <div>
             <Link to={"/update/"}>
               <button className={style.iconRegisterButton}>
@@ -53,6 +48,9 @@ const ProfileUser = () => {
               </button>
             </Link>
           </div>
+            </div>
+          )}
+
         </div>
       </div>
     </div>
