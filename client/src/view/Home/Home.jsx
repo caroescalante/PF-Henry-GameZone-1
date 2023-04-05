@@ -101,7 +101,7 @@ const Home = () => {
             if (!data) {
               axios.post(`http://localhost:3001/user/`, { email: user.email }).then(() => {
                 history.push("/");
-              });
+              })
             }
           });
         }
