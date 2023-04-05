@@ -38,7 +38,7 @@ const ShopCart = () => {
           success: "/paymentsuccess"
         }
       }
-      let data =await axios.post("http://localhost:3001/payment", bodypayment); 
+      let data =await axios.post("/payment", bodypayment); 
       location.href = data.data.init_point;
       localStorage.removeItem('cart');
     }
