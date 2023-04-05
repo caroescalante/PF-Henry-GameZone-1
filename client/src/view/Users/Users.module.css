@@ -95,8 +95,8 @@
     width: 100px;
     height: 55px;
     bottom: 20px;
-    left: 35px;
     margin-right: 100px;
+
     
     
   }
@@ -208,8 +208,8 @@
     padding-top: 30px;
     height: 55px;
     width: 300px;
-    left: 20px;
     margin: 0;
+    right: 30px
   }
 
 
@@ -264,9 +264,8 @@
   height: 55px;
   margin-right: 70px;
   bottom: 5px;
-  left: 50px;
-  
-  
+  left: 40px;
+   
 }
 
 .switch2 input {

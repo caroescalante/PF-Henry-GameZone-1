@@ -2,15 +2,11 @@ import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import style from "./CreateGameForm.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { useDropzone } from 'react-dropzone';
 import { getGenres, getPlatforms } from "../../redux/actions/index";
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import { useAuth0 } from "@Auth0/auth0-react";
+import { useAuth0 } from "@auth0/auth0-react";
 
-
-const CLOUD_NAME = import.meta.env.VITE_CLOUD_NAME;
-const UPLOAD_PRESET_NAME = import.meta.env.VITE_UPLOAD_PRESET_NAME;
 
 
 const validate = (form) => {
@@ -66,11 +62,11 @@ function CreateGameForm() {
 
   const { user, isAuthenticated } = useAuth0();
   const users = useSelector((state) => state.userEmail)
-  const [uploadedImageUrl, setUploadedImageUrl] = useState();   
+
   
 
   useEffect(() => {
-  if(!isAuthenticated || users.rol === "client" ) {
+  if(!isAuthenticated || users.rol === "client") {
     window.location.href = "/"
   }
   })
@@ -163,29 +159,6 @@ function CreateGameForm() {
     setFocus({ ...focus, [property]: property });
   };
 
-
-  const onDrop = async (acceptedFiles) => {
-    const file = acceptedFiles[0];
-    const formData = new FormData();
-    formData.append('file', file);
-    formData.append('upload_preset', UPLOAD_PRESET_NAME);
-
-    try {
-      const response = await axios.post(
-        `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
-        formData
-      );
-      setUploadedImageUrl(response.data.secure_url);
-    
-    } catch (error) {
-      console.error(error);
-      alert("Error al cargar la imagen");
-    }
-  };
-
-  const { getRootProps, getInputProps } = useDropzone({ onDrop });
-
-
   const submitHandler = (event) => {
     const genresFinal=[];
     selectedOptionG.map((t)=> {genresFinal.push(t.value)});
@@ -201,7 +174,7 @@ function CreateGameForm() {
     // location.reload();
                               //A partir de aqui es el código de la modal alert//
 
-    axios.post("http://localhost:3001/videogames", {finalForm, image: uploadedImageUrl })
+    axios.post("http://localhost:3001/videogames", finalForm)
     .then(() => {
         Swal.fire({
             title: 'Success!',
@@ -261,21 +234,8 @@ function CreateGameForm() {
          {errors.released && focus.released && <p className={style.errorText}>{errors.released}</p>}
         </div>
         <div className={style.fields}>
-        <div {...getRootProps()} className={style.fields1} >
-                        <input {...getInputProps()}/>
-                        {uploadedImageUrl ? (
-                        <div className={style.conteinerImg}>
-                            <img 
-                            src={uploadedImageUrl} 
-                            alt="Uploaded image, please click on Record Data" 
-                            className={style.img}/>
-                        </div>
-                        ) : (
-                        <div className={style.drop}>
-                          <p className={style.textDrop}>Click here to load an image</p>
-                        </div>
-                        )}
-                    </div>
+          <label htmlFor="image">Image</label>
+          <input type="text" name="image" placeholder="Image..." value={form.image} onChange={inputChangeHandler} onFocus={focusHandler}  />
          {errors.image && focus.image && <p className={style.errorText}>{errors.image}</p>} 
         </div>
          </div>
