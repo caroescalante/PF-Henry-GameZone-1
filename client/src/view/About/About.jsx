@@ -10,7 +10,7 @@ const About = () => {
     { nombre: "Pablo Alvarez", linkedin: "https://www.linkedin.com/in/pablo-alvarez-54b1a5248/" },
     { nombre: "Leonardo Guerrero", linkedin: "https://www.linkedin.com/in/leonardo-guerrero-5aa501207" },
     { nombre: "Nahuel Castelar", linkedin: "https://www.linkedin.com/in/nahuel-nestor-castelar-61ab23157" },
-    { nombre: "Yorlin Pazos", linkedin: "https://www.linkedin.com/in/yorlinpazos/" },
+    { nombre: "Yorlin Pazos", linkedin: "https://www.linkedin.com/in/yorlin-pazos-b14000246/" },
   ];
   const tecnologias = ["Javascript", "React", "Redux", "Express", "Mercado Pago", "Postgress", "Auth0"];
   return (

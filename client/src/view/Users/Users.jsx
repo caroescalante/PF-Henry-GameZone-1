@@ -13,7 +13,7 @@ const Users = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if(isAuthenticated || currentUser?.rol === true || currentUser?.active === true){
+    if(!isAuthenticated || currentUser?.rol === false || currentUser?.active === false){
       window.location.href = "/"
     }
   })
