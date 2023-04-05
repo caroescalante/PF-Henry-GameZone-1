@@ -66,7 +66,7 @@ function CreateGameForm() {
   
 
   useEffect(() => {
-  if(!isAuthenticated || users.rol === "client") {
+  if(!isAuthenticated || users.rol === "client" ) {
     window.location.href = "/"
   }
   })

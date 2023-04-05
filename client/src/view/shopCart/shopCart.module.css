@@ -251,15 +251,16 @@
     backdrop-filter: blur(5px);
     border: 2px solid black;
     color: white;
-    /* justify-content: center;
+    justify-content: center;
     align-items: center;
     align-content: center;
     position: relative;
-    text-align: center; */
+    text-align: center;
+    padding-top: 120px;
     /* top: 235px;
     left: 375px; */
     /* display: flex; */
-    text-orientation: upright;
+    text-orientation: center;
     border-radius: 10px;
 }
 .cartEmptyContainer{
@@ -268,12 +269,14 @@
     align-content: center;
     position: relative;
     text-align: center;
-    top: 235px;
+    top: 175px;
     display: flex;
     flex-wrap: wrap;
-    text-orientation: upright;
+    text-orientation: center;
     border-radius: 10px;
+    
 }
+
 
 
 
