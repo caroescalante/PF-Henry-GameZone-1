@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getUsers, disableUser } from "../../redux/actions";
 import styles from "./Users.module.css";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth0 } from "@Auth0/auth0-react";
 
 const Users = () => {
   // const allUsers = useSelector((state) => state.allUsers);

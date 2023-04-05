@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import style from "./Favorites.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { removeFavorite, newFavorites } from "../../redux/actions/index";
-import { useAuth0 } from '@auth0/auth0-react';
+import { useAuth0 } from '@Auth0/auth0-react';
 
 const Favorites = () => {
     const { user, isAuthenticated } = useAuth0();
