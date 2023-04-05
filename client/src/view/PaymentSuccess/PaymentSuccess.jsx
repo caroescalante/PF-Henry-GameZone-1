@@ -10,7 +10,7 @@ const { user, isAuthenticated } = useAuth0();
 
    useEffect(() => {
     if(isAuthenticated){
-    axios.post("http://localhost:3001/payment/sendEmail", { email: user.email });
+    axios.post("/payment/sendEmail", { email: user.email });
   }}, [isAuthenticated]);
 
   return (

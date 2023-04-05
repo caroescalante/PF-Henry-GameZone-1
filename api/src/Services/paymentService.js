@@ -11,9 +11,9 @@ class PaymentService {
       payer_email: "TEST_USER_132757737",
       items: datos.items,
       back_urls: {
-        failure: "http://localhost:5173/paymentfailure",
+        failure: "/paymentfailure",
         pending: "/pending",
-        success: "http://localhost:5173/paymentsuccess"
+        success: "/paymentsuccess"
       }
     };
 

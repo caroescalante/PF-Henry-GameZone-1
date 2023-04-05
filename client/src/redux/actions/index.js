@@ -31,7 +31,7 @@ import axios from 'axios';
 
 export function getGames() {
   return async function (dispatch) {
-    let json = await axios.get("http://localhost:3001/videogames");
+    let json = await axios.get("/videogames");
     return dispatch({
       type: GET_GAMES,
       payload: json.data,
@@ -50,7 +50,7 @@ export function reloadGames(){
 export function searchByName(name) {
   return async function (dispatch) {
   try {
-    let json = await axios.get(`http://localhost:3001/name?name=${name}`);
+    let json = await axios.get(`/name?name=${name}`);
     return dispatch({
       type: SEARCH_BY_NAME,
       payload: json.data,
@@ -67,14 +67,14 @@ export function searchByName(name) {
 
 export function getGenres(){
   return async function(dispatch){
-      let infoGen = await axios.get("http://localhost:3001/genres",{})   //generos
+      let infoGen = await axios.get("/genres",{})   //generos
       return dispatch({type: GET_GENRES, payload: infoGen.data})
   }
 }
 
 export function getPlatforms(){
   return async function(dispatch){
-      let infoPlat = await axios.get("http://localhost:3001/platform",{})   //plataformas 
+      let infoPlat = await axios.get("/platform",{})   //plataformas 
       return dispatch({type: GET_PLATFORMS, payload: infoPlat.data})
   }
 }
@@ -117,7 +117,7 @@ export function orderByPrice(value) {
 export function getDetail(id){
   return async function(dispatch){
       try {
-          var json = await axios.get("http://localhost:3001/videogames/"+ id);
+          var json = await axios.get("/videogames/"+ id);
           return dispatch({
               type: GET_DETAIL,
               payload:json.data
@@ -146,7 +146,7 @@ export function clearUserEmail () {
 export function getUsers (){
   return async function (dispatch) {
     try {
-      const users = await axios.get('http://localhost:3001/user');
+      const users = await axios.get('/user');
       return dispatch({ type: GET_USERS, payload: users.data })
 
     } catch ( error ) {
@@ -159,7 +159,7 @@ export function getUsers (){
 export function emailUserE (email) {
   return async function (dispatch) {
     try {
-      const emailUser = await axios.get(`http://localhost:3001/user?email=${email}`);
+      const emailUser = await axios.get(`/user?email=${email}`);
       return dispatch({ type: GET_EMAIL, payload:emailUser.data})    
 
     } catch ( error) {
@@ -172,7 +172,7 @@ export function emailUserE (email) {
 export function emailUser (email) {
   return async function (dispatch) {
     try {
-      const emailDb = await axios.get(`http://localhost:3001/user/email/${email}`);
+      const emailDb = await axios.get(`/user/email/${email}`);
       const variable = emailDb.data;
 
       return dispatch({ 
@@ -250,7 +250,7 @@ export const newFavorites = (arrFavorites) => {
 export const disableUser = (id) => {
   return async (dispatch) => {
     try {
-      await axios.put(`http://localhost:3001/disabled/${id}`);
+      await axios.put(`/disabled/${id}`);
       dispatch({ type: DISABLE_USER, payload: id });
     } catch (error) {
     }
@@ -261,7 +261,7 @@ export const disableUser = (id) => {
 export const changeRolUser = (id) => {
   return async (dispatch) => {
     try {
-      await axios.put(`http://localhost:3001/changed/${id}`);
+      await axios.put(`/changed/${id}`);
       dispatch({ type: DISABLE_ROL_USER, payload: id });
     } catch (error) {
     }

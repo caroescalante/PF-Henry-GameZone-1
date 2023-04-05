@@ -19,7 +19,7 @@ const LogoutButton = () => {
    },[])
     
    const logoutButtonHandler = () => {
-        axios.post(`http://localhost:3001/user/favorites/${email}`, {favorites: favorites});
+        axios.post(`/user/favorites/${email}`, {favorites: favorites});
         dispatch(cleanFavorites());
         logout();
    };

@@ -53,7 +53,7 @@ const RegistrationForm = () => {
 
   const submitHandler =  async (event) => {
     event.preventDefault();
-    await axios.post(`http://localhost:3001/user/`, {...data, image: uploadedImageUrl});
+    await axios.post(`/user/`, {...data, image: uploadedImageUrl});
     setData({
       name: "",
       surname: "",

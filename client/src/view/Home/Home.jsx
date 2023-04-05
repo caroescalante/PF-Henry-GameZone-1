@@ -131,7 +131,7 @@ history.push("/banneduser");
 } else if(users && user.email === users.email) {
 history.push("/");
 } else {
-axios.post(`http://localhost:3001/user/`, { email: user.email });
+axios.post(`/user/`, { email: user.email });
 history.push("/");
 }
 }

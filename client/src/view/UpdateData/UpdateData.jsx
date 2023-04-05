@@ -59,7 +59,7 @@ const UpdateData = () => {
         );
         setUploadedImageUrl(response.data.secure_url);
       
-        await axios.put(`http://localhost:3001/user/${id}`, { ...data, image: uploadedImageUrl });
+        await axios.put(`/user/${id}`, { ...data, image: uploadedImageUrl });
         setData({
           name: data.name,
           surname: data.surname,
@@ -76,7 +76,7 @@ const UpdateData = () => {
     const submitHandler =  async (event) => {
       event.preventDefault();
       
-      await axios.put(`http://localhost:3001/user/${id}`,{ ...data, image:uploadedImageUrl});
+      await axios.put(`/user/${id}`,{ ...data, image:uploadedImageUrl});
       setData({
         name: data.name,
         surname: data.surname,
