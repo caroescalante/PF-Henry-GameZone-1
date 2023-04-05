@@ -33,9 +33,9 @@ const ShopCart = () => {
         payer_email: "test_user_36100631@testuser.com",
         items: arrayItems,
         back_urls: {
-          failure: "/paymentfailure",
-          pending: "/pending",
-          success: "/paymentsuccess"
+          failure: "https://pf-henry-game-zone-1.vercel.app/paymentfailure",
+          pending: "https://pf-henry-game-zone-1.vercel.app/pending",
+          success: "https://pf-henry-game-zone-1.vercel.app/paymentsuccess"
         }
       }
       let data =await axios.post("/payment", bodypayment); 
