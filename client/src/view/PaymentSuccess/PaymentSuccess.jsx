@@ -2,7 +2,8 @@ import React, { useEffect } from "react";
 import styles from "./PaymentSuccess.module.css";
 import axios from "axios";
 import { Link } from "react-router-dom"; 
-   
+import { useAuth0 } from "@Auth0/auth0-react";
+
 function PaymentSuccess() {
 
 const { user, isAuthenticated } = useAuth0(); 

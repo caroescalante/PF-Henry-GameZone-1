@@ -4,10 +4,21 @@ const cookieParser = require ("cookie-parser");
 const routes = require ("./routes/index");  // requiero lo que será la raiz de ruta en mi app
 const dotenv = require ("dotenv")
 const server = express();     //creo instancia de mi servidor express
+const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, DB_PORT } = process.env;
+
 
 server.name = 'API';     //la propiedad "name" del servidor será API
 
 dotenv.config();
+
+const dbconfig = {
+  host: DB_HOST || "localhost",
+  port: DB_PORT || "3001",
+  user: DB_USER || "root",
+  password: DB_PASSWORD || "",
+  database: DB_NAME || "games"
+}
+
 
 server.use(express.urlencoded({ extended: false, limit: '50mb' }));//middlweare solicitudes url
 server.use(express.json());//lo mismo de arriba pero "notación de objeto de JavaScript" json

@@ -103,15 +103,18 @@
     position: relative;
     align-items: top;
     align-self: top;
-    justify-content: top;
+    justify-content:center;
     color: white;
-    background-color: transparent;
+    background: none;
     border: none;
+    border-radius: 10px;
     text-decoration: none;
-    font-size: 4rem;
-    bottom: 180px;
+    font-size: 5rem;
+    bottom: 290px;
     margin-left: 30px;
-    
+    cursor: pointer;
+    z-index: 1;
+  
 
     
 }
@@ -128,27 +131,33 @@
     display: flex;
     flex-wrap: wrap;
     position: relative;
-    font-size: 2.1rem;
-    justify-content: top;
+    font-size: 2.4rem;
+    justify-content: left;
     align-items: top;
     margin-left: 20px;
-    bottom: 230px;
+    bottom: 280px;
     color: var(--white);
     margin-bottom: 30px;
-    width: 450px;
+    width: 500px;
+    
+    height: 60px;
+    padding-top: 15px;
    
 }
 .email{
     display: flex;
     flex-wrap: wrap;
     position: relative;
-    font-size: 2.1rem;
-    justify-content: top;
+    font-size: 2.4rem;
+    justify-content: left;
     align-items: top;
     margin-left: 20px;
-    bottom: 230px;
+    bottom: 310px;
     color: var(--white);
-    width: 450px;
+    width: 500px;
+    height: 60px;
+    padding-top: 15px;
+  
  
 }
 .containerData2{
@@ -160,4 +169,7 @@
     font-size: 16px;
     right: 680px;
     top: 30px;
+}
+.link{
+    color: transparent;
 }

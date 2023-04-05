@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth0 } from "@Auth0/auth0-react";
 import { Link } from "react-router-dom";
 import style from "./ProfileUser.module.css";
 import { getUsers } from "../../redux/actions";
@@ -39,13 +39,13 @@ const ProfileUser = () => {
           {isAuthenticated && users  && (
             <div className={style.containerData}>              
               <img className={style.image} src={image} alt="" />              
-              <h2 className={style.name}>Name:{name || " "}</h2>
-              <h2 className={style.email}>Email:{email || " "}</h2>
+              <h2 className={style.name}>Name: {name || " "}</h2>
+              <h2 className={style.email}>Email: {email || " "}</h2>
           <div>
-            <Link to={"/update/"}>
+            <Link className={style.link} to={"/update/"}>
               <button className={style.iconRegisterButton}>
-                <i className="fas fa-edit"></i>
-              </button>
+                <i className="fas fa-user-pen"></i>
+              </button> 
             </Link>
           </div>
             </div>

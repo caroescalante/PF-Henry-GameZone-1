@@ -150,20 +150,21 @@ export function getUsers (){
       return dispatch({ type: GET_USERS, payload: users.data })
 
     } catch ( error ) {
-      return console.log("Something went wrong. Please try again.", error.message)
+      return error.message
     }
   }
 };
 
 //no tocar ***********"leonardo"
 export function emailUserE (email) {
+  console.log(email);
   return async function (dispatch) {
     try {
       const emailUser = await axios.get(`http://localhost:3001/user?email=${email}`);
       return dispatch({ type: GET_EMAIL, payload:emailUser.data})    
 
     } catch ( error) {
-      return console.log("Something went wrong. Please try again.", error.message)
+      return error.message
     }
   }
 };
