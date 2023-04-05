@@ -80,6 +80,22 @@ const toggleActiveUser = async (id) => {
   return updatedUser;
 };
 
+const toggleRolUser = async (id) => {
+  const user = await User.findByPk(id);
+  if (!user) {
+    throw new Error(`User with ID ${id} not found`);
+  }
+  const [rowsAffected, [updatedUser]] = await User.update(
+    { rol: !user.rol },
+    { where: { id }, returning: true }
+  );
+  if (rowsAffected !== 1) {
+    throw new Error(`User with ID ${id} not found`);
+  }
+  return updatedUser;
+};
+
+
 
 
 module.exports = { 
@@ -90,7 +106,8 @@ module.exports = {
     updateUser,
     emailUser,
     addUserFavorites,
-    toggleActiveUser
+    toggleActiveUser,
+    toggleRolUser
 };
 
 // const updateUser = async ({name, image, surname, email, phone}) => {
