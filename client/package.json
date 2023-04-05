@@ -29,7 +29,9 @@
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.3.0",
     "universal-cookie": "^4.0.4",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "jsonwebtoken": "^9.0.0",
+    "sweetalert2": "^11.7.3"
   },
   "devDependencies": {
     "@types/express": "^4.17.17",

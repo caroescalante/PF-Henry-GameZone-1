@@ -174,7 +174,7 @@ function CreateGameForm() {
     // location.reload();
                               //A partir de aqui es el código de la modal alert//
 
-    axios.post("http://localhost:3001/videogames", finalForm)
+    axios.post("/videogames", finalForm)
     .then(() => {
         Swal.fire({
             title: 'Success!',
