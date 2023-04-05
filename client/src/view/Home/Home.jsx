@@ -18,20 +18,19 @@ import {
   orderByName,
   orderByRating,
   orderByPrice,
-  clearDetail, 
-  emailUserE,
-  clearUserEmail
+  clearDetail,
+  getUsers
 } from "../../redux/actions";
 
 const Home = () => {
 
     const dispatch = useDispatch();
     const allGames = useSelector(state => state.allGames);
-    const users = useSelector((state) => state.userEmail)
     const { user, isAuthenticated } = useAuth0();
     const genres = useSelector((state) => state.genres);
     const platforms = useSelector((state) => state.platforms);
     const history = useHistory();
+    const allUsers = useSelector((state) => state.allUsers);
 
     const [orden, setOrden] = useState('')
     const [currentPage, setCurrentPage] = useState(1)
@@ -108,19 +107,19 @@ const Home = () => {
         setCurrentPage(1);
     }
 
-    useEffect(() => {   
-        if(isAuthenticated) {
-            dispatch(clearUserEmail());
-            dispatch(emailUserE(user.email))            
-            if(users && user.email === users.email) {
+    useEffect(() => {
+        if (isAuthenticated) {
+          dispatch(getUsers()).then(() => {
+            const data = allUsers.find((u) => u.email === user.email);
+            if (!data) {
+              axios.post(`http://localhost:3001/user/`, { email: user.email }).then(() => {
                 history.push("/");
-            } else {
-                axios.post(`http://localhost:3001/user/`, { email: user.email });
-                history.push("/");
+              });
             }
+          });
         }
-    },[isAuthenticated, dispatch, history]);
-    
+    }, [isAuthenticated, dispatch, history]);
+
     return (
         <div className={styles.Background}>
             <div>           
@@ -215,24 +214,3 @@ const Home = () => {
 };
 
 export default Home;
-
-    // useEffect(() => {
-    //     if (isAuthenticated) {
-    //       const db = async () => await dispatch(emailUser(user.email));
-    //       console.log(emailUser.data);
-    //       db().then((result) => {
-    //         if (result.payload === true) {
-    //           axios.put(`http://localhost:3001/user/email/${user.email}`)
-    //             .then((result) => {
-    //               if (result.data.userCreated) {
-    //                 // usuario creado correctamente
-    //               } else {
-    //                 // usuario ya existe en la base de datos
-    //               }
-    //             });
-    //         } else {
-    //           // email ya existe en la base de datos
-    //         }
-    //       });
-    //     }
-    //   }, [dispatch, emailUser, isAuthenticated]);
