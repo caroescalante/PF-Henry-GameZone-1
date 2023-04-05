@@ -28,7 +28,6 @@ import {
   DISABLE_USER,
   DISABLE_ROL_USER
 } from "../actions/types";
-import axios from 'axios';
 
 const initialState = {
   allGames: [],
