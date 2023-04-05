@@ -17,9 +17,7 @@ import {
   orderByName,
   orderByRating,
   orderByPrice,
-  clearDetail, 
-  emailUserE,
-  clearUserEmail,
+  clearDetail,
   getUsers
 } from "../../redux/actions";
 
@@ -27,11 +25,11 @@ const Home = () => {
 
     const dispatch = useDispatch();
     const allGames = useSelector(state => state.allGames);
-    const allUsers = useSelector((state) => state.users)
     const { user, isAuthenticated } = useAuth0();
     const genres = useSelector((state) => state.genres);
     const platforms = useSelector((state) => state.platforms);
     const history = useHistory();
+    const allUsers = useSelector((state) => state.allUsers);
 
     const [orden, setOrden] = useState('')
     const [currentPage, setCurrentPage] = useState(1)

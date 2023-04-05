@@ -17,6 +17,7 @@ import News from "./view/News/News";
 import Login from "./view/Login/Login";
 import UpdateData from "./view/UpdateData/UpdateData";
 import About from "./view/About/About";
+import BannedUser from "./view/BannedUser/BannedUser";
 
 function App() { 
 
@@ -37,6 +38,7 @@ function App() {
         <Route exact path="/login" component={Login} />
         <Route exact path="/news" component={News} />
         <Route exact path="/about" component={About} />
+        <Route exact path="/banneduser" component={BannedUser} />
         <Route path="*" component={Error404} />   
       </Switch>
         <Footer />
