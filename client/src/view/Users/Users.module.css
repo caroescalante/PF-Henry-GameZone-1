@@ -1,0 +1,312 @@
+.Background{
+  background-image: url("../../Image/control-de-videojuegos-colorido-6353.webp");
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+  font-family: 'Poppins', sans-serif;
+ 
+}
+.containerUser{
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  justify-content: left;
+  align-items: left;
+  flex-direction: column;
+  align-self: left;
+  width: 100%;
+
+  
+  
+ 
+}
+.user{
+  height: 8rem;
+  font-size: 1.4rem;
+  width: 98%;
+  display:flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  margin-top: 20px;
+  bottom: 250px;
+  left: 5px;
+  overflow: hidden;
+  z-index: 1;
+  touch-action: none;
+  border-radius: 10px;
+  box-shadow: -5px -5px 5px -5px var(--black), 5px 5px 5px -5px var(--black), -7px -7px 10px -5px transparent, 7px 7px 10px -5px transparent, 0 0 5px 0px rgba(255, 255, 255, 0), 0 55px 35px -20px rgba(0, 0, 0, 0.5);
+  transition: transform 0.5s ease, box-shadow 0.2s ease;
+  will-change: transform, filter;
+  background-color: rgba(0,0,0,.8); 
+  backdrop-filter: blur(5px);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  transform-origin: center;
+  justify-content: flex-start;
+  color: white;
+  border: 2px solid aqua;
+
+}
+
+/* .button {
+    position: relative;
+    display: inline-block;
+    width: 90px;
+    height: 55px;
+    background-color: #ccc;
+    border-radius: 34px;
+    margin: 10px;
+    cursor: pointer;
+  }
+  button:before {
+    content: "";
+    position: absolute;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    top: 4px;
+    left: 4px;
+    background-color: green;
+    transition: all 0.3s;
+  }
+
+  button:disabled {
+    background-color: red;
+    cursor: default;
+  }
+  button:disabled:before {
+    transform: translateX(100px);
+  } 
+ */
+
+  .switch {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100px;
+    height: 55px;
+    bottom: 20px;
+    margin-right: 100px;
+
+    
+    
+  }
+  
+  .switch input {
+    display: none;
+    
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+    border: 1px solid black;
+    
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 40px;
+    width: 40px;
+    left: 8px;
+    bottom: 7px;
+    background-color: aqua;
+    transition: .4s;
+    border-radius: 50%;
+    
+  }
+  
+  input:checked + .slider {
+    background-color: var(--black);
+    border: 1px solid var(--aqua);
+    
+  }
+  
+  input:checked + .slider:before {
+    transform: translateX(46px);
+    
+  }
+
+  .data{
+    text-align: center;
+    height: 400px;
+    justify-content: flex-start;
+    flex-direction: row;
+    display: flex;
+    position: relative;
+    flex-wrap: wrap;
+    z-index: 1;
+    background-color: red;
+    bottom: 100px;
+  }
+ 
+
+  .ennabled{
+   
+    position: relative;
+    right: 100px;
+    font-size: 1.8rem;
+    top: 18px;
+    
+  }
+  .disabled{
+   
+    position: relative;
+    left: 110px;
+    font-size: 1.8rem;
+    bottom: 10px;
+    
+  }
+  .containerButton2{
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    justify-content: center ;
+    align-items: center;
+    flex-direction:row;
+    align-self: center;
+    
+    
+ height: 90px;
+ width: 315px;
+
+
+ 
+ 
+
+  }
+
+
+  .containerButton{
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    flex-direction:row;
+    align-self: center;
+    border-right: 2px solid white;
+    padding-top: 30px;
+    height: 55px;
+    width: 300px;
+    margin: 0;
+    right: 30px
+  }
+
+
+
+
+  .client{
+   
+    position: relative;
+    right: 65px;
+    font-size: 1.8rem;
+    top: 18px;
+    
+  }
+  .admin{
+   
+    position: relative;
+    left: 120px;
+    font-size: 1.8rem;
+    bottom: 10px;
+    
+  }
+
+.title{
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  align-items: center;
+  align-self: center;
+  justify-content: center;
+  margin-bottom: 280px;
+  color: var(--aqua);
+  font-size: 3.5rem;
+  height: 5rem;
+  width: 110rem;
+  font-weight: bold;
+  background-color: rgba(0,0,0,.8); 
+  backdrop-filter: blur(15px);
+  border: 1px solid aqua;
+  border-radius: 10px;
+  padding-top: 6px;
+  margin-top: 10px;
+
+  
+  
+}
+.switch2 {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100px;
+  height: 55px;
+  margin-right: 70px;
+  bottom: 5px;
+  left: 40px;
+   
+}
+
+.switch2 input {
+  display: none;
+  
+}
+
+.slider2 {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 34px;
+  border: 1px solid black;
+  
+}
+
+.slider2:before {
+  position: absolute;
+  content: "";
+  height: 40px;
+  width: 40px;
+  left: 8px;
+  bottom: 7px;
+  background-color: aqua;
+  transition: .4s;
+  border-radius: 50%;
+  
+}
+
+input:checked + .slider2 {
+  background-color: var(--black);
+  border: 1px solid var(--aqua);
+  
+}
+
+input:checked + .slider2:before {
+  transform: translateX(46px);
+  
+}

@@ -12,7 +12,7 @@ module.exports = (sequelize) => {
 
     name: {
       type: DataTypes.STRING, 
-      defaultValue: '',     
+      defaultValue: "",     
     },
     
     surname: {
@@ -23,12 +23,17 @@ module.exports = (sequelize) => {
 
     phone: {
       type: DataTypes.STRING,
-      defaultValue: '',
+      defaultValue: "",
     },
 
+    // rol: {
+    //   type: DataTypes.ENUM('admin', 'client'),
+    //   defaultValue: 'admin',
+    // },
+
     rol: {
-      type: DataTypes.ENUM('admin', 'client'),
-      defaultValue: 'client',
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
     },
 
     email: {
@@ -43,11 +48,16 @@ module.exports = (sequelize) => {
     active: {
       type:DataTypes.BOOLEAN,
       defaultValue: true,
+      allowNull: false
     },
     image:{
       type: DataTypes.STRING,
       defaultValue: "",
-    }
+    },
+    favorites: {
+      type: DataTypes.ARRAY(DataTypes.TEXT),
+      defaultValue: [],
+    },
   },
   { timestamps: false }
   );
