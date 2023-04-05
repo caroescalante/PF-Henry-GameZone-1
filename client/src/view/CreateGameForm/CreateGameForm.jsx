@@ -6,7 +6,7 @@ import { useDropzone } from 'react-dropzone';
 import { getGenres, getPlatforms } from "../../redux/actions/index";
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import { useAuth0 } from "@Auth0/auth0-react";
+import { useAuth0 } from "@auth0/auth0-react";
 
 
 const CLOUD_NAME = import.meta.env.VITE_CLOUD_NAME;
@@ -70,7 +70,7 @@ function CreateGameForm() {
   
 
   useEffect(() => {
-  if(!isAuthenticated || users.rol === "client") {
+  if(!isAuthenticated || users.rol === false) {
     window.location.href = "/"
   }
   })

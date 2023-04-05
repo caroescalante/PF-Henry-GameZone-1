@@ -7,6 +7,7 @@ const platformRouter = require("./platformRouter");
 const router = Router();
 const paymentRouter = require ("./paymentRouter")
 const disabledUserRouter = require('./disabledUserRouter')
+const changeRolRouter = require('./changeRolRouter')
 
 
 // const paymentController = require ("../controllers/paymentController")
@@ -21,6 +22,7 @@ router.use('/platform', platformRouter);
 router.use('/payment', paymentRouter)
 router.use('/paymentsuccess', paymentRouter)
 router.use('/disabled', disabledUserRouter);
+router.use('/changed', changeRolRouter);
 
 
 module.exports = router;

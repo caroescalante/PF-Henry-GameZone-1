@@ -25,6 +25,7 @@ export const DISABLE_USER = "DISABLE_USER"
 export const RELOAD_GAMES = "RELOAD_GAMES"
 export const CLEAN_FAVORITES = "CLEAN_FAVORITES";
 export const NEW_FAVORITES = "NEW_FAVORITES";
+export const DISABLE_ROL_USER = "DISABLE_ROL_USER"
 
 
 
