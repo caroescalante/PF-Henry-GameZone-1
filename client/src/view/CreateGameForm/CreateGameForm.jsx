@@ -2,15 +2,11 @@ import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import style from "./CreateGameForm.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { useDropzone } from 'react-dropzone';
 import { getGenres, getPlatforms } from "../../redux/actions/index";
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import { useAuth0 } from "@Auth0/auth0-react";
+import { useAuth0 } from "@auth0/auth0-react";
 
-
-const CLOUD_NAME = import.meta.env.VITE_CLOUD_NAME;
-const UPLOAD_PRESET_NAME = import.meta.env.VITE_UPLOAD_PRESET_NAME;
 
 
 const validate = (form) => {
@@ -66,11 +62,15 @@ function CreateGameForm() {
 
   const { user, isAuthenticated } = useAuth0();
   const users = useSelector((state) => state.userEmail)
-  const [uploadedImageUrl, setUploadedImageUrl] = useState();   
+
   
 
   useEffect(() => {
+<<<<<<< HEAD
   if(!isAuthenticated || users.rol === "client" ) {
+=======
+  if(!isAuthenticated || users.rol === false || users.active === false) {
+>>>>>>> edf7bf8974299585124b8de578fe5406f0c10d5d
     window.location.href = "/"
   }
   })
@@ -163,6 +163,7 @@ function CreateGameForm() {
     setFocus({ ...focus, [property]: property });
   };
 
+<<<<<<< HEAD
 let url= ""
   const onDrop = async (acceptedFiles) => {
     const file = acceptedFiles[0];
@@ -187,6 +188,8 @@ let url= ""
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
 
+=======
+>>>>>>> edf7bf8974299585124b8de578fe5406f0c10d5d
   const submitHandler = (event) => {
     const genresFinal=[];
     selectedOptionG.map((t)=> {genresFinal.push(t.value)});
@@ -203,7 +206,11 @@ let url= ""
     // location.reload();
                               //A partir de aqui es el código de la modal alert//
 
+<<<<<<< HEAD
     axios.post("http://localhost:3001/videogames", {finalForm,  })
+=======
+    axios.post("http://localhost:3001/videogames", finalForm)
+>>>>>>> edf7bf8974299585124b8de578fe5406f0c10d5d
     .then(() => {
         Swal.fire({
             title: 'Success!',
@@ -243,6 +250,7 @@ let url= ""
           <input type="text" name="description" placeholder="Description..." value={form.description} onChange={inputChangeHandler} onFocus={focusHandler} />
          {errors.description && focus.description && <p className={style.errorText}>{errors.description}</p>}
         </div>
+<<<<<<< HEAD
         <div>
         <div {...getRootProps()}  >
                         <input {...getInputProps()}/>
@@ -259,6 +267,30 @@ let url= ""
                         </div>
                         )}
                     </div>
+=======
+        <label className={style.price} htmlFor="price">$</label>
+        <div className={style.fields}>
+          <label htmlFor="price">Price</label>
+          <input type="number" name="price" placeholder=" Price..." value={form.price} onChange={inputChangeHandler} onFocus={focusHandler} />
+         {errors.price && focus.price && <p className={style.errorText}>{errors.price}</p>}
+        </div>
+        
+         </div>
+         <div className={style.containerInputs2}>
+        <div className={style.fields}>
+          <label htmlFor="website">Website</label>
+          <input type="text" name="website" placeholder="Website..." value={form.website} onChange={inputChangeHandler} onFocus={focusHandler}  />
+         {errors.website && focus.website && <p className={style.errorText}>{errors.website}</p>}
+        </div>
+        <div className={style.fieldsR}>
+          <label htmlFor="released">Released</label>
+          <input type="date" name="released" placeholder="Released..." value={form.released} onChange={inputChangeHandler} onFocus={focusHandler}  />
+         {errors.released && focus.released && <p className={style.errorText}>{errors.released}</p>}
+        </div>
+        <div className={style.fields}>
+          <label htmlFor="image">Image</label>
+          <input type="text" name="image" placeholder="Image..." value={form.image} onChange={inputChangeHandler} onFocus={focusHandler}  />
+>>>>>>> edf7bf8974299585124b8de578fe5406f0c10d5d
          {errors.image && focus.image && <p className={style.errorText}>{errors.image}</p>} 
         </div>
         

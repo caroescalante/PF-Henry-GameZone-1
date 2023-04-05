@@ -24,7 +24,7 @@ import {
   CLEAN_FAVORITES,
   NEW_FAVORITES,
   DISABLE_USER,
-
+  DISABLE_ROL_USER
 } from "./types";
 
 import axios from 'axios';
@@ -150,21 +150,20 @@ export function getUsers (){
       return dispatch({ type: GET_USERS, payload: users.data })
 
     } catch ( error ) {
-      return error.message
+      return console.log("Something went wrong. Please try again.", error.message)
     }
   }
 };
 
 //no tocar ***********"leonardo"
 export function emailUserE (email) {
-  console.log(email);
   return async function (dispatch) {
     try {
       const emailUser = await axios.get(`http://localhost:3001/user?email=${email}`);
       return dispatch({ type: GET_EMAIL, payload:emailUser.data})    
 
     } catch ( error) {
-      return error.message
+      return console.log("Something went wrong. Please try again.", error.message)
     }
   }
 };
@@ -253,6 +252,17 @@ export const disableUser = (id) => {
     try {
       await axios.put(`http://localhost:3001/disabled/${id}`);
       dispatch({ type: DISABLE_USER, payload: id });
+    } catch (error) {
+    }
+  };
+};
+
+
+export const changeRolUser = (id) => {
+  return async (dispatch) => {
+    try {
+      await axios.put(`http://localhost:3001/changed/${id}`);
+      dispatch({ type: DISABLE_ROL_USER, payload: id });
     } catch (error) {
     }
   };

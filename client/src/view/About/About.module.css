@@ -11,7 +11,7 @@ header{
   
 
 .background{
-  background-image: url('../../Image/About.jpg');
+   background-image: url("../../Image/fondito.jpg");
   background-position: center;
   background-size: cover;
   display: flex;

@@ -5,7 +5,7 @@ import logo from "../../Image/logo.png";
 import { reloadGames, getUsers } from "../../redux/actions";
 import LoginButton from "../LoginButton/LoginButton";
 import LogoutButton from "../LogoutButton/LogoutButton";
-import { useAuth0 } from "@Auth0/auth0-react";
+import { useAuth0 } from "@auth0/auth0-react";
 import { useDispatch, useSelector} from "react-redux";
 import axios from "axios";
 
@@ -49,13 +49,13 @@ const Navbar = () => {
                 <img src={logo} alt="init" width="300px" onClick={e => {handleClick(e)}} />
             </Link>
     
-            {isAuthenticated && rolUser === "admin" && (
+            {isAuthenticated && rolUser === true && (
                 <Link className={style.links} to="/create">
                     <ion-icon size="large" name="game-controller-outline"></ion-icon>
                 </Link>
             )}
     
-            {isAuthenticated && rolUser === "admin" && (
+            {isAuthenticated && rolUser === true && (
                 <Link className={style.links} to="/users">
                     <ion-icon size="large" name="people-outline"></ion-icon>
                 </Link>
@@ -74,7 +74,7 @@ const Navbar = () => {
                     {users.name ? (
                         <h2 className={style.linksName}>{users.name}</h2>
                     ) : (
-                        <h2 className={style.imageAlt}><i class="fa fa-id-card"></i> {user.given_name}</h2>
+                        <h2 className={style.imageAlt}><i class="fa fa-id-card"></i> </h2>
                     )}
                 </Link>
             )}
