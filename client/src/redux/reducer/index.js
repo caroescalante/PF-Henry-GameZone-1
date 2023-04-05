@@ -210,7 +210,6 @@ function rootReducer(state = initialState, action) {
       case GET_EMAIL:
           const userData = { ...action.payload };
           
-          localStorage.setItem("userEmail", JSON.stringify(userData));
           return { ...state, userEmail: userData };
 
       //*************** */
