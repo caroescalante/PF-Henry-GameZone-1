@@ -1,5 +1,5 @@
 .background{
-    background-image: url("../../Image/pexels-lucie-liz-3165335.jpg");
+    /* background-image: url("../../Image/pexels-lucie-liz-3165335.jpg"); */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -24,8 +24,8 @@
     z-index: 1;
     touch-action: none;
     border-radius: 10px;
-    box-shadow: -5px -5px 5px -5px var(--color1), 5px 5px 5px -5px var(--color2), -7px -7px 10px -5px transparent, 7px 7px 10px -5px transparent, 0 0 5px 0px rgba(255, 255, 255, 0), 0 55px 35px -20px rgba(0, 0, 0, 0.5);
-    transition: transform 0.5s ease, box-shadow 0.2s ease;
+    /* box-shadow: -5px -5px 5px -5px var(--color1), 5px 5px 5px -5px var(--color2), -7px -7px 10px -5px transparent, 7px 7px 10px -5px transparent, 0 0 5px 0px rgba(255, 255, 255, 0), 0 55px 35px -20px rgba(0, 0, 0, 0.5);
+    transition: transform 0.5s ease, box-shadow 0.2s ease; */
     will-change: transform, filter;
     background-color: #040712;
     background-image: var(--front);
@@ -63,14 +63,14 @@
     font-style: italic;
     
 }
-.card:hover{
+/* .card:hover{
     background-color: aqua;
     color: black;  
     filter: sepia(70%);
     transform: rotate(-10deg) scale(0.8);
     transform: translateY(-5px);  
     box-shadow: rgb(0, 0, 0) 5px 5px 5px 0px; 
-}
+} */
 .info{
     position: absolute;
   bottom: 0;

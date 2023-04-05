@@ -36,7 +36,7 @@ const getUserHandler = async (req, res) => {
 
 const createUserHandler = async (req,res) => {
   const {name, image, surname, email, phone} = req.body;
-console.log(name, image, surname, phone);
+
   try {
       if(!email) throw Error("This information is required");    
       const newUser = await createUser({name, image, surname, email, phone});

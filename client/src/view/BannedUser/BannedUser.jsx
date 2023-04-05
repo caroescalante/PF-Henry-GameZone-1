@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import styles from "./BannedUser.module.css";
 import LogoutButton from "../../components/LogoutButton/LogoutButton";
-import { useAuth0 } from '@auth0/auth0-react'
+
 
 const BannedUser = () => {
   return (

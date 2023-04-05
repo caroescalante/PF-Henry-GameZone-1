@@ -7,20 +7,11 @@ import style from './LogoutButton.module.css';
 import axios from 'axios';
 
 const LogoutButton = () => {
-    const { user, isAuthenticated } = useAuth0();
     const favorites = useSelector(state => state.favorites);
-    //const email = useSelector(state => state.emailUser?.email);
-    const allUsers = useSelector(state => state.users);
+    const email = useSelector(state => state.emailUser?.email);
+
     const dispatch = useDispatch();
     const {logout} = useAuth0();
-
-    const data = () => {
-        if (isAuthenticated && allUsers) return allUsers.find((u) => u.email === user.email);
-        return null;
-    };
-
-    const finalUser = data();
-    const email = finalUser?.email;
 
     useEffect(()=>{
         dispatch(clearDetail())

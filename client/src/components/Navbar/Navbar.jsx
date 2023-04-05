@@ -74,7 +74,7 @@ const Navbar = () => {
                     {users.name ? (
                         <h2 className={style.linksName}>{users.name}</h2>
                     ) : (
-                        <h2 className={style.imageAlt}><i class="fa fa-id-card"></i> {user.given_name}</h2>
+                        <h2 className={style.imageAlt}><i class="fa fa-id-card"></i> </h2>
                     )}
                 </Link>
             )}

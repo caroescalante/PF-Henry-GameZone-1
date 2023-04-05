@@ -7,7 +7,6 @@ const UserCard = ({ name, email, rol, active, id }) => {
             <div className={styles.cardInner}>
                 <div className={styles.cardFront}>
                         <div className={styles.containerData}>
-                            <h3 className={styles.rol}>{rol}</h3>
                             <h4 className={styles.email}>E-mail: {email}</h4>
                             <h2 className={styles.name}>{name}</h2>
                             <h3 className={styles.active}>{active}</h3>

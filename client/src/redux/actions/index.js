@@ -150,7 +150,7 @@ export function getUsers (){
       return dispatch({ type: GET_USERS, payload: users.data })
 
     } catch ( error ) {
-      return error.message
+      return console.log("Something went wrong. Please try again.", error.message)
     }
   }
 };
@@ -163,7 +163,7 @@ export function emailUserE (email) {
       return dispatch({ type: GET_EMAIL, payload:emailUser.data})    
 
     } catch ( error) {
-      return error.message
+      return console.log("Something went wrong. Please try again.", error.message)
     }
   }
 };

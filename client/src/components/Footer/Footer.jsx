@@ -15,12 +15,13 @@ const Footer = () => {
             <div className={style.linkFooter}>
                
                 <Link to="/about">About</Link>
-                <Link to="/news">News</Link>
+                {/* <Link to="/news">News</Link> */}
                 
             </div>
 
             <div className={style.networks}>
-                <Link to="/" className="fa fa-github"></Link>                       
+                <a href="https://github.com/Fabrizio35/PF-Henry-GameZone" className="fa fa-github"></a>
+                {/* <Link to="https://github.com/Fabrizio35/PF-Henry-GameZone" className="fa fa-github"></Link>                        */}
             </div>
                 
             </div>
