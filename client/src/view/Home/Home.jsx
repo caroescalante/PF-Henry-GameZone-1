@@ -7,6 +7,7 @@ import styles from './Home.module.css';
 import Paginated from "../../components/Paginated/Paginated";
 import axios from "axios";
 import { useHistory } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 import { 
   getGames, 
@@ -17,14 +18,16 @@ import {
   orderByName,
   orderByRating,
   orderByPrice,
-  clearDetail,
-  getUsers
+  clearDetail, 
+  emailUserE,
+  clearUserEmail
 } from "../../redux/actions";
 
 const Home = () => {
 
     const dispatch = useDispatch();
     const allGames = useSelector(state => state.allGames);
+    const users = useSelector((state) => state.userEmail)
     const { user, isAuthenticated } = useAuth0();
     const genres = useSelector((state) => state.genres);
     const platforms = useSelector((state) => state.platforms);
@@ -37,6 +40,9 @@ const Home = () => {
     const indexOfLastGame = currentPage * gamesPerPage // 10
     const indexOfFirstGame = indexOfLastGame - gamesPerPage // 0
     const currentGames = allGames.slice(indexOfFirstGame,indexOfLastGame)
+
+    const [pageLoaded, setPageLoaded] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const paginado = (pageNumber) =>{
         setCurrentPage(pageNumber)
@@ -52,10 +58,20 @@ const Home = () => {
         dispatch(getPlatforms());
     },[] );
 
-    useEffect(()=>{
-        dispatch(getGames());
-        dispatch(clearDetail())
-    },[])
+    useEffect(() => {
+        
+      dispatch(getGames())
+        .then((response) => {
+          setIsLoading(true);
+          setPageLoaded(true); // Indicamos que la página ha cargado completamente
+        })
+        .catch((error) => {
+          console.log(error);
+          setIsLoading(false);
+          setError(true);
+        });
+      dispatch(clearDetail());
+    }, []);
       
     function handleGenreFilter(e) {
         dispatch(filterByGenres(e.target.value));
@@ -94,18 +110,54 @@ const Home = () => {
         setCurrentPage(1);
     }
 
-    useEffect(() => {
-        if (isAuthenticated) {
-          dispatch(getUsers()).then(() => {
-            const data = allUsers.find((u) => u.email === user.email);
-            if (!data) {
-              axios.post(`http://localhost:3001/user/`, { email: user.email }).then(() => {
-                history.push("/");
-              })
-            }
-          });
+    // useEffect(() => {   
+    //     if(isAuthenticated) {
+    //         dispatch(clearUserEmail());
+    //         dispatch(emailUserE(user.email))            
+    //         if(users && user.email === users.email) {
+    //             history.push("/");
+    //         } else {
+    //             axios.post(`http://localhost:3001/user/`, { email: user.email });
+    //             history.push("/");
+    //         }
+    //     }
+    // },[isAuthenticated, dispatch, history]);
+
+    
+// Función para obtener el usuario actual
+const getCurrentUser = () => {
+    if (isAuthenticated && allUsers) {
+      return allUsers.find((u) => u.email === user.email);
+    }
+    return null;
+  };
+  
+  const currentUser = getCurrentUser();
+  
+  
+  useEffect(() => {
+    if (currentUser && !currentUser.active) {
+      history.push('/banneduser');
+    }
+  }, [currentUser, history]);
+
+
+
+    useEffect(() => {   
+        if(isAuthenticated) {
+          dispatch(clearUserEmail());
+          dispatch(emailUserE(user.email));
+          if (user.active === false) {
+            history.push("/banneduser");
+          } else if(users && user.email === users.email) {
+            history.push("/");
+          } else {
+            axios.post(`http://localhost:3001/user/`, { email: user.email });
+            history.push("/");
+          }
         }
-    }, [isAuthenticated, dispatch, history]);
+      },[isAuthenticated, dispatch, history, user]);
+      
 
     return (
         <div className={styles.Background}>
@@ -163,15 +215,30 @@ const Home = () => {
                 </select>
                 </div>     
                 <div className={styles.containerCards}>
-                  {currentGames.length > 0 ?
+                {currentGames.length > 0 ?
                       currentGames?.map ((el) =>{
                       return(
                         <CardsContainer name={el.name} image={el.image} id={el.id} price={el.price} key={el.id} />
                       )}) : 
-                      <div>                        
+                      <div>      {isLoading && pageLoaded ?          
+                        (
+                            //   alert('Error al cargar los juegos. Por favor, intente nuevamente más tarde')
+                            Swal.fire({
+                                html: '<div style="max-height: 450px;"><img src="https://th.bing.com/th/id/R.3a99edb590b04351599a12c400aa294b?rik=TVlBsEI1Zi6S3w&amp;pid=ImgRaw&amp;r=0" alt="Custom image" class="custom-image-class" style="width:100%;height:100%;" /><br><br><p style="color:white;">The wanted videogame does not exist.</p></div>',
+                                background: '#000000',
+                                backdrop: 'rgba(0, 0, 0, 0.8)',
+                                confirmButtonColor: '#ff0000',
+                                confirmButtonText: 'Try again',
+                            }).then(() => {
+                                location.reload();
+                            })
+                          )  
+                          :
                         <p className={styles.img} ><span className={styles.loader}></span></p>
-                      </div>
                     }
+                      </div>
+                     
+                      }  
                 </div>
    
                  <Paginated

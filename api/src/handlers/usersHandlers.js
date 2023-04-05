@@ -6,7 +6,8 @@ const {
   updateUser,
   emailUser,
   addUserFavorites,
-  toggleActiveUser
+  toggleActiveUser,
+  toggleRolUser
 } = require ("../controllers/userController");
 
 const getUsersHandler = async (req, res) => {
@@ -35,7 +36,7 @@ const getUserHandler = async (req, res) => {
 
 const createUserHandler = async (req,res) => {
   const {name, image, surname, email, phone} = req.body;
-
+console.log(name, image, surname, phone);
   try {
       if(!email) throw Error("This information is required");    
       const newUser = await createUser({name, image, surname, email, phone});
@@ -97,6 +98,17 @@ const toggleActiveHandler = async (req, res, next) => {
   }
 };
 
+const toggleRolHandler = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const user = await toggleRolUser(id);
+    res.json(user);
+  } catch (error) {
+    next(error);
+  }
+};
+
+
 
 module.exports = {
   getUsersHandler,
@@ -105,7 +117,8 @@ module.exports = {
   updateUserHandler,
   emailUserHandler,
   favoriteUserHandler,
-  toggleActiveHandler
+  toggleActiveHandler,
+  toggleRolHandler
 };
 
 
