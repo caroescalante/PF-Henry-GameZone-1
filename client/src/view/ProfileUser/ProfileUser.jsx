@@ -42,9 +42,9 @@ const ProfileUser = () => {
               <h2 className={style.name}>Name: {name || " "}</h2>
               <h2 className={style.email}>Email: {email || " "}</h2>
           <div>
-            <Link to={"/update/"}>
+            <Link className={style.link} to={"/update/"}>
               <button className={style.iconRegisterButton}>
-                <i className="fas fa-edit"></i>
+                <i className="fas fa-user-pen"></i>
               </button> 
             </Link>
           </div>
