@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useAuth0 } from '@auth0/auth0-react';
+import { useAuth0 } from '@Auth0/auth0-react';
 import CardsContainer from '../../components/CardsContainer/CardsContainer'
 import SearchBar from '../../components/Searchbar/Searchbar';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,6 +7,7 @@ import styles from './Home.module.css';
 import Paginated from "../../components/Paginated/Paginated";
 import axios from "axios";
 import { useHistory } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 import { 
   getGames, 
@@ -39,6 +40,8 @@ const Home = () => {
     const indexOfFirstGame = indexOfLastGame - gamesPerPage // 0
     const currentGames = allGames.slice(indexOfFirstGame,indexOfLastGame)
 
+    const [pageLoaded, setPageLoaded] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const paginado = (pageNumber) =>{
         setCurrentPage(pageNumber)
     } 
@@ -53,10 +56,20 @@ const Home = () => {
         dispatch(getPlatforms());
     },[] );
 
-    useEffect(()=>{
-        dispatch(getGames());
-        dispatch(clearDetail())
-    },[])
+    useEffect(() => {
+        
+        dispatch(getGames())
+          .then((response) => {
+            setIsLoading(true);
+            setPageLoaded(true); // Indicamos que la página ha cargado completamente
+          })
+          .catch((error) => {
+            console.log(error);
+            setIsLoading(false);
+            setError(true);
+          });
+        dispatch(clearDetail());
+      }, []);
       
     function handleGenreFilter(e) {
         dispatch(filterByGenres(e.target.value));
@@ -107,7 +120,7 @@ const Home = () => {
             }
         }
     },[isAuthenticated, dispatch, history]);
-
+    
     return (
         <div className={styles.Background}>
             <div>           
@@ -169,10 +182,25 @@ const Home = () => {
                       return(
                         <CardsContainer name={el.name} image={el.image} id={el.id} price={el.price} key={el.id} />
                       )}) : 
-                      <div>                        
+                      <div>      {isLoading && pageLoaded ?          
+                        (
+                            //   alert('Error al cargar los juegos. Por favor, intente nuevamente más tarde')
+                            Swal.fire({
+                                html: '<div style="max-height: 450px;"><img src="https://th.bing.com/th/id/R.3a99edb590b04351599a12c400aa294b?rik=TVlBsEI1Zi6S3w&amp;pid=ImgRaw&amp;r=0" alt="Custom image" class="custom-image-class" style="width:100%;height:100%;" /><br><br><p style="color:white;">The wanted videogame does not exist.</p></div>',
+                                background: '#000000',
+                                backdrop: 'rgba(0, 0, 0, 0.8)',
+                                confirmButtonColor: '#ff0000',
+                                confirmButtonText: 'Try again',
+                            }).then(() => {
+                                location.reload();
+                            })
+                          )  
+                          :
                         <p className={styles.img} ><span className={styles.loader}></span></p>
-                      </div>
                     }
+                      </div>
+                     
+                      }  
                 </div>
    
                  <Paginated
