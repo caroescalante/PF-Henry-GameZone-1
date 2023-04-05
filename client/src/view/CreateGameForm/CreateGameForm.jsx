@@ -70,7 +70,7 @@ function CreateGameForm() {
   
 
   useEffect(() => {
-  if(!isAuthenticated || users.rol === false) {
+  if(!isAuthenticated || users.rol === true || currentUser?.active === true) {
     window.location.href = "/"
   }
   })

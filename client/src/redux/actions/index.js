@@ -157,7 +157,6 @@ export function getUsers (){
 
 //no tocar ***********"leonardo"
 export function emailUserE (email) {
-  console.log(email);
   return async function (dispatch) {
     try {
       const emailUser = await axios.get(`http://localhost:3001/user?email=${email}`);
