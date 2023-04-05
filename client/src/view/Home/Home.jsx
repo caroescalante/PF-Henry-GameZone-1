@@ -197,6 +197,7 @@ import styles from './Home.module.css';
 import Paginated from "../../components/Paginated/Paginated";
 import axios from "axios";
 import { useHistory } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 import { 
   getGames, 
@@ -230,6 +231,9 @@ const Home = () => {
     const indexOfFirstGame = indexOfLastGame - gamesPerPage // 0
     const currentGames = allGames.slice(indexOfFirstGame,indexOfLastGame)
 
+    const [pageLoaded, setPageLoaded] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+
     const paginado = (pageNumber) =>{
         setCurrentPage(pageNumber)
     } 
@@ -244,10 +248,20 @@ const Home = () => {
         dispatch(getPlatforms());
     },[] );
 
-    useEffect(()=>{
-        dispatch(getGames());
-        dispatch(clearDetail())
-    },[])
+    useEffect(() => {
+        
+      dispatch(getGames())
+        .then((response) => {
+          setIsLoading(true);
+          setPageLoaded(true); // Indicamos que la página ha cargado completamente
+        })
+        .catch((error) => {
+          console.log(error);
+          setIsLoading(false);
+          setError(true);
+        });
+      dispatch(clearDetail());
+    }, []);
       
     function handleGenreFilter(e) {
         dispatch(filterByGenres(e.target.value));
@@ -391,15 +405,30 @@ const getCurrentUser = () => {
                 </select>
                 </div>     
                 <div className={styles.containerCards}>
-                  {currentGames.length > 0 ?
+                {currentGames.length > 0 ?
                       currentGames?.map ((el) =>{
                       return(
                         <CardsContainer name={el.name} image={el.image} id={el.id} price={el.price} key={el.id} />
                       )}) : 
-                      <div>                        
+                      <div>      {isLoading && pageLoaded ?          
+                        (
+                            //   alert('Error al cargar los juegos. Por favor, intente nuevamente más tarde')
+                            Swal.fire({
+                                html: '<div style="max-height: 450px;"><img src="https://th.bing.com/th/id/R.3a99edb590b04351599a12c400aa294b?rik=TVlBsEI1Zi6S3w&amp;pid=ImgRaw&amp;r=0" alt="Custom image" class="custom-image-class" style="width:100%;height:100%;" /><br><br><p style="color:white;">The wanted videogame does not exist.</p></div>',
+                                background: '#000000',
+                                backdrop: 'rgba(0, 0, 0, 0.8)',
+                                confirmButtonColor: '#ff0000',
+                                confirmButtonText: 'Try again',
+                            }).then(() => {
+                                location.reload();
+                            })
+                          )  
+                          :
                         <p className={styles.img} ><span className={styles.loader}></span></p>
-                      </div>
                     }
+                      </div>
+                     
+                      }  
                 </div>
    
                  <Paginated
@@ -414,24 +443,3 @@ const getCurrentUser = () => {
 };
 
 export default Home;
-
-    // useEffect(() => {
-    //     if (isAuthenticated) {
-    //       const db = async () => await dispatch(emailUser(user.email));
-    //       console.log(emailUser.data);
-    //       db().then((result) => {
-    //         if (result.payload === true) {
-    //           axios.put(`http://localhost:3001/user/email/${user.email}`)
-    //             .then((result) => {
-    //               if (result.data.userCreated) {
-    //                 // usuario creado correctamente
-    //               } else {
-    //                 // usuario ya existe en la base de datos
-    //               }
-    //             });
-    //         } else {
-    //           // email ya existe en la base de datos
-    //         }
-    //       });
-    //     }
-    //   }, [dispatch, emailUser, isAuthenticated]);

@@ -49,13 +49,13 @@ const Navbar = () => {
                 <img src={logo} alt="init" width="300px" onClick={e => {handleClick(e)}} />
             </Link>
     
-            {isAuthenticated && rolUser === "admin" && (
+            {isAuthenticated && rolUser === true && (
                 <Link className={style.links} to="/create">
                     <ion-icon size="large" name="game-controller-outline"></ion-icon>
                 </Link>
             )}
     
-            {isAuthenticated && rolUser === "admin" && (
+            {isAuthenticated && rolUser === true && (
                 <Link className={style.links} to="/users">
                     <ion-icon size="large" name="people-outline"></ion-icon>
                 </Link>

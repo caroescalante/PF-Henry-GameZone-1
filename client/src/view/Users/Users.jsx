@@ -2,7 +2,7 @@ import React from "react";
 import UserCard from "../../components/UserCard/UserCard";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getUsers, disableUser } from "../../redux/actions";
+import { getUsers, disableUser, changeRolUser } from "../../redux/actions";
 import styles from "./Users.module.css";
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -13,12 +13,23 @@ const Users = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if(isAuthenticated || currentUser?.rol === true || currentUser?.active === true){
+      window.location.href = "/"
+    }
+  })
+
+  useEffect(() => {
     dispatch(getUsers());
   }, []);
 
   const handleDisableClick = (userId) => {
     dispatch(disableUser(userId));
   };
+
+  const handleRolClick = (userId) => {
+    dispatch(changeRolUser(userId));
+  };
+
 
   // Función para obtener el usuario actual
   const getCurrentUser = () => {
@@ -27,6 +38,10 @@ const Users = () => {
       }
     return null;
   };
+
+
+  const admin = true;
+  const client = false; 
 
   const currentUser = getCurrentUser();
 
@@ -59,7 +74,7 @@ const Users = () => {
                <label className={styles.switch2}>
                 <h3 className={styles.client}>Client</h3>
                 <h3 className={styles.admin}>Admin</h3>
-                <input onClick={() => handleDisableClick(user.id)} type="checkbox"/>
+                <input onClick={() => handleRolClick(user.id)} type="checkbox"/>
                 {user.rol ? "" : ""}
                 <span className={styles.slider2}></span>
                </label> 

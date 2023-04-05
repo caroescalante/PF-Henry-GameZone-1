@@ -3,6 +3,7 @@ import style from "./Favorites.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { removeFavorite, newFavorites } from "../../redux/actions/index";
 
+
 const Favorites = () => {
     const dispatch = useDispatch();
     let favoritesUser = useSelector(state => state?.userEmail[0]?.favorites?.map(elem => JSON.parse(elem)));

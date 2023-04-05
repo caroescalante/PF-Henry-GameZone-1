@@ -25,7 +25,8 @@ import {
   CLEAR_EMAIL,
   CLEAN_FAVORITES,
   NEW_FAVORITES,
-  DISABLE_USER
+  DISABLE_USER,
+  DISABLE_ROL_USER
 } from "../actions/types";
 
 const initialState = {
@@ -209,7 +210,6 @@ function rootReducer(state = initialState, action) {
       case GET_EMAIL:
           const userData = { ...action.payload };
           
-          localStorage.setItem("userEmail", JSON.stringify(userData));
           return { ...state, userEmail: userData };
 
       //*************** */
@@ -374,6 +374,18 @@ function rootReducer(state = initialState, action) {
       return user;
     })
   };   
+
+
+  case  DISABLE_ROL_USER:
+    return {
+      ...state,
+      allUsers: state.allUsers.map(user => {
+        if (user.id === action.payload) {
+          return { ...user, active: !user.rol };
+        }
+        return user;
+      })
+    };  
       
   default: return { ...state }
   }

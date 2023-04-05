@@ -24,7 +24,7 @@ import {
   CLEAN_FAVORITES,
   NEW_FAVORITES,
   DISABLE_USER,
-
+  DISABLE_ROL_USER
 } from "./types";
 
 import axios from 'axios';
@@ -252,6 +252,17 @@ export const disableUser = (id) => {
     try {
       await axios.put(`http://localhost:3001/disabled/${id}`);
       dispatch({ type: DISABLE_USER, payload: id });
+    } catch (error) {
+    }
+  };
+};
+
+
+export const changeRolUser = (id) => {
+  return async (dispatch) => {
+    try {
+      await axios.put(`http://localhost:3001/changed/${id}`);
+      dispatch({ type: DISABLE_ROL_USER, payload: id });
     } catch (error) {
     }
   };
