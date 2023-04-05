@@ -13,6 +13,12 @@ const Users = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if(isAuthenticated || currentUser?.rol === true || currentUser?.active === true){
+      window.location.href = "/"
+    }
+  })
+
+  useEffect(() => {
     dispatch(getUsers());
   }, []);
 
