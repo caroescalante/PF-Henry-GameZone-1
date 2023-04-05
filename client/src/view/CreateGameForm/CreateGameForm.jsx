@@ -23,11 +23,11 @@ const validate = (form) => {
     errors.name = "the name must have at least 3 characters";
   };
 
-  if (!form.image) {
-    errors.image = "the image is required";
-  } else if (!/^(ftp|http|https):\/\/[^ "]+$/.test(form.image)) {
-    errors.image = "the image must be a url";
-  };
+  // if (!form.image) {
+  //   errors.image = "the image is required";
+  // } else if (!/^(ftp|http|https):\/\/[^ "]+$/.test(form.image)) {
+  //   errors.image = "the image must be a url";
+  // };
 
   if (!form.price) {
     errors.price = "the price is required";
@@ -70,7 +70,7 @@ function CreateGameForm() {
   
 
   useEffect(() => {
-  if(!isAuthenticated || users.rol === "client") {
+  if(!isAuthenticated || users.rol === "client" ) {
     window.location.href = "/"
   }
   })
@@ -163,7 +163,7 @@ function CreateGameForm() {
     setFocus({ ...focus, [property]: property });
   };
 
-
+let url= ""
   const onDrop = async (acceptedFiles) => {
     const file = acceptedFiles[0];
     const formData = new FormData();
@@ -176,7 +176,8 @@ function CreateGameForm() {
         formData
       );
       setUploadedImageUrl(response.data.secure_url);
-    
+    url= response.data.secure_url
+    console.log(url);
     } catch (error) {
       console.error(error);
       alert("Error al cargar la imagen");
@@ -191,7 +192,8 @@ function CreateGameForm() {
     selectedOptionG.map((t)=> {genresFinal.push(t.value)});
     const platformsFinal=[];
     selectedOptionP.map((t)=> {platformsFinal.push(t.value)});
-    let finalForm = { ...form };
+    let finalForm = { ...form , ...form.image= url};
+    console.log(...form.image = url);
     finalForm = { ...finalForm, genres: genresFinal };
     finalForm = { ...finalForm, platforms: platformsFinal };
     if (finalForm.website === "") finalForm = { ...finalForm, website: null };
@@ -201,7 +203,7 @@ function CreateGameForm() {
     // location.reload();
                               //A partir de aqui es el código de la modal alert//
 
-    axios.post("http://localhost:3001/videogames", {finalForm, image: uploadedImageUrl })
+    axios.post("http://localhost:3001/videogames", {finalForm,  })
     .then(() => {
         Swal.fire({
             title: 'Success!',
@@ -229,9 +231,9 @@ function CreateGameForm() {
     <form className={style.backgroundImage}onSubmit={submitHandler}>
       <div className={style.container}>
       <h3 className={style.title} >Create your Videogame </h3>
-        <div className={style.containerInputs}>
+        <div>
         <div className={style.containerInputs1}>
-        <div className={style.fields}>
+        <div className={style.fieldsN}>
           <label htmlFor="name">Name</label>
           <input type="text" name="name" placeholder="Name..." value={form.name} onChange={inputChangeHandler} onFocus={focusHandler}  />
          {errors.name && focus.name && <p className={style.errorText}>{errors.name}</p>}
@@ -241,27 +243,8 @@ function CreateGameForm() {
           <input type="text" name="description" placeholder="Description..." value={form.description} onChange={inputChangeHandler} onFocus={focusHandler} />
          {errors.description && focus.description && <p className={style.errorText}>{errors.description}</p>}
         </div>
-        <label className={style.price} htmlFor="price">$</label>
-        <div className={style.fields}>
-          <label htmlFor="price">Price</label>
-          <input type="number" name="price" placeholder=" Price..." value={form.price} onChange={inputChangeHandler} onFocus={focusHandler} />
-         {errors.price && focus.price && <p className={style.errorText}>{errors.price}</p>}
-        </div>
-        
-         </div>
-         <div className={style.containerInputs2}>
-        <div className={style.fields}>
-          <label htmlFor="website">Website</label>
-          <input type="text" name="website" placeholder="Website..." value={form.website} onChange={inputChangeHandler} onFocus={focusHandler}  />
-         {errors.website && focus.website && <p className={style.errorText}>{errors.website}</p>}
-        </div>
-        <div className={style.fieldsR}>
-          <label htmlFor="released">Released</label>
-          <input type="date" name="released" placeholder="Released..." value={form.released} onChange={inputChangeHandler} onFocus={focusHandler}  />
-         {errors.released && focus.released && <p className={style.errorText}>{errors.released}</p>}
-        </div>
-        <div className={style.fields}>
-        <div {...getRootProps()} className={style.fields1} >
+        <div>
+        <div {...getRootProps()}  >
                         <input {...getInputProps()}/>
                         {uploadedImageUrl ? (
                         <div className={style.conteinerImg}>
@@ -278,6 +261,38 @@ function CreateGameForm() {
                     </div>
          {errors.image && focus.image && <p className={style.errorText}>{errors.image}</p>} 
         </div>
+        
+
+
+
+
+
+
+
+         </div>
+         <div className={style.containerInputs2}>
+        
+         <label className={style.price} htmlFor="price">$</label>
+        <div className={style.fields}>
+          <label htmlFor="price">Price</label>
+          <input type="number" name="price" placeholder=" Price..." value={form.price} onChange={inputChangeHandler} onFocus={focusHandler} />
+         {errors.price && focus.price && <p className={style.errorText}>{errors.price}</p>}
+        </div>
+        
+        
+        
+        
+        <div className={style.fieldsW}>
+          <label htmlFor="website">Website</label>
+          <input type="text" name="website" placeholder="Website..." value={form.website} onChange={inputChangeHandler} onFocus={focusHandler}  />
+         {errors.website && focus.website && <p className={style.errorText}>{errors.website}</p>}
+        </div>
+        <div className={style.fieldsR}>
+          <label htmlFor="released">Released</label>
+          <input type="date" name="released" placeholder="Released..." value={form.released} onChange={inputChangeHandler} onFocus={focusHandler}  />
+         {errors.released && focus.released && <p className={style.errorText}>{errors.released}</p>}
+        </div>
+        
          </div>
          </div>
       <h3 className={style.subTitle}>Select one or more genres</h3>
@@ -321,7 +336,7 @@ function CreateGameForm() {
        <div className={style.containerButton}> 
         {/* <button type="submit"  className={style.button} disabled={
           (errors.name || errors.image || errors.price  || errors.description) ? true : false } */}
-        {!errors.name && !errors.image && !errors.price && !errors.description  && !errors.released && selectedOptionG !== null && selectedOptionP !== null && (<button type="submit"  className={style.button} >Submit
+        {!errors.name && !errors.price && !errors.description  && !errors.released && selectedOptionG !== null && selectedOptionP !== null && (<button type="submit"  className={style.button} >Submit
         </button>)} 
           
          </div> 
