@@ -49,7 +49,7 @@ const Favorites = () => {
                          <div className={style.favoriteCard}>
                            <img src={favorite.image} alt="favorite-image" className={style.favoriteImage} />
                            <h2 className={style.favoriteName}>{favorite.name}</h2>
-                           <button onClick={() => removeFavHandler(favorite.id)} className={style.trashButton}><i class="fas fa-trash"></i></button>
+                           <button onClick={() => removeFavHandler(favorite.id)} className={style.trashButton}><i className="fas fa-trash"></i></button>
                          </div>
                        </div>          
                 }) 
