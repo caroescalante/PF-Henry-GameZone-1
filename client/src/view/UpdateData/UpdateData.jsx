@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useDropzone } from 'react-dropzone';
 import style from './UpdateData.module.css';
 import axios from 'axios';
-import { useAuth0 } from '@Auth0/auth0-react';
+import { useAuth0 } from '@auth0/auth0-react';
 import { getUsers } from '../../redux/actions';
 
 const CLOUD_NAME = import.meta.env.VITE_CLOUD_NAME;

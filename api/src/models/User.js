@@ -33,7 +33,7 @@ module.exports = (sequelize) => {
 
     rol: {
       type: DataTypes.BOOLEAN,
-      defaultValue: true,
+      defaultValue: false,
     },
 
     email: {
