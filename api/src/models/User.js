@@ -27,8 +27,8 @@ module.exports = (sequelize) => {
     },
 
     rol: {
-      type: DataTypes.ENUM('Admin', 'Client'),
-      defaultValue: 'Client',
+      type: DataTypes.ENUM('admin', 'client'),
+      defaultValue: 'admin',
     },
 
     email: {
@@ -48,7 +48,11 @@ module.exports = (sequelize) => {
     image:{
       type: DataTypes.STRING,
       defaultValue: "",
-    }
+    },
+    favorites: {
+      type: DataTypes.ARRAY(DataTypes.TEXT),
+      defaultValue: [],
+    },
   },
   { timestamps: false }
   );

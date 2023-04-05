@@ -22,6 +22,9 @@ import {
   CLEAR_CART,
   REMOVE_FAVORITE,  
   GET_EMAIL,
+  CLEAR_EMAIL,
+  CLEAN_FAVORITES,
+  NEW_FAVORITES,
   DISABLE_USER
 } from "../actions/types";
 
@@ -41,7 +44,7 @@ const initialState = {
   favorites: JSON.parse(localStorage.getItem("favorites")) || [],
   cart: JSON.parse(localStorage.getItem('cart')) || [],
   image: [],
-  userEmail: []
+  userEmail: {},
 };
 
 function rootReducer(state = initialState, action) {
@@ -63,7 +66,8 @@ function rootReducer(state = initialState, action) {
         allGames: state.allGamesOriginal,
         detail:[],
         filterGenres: 'All',
-        filterPlataforms: 'All'
+        filterPlataforms: 'All',
+        searchError: null
       };
 
     case SEARCH_BY_NAME:
@@ -181,9 +185,16 @@ function rootReducer(state = initialState, action) {
               ...state,
               detail:[],
               allGames:[],
-              userEmail: [],
+              userEmail: {},
               searchError: null
           }; 
+
+      case CLEAR_EMAIL:
+        return {
+          ...state,
+          userEmail: {},
+        };
+
           
           case GET_USERS:
           return { ...state, users: action.payload, allUsers: action.payload, };
@@ -196,7 +207,10 @@ function rootReducer(state = initialState, action) {
       //por favor no borrar este case es el que pasa el rol a la navbar "leonardo" 
 
       case GET_EMAIL:
-          return { ...state, userEmail: action.payload, }
+          const userData = { ...action.payload };
+          
+          localStorage.setItem("userEmail", JSON.stringify(userData));
+          return { ...state, userEmail: userData };
 
       //*************** */
           
@@ -217,7 +231,11 @@ function rootReducer(state = initialState, action) {
           const cleanFavorite = state.favorites.filter(fav => fav.id !== action.payload);
           localStorage.setItem("favorites", JSON.stringify(cleanFavorite));
           return { ...state, favorites: cleanFavorite };
-          
+        case CLEAN_FAVORITES:
+          localStorage.setItem("favorites", JSON.stringify([]));
+          return { ...state, favorites: [] }
+        case NEW_FAVORITES:
+          return { ...state, favorites: action.payload };
       // case ADD_TO_CART:
       //   const existingGameIndex = state.cart.findIndex(game => game.id === action.payload);
       //     if (existingGameIndex !== -1) {

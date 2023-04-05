@@ -4,8 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getUsers, disableUser } from "../../redux/actions";
 import styles from "./Users.module.css";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Users = () => {
+  // const allUsers = useSelector((state) => state.allUsers);
+  const { user, isAuthenticated } = useAuth0();
   const allUsers = useSelector((state) => state.allUsers);
   const dispatch = useDispatch();
 
@@ -17,9 +20,22 @@ const Users = () => {
     dispatch(disableUser(userId));
   };
 
+  // Función para obtener el usuario actual
+  const getCurrentUser = () => {
+  if (isAuthenticated && allUsers) {
+    return allUsers.find((u) => u.email === user.email);
+      }
+    return null;
+  };
+
+  const currentUser = getCurrentUser();
+
+
   return (
     <div className={styles.Background}>
+     
       <div className={styles.containerUser}>
+       <h1 className={styles.title}  >User control panel </h1>
       {allUsers ? (
         allUsers.map((user) => (
           <div className={styles.user} key={user.id}>
@@ -30,41 +46,24 @@ const Users = () => {
                active={user.active} 
                rol={user.rol}
             />
-            {/* <button onClick={() => handleDisableClick(user.id)}>
-              {user.active ? "Desactivar" : "Activar"}
-            </button> */}
-
             <div className={styles.containerButton}>
                 <label className={styles.switch}>
-                 <h3 className={styles.ennabled}>Client</h3>
-                 <h3 className={styles.disabled}>Admin</h3>
+                 <h3 className={styles.ennabled}>Ennabled</h3>
+                 <h3 className={styles.disabled}>Disabled</h3>
                  <input    onClick={() => handleDisableClick(user.id)} type="checkbox"/>
                  {user.active ? "" : ""}
                  <span className={styles.slider}></span>
                 </label>
             </div>
-
-             <div className={styles.containerButton2}>
-               <label className={styles.switch}>
-                <h3 className={styles.client}>Ennabled</h3>
-                <h3 className={styles.admin}>Disabled</h3>
+            <div className={styles.containerButton2}>
+               <label className={styles.switch2}>
+                <h3 className={styles.client}>Client</h3>
+                <h3 className={styles.admin}>Admin</h3>
                 <input onClick={() => handleDisableClick(user.id)} type="checkbox"/>
-                {user.active ? "" : ""}
-                <span className={styles.slider}></span>
+                {user.rol ? "" : ""}
+                <span className={styles.slider2}></span>
                </label> 
              </div>
-
-
-
-
-
-{/* 
-            <button className={styles.button}  onClick={() => handleDisableClick(user.id)}>
-            {user.active ? "Desactivar" : "Activar"}
-            </button> */}
-
-
-
           </div>
         ))
         ) : (
@@ -75,6 +74,7 @@ const Users = () => {
         </div>
       )}
       </div>
+      
     </div>
   );
 };
