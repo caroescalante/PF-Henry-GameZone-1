@@ -96,19 +96,18 @@ const Home = () => {
         setCurrentPage(1);
     }
 
-    useEffect(() => {   
+    useEffect(() => {
         if (isAuthenticated) {
-            dispatch(getUsers());
+          dispatch(getUsers()).then(() => {
             const data = allUsers.find((u) => u.email === user.email);
             if (!data) {
-                axios.post(`http://localhost:3001/user/`, { email: user.email })
-                    .then(() => history.push("/"));
-                
-            } else {
+              axios.post(`http://localhost:3001/user/`, { email: user.email }).then(() => {
                 history.push("/");
+              });
             }
+          });
         }
-    }, [isAuthenticated, dispatch, history, allUsers]);
+    }, [isAuthenticated, dispatch, history]);
 
     return (
         <div className={styles.Background}>
