@@ -1,0 +1,57 @@
+.Background{
+    background-image: url("../../Image/admin-bans-user-red-button-keyboard-notebook-inscription-banned-concept-blocking-internet-192681026.jpg");
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+}
+.title{
+    font-size: 7rem;
+    background-color: transparent;
+    transition: transform 0.5s ease, box-shadow 0.2s ease;
+    will-change: transform, filter;
+    backdrop-filter: blur(45px);
+    position: relative;
+    left: 165px;
+    padding-left: 20px;
+    bottom: 170px;
+    width: 600px;
+   
+  
+}
+.subtitle{
+    font-size: 2.5rem;
+    background-color: transparent;
+    position: relative;
+    font-weight: 700;
+    top: 100px;
+    left: 70px;
+
+}
+.login ion-icon {
+    color:black;
+    background-color: black;
+    padding: 10px 10px;  
+      margin-top: 10px;
+    height: 16rem;
+    width: 16rem;
+    border-radius: 50px;
+    position: relative;
+    left: 75px;
+    bottom:7px;
+    background-color: transparent;
+    backdrop-filter: blur(35px);
+
+}
+
+.login ion-icon:hover {   
+    color:red;
+    box-shadow: 1px 1px 20px 8px red;
+    border-radius: 50px;
+    background-color: transparent;
+    transform: translateY(5px);
+    padding: 10px 10px;    
+}

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {useAuth0} from '@auth0/auth0-react';
+import {useAuth0} from '@Auth0/auth0-react';
 import { Link } from 'react-router-dom';
 import { clearDetail, cleanFavorites, clearUserEmail } from '../../redux/actions';
 import style from './LogoutButton.module.css';

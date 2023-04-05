@@ -5,7 +5,7 @@ import logo from "../../Image/logo.png";
 import { reloadGames, getUsers } from "../../redux/actions";
 import LoginButton from "../LoginButton/LoginButton";
 import LogoutButton from "../LogoutButton/LogoutButton";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth0 } from "@Auth0/auth0-react";
 import { useDispatch, useSelector} from "react-redux";
 import axios from "axios";
 
@@ -74,7 +74,7 @@ const Navbar = () => {
                     {users.name ? (
                         <h2 className={style.linksName}>{users.name}</h2>
                     ) : (
-                        <h2 className={style.imageAlt}>{user.given_name}</h2>
+                        <h2 className={style.imageAlt}><i class="fa fa-id-card"></i> {user.given_name}</h2>
                     )}
                 </Link>
             )}
