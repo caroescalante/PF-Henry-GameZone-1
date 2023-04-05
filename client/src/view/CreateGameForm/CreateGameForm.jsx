@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getGenres, getPlatforms } from "../../redux/actions/index";
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth0 } from "@Auth0/auth0-react";
 
 
 
@@ -19,11 +19,11 @@ const validate = (form) => {
     errors.name = "the name must have at least 3 characters";
   };
 
-  // if (!form.image) {
-  //   errors.image = "the image is required";
-  // } else if (!/^(ftp|http|https):\/\/[^ "]+$/.test(form.image)) {
-  //   errors.image = "the image must be a url";
-  // };
+  if (!form.image) {
+    errors.image = "the image is required";
+  } else if (!/^(ftp|http|https):\/\/[^ "]+$/.test(form.image)) {
+    errors.image = "the image must be a url";
+  };
 
   if (!form.price) {
     errors.price = "the price is required";
@@ -66,11 +66,7 @@ function CreateGameForm() {
   
 
   useEffect(() => {
-<<<<<<< HEAD
-  if(!isAuthenticated || users.rol === "client" ) {
-=======
-  if(!isAuthenticated || users.rol === false || users.active === false) {
->>>>>>> edf7bf8974299585124b8de578fe5406f0c10d5d
+  if(!isAuthenticated || users.rol === "client") {
     window.location.href = "/"
   }
   })
@@ -163,40 +159,12 @@ function CreateGameForm() {
     setFocus({ ...focus, [property]: property });
   };
 
-<<<<<<< HEAD
-let url= ""
-  const onDrop = async (acceptedFiles) => {
-    const file = acceptedFiles[0];
-    const formData = new FormData();
-    formData.append('file', file);
-    formData.append('upload_preset', UPLOAD_PRESET_NAME);
-
-    try {
-      const response = await axios.post(
-        `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
-        formData
-      );
-      setUploadedImageUrl(response.data.secure_url);
-    url= response.data.secure_url
-    console.log(url);
-    } catch (error) {
-      console.error(error);
-      alert("Error al cargar la imagen");
-    }
-  };
-
-  const { getRootProps, getInputProps } = useDropzone({ onDrop });
-
-
-=======
->>>>>>> edf7bf8974299585124b8de578fe5406f0c10d5d
   const submitHandler = (event) => {
     const genresFinal=[];
     selectedOptionG.map((t)=> {genresFinal.push(t.value)});
     const platformsFinal=[];
     selectedOptionP.map((t)=> {platformsFinal.push(t.value)});
-    let finalForm = { ...form , ...form.image= url};
-    console.log(...form.image = url);
+    let finalForm = { ...form };
     finalForm = { ...finalForm, genres: genresFinal };
     finalForm = { ...finalForm, platforms: platformsFinal };
     if (finalForm.website === "") finalForm = { ...finalForm, website: null };
@@ -206,11 +174,7 @@ let url= ""
     // location.reload();
                               //A partir de aqui es el código de la modal alert//
 
-<<<<<<< HEAD
-    axios.post("http://localhost:3001/videogames", {finalForm,  })
-=======
     axios.post("http://localhost:3001/videogames", finalForm)
->>>>>>> edf7bf8974299585124b8de578fe5406f0c10d5d
     .then(() => {
         Swal.fire({
             title: 'Success!',
@@ -238,9 +202,9 @@ let url= ""
     <form className={style.backgroundImage}onSubmit={submitHandler}>
       <div className={style.container}>
       <h3 className={style.title} >Create your Videogame </h3>
-        <div>
+        <div className={style.containerInputs}>
         <div className={style.containerInputs1}>
-        <div className={style.fieldsN}>
+        <div className={style.fields}>
           <label htmlFor="name">Name</label>
           <input type="text" name="name" placeholder="Name..." value={form.name} onChange={inputChangeHandler} onFocus={focusHandler}  />
          {errors.name && focus.name && <p className={style.errorText}>{errors.name}</p>}
@@ -250,24 +214,6 @@ let url= ""
           <input type="text" name="description" placeholder="Description..." value={form.description} onChange={inputChangeHandler} onFocus={focusHandler} />
          {errors.description && focus.description && <p className={style.errorText}>{errors.description}</p>}
         </div>
-<<<<<<< HEAD
-        <div>
-        <div {...getRootProps()}  >
-                        <input {...getInputProps()}/>
-                        {uploadedImageUrl ? (
-                        <div className={style.conteinerImg}>
-                            <img 
-                            src={uploadedImageUrl} 
-                            alt="Uploaded image, please click on Record Data" 
-                            className={style.img}/>
-                        </div>
-                        ) : (
-                        <div className={style.drop}>
-                          <p className={style.textDrop}>Click here to load an image</p>
-                        </div>
-                        )}
-                    </div>
-=======
         <label className={style.price} htmlFor="price">$</label>
         <div className={style.fields}>
           <label htmlFor="price">Price</label>
@@ -290,41 +236,8 @@ let url= ""
         <div className={style.fields}>
           <label htmlFor="image">Image</label>
           <input type="text" name="image" placeholder="Image..." value={form.image} onChange={inputChangeHandler} onFocus={focusHandler}  />
->>>>>>> edf7bf8974299585124b8de578fe5406f0c10d5d
          {errors.image && focus.image && <p className={style.errorText}>{errors.image}</p>} 
         </div>
-        
-
-
-
-
-
-
-
-         </div>
-         <div className={style.containerInputs2}>
-        
-         <label className={style.price} htmlFor="price">$</label>
-        <div className={style.fields}>
-          <label htmlFor="price">Price</label>
-          <input type="number" name="price" placeholder=" Price..." value={form.price} onChange={inputChangeHandler} onFocus={focusHandler} />
-         {errors.price && focus.price && <p className={style.errorText}>{errors.price}</p>}
-        </div>
-        
-        
-        
-        
-        <div className={style.fieldsW}>
-          <label htmlFor="website">Website</label>
-          <input type="text" name="website" placeholder="Website..." value={form.website} onChange={inputChangeHandler} onFocus={focusHandler}  />
-         {errors.website && focus.website && <p className={style.errorText}>{errors.website}</p>}
-        </div>
-        <div className={style.fieldsR}>
-          <label htmlFor="released">Released</label>
-          <input type="date" name="released" placeholder="Released..." value={form.released} onChange={inputChangeHandler} onFocus={focusHandler}  />
-         {errors.released && focus.released && <p className={style.errorText}>{errors.released}</p>}
-        </div>
-        
          </div>
          </div>
       <h3 className={style.subTitle}>Select one or more genres</h3>
@@ -368,7 +281,7 @@ let url= ""
        <div className={style.containerButton}> 
         {/* <button type="submit"  className={style.button} disabled={
           (errors.name || errors.image || errors.price  || errors.description) ? true : false } */}
-        {!errors.name && !errors.price && !errors.description  && !errors.released && selectedOptionG !== null && selectedOptionP !== null && (<button type="submit"  className={style.button} >Submit
+        {!errors.name && !errors.image && !errors.price && !errors.description  && !errors.released && selectedOptionG !== null && selectedOptionP !== null && (<button type="submit"  className={style.button} >Submit
         </button>)} 
           
          </div> 
